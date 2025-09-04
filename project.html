@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Expo | YenSplash '25</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0a192f;
+            color: #e6f1ff;
+        }
+        
+        .animated-gradient-bg {
+            background-size: 400% 400%;
+            animation: gradientBG 20s ease infinite;
+            background-image: linear-gradient(-45deg, #0a192f, #1e1b4b, #0a192f, #1e1b4b);
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .glass-card {
+            background: rgba(30, 27, 75, 0.6); /* Violet Tint */
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border: 1px solid rgba(167, 139, 250, 0.15);
+            border-radius: 1rem;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+        }
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body class="antialiased animated-gradient-bg">
+
+    <header class="sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 grid grid-cols-3 items-center bg-black/20 backdrop-blur-md rounded-b-xl border-x border-b border-slate-800">
+            <div class="justify-self-start">
+                <a href="index.html" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                    <span>Back to Main Site</span>
+                </a>
+            </div>
+            <div class="justify-self-center">
+                <h1 class="text-xl font-bold text-violet-400">Project Expo</h1>
+            </div>
+            <div class="justify-self-end"></div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 py-12 md:py-16">
+        <div class="space-y-16">
+            <section class="text-center">
+                <div class="glass-card p-8 md:p-12">
+                    <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight" style="text-shadow: 0 0 15px rgba(167, 139, 250, 0.4);">
+                        <span class="text-violet-400">Project Expo</span>
+                    </h1>
+                    <p class="mt-2 text-xl md:text-2xl text-gray-300">Part of the 21st ISTE State Level Student Convention, 2025</p>
+                    <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-6">
+                        <div class="glass-card p-4 w-60 text-center">
+                            <p class="text-gray-400 text-sm">Event Date</p>
+                            <p class="text-white font-bold text-lg">12th November 2025</p>
+                        </div>
+                        <div class="glass-card p-4 w-60 text-center">
+                            <p class="text-gray-400 text-sm">Time</p>
+                            <p class="text-white font-bold text-lg">01:30 PM - 03:30 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="max-w-4xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="glass-card p-6 hover:-translate-y-1 hover:shadow-lg hover:shadow-violet-500/10">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-violet-400 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                        <h3 class="text-xl font-bold">Teams of 2 to 4</h3>
+                        <p class="text-gray-400 mt-1">Collaborate to bring your ideas to life.</p>
+                    </div>
+                    <div class="glass-card p-6 hover:-translate-y-1 hover:shadow-lg hover:shadow-violet-500/10">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-violet-400 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                        <h3 class="text-xl font-bold">Working Models</h3>
+                        <p class="text-gray-400 mt-1">Present a live, functional demonstration.</p>
+                    </div>
+                    <div class="glass-card p-6 hover:-translate-y-1 hover:shadow-lg hover:shadow-violet-500/10">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-violet-400 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                        <h3 class="text-xl font-bold">Showcase Innovation</h3>
+                        <p class="text-gray-400 mt-1">Judged on creativity, applicability, and quality.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="max-w-4xl mx-auto">
+                <div class="glass-card p-8 md:p-12 hover:-translate-y-1 hover:shadow-xl hover:shadow-violet-500/10">
+                    <h2 class="text-3xl font-bold text-center mb-6">What to Expect</h2>
+                    <div class="text-gray-300 text-lg space-y-4 text-center max-w-3xl mx-auto">
+                        <p>The Project Expo is a platform for students to showcase innovative ideas, technical knowledge, and problem-solving skills, aiming to enhance presentation skills and foster innovation among peers, faculty, and industry experts.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="max-w-4xl mx-auto">
+                <div class="glass-card p-8 md:p-12">
+                    <h2 class="text-3xl font-bold text-center mb-10">Event Guidelines</h2>
+                    <div id="accordion-container" class="space-y-4">
+                        <div class="accordion-item bg-black/20 border border-violet-400/20 rounded-lg overflow-hidden transition-all duration-300 hover:bg-black/30 hover:border-violet-400/30">
+                            <div class="accordion-header flex justify-between items-center p-5 cursor-pointer">
+                                <div class="flex items-center gap-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 012-2h2a2 2 0 012 2v1m-6 0h6" /></svg>
+                                    <h3 class="font-semibold text-lg">Eligibility & Participation</h3>
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 accordion-icon transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                            </div>
+                            <div class="accordion-content overflow-hidden">
+                                <div class="p-5 border-t border-violet-400/20 text-gray-300">
+                                    <ul class="list-disc list-inside space-y-2">
+                                        <li>Students from any branch or discipline are eligible.</li>
+                                        <li>Participants must carry a valid college ID card.</li>
+                                        <li>Teams must consist of a minimum of 2 and a maximum of 4 members.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item bg-black/20 border border-violet-400/20 rounded-lg overflow-hidden transition-all duration-300 hover:bg-black/30 hover:border-violet-400/30">
+                            <div class="accordion-header flex justify-between items-center p-5 cursor-pointer">
+                                <div class="flex items-center gap-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" /></svg>
+                                    <h3 class="font-semibold text-lg">Exhibition Setup</h3>
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 accordion-icon transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                            </div>
+                            <div class="accordion-content overflow-hidden">
+                                <div class="p-5 border-t border-violet-400/20 text-gray-300">
+                                    <ul class="list-disc list-inside space-y-2">
+                                        <li>Each team will be provided a stall/table for their demonstration.</li>
+                                        <li>One power socket (230V, 50Hz AC) will be available per team.</li>
+                                        <li>Flammable fluids or hazardous materials are strictly prohibited.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item bg-black/20 border border-violet-400/20 rounded-lg overflow-hidden transition-all duration-300 hover:bg-black/30 hover:border-violet-400/30">
+                            <div class="accordion-header flex justify-between items-center p-5 cursor-pointer">
+                                <div class="flex items-center gap-4">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                                    <h3 class="font-semibold text-lg">Judging & Evaluation</h3>
+                                </div>
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 accordion-icon transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                            </div>
+                            <div class="accordion-content overflow-hidden">
+                                <div class="p-5 border-t border-violet-400/20 text-gray-300">
+                                   <ul class="list-disc list-inside space-y-2">
+                                        <li>Projects are evaluated on innovation, working demonstration, and presentation quality.</li>
+                                        <li>Prizes will be awarded to the best projects.</li>
+                                        <li>The decision of the judges will be final.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="max-w-4xl mx-auto">
+                <div class="glass-card p-8 md:p-12">
+                    <h2 class="text-3xl font-bold text-center mb-10">Faculty Coordinators</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="glass-card p-6 text-center hover:-translate-y-1 hover:shadow-lg hover:shadow-violet-500/10">
+                            <h3 class="text-xl font-bold text-white">Prof. Shankar Pai</h3>
+                            <p class="text-gray-400 mt-1">+91 98808 83649</p>
+                        </div>
+                        <div class="glass-card p-6 text-center hover:-translate-y-1 hover:shadow-lg hover:shadow-violet-500/10">
+                            <h3 class="text-xl font-bold text-white">Prof. G B Praveen</h3>
+                            <p class="text-gray-400 mt-1">+91 81471 20152</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="text-center">
+                <div class="glass-card p-8 md:p-12 hover:-translate-y-1 hover:shadow-xl hover:shadow-violet-500/10">
+                    <h2 class="text-3xl font-bold">Ready to Showcase Your Innovation?</h2>
+                    <p class="mt-3 text-lg text-gray-400">Join the brightest minds and present your ideas. Prizes will be awarded to the most outstanding projects.</p>
+                    <div class="mt-8">
+                        <a href="#" class="inline-block bg-violet-400 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 ease-in-out hover:bg-violet-400/90 hover:shadow-lg hover:shadow-violet-500/30 hover:scale-105">
+                            Register Your Team
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer class="border-t border-slate-800/50 mt-16">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-500">
+            <p>&copy; 2025 Yenepoya Institute of Technology. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordionItems = document.querySelectorAll('.accordion-item');
+            accordionItems.forEach(item => {
+                const header = item.querySelector('.accordion-header');
+                header.addEventListener('click', () => {
+                    const isActive = item.classList.contains('active');
+                    accordionItems.forEach(otherItem => otherItem.classList.remove('active'));
+                    if (!isActive) item.classList.add('active');
+                });
+            });
+            if (accordionItems.length > 0) accordionItems[0].classList.add('active');
+        });
+    </script>
+
+</body>
+</html>
