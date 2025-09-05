@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AUTO-CAD DESIGN CHALLENGE 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Custom Fonts --- */
+        .font-stencil { font-family: 'Orbitron', sans-serif; }
+        .font-mono { font-family: 'Space Mono', monospace; }
+
+        /* --- Blueprint Background --- */
+        body {
+            background-color: #0a192f; /* Deep navy */
+            background-image:
+                linear-gradient(rgba(204, 240, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(204, 240, 255, 0.1) 1px, transparent 1px);
+            background-size: 2rem 2rem;
+            color: #ccf0ff; /* Light cyan text */
+            overflow-x: hidden;
+        }
+
+        /* --- SVG Line Drawing Animation --- */
+        .draw-in path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw 5s forwards;
+        }
+
+        @keyframes draw {
+            to {
+                stroke-dashoffset: 0;
+            }
+        }
+
+        /* --- Staggered animation for the hero SVG --- */
+        .hero-svg path:nth-child(1) { animation-delay: 0s; }
+        .hero-svg path:nth-child(2) { animation-delay: 0.2s; }
+        .hero-svg path:nth-child(3) { animation-delay: 0.4s; }
+        .hero-svg path:nth-child(4) { animation-delay: 0.6s; }
+        .hero-svg path:nth-child(5) { animation-delay: 0.8s; }
+        .hero-svg path:nth-child(6) { animation-delay: 1.0s; }
+        .hero-svg path:nth-child(7) { animation-delay: 1.2s; }
+        .hero-svg path:nth-child(8) { animation-delay: 1.4s; }
+        .hero-svg path:nth-child(9) { animation-delay: 1.6s; }
+        .hero-svg path:nth-child(10) { animation-delay: 1.8s; }
+        .hero-svg path:nth-child(11) { animation-delay: 2.0s; }
+        .hero-svg path:nth-child(12) { animation-delay: 2.2s; }
+
+
+        /* --- UI Element Styling --- */
+        .blueprint-panel {
+            background-color: rgba(10, 25, 47, 0.8); /* Semi-transparent navy */
+            border: 1px solid rgba(0, 191, 255, 0.4); /* Cyan border */
+            backdrop-filter: blur(4px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .blueprint-button {
+            border: 1px solid #00bfff;
+            color: #00bfff;
+            background-color: transparent;
+            padding: 10px 20px;
+            font-family: 'Space Mono', monospace;
+            transition: background-color 0.3s, color 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blueprint-button:hover {
+            background-color: #00bfff;
+            color: #0a192f;
+        }
+        
+        /* Simulating a circuit trace on hover */
+        .blueprint-button::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: -100%;
+            width: 100%;
+            height: 1px;
+            background-color: #ccf0ff;
+            transform: translateY(-50%);
+            transition: left 0.4s ease-out;
+        }
+
+        .blueprint-button:hover::before {
+            left: 100%;
+        }
+
+        .annotation-box {
+            border-left: 2px solid #00bfff;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .annotation-box::before {
+            content: '';
+            position: absolute;
+            left: -4px;
+            top: -4px;
+            width: 8px;
+            height: 8px;
+            background-color: #00bfff;
+            clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); /* Diamond shape */
+        }
+        
+        .rules-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .rules-list .gear-icon {
+            flex-shrink: 0;
+            margin-right: 0.75rem;
+            margin-top: 0.25rem;
+            transition: transform 0.5s ease-in-out;
+        }
+        .rules-list li:hover .gear-icon {
+            transform: rotate(180deg);
+        }
+
+        /* --- Subtle background schematic animation --- */
+        .schematic-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+        .schematic-bg svg path {
+            stroke-dasharray: 500;
+            stroke-dashoffset: 500;
+            animation: schematic-draw 20s linear infinite;
+        }
+
+        @keyframes schematic-draw {
+            0% { stroke-dashoffset: 1000; }
+            50% { stroke-dashoffset: 0; }
+            100% { stroke-dashoffset: -1000; }
+        }
+
+    </style>
+</head>
+<body class="font-mono">
+
+    <header class="sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center bg-blue-950/50 backdrop-blur-md border border-cyan-300/20 px-6 py-3 rounded-lg">
+                <h1 class="font-stencil text-xl text-center text-white">AUTOCAD CHALLENGE</h1>
+                <a href="#" class="text-cyan-400 hover:text-white transition-colors flex items-center gap-2 text-sm">
+                    <span>Main Hub</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Background Animated Schematic -->
+    <div class="schematic-bg">
+        <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="smallGrid" width="8" height="8" patternUnits="userSpaceOnUse">
+                    <path d="M 8 0 L 0 0 0 8" fill="none" stroke="rgba(0,191,255,0.05)" stroke-width="0.5"/>
+                </pattern>
+                <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+                    <rect width="80" height="80" fill="url(#smallGrid)"/>
+                    <path d="M 80 0 L 0 0 0 80" fill="none" stroke="rgba(0,191,255,0.1)" stroke-width="1"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#grid)" />
+            <path d="M -200 100 L 300 100 L 350 150 L 600 150 L 650 100 L 1000 100 M 800 500 L 500 500 L 450 450 L 200 450 L 150 500 L -100 500" fill="none" stroke="rgba(0,191,255,0.2)" stroke-width="1"/>
+            <path d="M 1200 800 L 900 800 L 850 750 L 600 750 L 550 800 L 0 800 L -50 850 L -200 850" fill="none" stroke="rgba(0,191,255,0.2)" stroke-width="1" style="animation-delay: 5s;"/>
+             <path d="M 50 0 L 50 50 L 100 100 L 100 1000 M 1500 200 L 1450 250 L 1450 600 L 1200 850" fill="none" stroke="rgba(0,191,255,0.2)" stroke-width="1" style="animation-delay: 10s;"/>
+        </svg>
+    </div>
+
+    <div class="relative min-h-screen flex flex-col items-center p-4 md:p-8 z-10">
+        
+        <!-- Hero Section -->
+        <header class="w-full max-w-5xl text-center mb-16 md:mb-24 pt-8 md:pt-12">
+            <div class="relative w-full flex justify-center items-center h-48 md:h-64">
+                <!-- Animated SVG Wireframe -->
+                <svg class="hero-svg absolute w-full h-full draw-in" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
+                    <defs>
+                        <filter id="glow">
+                            <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+                        </filter>
+                    </defs>
+                    <path d="M 50 50 L 150 50 L 150 150 L 50 150 Z" fill="none" stroke="#ccf0ff" stroke-width="0.5"/>
+                    <path d="M 70 70 L 170 70 L 170 170 L 70 170 Z" fill="none" stroke="#00bfff" stroke-width="0.5"/>
+                    <path d="M 50 50 L 70 70" fill="none" stroke="#ccf0ff" stroke-width="0.5"/>
+                    <path d="M 150 50 L 170 70" fill="none" stroke="#ccf0ff" stroke-width="0.5"/>
+                    <path d="M 150 150 L 170 170" fill="none" stroke="#ccf0ff" stroke-width="0.5"/>
+                    <path d="M 50 150 L 70 170" fill="none" stroke="#ccf0ff" stroke-width="0.5"/>
+                    
+                    <!-- Inner Gear Shape -->
+                    <path d="M110,100 A10,10 0 1 1 90,100 A10,10 0 1 1 110,100" fill="none" stroke="#00bfff" stroke-width="0.5"/>
+                    <path d="M100 80 L 100 120" fill="none" stroke="#00bfff" stroke-width="0.5" />
+                    <path d="M80 100 L 120 100" fill="none" stroke="#00bfff" stroke-width="0.5" />
+                    
+                    <!-- Dimension lines -->
+                    <path d="M50 40 L 150 40 M 100 40 L 100 50" fill="none" stroke="#ccf0ff" stroke-width="0.5" />
+                     <path d="M40 50 L 40 150 M 40 100 L 50 100" fill="none" stroke="#ccf0ff" stroke-width="0.5" />
+                </svg>
+
+                <div class="relative z-10">
+                    <h1 class="font-stencil text-3xl md:text-5xl lg:text-6xl font-bold tracking-widest text-white">AUTO-CAD</h1>
+                    <h2 class="font-stencil text-xl md:text-3xl lg:text-4xl font-bold tracking-widest text-cyan-400">DESIGN CHALLENGE 2025</h2>
+                </div>
+            </div>
+            
+            <p class="font-mono text-sm md:text-base mt-8 text-slate-300">21st ISTE State Level Student Convention, 2025</p>
+            <div class="mt-8">
+                <a href="#register" class="blueprint-button text-lg">REGISTER NOW</a>
+            </div>
+        </header>
+
+        <main class="w-full max-w-5xl space-y-16 md:space-y-24">
+            
+            <!-- About Section -->
+            <section id="about" class="blueprint-panel p-6 md:p-8 rounded-lg">
+                <h3 class="font-stencil text-2xl md:text-3xl text-cyan-400 mb-6">[ Project Description ]</h3>
+                <div class="annotation-box">
+                    <p class="font-mono text-slate-300 leading-relaxed">
+                        AutoCAD is one of the most widely used computer-aided design (CAD) software for creating precise 2D and 3D designs. This intercollegiate competition provides a platform for students to showcase their drafting skills, creativity, and technical knowledge. The event aims to encourage problem-solving abilities, enhance employability, and promote innovation through design. Participants will be challenged to replicate a given PDF drawing within the allotted time, testing their accuracy, speed, and attention to detail.
+                    </p>
+                    <p class="font-mono text-slate-300 leading-relaxed mt-4">
+                        <span class="text-cyan-400">EVENT DATE:</span> 12th Nov, 2025<br>
+                        <span class="text-cyan-400">TIME:</span> 10:30 AM to 12:30 PM
+                    </p>
+                </div>
+            </section>
+            
+            <!-- Rules & Guidelines -->
+            <section id="rules" class="blueprint-panel p-6 md:p-8 rounded-lg">
+                <h3 class="font-stencil text-2xl md:text-3xl text-cyan-400 mb-6">[ Rules & Regulations ]</h3>
+                <ul class="rules-list font-mono text-slate-300">
+                    <li>
+                        <svg class="gear-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00bfff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg>
+                        <span>Maximum 1 participant per team (individual participation only).</span>
+                    </li>
+                    <li>
+                        <svg class="gear-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00bfff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg>
+                        <span>A PDF drawing will be provided at the time of the competition.</span>
+                    </li>
+                    <li>
+                        <svg class="gear-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00bfff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg>
+                        <span>Use of personal electronic accessories (mobile phones, USB drives, internet, etc.) is strictly prohibited.</span>
+                    </li>
+                    <li>
+                        <svg class="gear-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00bfff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg>
+                        <span>Participants must complete their design within the specified time limit.</span>
+                    </li>
+                    <li>
+                        <svg class="gear-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00bfff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg>
+                        <span>No corrections are allowed after submission of the drawing. Only complete drawings will be considered.</span>
+                    </li>
+                </ul>
+                <h4 class="font-stencil text-xl md:text-2xl text-cyan-400 my-6">[ Judging Criteria ]</h4>
+                 <ul class="rules-list font-mono text-slate-300">
+                     <li>
+                        <svg class="gear-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00bfff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg>
+                        <span>Accuracy and completeness of the drawing.</span>
+                    </li>
+                     <li>
+                        <svg class="gear-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00bfff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/><circle cx="12" cy="12" r="3"/></svg>
+                        <span>Time taken to finish the task (optimum time).</span>
+                    </li>
+                </ul>
+            </section>
+            
+             <!-- Coordinators Section -->
+            <section id="coordinators" class="blueprint-panel p-6 md:p-8 rounded-lg">
+                <h3 class="font-stencil text-2xl md:text-3xl text-cyan-400 mb-6">[ Faculty Coordinators ]</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 font-mono text-slate-300">
+                    <div class="annotation-box">
+                        <p class="text-white">Prof. Jaganesh G C</p>
+                        <p>Ph. No.: +91 91645 85263</p>
+                    </div>
+                    <div class="annotation-box">
+                        <p class="text-white">Prof. Lakshmi Shivarama Prasad S</p>
+                        <p>Ph. No.: +91 99641 41098</p>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Registration Section -->
+            <section id="register" class="text-center">
+                <div class="inline-block relative p-2 border border-cyan-500">
+                     <div class="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-cyan-500"></div>
+                     <div class="absolute top-0 right-0 w-2 h-2 border-t-2 border-r-2 border-cyan-500"></div>
+                     <div class="absolute bottom-0 left-0 w-2 h-2 border-b-2 border-l-2 border-cyan-500"></div>
+                     <div class="absolute bottom-0 right-0 w-2 h-2 border-b-2 border-r-2 border-cyan-500"></div>
+                     <a href="#" class="blueprint-button text-xl">
+                        [ SUBMIT YOUR DESIGN ]
+                    </a>
+                </div>
+            </section>
+        </main>
+        
+        <!-- Footer -->
+        <footer class="w-full max-w-5xl text-center mt-16 md:mt-24 pb-8">
+            <p class="font-mono text-xs text-slate-500">&copy; 2025 AutoCAD Design Challenge. All Rights Reserved. Schematics for demonstration purposes only.</p>
+        </footer>
+
+    </div>
+    
+    <script>
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
