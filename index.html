@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>21st ISTE Karnataka Student Convention</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --dark-bg: #000000;
+            --primary-green: #02ef97;
+            --primary-glow: rgba(2, 239, 151, 0.4);
+            --border-color: rgba(255, 255, 255, 0.1);
+            --card-bg: rgba(10, 25, 47, 0.3);
+        }
+
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: var(--dark-bg);
+            color: #E2E8F0;
+            overflow-x: hidden;
+            cursor: none;
+        }
+
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        #custom-cursor {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: transparent;
+            border: 1.5px solid var(--primary-green);
+            pointer-events: none;
+            mix-blend-mode: screen;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease-out;
+        }
+
+        .glass-nav {
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--primary-green), transparent);
+            border-radius: 2px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .section-title-visible::after {
+            opacity: 1;
+        }
+
+        .glass-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            border-radius: 0.75rem;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 0 35px var(--primary-glow);
+            border-color: rgba(2, 239, 151, 0.5);
+        }
+        
+        .pill-nav a {
+            transition: all 0.3s ease;
+        }
+
+        .pill-nav a.active, .pill-nav a:hover {
+            background-color: var(--primary-green);
+            color: #000;
+            box-shadow: 0 0 15px rgba(2, 239, 151, 0.6);
+        }
+        
+        #about-yensplash {
+            background: radial-gradient(circle at 50% 50%, rgba(2, 239, 151, 0.1), transparent 0.1%);
+        }
+
+        #hero-subtitle.typing::after {
+            content: '_';
+            display: inline-block;
+            margin-left: 4px;
+            color: var(--primary-green);
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+    <canvas id="matrix-canvas"></canvas>
+    <div id="custom-cursor"></div>
+
+    <header id="header" class="glass-nav sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-3 flex justify-between items-center">
+            <div class="flex-shrink-0">
+                <a href="#hero" class="flex items-center space-x-2">
+                    <img src="https://www.yit.edu.in/assets/img/logo-yit.png" alt="Yenepoya Institute of Technology Logo" class="h-8 md:h-10">
+                </a>
+            </div>
+            
+            <div class="hidden md:flex items-center bg-black/30 border border-white/10 rounded-full px-2 py-1 pill-nav ">
+                <a href="#hero" class="nav-link px-4 py-2 rounded-full text-sm
+                  ml-1 mr-2 font-medium text-gray-300">Home</a>
+                <a href="#about-iste" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300   mr-2">About ISTE</a>
+                <a href="#events" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300       mr-2">Events</a>
+                <a href="#timeline" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300     mr-2">Timeline</a>
+                <a href="#coordinators" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300 mr-1">Coordinators</a>
+            </div>
+            <div class="flex-shrink-0">
+                <a href="https://www.isteonline.in/" target="_blank" class="flex items-center space-x-2">
+                    <img src="https://images.seeklogo.com/logo-png/22/1/iste-logo-png_seeklogo-228148.png" alt="ISTE Logo" class="h-8 md:h-10">
+                </a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-white focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-black/50 backdrop-blur-sm">
+            <a href="#hero" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Home</a>
+            <a href="#about-iste" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">About ISTE</a>
+            <a href="#events" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Events</a>
+            <a href="#timeline" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Timeline</a>
+            <a href="#coordinators" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Coordinators</a>
+        </div>
+        </header>
+
+    <main class="relative z-10">
+  <section id="hero" class="text-center min-h-screen flex flex-col items-center justify-center py-20 px-4">
+    
+    <h1 id="hero-title" class="text-4xl md:text-5xl font-extrabold text-white leading-tight">
+      Welcome to <span class="text-emerald-400">ISTE '25</span>
+    </h1>
+
+    <p id="hero-subtitle" class="mt-4 text-base md:text-lg text-slate-400 max-w-3xl mx-auto">
+      The 21st ISTE Karnataka State Level Student Convention, where innovation meets opportunity.
+    </p>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-12 max-w-4xl mx-auto w-full">
+      
+      <div class="glass-card p-8 rounded-2xl shadow-lg border border-white/10 hover:scale-105 hover:shadow-emerald-500/30 transition duration-300">
+        <div class="flex flex-col items-center text-center">
+          <div class="bg-gradient-to-r from-emerald-500 to-green-600 p-4 rounded-xl shadow-md mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c1.657 0 3-1.343 3-3S13.657 5 12 5 9 6.343 9 8s1.343 3 3 3z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 22s8-4.5 8-11c0-4.418-3.582-8-8-8S4 6.582 4 11c0 6.5 8 11 8 11z" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-2">Event Venue</h3>
+          <p class="text-gray-300">Yenepoya Institute of Technology</p>
+          <p class="text-gray-400">Moodbidri, Karnataka</p>
+          <span class="mt-4 inline-block bg-emerald-500/20 text-emerald-300 text-sm font-medium px-3 py-1 rounded-full">
+            📅 November 11–12, 2025
+          </span>
+        </div>
+      </div>
+
+      <div class="glass-card p-8 rounded-2xl shadow-lg border border-white/10 hover:scale-105 hover:shadow-green-400/30 transition duration-300">
+        <div class="flex flex-col items-center text-center">
+          <div class="bg-gradient-to-r from-green-400 to-emerald-600 p-4 rounded-xl shadow-md mb-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 21h8M12 17v4M5 3h14l-1 7a7 7 0 11-12 0L5 3z" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-2">Prize Pool</h3>
+          <p class="text-green-300 text-3xl font-extrabold">₹1,50,000</p>
+          <span class="mt-4 inline-block bg-green-500/20 text-green-300 text-sm font-medium px-3 py-1 rounded-full">
+            💰 Exciting rewards await!
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+            
+            
+
+        <div id="countdown-sticky" class="fixed bottom-4 right-4 z-50">
+            <div id="countdown" class="text-white font-mono flex items-center justify-center gap-2 md:gap-4 p-3 rounded-lg glass-card">
+              <div class="text-center w-20">
+                  <div id="days" class="font-bold text-2xl md:text-3xl">00</div>
+                  <div class="text-xs font-normal text-slate-400">Days</div>
+              </div>
+              <div class="text-2xl md:text-3xl">:</div>
+              <div class="text-center w-20">
+                  <div id="hours" class="font-bold text-2xl md:text-3xl">00</div>
+                  <div class="text-xs font-normal text-slate-400">Hours</div>
+              </div>
+               <div class="text-2xl md:text-3xl">:</div>
+              <div class="text-center w-20">
+                  <div id="minutes" class="font-bold text-2xl md:text-3xl">00</div>
+                  <div class="text-xs font-normal text-slate-400">Minutes</div>
+              </div>
+               <div class="text-2xl md:text-3xl">:</div>
+              <div class="text-center w-20">
+                  <div id="seconds" class="font-bold text-2xl md:text-3xl">00</div>
+                  <div class="text-xs font-normal text-slate-400">Seconds</div>
+              </div>
+            </div>
+        </div>
+
+        <div class="py-20 space-y-28">
+            <section id="glance" class="max-w-6xl mx-auto px-6">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16 relative">The Convention at a Glance</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="glass-card p-8 anim-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-emerald-400 mx-auto mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6H8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" /></svg>
+                        <h3 class="text-2xl font-bold">State Level Convention</h3>
+                        <p class="text-gray-400 mt-2">The 21st ISTE convention for students across Karnataka.</p>
+                    </div>
+                    <div class="glass-card p-8 anim-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-emerald-400 mx-auto mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                        <h3 class="text-2xl font-bold">November 11-12, 2025</h3>
+                        <p class="text-gray-400 mt-2">Two full days of competitions, workshops, and networking.</p>
+                    </div>
+                    <div class="glass-card p-8 anim-card">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-emerald-400 mx-auto mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>
+                        <h3 class="text-2xl font-bold">Innovate & Compete</h3>
+                        <p class="text-gray-400 mt-2">Showcase your skills in various technical and non-technical events.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="about-iste" class="container mx-auto px-6">
+                <div class="glass-card p-8 md:p-12 anim-fade">
+                    <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16 relative">About ISTE</h2>
+                    <p class="text-center max-w-9xl mx-auto text-lg md:text-xl leading-relaxed text-slate-300">
+                        The Indian Society for Technical Education (ISTE), established in 1941, is a leading national non-profit organization dedicated to advancing engineering and technology education. Registered under the Societies Registration Act of 1860, ISTE has built a robust network with over 1,35,525 technical teachers, 500,000 student members, and numerous institutional and faculty chapters across India.
+                    </p>
+                </div>
+            </section>
+
+           <section id="about-yensplash" class="relative py-48">
+                <div class="relative z-1 container mx-auto px-6 text-center">
+                    <h2 id="yensplash-text" class="font-bold text-4xl md:text-5xl text-white">
+                        <span class="word">READY</span> <span class="word">TO</span> <span class="word">DIVE</span> <span class="word">INTO</span> <span class="word">THE</span> <span class="word">FUTURE</span> <span class="word">OF</span> <span class="word">TECHNOLOGY?</span>
+                    </h2>
+                </div>
+            </section>
+
+            <section id="events" class="container mx-auto px-6">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16 relative">Competitions & Events</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <a href="h.html" class="block group event-card">
+                        <div class="glass-card h-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop" alt="Hackathon" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Hackathon</h3>
+                                <p class="text-gray-400">A 24-hour coding marathon to build innovative solutions.</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="treasure-hunt.html" class="block group event-card">
+                        <div class="glass-card h-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1612257998531-70e0d0a15f6d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dHJlYXN1cmUlMjBodW50fGVufDB8fDB8fHww" alt="Treasure Hunt" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Treasure Hunt</h3>
+                                <p class="text-gray-400">Solve cryptic clues and race against time.</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="ctf.html" class="block group event-card">
+                        <div class="glass-card h-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop" alt="Capture The Flag" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Capture The Flag</h3>
+                                <p class="text-gray-400">A cybersecurity challenge of skill and strategy.</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="block group event-card">
+                        <div class="glass-card h-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1587440871875-191322ee64b0?q=80&w=2071&auto=format&fit=crop" alt="UI/UX Design" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">UI/UX Design</h3>
+                                <p class="text-gray-400">Design beautiful and intuitive user experiences.</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="block group event-card">
+                        <div class="glass-card h-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop" alt="Start-up Pitch" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Start-up Pitch</h3>
+                                <p class="text-gray-400">Present your groundbreaking business idea.</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="robotic.html" class="block group event-card">
+                        <div class="glass-card h-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1742767069929-0c663150b164?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Robotic Events" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Robotic Events</h3>
+                                <p class="text-gray-400">Compete in various robotic challenges and showcases.</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="block group event-card">
+                        <div class="glass-card h-full overflow-hidden">
+                            <img src="https://media.istockphoto.com/id/2179684475/photo/engaged-audience-raising-hands-during-business-conference-lecture.webp?a=1&b=1&s=612x612&w=0&k=20&c=TzyXipFZLdXY0-VnF8ZSM4FsS1oqvqpvSfYeXL32MWI=" alt="UI/UX Design" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Technical Quiz</h3>
+                                <p class="text-gray-400">Test your technical knowledge with challenging questions.</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="block group event-card">
+                        <div class="glass-card h-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="UI/UX Design" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Tech Debate</h3>
+                                <p class="text-gray-400">Engage in thought-provoking debates on emerging technologies.</p>
+                            </div>
+                        </div>
+                    </a>
+                                <a href="project.html" class="block group event-card">
+                        <div class="glass-card h-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=2070&auto=format&fit=crop" alt="Project Expo" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Project Expo</h3>
+                                <p class="text-gray-400">Showcase your innovative projects and models.</p>
+                            </div>
+                        </div>
+                    </a>
+                    <a href="#" class="block group event-card">
+                        <div class="glass-card h-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZW5naW5lZXJpbmclMjBkcmF3aW5nfGVufDB8fDB8fHww" alt="UI/UX Design" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <div class="p-6">
+                                <h3 class="text-xl font-bold mb-2">Auto CAED</h3>
+                                <p class="text-gray-400">Showcase your CAD and engineering drawing skills.</p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+<section id="timeline" class="container mx-auto px-4 md:px-6 py-8">
+  <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-24 relative">Event Timeline</h2>
+  <div class="relative wrap overflow-hidden p-2 md:p-10 h-full">
+    <div class="absolute border-l-2 border-opacity-20 border-gray-700 h-full" style="left: 50%; transform: translateX(-50%);"></div>
+
+    <div class="mb-8 flex justify-between items-center w-full">
+      <div class="order-1 w-5/12 hidden md:block"></div>
+      <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
+        <h1 class="mx-auto font-semibold text-sm text-white">1</h1>
+      </div>
+      <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
+        <h3 class="font-bold text-white text-lg">Nov 11–12, 2025 | Multi-Day Competitions</h3>
+        <p class="text-sm leading-snug tracking-wide text-gray-400">
+          Hackathon, Line Follower, and Maze Follower competitions take place across both days.
+        </p>
+      </div>
+    </div>
+
+    <div class="mb-8 flex justify-between md:flex-row-reverse items-center w-full">
+      <div class="order-1 w-5/12 hidden md:block"></div>
+      <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
+        <h1 class="mx-auto font-semibold text-sm text-white">2</h1>
+      </div>
+      <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
+        <h3 class="font-bold text-white text-lg">Nov 11, 2025 | 8:00 AM – 3:30 PM</h3>
+        <p class="text-sm leading-snug tracking-wide text-gray-400">Robo Soccer – an all-day robotic soccer competition.</p>
+      </div>
+    </div>
+
+    <div class="mb-8 flex justify-between items-center w-full">
+      <div class="order-1 w-5/12 hidden md:block"></div>
+      <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
+        <h1 class="mx-auto font-semibold text-sm text-white">3</h1>
+      </div>
+      <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
+        <h3 class="font-bold text-white text-lg">Nov 11, 2025 | 10:00 AM – 12:00 PM</h3>
+        <p class="text-sm leading-snug tracking-wide text-gray-400">Start-up Pitch – entrepreneurs present innovative business ideas.</p>
+      </div>
+    </div>
+
+    <div class="mb-8 flex justify-between md:flex-row-reverse items-center w-full">
+      <div class="order-1 w-5/12 hidden md:block"></div>
+      <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
+        <h1 class="mx-auto font-semibold text-sm text-white">4</h1>
+      </div>
+      <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
+        <h3 class="font-bold text-white text-lg">Nov 11, 2025 | 10:30 AM</h3>
+        <p class="text-sm leading-snug tracking-wide text-gray-400">
+          Morning Competitions begin: CTF (till 12:30 PM), UI/UX (till 12:30 PM), Tech Quiz (till 12:30 PM),
+          Tech Debate (till 12:00 PM), and Auto CAED (till 12:00 PM).
+        </p>
+      </div>
+    </div>
+
+    <div class="mb-8 flex justify-between items-center w-full">
+      <div class="order-1 w-5/12 hidden md:block"></div>
+      <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
+        <h1 class="mx-auto font-semibold text-sm text-white">5</h1>
+      </div>
+      <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
+        <h3 class="font-bold text-white text-lg">Nov 11, 2025 | 12:45 PM – 2:00 PM</h3>
+        <p class="text-sm leading-snug tracking-wide text-gray-400">Lunch Break – time to refuel and network.</p>
+      </div>
+    </div>
+
+    <div class="mb-8 flex justify-between md:flex-row-reverse items-center w-full">
+      <div class="order-1 w-5/12 hidden md:block"></div>
+      <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
+        <h1 class="mx-auto font-semibold text-sm text-white">6</h1>
+      </div>
+      <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
+        <h3 class="font-bold text-white text-lg">Nov 11, 2025 | 1:30 PM</h3>
+        <p class="text-sm leading-snug tracking-wide text-gray-400">
+          Afternoon Events: Project Expo (till 2:30 PM) and Treasure Hunt (till 2:00 PM).
+        </p>
+      </div>
+    </div>
+
+    <div class="mb-8 flex justify-between items-center w-full">
+      <div class="order-1 w-5/12 hidden md:block"></div>
+      <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
+        <h1 class="mx-auto font-semibold text-sm text-white">7</h1>
+      </div>
+      <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
+        <h3 class="font-bold text-white text-lg">Nov 11, 2025 | 3:45 PM – 5:00 PM</h3>
+        <p class="text-sm leading-snug tracking-wide text-gray-400">
+          Valedictory Program – closing ceremony with remarks and prize distribution.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</section>
+        
+    </div>
+</section>
+
+            <section id="coordinators" class="container mx-auto px-6">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16 relative">Central Coordinators</h2>
+                <div class="max-w-20xl mx-auto mb-5 mt-5 grid grid-cols-2 md:grid-cols-4 gap-8">
+                    <div class="glass-card p-6 coordinator-card">
+                        <h3 class="text-xl font-bold mb-2">Dr Shashank M Gowda </h3>
+                        <p class="text-gray-400">Professor, Department of ECE</p>
+                        <p class="text-gray-400">Email:
+                        <p class="text-grey-800">Ph :1234567890</p>
+                    </div>
+                    <div class="glass-card p-6 coordinator-card">
+                        <h3 class="text-xl font-bold mb-2">Abdul Rahiman</h3>
+                        <p class="text-gray-400">Professor, Department of ME</p>
+                        <p class="text-gray-400">Email:
+                        <p class="text-grey-800">Ph :1234567890</p>
+                    </div>
+                    <div class="glass-card p-6 coordinator-card">
+                        <h3 class="text-xl font-bold mb-2">Sanjay M K</h3>
+                        <p class="text-gray-400">Student, Department of CSE</p>
+                        <p class="text-gray-400">Email:
+                        <p class="text-grey-800">Ph :1234567890</p>
+                    </div>
+                    <div class="glass-card p-6 coordinator-card">
+                        <h3 class="text-xl font-bold mb-2">Afeef Ismail </h3>
+                        <p class="text-gray-400">Student, Department of AIML</p>
+                        <p class="text-gray-400">Email:
+                        <p class="text-grey-800">Ph :1234567890</p>
+                    </div>
+                </div>
+                
+            </section>
+
+            <section id="sponsors" class="container mt-10 mx-auto px-6">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16 relative">Our Valued Sponsors</h2>
+                <div class="flex flex-wrap justify-center items-center gap-12 md:gap-16">
+                    <img src="https://placehold.co/180x80/000000/02ef97?text=Sponsor+1" alt="Sponsor 1" class="h-14 opacity-70 hover:opacity-100 transform hover:scale-110 transition-all sponsor-logo">
+                    <img src="https://placehold.co/180x80/000000/02ef97?text=Sponsor+2" alt="Sponsor 2" class="h-14 opacity-70 hover:opacity-100 transform hover:scale-110 transition-all sponsor-logo">
+                    <img src="https://placehold.co/180x80/000000/02ef97?text=Sponsor+3" alt="Sponsor 3" class="h-14 opacity-70 hover:opacity-100 transform hover:scale-110 transition-all sponsor-logo">
+                    <img src="https://placehold.co/180x80/000000/02ef97?text=Sponsor+4" alt="Sponsor 4" class="h-14 opacity-70 hover:opacity-100 transform hover:scale-110 transition-all sponsor-logo">
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="bg-black/50 border-t border-white/10 mt-20">
+        <div class="container mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+                <div>
+                    <h3 class="font-bold text-lg mb-4 text-emerald-400">Contact Information</h3>
+                    <p class="text-gray-400 mb-2">Phone: +91-123-456-7890</p>
+                    <p class="text-gray-400">Email: contact@yensplash25.com</p>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-4 text-emerald-400">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#about-yensplash" class="text-gray-400 hover:text-emerald-400 transition-colors">About</a></li>
+                        <li><a href="#events" class="text-gray-400 hover:text-emerald-400 transition-colors">Events</a></li>
+                        <li><a href="#timeline" class="text-gray-400 hover:text-emerald-400 transition-colors">Timeline</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg mb-4 text-emerald-400">Follow Us</h3>
+                    <div class="flex justify-center md:justify-start space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-emerald-400 transition-colors" aria-label="Follow us on Facebook"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z" clip-rule="evenodd"></path></svg></a>
+                        <a href="#" class="text-gray-400 hover:text-emerald-400 transition-colors" aria-label="Follow us on Twitter"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.71v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"></path></svg></a>
+                        <a href="#" class="text-gray-400 hover:text-emerald-400 transition-colors" aria-label="Follow us on Instagram"><svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.024.06 1.378.06 3.808s-.012 2.784-.06 3.808c-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.024.048-1.378.06-3.808.06s-2.784-.013-3.808-.06c-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.048-1.024-.06-1.378-.06-3.808s.012-2.784.06-3.808c.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 016.345 4.22c.636-.247 1.363-.416 2.427.465C9.793 2.013 10.147 2 12.315 2zm0 1.623c-2.403 0-2.72.009-3.667.053-1.054.048-1.65.21-2.115.41a3.282 3.282 0 00-1.18.832 3.282 3.282 0 00-.832 1.18c-.2.465-.362 1.06-.41 2.115-.043.947-.053 1.264-.053 3.667s.009 2.72.053 3.667c.048 1.054.21 1.65.41 2.115a3.282 3.282 0 00.832 1.18 3.282 3.282 0 001.18.832c.465.2 1.06.362 2.115.41.947.043 1.264.053 3.667.053s2.72-.009 3.667-.053c1.054-.048 1.65-.21 2.115-.41a3.282 3.282 0 001.18-.832 3.282 3.282 0 00.832-1.18c.2-.465.362-1.06.41-2.115.043-.947.053-1.264.053-3.667s-.009-2.72-.053-3.667c-.048-1.054-.21-1.65-.41-2.115a3.282 3.282 0 00-.832-1.18 3.282 3.282 0 00-1.18-.832c-.465-.2-1.06-.362-2.115-.41-.947-.043-1.264-.053-3.667-.053zM12 8.118a3.882 3.882 0 110 7.764 3.882 3.882 0 010-7.764zm0 6.132a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5zm4.885-6.442a1.125 1.125 0 11-2.25 0 1.125 1.125 0 012.25 0z" clip-rule="evenodd"></path></svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8 border-t border-white/10 pt-8 text-center text-gray-500 text-sm">
+                <p>&copy; 2025 Yenepoya Institute of Technology. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            gsap.registerPlugin(ScrollTrigger, TextPlugin);
+
+            const matrixCanvas = document.getElementById('matrix-canvas');
+            const matrixCtx = matrixCanvas.getContext('2d');
+            const customCursor = document.getElementById('custom-cursor');
+
+            let width = matrixCanvas.width = window.innerWidth;
+            let height = matrixCanvas.height = window.innerHeight;
+
+            let chars = "10";
+            let fontSize = 12;
+            let columns = Math.floor(width / fontSize);
+            let rows = Math.floor(height / fontSize);
+            let charGrid = [];
+            
+            let mouse = { x: -300, y: -300 };
+
+            window.addEventListener('mousemove', (e) => {
+                mouse.x = e.clientX;
+                mouse.y = e.clientY;
+                gsap.to(customCursor, { x: e.clientX, y: e.clientY, duration: 0.1, ease: 'power3.out' });
+            });
+            
+            function createCharGrid() {
+                charGrid = [];
+                for (let y = 0; y < rows; y++) {
+                    let row = [];
+                    for (let x = 0; x < columns; x++) {
+                        row.push(chars[Math.floor(Math.random() * chars.length)]);
+                    }
+                    charGrid.push(row);
+                }
+            }
+            createCharGrid();
+
+            function drawMatrix() {
+                matrixCtx.fillStyle = "rgba(0, 0, 0, 1)";
+                matrixCtx.fillRect(0, 0, width, height);
+                matrixCtx.font = fontSize + "px monospace";
+
+                for (let y = 0; y < rows; y++) {
+                    for (let x = 0; x < columns; x++) {
+                        const charX = x * fontSize + fontSize / 2;
+                        const charY = y * fontSize + fontSize / 2;
+                        const dist = Math.hypot(charX - mouse.x, charY - mouse.y);
+                        const radius = 700; // Changed
+                        
+                        const intensity = Math.max(0, 1 - dist / radius);
+                        const easedIntensity = Math.pow(intensity, 2.5);
+
+                        const baseLightness = 20;
+                        const hoverLightness = 30; // Changed
+                        const currentLightness = baseLightness + (hoverLightness - baseLightness) * easedIntensity;
+                        
+                        const baseOpacity = 0.08;
+                        const hoverOpacity = 1.0;
+                        const currentOpacity = baseOpacity + (hoverOpacity - baseOpacity) * easedIntensity;
+
+                        const color = `hsla(150, 100%, ${currentLightness}%, ${currentOpacity})`;
+                        
+                        matrixCtx.fillStyle = color;
+                        matrixCtx.fillText(charGrid[y][x], charX, charY);
+                    }
+                }
+            }
+            
+            function animateMatrix() {
+                drawMatrix();
+                requestAnimationFrame(animateMatrix);
+            }
+            animateMatrix();
+            
+
+            window.addEventListener('resize', () => {
+                width = matrixCanvas.width = window.innerWidth;
+                height = matrixCanvas.height = window.innerHeight;
+                columns = Math.floor(width / fontSize);
+                rows = Math.floor(height / fontSize);
+                createCharGrid();
+            });
+            
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
+            mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
+
+            const subtitle = document.getElementById("hero-subtitle");
+            const originalSubtitleText = subtitle.textContent.trim();
+            subtitle.textContent = "";
+
+            const tl = gsap.timeline();
+            tl.from("#hero-title", {
+                duration: 0.8,
+                y: 50,
+                opacity: 0,
+                ease: "power3.out"
+            })
+            .to("#hero-subtitle", {
+                duration: 2.5,
+                text: {
+                    value: originalSubtitleText,
+                },
+                ease: "none",
+                onStart: () => subtitle.classList.add('typing'),
+                onComplete: () => subtitle.classList.remove('typing'),
+            }, "-=0.2");
+            
+            const animConfig = {
+                start: "top bottom-=100px",
+                toggleActions: "play none none none"
+            };
+
+            document.querySelectorAll('.section-title').forEach(title => {
+                gsap.from(title, { scrollTrigger: { trigger: title, ...animConfig }, y: 30, opacity: 0, duration: 0.6, ease: "power3.out" });
+                ScrollTrigger.create({ trigger: title, start: "top 80%", onEnter: () => title.classList.add('section-title-visible') });
+            });
+            
+            gsap.utils.toArray('.anim-card').forEach((card, i) => {
+                gsap.from(card, { scrollTrigger: { trigger: card, ...animConfig }, opacity: 0, y: 50, duration: 0.6, ease: 'power3.out', delay: (i % 3) * 0.1 });
+            });
+
+             gsap.utils.toArray('.anim-fade').forEach(elem => {
+                gsap.from(elem, { scrollTrigger: { trigger: elem, ...animConfig }, opacity: 0, duration: 0.8, ease: 'power1.inOut' });
+            });
+
+            gsap.utils.toArray('.event-card').forEach((card, i) => {
+                gsap.from(card, { scrollTrigger: { trigger: card, ...animConfig }, opacity: 0, y: 40, duration: 0.5, delay: i * 0.07 });
+            });
+            
+            gsap.utils.toArray('#timeline .glass-card').forEach((item) => {
+                gsap.from(item, { scrollTrigger: { trigger: item, start: 'top bottom-=150px', toggleActions: "play none none none"}, x: () => item.closest('.left-timeline') ? -40 : 40, opacity: 0, duration: 0.6, ease: 'power3.out' });
+            });
+            
+            gsap.utils.toArray('.coordinator-card').forEach((card, i) => {
+                gsap.from(card, { scrollTrigger: { trigger: card, ...animConfig }, opacity: 0, scale: 0.95, duration: 0.5, delay: i * 0.05 });
+            });
+
+            gsap.utils.toArray('.sponsor-logo').forEach((logo, i) => {
+                gsap.from(logo, { scrollTrigger: { trigger: logo, start: "top bottom-=50px", toggleActions: "play none none none" }, opacity: 0, y: 20, duration: 0.5, delay: i * 0.1 });
+            });
+
+              let yensplashText = gsap.timeline({
+    scrollTrigger: {
+        trigger: "#about-yensplash",
+        start: "top 70%", // animation starts earlier
+        end: "center center", // completes when text reaches middle
+        scrub: 1.5
+    }
+});
+            yensplashText.from("#yensplash-text .word", {
+    opacity: 0.2,
+    filter: "blur(8px)",
+    stagger: { each: 0.1, from: "random" }
+});
+
+            const sections = document.querySelectorAll('main section');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            sections.forEach(section => {
+                ScrollTrigger.create({
+                    trigger: section,
+                    start: "top center",
+                    end: "bottom center",
+                    onToggle: self => {
+                        if (self.isActive) {
+                            const id = section.getAttribute('id');
+                            navLinks.forEach(link => {
+                                link.classList.remove('active');
+                                if (link.getAttribute('href') === `#${id}`) {
+                                    link.classList.add('active');
+                                }
+                            });
+                        }
+                    }
+                });
+            });
+
+            const countdownDate = new Date("Nov 11, 2025 09:00:00").getTime();
+            const countdownFunction = setInterval(() => {
+                const now = new Date().getTime();
+                const distance = countdownDate - now;
+
+                if (distance < 0) {
+                    clearInterval(countdownFunction);
+                    document.getElementById("countdown").innerHTML = "<div class='text-lg md:text-xl text-emerald-400 p-2'>The Event Is Live!</div>";
+                    return;
+                }
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("days").innerText = days.toString().padStart(2, '0');
+                document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
+                document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
+                document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
