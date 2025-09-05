@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Arena: A Tech Debate | ISTE '25</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@500;700&family=Exo+2:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #101018;
+            --panel-dark: rgba(20, 20, 35, 0.5);
+            --text-light: #D1D5DB;
+            --text-heading: #F9FAFB;
+            --accent-red: #F43F5E;
+            --accent-blue: #3B82F6;
+            --glow-red: rgba(244, 63, 94, 0.3);
+            --glow-blue: rgba(59, 130, 246, 0.3);
+        }
+
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        .font-display {
+            font-family: 'Teko', sans-serif;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+        
+        #background-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .debate-pane {
+            background: var(--panel-dark);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            position: relative;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .pane-blue-glow {
+            border-left-color: var(--accent-blue);
+            border-left-width: 4px;
+        }
+         .pane-blue-glow:hover {
+            transform: perspective(1000px) rotateY(-5deg) scale(1.02);
+            box-shadow: 10px 0px 30px var(--glow-blue);
+        }
+        
+        .pane-red-glow {
+            border-right-color: var(--accent-red);
+            border-right-width: 4px;
+        }
+         .pane-red-glow:hover {
+            transform: perspective(1000px) rotateY(5deg) scale(1.02);
+            box-shadow: -10px 0px 30px var(--glow-red);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <canvas id="background-canvas"></canvas>
+
+    <header class="sticky top-0 z-40">
+        <nav class="container mx-auto px-6 py-4">
+             <div class="flex justify-between items-center bg-black/30 backdrop-blur-sm border-y border-gray-700 px-6 py-3">
+                <h1 class="font-display text-2xl text-center text-text-heading">THE ARENA</h1>
+                <a href="index.html" class="text-text-light hover:text-white transition-colors flex items-center gap-2 text-md">
+                    <span>MAIN HUB</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="relative z-10">
+        
+        <section id="hero" class="min-h-[80vh] flex flex-col items-center justify-center text-center p-4">
+            <div class="relative z-10 w-full max-w-4xl flex items-center justify-center">
+                <h1 id="hero-title-for" class="font-display text-7xl md:text-9xl text-blue-400">FOR</h1>
+                <div class="mx-8">
+                    <svg id="clash-icon" class="w-24 h-24 md:w-40 md:h-40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path id="clash-blue" d="M40 20 L20 40 L20 60 L40 80 L50 70 L35 55 L50 40 L40 20Z" fill="url(#gradBlue)"/>
+                        <path id="clash-red" d="M60 20 L80 40 L80 60 L60 80 L50 70 L65 55 L50 40 L60 20Z" fill="url(#gradRed)"/>
+                        <defs>
+                            <linearGradient id="gradBlue" x1="20" y1="50" x2="50" y2="50"><stop offset="0%" stop-color="#3B82F6"/><stop offset="100%" stop-color="#F43F5E"/></linearGradient>
+                            <linearGradient id="gradRed" x1="80" y1="50" x2="50" y2="50"><stop offset="0%" stop-color="#F43F5E"/><stop offset="100%" stop-color="#3B82F6"/></linearGradient>
+                        </defs>
+                    </svg>
+                </div>
+                <h1 id="hero-title-against" class="font-display text-7xl md:text-9xl text-red-400">AGAINST</h1>
+            </div>
+            <p id="hero-subtitle" class="mt-8 text-lg md:text-xl text-text-light max-w-2xl mx-auto">
+                Where logic is the language and innovation is the argument. Step into the arena and defend your technological standpoint.
+            </p>
+        </section>
+
+        <div class="container mx-auto px-4 sm:px-6 py-12 md:py-20 space-y-24">
+            
+            <section class="max-w-5xl mx-auto text-center">
+                <h2 class="font-display text-4xl font-bold mb-4 text-text-heading">The Premise</h2>
+                <p class="text-lg text-text-light">
+                   The Tech Debate is a platform for students to showcase critical thinking and communication skills on emerging tech topics. Participants will be evaluated on logical arguments, fluency, and prompt responses in a structured, competitive setting.
+                </p>
+            </section>
+            
+            <section class="max-w-6xl mx-auto">
+                <h2 class="font-display text-4xl font-bold text-center mb-12 text-text-heading">Rules of Engagement</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-16 relative">
+                     <div class="debate-pane pane-blue-glow mb-8 md:mb-0">
+                        <h3 class="font-display text-3xl text-blue-400 mb-4">Structure & Timing</h3>
+                        <ul class="space-y-3 text-lg">
+                           <li><strong>Selection:</strong> Six teams will be shortlisted for the final round after prelims.</li>
+                           <li><strong>Topic:</strong> The debate topic will be provided on the spot.</li>
+                            <li><strong>Total Time:</strong> Each team has a total of 7 minutes.</li>
+                           <li><strong>Speaker Time:</strong> Individual speakers must not exceed 2 minutes per argument.</li>
+                        </ul>
+                    </div>
+                     <div class="debate-pane pane-red-glow text-right md:text-left">
+                        <h3 class="font-display text-3xl text-red-400 mb-4">Conduct & Integrity</h3>
+                         <ul class="space-y-3 text-lg">
+                           <li><strong>No Aids:</strong> Electronic gadgets or reading from paper are strictly prohibited.</li>
+                           <li><strong>Professionalism:</strong> Use of offensive language or gestures is not allowed.</li>
+                           <li><strong>Fair Play:</strong> Any malpractice will result in immediate disqualification.</li>
+                           <li><strong>Finality:</strong> The decision of the judges and organizers is final.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="max-w-4xl mx-auto">
+                <h2 class="font-display text-4xl font-bold text-center mb-8 text-text-heading">Judging Matrix</h2>
+                <div class="grid grid-cols-2 gap-8 text-center">
+                    <div class="debate-pane">
+                        <h3 class="font-display text-2xl text-text-heading">Relevance</h3>
+                        <p>Clarity and logical consistency of arguments.</p>
+                    </div>
+                    <div class="debate-pane">
+                        <h3 class="font-display text-2xl text-text-heading">Fluency</h3>
+                        <p>Confidence and clarity of speech.</p>
+                    </div>
+                    <div class="debate-pane">
+                        <h3 class="font-display text-2xl text-text-heading">Involvement</h3>
+                        <p>Active participation and engagement.</p>
+                    </div>
+                     <div class="debate-pane">
+                        <h3 class="font-display text-2xl text-text-heading">Promptness</h3>
+                        <p>Quick thinking in rebuttals and responses.</p>
+                    </div>
+                </div>
+            </section>
+
+             <section class="max-w-4xl mx-auto text-center">
+                <h2 class="font-display text-4xl font-bold text-center mb-8 text-text-heading">Event Adjudicators</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                     <div class="debate-pane">
+                        <h3 class="font-display text-xl text-blue-400">Prof. Raksha J V</h3>
+                        <p class="text-text-light">+91 6366 163 754</p>
+                    </div>
+                     <div class="debate-pane">
+                        <h3 class="font-display text-xl text-red-400">Prof. Harshitha U</h3>
+                        <p class="text-text-light">+91 96453 13249</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="text-center debate-pane border-x-4 border-x-fuchsia-500">
+                <h2 class="font-display text-4xl font-bold text-text-heading">Claim Your Stance</h2>
+                <p class="mt-4 text-lg max-w-2xl mx-auto">Assemble your team, build your case, and prepare to argue the future of technology.</p>
+                <div class="mt-10">
+                    <a href="#" class="inline-block bg-gradient-to-r from-red-500 to-blue-500 text-white font-display text-xl py-3 px-12 rounded-sm transition-all duration-300 ease-in-out hover:shadow-lg hover:shadow-blue-500/50 hover:scale-105">
+                        REGISTER TEAM
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer class="mt-20 border-t border-gray-800">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-500">
+            <p>&copy; 2025 Yenepoya Institute of Technology | All Rights Reserved</p>
+        </div>
+    </footer>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // --- Background Canvas Animation ---
+        const canvas = document.getElementById('background-canvas');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+        let particles = [];
+
+        class Particle {
+            constructor(side) {
+                this.side = side; // 'blue' or 'red'
+                this.radius = Math.random() * 1.5 + 0.5;
+                this.x = this.side === 'blue' ? Math.random() * width / 2 : width / 2 + Math.random() * width / 2;
+                this.y = Math.random() * height;
+                this.speedX = (this.side === 'blue' ? 1 : -1) * (Math.random() * 0.5 + 0.2);
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.color = this.side === 'blue' ? `rgba(59, 130, 246, ${Math.random() * 0.8 + 0.2})` : `rgba(244, 63, 94, ${Math.random() * 0.8 + 0.2})`;
+                this.maxLife = 200;
+                this.life = this.maxLife;
+            }
+
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                this.life--;
+
+                if (this.y < 0 || this.y > height || this.life <= 0) this.reset();
+                if ((this.side === 'blue' && this.x > width / 2) || (this.side === 'red' && this.x < width / 2)) {
+                   this.life -= 5; // Fade faster near center
+                }
+            }
+            
+            reset() {
+                 this.x = this.side === 'blue' ? Math.random() * width / 2 - 50 : width / 2 + 50 + Math.random() * width / 2;
+                 this.y = Math.random() * height;
+                 this.life = this.maxLife;
+            }
+
+            draw() {
+                ctx.globalAlpha = this.life / this.maxLife;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                ctx.globalAlpha = 1;
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            const particleCount = (window.innerWidth / 15);
+            for(let i = 0; i < particleCount; i++) particles.push(new Particle('blue'));
+            for(let i = 0; i < particleCount; i++) particles.push(new Particle('red'));
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, width, height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animateCanvas);
+        }
+
+        initParticles();
+        animateCanvas();
+        window.addEventListener('resize', () => {
+             width = canvas.width = window.innerWidth;
+             height = canvas.height = window.innerHeight;
+             initParticles();
+        });
+
+        // --- Hero Animations ---
+        const tl = gsap.timeline({delay: 0.5});
+        tl.from("#hero-title-for", { x: -window.innerWidth/2, duration: 1, ease: 'power3.out' })
+          .from("#hero-title-against", { x: window.innerWidth/2, duration: 1, ease: 'power3.out' }, "<")
+          .from("#clash-icon", { scale: 0, rotate: -360, duration: 1, ease: 'back.out(1.7)' }, "-=0.5")
+          .to("#clash-blue", { x: -10, duration: 0.2, repeat: 3, yoyo: true, ease:'power2.inOut'}, "-=0.5")
+          .to("#clash-red", { x: 10, duration: 0.2, repeat: 3, yoyo: true, ease:'power2.inOut'}, "<")
+          .from("#hero-subtitle", { y: 50, opacity: 0, duration: 1, ease: 'power3.out' }, "-=0.5");
+
+
+        // --- Scroll Animations ---
+        gsap.from(".pane-blue-glow", {
+            scrollTrigger: { trigger: ".pane-blue-glow", start: "top 85%" },
+            x: -100, opacity: 0, duration: 1, ease: 'power3.out'
+        });
+        gsap.from(".pane-red-glow", {
+            scrollTrigger: { trigger: ".pane-red-glow", start: "top 85%" },
+            x: 100, opacity: 0, duration: 1, ease: 'power3.out'
+        });
+        
+        gsap.utils.toArray('section:not(:has(.pane-blue-glow))').forEach((section) => {
+            gsap.from(section, {
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse",
+                },
+                opacity: 0,
+                y: 60,
+                duration: 1,
+                ease: 'power3.out',
+            });
+        });
+    });
+    </script>
+</body>
+</html>
+
