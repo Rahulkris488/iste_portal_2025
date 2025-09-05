@@ -42,8 +42,8 @@
         
         #custom-cursor {
             position: fixed;
-            width: 30px;
-            height: 30px;
+            width: 24px;
+            height: 24px;
             border-radius: 50%;
             border: 2px solid var(--primary-green);
             pointer-events: none;
@@ -600,8 +600,8 @@
                         const intensity = Math.max(0, 1 - dist / radius);
                         const easedIntensity = Math.pow(intensity, 2.5);
 
-                        const baseLightness = 20;
-                        const hoverLightness = 50;
+                        const baseLightness = 10;
+                        const hoverLightness = 45;
                         const currentLightness = baseLightness + (hoverLightness - baseLightness) * easedIntensity;
                         
                         const baseOpacity = 0.08;
