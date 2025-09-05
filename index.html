@@ -42,12 +42,11 @@
         
         #custom-cursor {
             position: fixed;
-            width: 8px;
-            height: 8px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
-            background-color: var(--primary-green);
+            border: 2px solid var(--primary-green);
             pointer-events: none;
-            mix-blend-mode: screen;
             z-index: 10000;
             transform: translate(-50%, -50%);
             transition: transform 0.1s ease-out;
@@ -140,7 +139,7 @@
             
             <div class="hidden md:flex items-center bg-black/30 border border-white/10 rounded-full px-2 py-1 pill-nav ">
                 <a href="#hero" class="nav-link px-4 py-2 rounded-full text-sm
-                 ml-1 mr-2 font-medium text-gray-300">Home</a>
+                  ml-1 mr-2 font-medium text-gray-300">Home</a>
                 <a href="#about-iste" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300   mr-2">About ISTE</a>
                 <a href="#events" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300       mr-2">Events</a>
                 <a href="#timeline" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300     mr-2">Timeline</a>
@@ -170,24 +169,19 @@
     <main class="relative z-10">
   <section id="hero" class="text-center min-h-screen flex flex-col items-center justify-center py-20 px-4">
     
-    <!-- Title -->
     <h1 id="hero-title" class="text-4xl md:text-5xl font-extrabold text-white leading-tight">
       Welcome to <span class="text-emerald-400">ISTE '25</span>
     </h1>
 
-    <!-- Subtitle -->
     <p id="hero-subtitle" class="mt-4 text-base md:text-lg text-slate-400 max-w-3xl mx-auto">
       The 21st ISTE Karnataka State Level Student Convention, where innovation meets opportunity.
     </p>
 
-    <!-- Cards Section -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-12 max-w-4xl mx-auto w-full">
       
-      <!-- Venue & Date Card -->
       <div class="glass-card p-8 rounded-2xl shadow-lg border border-white/10 hover:scale-105 hover:shadow-emerald-500/30 transition duration-300">
         <div class="flex flex-col items-center text-center">
           <div class="bg-gradient-to-r from-emerald-500 to-green-600 p-4 rounded-xl shadow-md mb-4">
-            <!-- Map Pin Icon (Green) -->
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c1.657 0 3-1.343 3-3S13.657 5 12 5 9 6.343 9 8s1.343 3 3 3z" />
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 22s8-4.5 8-11c0-4.418-3.582-8-8-8S4 6.582 4 11c0 6.5 8 11 8 11z" />
@@ -202,11 +196,9 @@
         </div>
       </div>
 
-      <!-- Prize Pool Card -->
       <div class="glass-card p-8 rounded-2xl shadow-lg border border-white/10 hover:scale-105 hover:shadow-green-400/30 transition duration-300">
         <div class="flex flex-col items-center text-center">
           <div class="bg-gradient-to-r from-green-400 to-emerald-600 p-4 rounded-xl shadow-md mb-4">
-            <!-- Trophy Icon (Green) -->
             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 21h8M12 17v4M5 3h14l-1 7a7 7 0 11-12 0L5 3z" />
             </svg>
@@ -229,24 +221,24 @@
         <div id="countdown-sticky" class="fixed bottom-4 right-4 z-50">
             <div id="countdown" class="text-white font-mono flex items-center justify-center gap-2 md:gap-4 p-3 rounded-lg glass-card">
               <div class="text-center w-20">
-                  <div id="days" class="font-bold text-2xl md:text-3xl">00</div>
-                  <div class="text-xs font-normal text-slate-400">Days</div>
-              </div>
-              <div class="text-2xl md:text-3xl">:</div>
-              <div class="text-center w-20">
-                  <div id="hours" class="font-bold text-2xl md:text-3xl">00</div>
-                  <div class="text-xs font-normal text-slate-400">Hours</div>
-              </div>
-               <div class="text-2xl md:text-3xl">:</div>
-              <div class="text-center w-20">
-                  <div id="minutes" class="font-bold text-2xl md:text-3xl">00</div>
-                  <div class="text-xs font-normal text-slate-400">Minutes</div>
-              </div>
-               <div class="text-2xl md:text-3xl">:</div>
-              <div class="text-center w-20">
-                  <div id="seconds" class="font-bold text-2xl md:text-3xl">00</div>
-                  <div class="text-xs font-normal text-slate-400">Seconds</div>
-              </div>
+                    <div id="days" class="font-bold text-2xl md:text-3xl">00</div>
+                    <div class="text-xs font-normal text-slate-400">Days</div>
+                </div>
+                <div class="text-2xl md:text-3xl">:</div>
+                <div class="text-center w-20">
+                    <div id="hours" class="font-bold text-2xl md:text-3xl">00</div>
+                    <div class="text-xs font-normal text-slate-400">Hours</div>
+                </div>
+                 <div class="text-2xl md:text-3xl">:</div>
+                <div class="text-center w-20">
+                    <div id="minutes" class="font-bold text-2xl md:text-3xl">00</div>
+                    <div class="text-xs font-normal text-slate-400">Minutes</div>
+                </div>
+                 <div class="text-2xl md:text-3xl">:</div>
+                <div class="text-center w-20">
+                    <div id="seconds" class="font-bold text-2xl md:text-3xl">00</div>
+                    <div class="text-xs font-normal text-slate-400">Seconds</div>
+                </div>
             </div>
         </div>
 
@@ -390,7 +382,6 @@
   <div class="relative wrap overflow-hidden p-2 md:p-10 h-full">
     <div class="absolute border-l-2 border-opacity-20 border-gray-700 h-full" style="left: 50%; transform: translateX(-50%);"></div>
 
-    <!-- Event 1 -->
     <div class="mb-8 flex justify-between items-center w-full">
       <div class="order-1 w-5/12 hidden md:block"></div>
       <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
@@ -404,7 +395,6 @@
       </div>
     </div>
 
-    <!-- Event 2 -->
     <div class="mb-8 flex justify-between md:flex-row-reverse items-center w-full">
       <div class="order-1 w-5/12 hidden md:block"></div>
       <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
@@ -416,7 +406,6 @@
       </div>
     </div>
 
-    <!-- Event 3 -->
     <div class="mb-8 flex justify-between items-center w-full">
       <div class="order-1 w-5/12 hidden md:block"></div>
       <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
@@ -428,7 +417,6 @@
       </div>
     </div>
 
-    <!-- Event 4 -->
     <div class="mb-8 flex justify-between md:flex-row-reverse items-center w-full">
       <div class="order-1 w-5/12 hidden md:block"></div>
       <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
@@ -443,7 +431,6 @@
       </div>
     </div>
 
-    <!-- Event 5 -->
     <div class="mb-8 flex justify-between items-center w-full">
       <div class="order-1 w-5/12 hidden md:block"></div>
       <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
@@ -455,7 +442,6 @@
       </div>
     </div>
 
-    <!-- Event 6 -->
     <div class="mb-8 flex justify-between md:flex-row-reverse items-center w-full">
       <div class="order-1 w-5/12 hidden md:block"></div>
       <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
@@ -469,7 +455,6 @@
       </div>
     </div>
 
-    <!-- Event 7 -->
     <div class="mb-8 flex justify-between items-center w-full">
       <div class="order-1 w-5/12 hidden md:block"></div>
       <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
@@ -610,17 +595,17 @@
                         const charX = x * fontSize + fontSize / 2;
                         const charY = y * fontSize + fontSize / 2;
                         const dist = Math.hypot(charX - mouse.x, charY - mouse.y);
-                        const radius = 300; 
+                        const radius = 250; 
                         
                         const intensity = Math.max(0, 1 - dist / radius);
                         const easedIntensity = Math.pow(intensity, 2.5);
 
                         const baseLightness = 20;
-                        const hoverLightness = 60;
+                        const hoverLightness = 50;
                         const currentLightness = baseLightness + (hoverLightness - baseLightness) * easedIntensity;
                         
                         const baseOpacity = 0.08;
-                        const hoverOpacity = 1.0;
+                        const hoverOpacity = 0.9;
                         const currentOpacity = baseOpacity + (hoverOpacity - baseOpacity) * easedIntensity;
 
                         const color = `hsla(150, 100%, ${currentLightness}%, ${currentOpacity})`;
@@ -706,7 +691,7 @@
                 gsap.from(logo, { scrollTrigger: { trigger: logo, start: "top bottom-=50px", toggleActions: "play none none none" }, opacity: 0, y: 20, duration: 0.5, delay: i * 0.1 });
             });
 
-               let yensplashText = gsap.timeline({
+              let yensplashText = gsap.timeline({
     scrollTrigger: {
         trigger: "#about-yensplash",
         start: "top 70%", // animation starts earlier
