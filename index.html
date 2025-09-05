@@ -139,108 +139,98 @@
                 </a>
             </div>
             
-            <div class="hidden md:flex items-center bg-black/30 border border-white/10 rounded-full px-2 py-1 pill-nav ">
-                <a href="#hero" class="nav-link px-4 py-2 rounded-full text-sm
-                  ml-1 mr-2 font-medium text-gray-300">Home</a>
-                <a href="#about-iste" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300   mr-2">About ISTE</a>
-                <a href="#events" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300       mr-2">Events</a>
-                <a href="#timeline" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300     mr-2">Timeline</a>
+            <div class="hidden md:flex items-center bg-black/30 border border-white/10 rounded-full px-2 py-1 pill-nav">
+                <a href="#hero" class="nav-link px-4 py-2 rounded-full text-sm ml-1 mr-2 font-medium text-gray-300">Home</a>
+                <a href="#about-iste" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300 mr-2">About ISTE</a>
+                <a href="#events" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300 mr-2">Events</a>
+                <a href="#timeline" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300 mr-2">Timeline</a>
                 <a href="#coordinators" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300 mr-1">Coordinators</a>
             </div>
-            <div class="flex-shrink-0">
+
+            <div class="flex items-center space-x-4">
                 <a href="https://www.isteonline.in/" target="_blank" class="flex items-center space-x-2">
                     <img src="https://images.seeklogo.com/logo-png/22/1/iste-logo-png_seeklogo-228148.png" alt="ISTE Logo" class="h-8 md:h-10">
                 </a>
-            </div>
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-white focus:outline-none">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                </button>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                    </button>
+                </div>
             </div>
         </nav>
 
-        <div id="mobile-menu" class="hidden md:hidden bg-black/50 backdrop-blur-sm">
+        <div id="mobile-menu" class="md:hidden bg-black/50 backdrop-blur-sm overflow-hidden" style="visibility: hidden;">
             <a href="#hero" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Home</a>
             <a href="#about-iste" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">About ISTE</a>
             <a href="#events" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Events</a>
             <a href="#timeline" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Timeline</a>
             <a href="#coordinators" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Coordinators</a>
         </div>
-        </header>
+    </header>
 
     <main class="relative z-10">
-  <section id="hero" class="text-center min-h-screen flex flex-col items-center justify-center py-20 px-4">
-    
-    <h1 id="hero-title" class="text-4xl md:text-5xl font-extrabold text-white leading-tight">
-      Welcome to <span class="text-emerald-400">ISTE '25</span>
-    </h1>
+        <section id="hero" class="text-center min-h-screen flex flex-col items-center justify-center py-20 px-4">
+            <h1 id="hero-title" class="text-4xl md:text-5xl font-extrabold text-white leading-tight">
+                Welcome to <span class="text-emerald-400">ISTE '25</span>
+            </h1>
+            <p id="hero-subtitle" class="mt-4 text-base md:text-lg text-slate-400 max-w-3xl mx-auto">
+                The 21st ISTE Karnataka State Level Student Convention, where innovation meets opportunity.
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-12 max-w-4xl mx-auto w-full">
+                <div class="glass-card p-8 rounded-2xl shadow-lg border border-white/10 hover:scale-105 hover:shadow-emerald-500/30 transition duration-300">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="bg-gradient-to-r from-emerald-500 to-green-600 p-4 rounded-xl shadow-md mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c1.657 0 3-1.343 3-3S13.657 5 12 5 9 6.343 9 8s1.343 3 3 3z" />
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 22s8-4.5 8-11c0-4.418-3.582-8-8-8S4 6.582 4 11c0 6.5 8 11 8 11z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Event Venue</h3>
+                        <p class="text-gray-300">Yenepoya Institute of Technology</p>
+                        <p class="text-gray-400">Moodbidri, Karnataka</p>
+                        <span class="mt-4 inline-block bg-emerald-500/20 text-emerald-300 text-sm font-medium px-3 py-1 rounded-full">
+                            📅 November 11–12, 2025
+                        </span>
+                    </div>
+                </div>
+                <div class="glass-card p-8 rounded-2xl shadow-lg border border-white/10 hover:scale-105 hover:shadow-green-400/30 transition duration-300">
+                    <div class="flex flex-col items-center text-center">
+                        <div class="bg-gradient-to-r from-green-400 to-emerald-600 p-4 rounded-xl shadow-md mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 21h8M12 17v4M5 3h14l-1 7a7 7 0 11-12 0L5 3z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white mb-2">Prize Pool</h3>
+                        <p class="text-green-300 text-3xl font-extrabold">₹1,50,000</p>
+                        <span class="mt-4 inline-block bg-green-500/20 text-green-300 text-sm font-medium px-3 py-1 rounded-full">
+                            💰 Exciting rewards await!
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-    <p id="hero-subtitle" class="mt-4 text-base md:text-lg text-slate-400 max-w-3xl mx-auto">
-      The 21st ISTE Karnataka State Level Student Convention, where innovation meets opportunity.
-    </p>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-12 max-w-4xl mx-auto w-full">
-      
-      <div class="glass-card p-8 rounded-2xl shadow-lg border border-white/10 hover:scale-105 hover:shadow-emerald-500/30 transition duration-300">
-        <div class="flex flex-col items-center text-center">
-          <div class="bg-gradient-to-r from-emerald-500 to-green-600 p-4 rounded-xl shadow-md mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c1.657 0 3-1.343 3-3S13.657 5 12 5 9 6.343 9 8s1.343 3 3 3z" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 22s8-4.5 8-11c0-4.418-3.582-8-8-8S4 6.582 4 11c0 6.5 8 11 8 11z" />
-            </svg>
-          </div>
-          <h3 class="text-2xl font-bold text-white mb-2">Event Venue</h3>
-          <p class="text-gray-300">Yenepoya Institute of Technology</p>
-          <p class="text-gray-400">Moodbidri, Karnataka</p>
-          <span class="mt-4 inline-block bg-emerald-500/20 text-emerald-300 text-sm font-medium px-3 py-1 rounded-full">
-            📅 November 11–12, 2025
-          </span>
-        </div>
-      </div>
-
-      <div class="glass-card p-8 rounded-2xl shadow-lg border border-white/10 hover:scale-105 hover:shadow-green-400/30 transition duration-300">
-        <div class="flex flex-col items-center text-center">
-          <div class="bg-gradient-to-r from-green-400 to-emerald-600 p-4 rounded-xl shadow-md mb-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 21h8M12 17v4M5 3h14l-1 7a7 7 0 11-12 0L5 3z" />
-            </svg>
-          </div>
-          <h3 class="text-2xl font-bold text-white mb-2">Prize Pool</h3>
-          <p class="text-green-300 text-3xl font-extrabold">₹1,50,000</p>
-          <span class="mt-4 inline-block bg-green-500/20 text-green-300 text-sm font-medium px-3 py-1 rounded-full">
-            💰 Exciting rewards await!
-          </span>
-        </div>
-      </div>
-
-    </div>
-  </section>
-</main>
-
-            
-            
-
-        <div id="countdown-sticky" class="fixed bottom-4 right-4 z-50">
-            <div id="countdown" class="text-white font-mono flex items-center justify-center gap-2 md:gap-4 p-3 rounded-lg glass-card">
-              <div class="text-center w-20">
-                  <div id="days" class="font-bold text-2xl md:text-3xl">00</div>
-                  <div class="text-xs font-normal text-slate-400">Days</div>
-              </div>
-              <div class="text-2xl md:text-3xl">:</div>
-              <div class="text-center w-20">
-                  <div id="hours" class="font-bold text-2xl md:text-3xl">00</div>
-                  <div class="text-xs font-normal text-slate-400">Hours</div>
-              </div>
-               <div class="text-2xl md:text-3xl">:</div>
-              <div class="text-center w-20">
-                  <div id="minutes" class="font-bold text-2xl md:text-3xl">00</div>
-                  <div class="text-xs font-normal text-slate-400">Minutes</div>
-              </div>
-               <div class="text-2xl md:text-3xl">:</div>
-              <div class="text-center w-20">
-                  <div id="seconds" class="font-bold text-2xl md:text-3xl">00</div>
-                  <div class="text-xs font-normal text-slate-400">Seconds</div>
-              </div>
+        <div id="countdown-sticky" class="fixed bottom-4 z-50 left-1/2 -translate-x-1/2 w-full px-4 md:w-auto md:left-auto md:translate-x-0 md:right-4 md:px-0">
+            <div id="countdown" class="text-white font-mono flex items-center justify-center gap-1 sm:gap-2 md:gap-4 p-3 rounded-lg glass-card max-w-md mx-auto md:max-w-none">
+                <div class="text-center w-16 sm:w-20">
+                    <div id="days" class="font-bold text-2xl md:text-3xl">00</div>
+                    <div class="text-xs font-normal text-slate-400">Days</div>
+                </div>
+                <div class="text-2xl md:text-3xl">:</div>
+                <div class="text-center w-16 sm:w-20">
+                    <div id="hours" class="font-bold text-2xl md:text-3xl">00</div>
+                    <div class="text-xs font-normal text-slate-400">Hours</div>
+                </div>
+                <div class="text-2xl md:text-3xl">:</div>
+                <div class="text-center w-16 sm:w-20">
+                    <div id="minutes" class="font-bold text-2xl md:text-3xl">00</div>
+                    <div class="text-xs font-normal text-slate-400">Minutes</div>
+                </div>
+                <div class="text-2xl md:text-3xl">:</div>
+                <div class="text-center w-16 sm:w-20">
+                    <div id="seconds" class="font-bold text-2xl md:text-3xl">00</div>
+                    <div class="text-xs font-normal text-slate-400">Seconds</div>
+                </div>
             </div>
         </div>
 
@@ -275,7 +265,7 @@
                 </div>
             </section>
 
-           <section id="about-yensplash" class="relative py-48">
+            <section id="about-yensplash" class="relative py-48">
                 <div class="relative z-1 container mx-auto px-6 text-center">
                     <h2 id="yensplash-text" class="font-bold text-4xl md:text-5xl text-white">
                         <span class="word">READY</span> <span class="word">TO</span> <span class="word">DIVE</span> <span class="word">INTO</span> <span class="word">THE</span> <span class="word">FUTURE</span> <span class="word">OF</span> <span class="word">TECHNOLOGY?</span>
@@ -313,7 +303,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="a.html" class="block group event-card">
+                    <a href="uiux.html" class="block group event-card">
                         <div class="glass-card h-full overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1587440871875-191322ee64b0?q=80&w=2071&auto=format&fit=crop" alt="UI/UX Design" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
                             <div class="p-6">
@@ -322,7 +312,7 @@
                             </div>
                         </div>
                     </a>
-                    <a href="#" class="block group event-card">
+                    <a href="startup.html" class="block group event-card">
                         <div class="glass-card h-full overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop" alt="Start-up Pitch" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
                             <div class="p-6">
@@ -342,7 +332,7 @@
                     </a>
                     <a href="#" class="block group event-card">
                         <div class="glass-card h-full overflow-hidden">
-                            <img src="https://media.istockphoto.com/id/2179684475/photo/engaged-audience-raising-hands-during-business-conference-lecture.webp?a=1&b=1&s=612x612&w=0&k=20&c=TzyXipFZLdXY0-VnF8ZSM4FsS1oqvqpvSfYeXL32MWI=" alt="UI/UX Design" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <img src="https://media.istockphoto.com/id/2179684475/photo/engaged-audience-raising-hands-during-business-conference-lecture.webp?a=1&b=1&s=612x612&w=0&k=20&c=TzyXipFZLdXY0-VnF8ZSM4FsS1oqvqpvSfYeXL32MWI=" alt="Technical Quiz" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
                             <div class="p-6">
                                 <h3 class="text-xl font-bold mb-2">Technical Quiz</h3>
                                 <p class="text-gray-400">Test your technical knowledge with challenging questions.</p>
@@ -351,14 +341,14 @@
                     </a>
                     <a href="#" class="block group event-card">
                         <div class="glass-card h-full overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="UI/UX Design" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Tech Debate" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
                             <div class="p-6">
                                 <h3 class="text-xl font-bold mb-2">Tech Debate</h3>
                                 <p class="text-gray-400">Engage in thought-provoking debates on emerging technologies.</p>
                             </div>
                         </div>
                     </a>
-                                <a href="project.html" class="block group event-card">
+                    <a href="project.html" class="block group event-card">
                         <div class="glass-card h-full overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=2070&auto=format&fit=crop" alt="Project Expo" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
                             <div class="p-6">
@@ -369,7 +359,7 @@
                     </a>
                     <a href="#" class="block group event-card">
                         <div class="glass-card h-full overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZW5naW5lZXJpbmclMjBkcmF3aW5nfGVufDB8fDB8fHww" alt="UI/UX Design" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZW5naW5lZXJpbmclMjBkcmF3aW5nfGVufDB8fDB8fHww" alt="Auto CAED" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
                             <div class="p-6">
                                 <h3 class="text-xl font-bold mb-2">Auto CAED</h3>
                                 <p class="text-gray-400">Showcase your CAD and engineering drawing skills.</p>
@@ -379,103 +369,92 @@
                 </div>
             </section>
 
-<section id="timeline" class="container mx-auto px-4 md:px-6 py-8">
-  <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-24 relative">Event Timeline</h2>
-  <div class="relative wrap overflow-hidden p-2 md:p-10 h-full">
-    <div class="absolute border-l-2 border-opacity-20 border-gray-700 h-full" style="left: 50%; transform: translateX(-50%);"></div>
-
-    <div class="mb-8 flex justify-between items-center w-full">
-      <div class="order-1 w-5/12 hidden md:block"></div>
-      <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
-        <h1 class="mx-auto font-semibold text-sm text-white">1</h1>
-      </div>
-      <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
-        <h3 class="font-bold text-white text-lg">Nov 11–12, 2025 | Multi-Day Competitions</h3>
-        <p class="text-sm leading-snug tracking-wide text-gray-400">
-          Hackathon, Line Follower, and Maze Follower competitions take place across both days.
-        </p>
-      </div>
-    </div>
-
-    <div class="mb-8 flex justify-between md:flex-row-reverse items-center w-full">
-      <div class="order-1 w-5/12 hidden md:block"></div>
-      <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
-        <h1 class="mx-auto font-semibold text-sm text-white">2</h1>
-      </div>
-      <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
-        <h3 class="font-bold text-white text-lg">Nov 11, 2025 | 8:00 AM – 3:30 PM</h3>
-        <p class="text-sm leading-snug tracking-wide text-gray-400">Robo Soccer – an all-day robotic soccer competition.</p>
-      </div>
-    </div>
-
-    <div class="mb-8 flex justify-between items-center w-full">
-      <div class="order-1 w-5/12 hidden md:block"></div>
-      <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
-        <h1 class="mx-auto font-semibold text-sm text-white">3</h1>
-      </div>
-      <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
-        <h3 class="font-bold text-white text-lg">Nov 11, 2025 | 10:00 AM – 12:00 PM</h3>
-        <p class="text-sm leading-snug tracking-wide text-gray-400">Start-up Pitch – entrepreneurs present innovative business ideas.</p>
-      </div>
-    </div>
-
-    <div class="mb-8 flex justify-between md:flex-row-reverse items-center w-full">
-      <div class="order-1 w-5/12 hidden md:block"></div>
-      <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
-        <h1 class="mx-auto font-semibold text-sm text-white">4</h1>
-      </div>
-      <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
-        <h3 class="font-bold text-white text-lg">Nov 11, 2025 | 10:30 AM</h3>
-        <p class="text-sm leading-snug tracking-wide text-gray-400">
-          Morning Competitions begin: CTF (till 12:30 PM), UI/UX (till 12:30 PM), Tech Quiz (till 12:30 PM),
-          Tech Debate (till 12:00 PM), and Auto CAED (till 12:00 PM).
-        </p>
-      </div>
-    </div>
-
-    <div class="mb-8 flex justify-between items-center w-full">
-      <div class="order-1 w-5/12 hidden md:block"></div>
-      <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
-        <h1 class="mx-auto font-semibold text-sm text-white">5</h1>
-      </div>
-      <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
-        <h3 class="font-bold text-white text-lg">Nov 11, 2025 | 12:45 PM – 2:00 PM</h3>
-        <p class="text-sm leading-snug tracking-wide text-gray-400">Lunch Break – time to refuel and network.</p>
-      </div>
-    </div>
-
-    <div class="mb-8 flex justify-between md:flex-row-reverse items-center w-full">
-      <div class="order-1 w-5/12 hidden md:block"></div>
-      <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
-        <h1 class="mx-auto font-semibold text-sm text-white">6</h1>
-      </div>
-      <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
-        <h3 class="font-bold text-white text-lg">Nov 11, 2025 | 1:30 PM</h3>
-        <p class="text-sm leading-snug tracking-wide text-gray-400">
-          Afternoon Events: Project Expo (till 2:30 PM) and Treasure Hunt (till 2:00 PM).
-        </p>
-      </div>
-    </div>
-
-    <div class="mb-8 flex justify-between items-center w-full">
-      <div class="order-1 w-5/12 hidden md:block"></div>
-      <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
-        <h1 class="mx-auto font-semibold text-sm text-white">7</h1>
-      </div>
-      <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
-        <h3 class="font-bold text-white text-lg">Nov 11, 2025 | 3:45 PM – 5:00 PM</h3>
-        <p class="text-sm leading-snug tracking-wide text-gray-400">
-          Valedictory Program – closing ceremony with remarks and prize distribution.
-        </p>
-      </div>
-    </div>
-
-  </div>
-</section>
-        
-    </div>
-</section>
-
+            <section id="timeline" class="container mx-auto px-4 md:px-6 py-8">
+                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-24 relative">Event Timeline</h2>
+                <div class="relative wrap overflow-hidden p-2 md:p-10 h-full">
+                    <div class="absolute border-l-2 border-opacity-20 border-gray-700 h-full" style="left: 50%; transform: translateX(-50%);"></div>
+                    <div class="mb-8 flex justify-between items-center w-full">
+                        <div class="order-1 w-5/12 hidden md:block"></div>
+                        <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
+                            <h1 class="mx-auto font-semibold text-sm text-white">1</h1>
+                        </div>
+                        <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
+                            <h3 class="font-bold text-white text-lg">Nov 11–12, 2025 | Multi-Day Competitions</h3>
+                            <p class="text-sm leading-snug tracking-wide text-gray-400">
+                                Hackathon, Line Follower, and Maze Follower competitions take place across both days.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mb-8 flex justify-between md:flex-row-reverse items-center w-full">
+                        <div class="order-1 w-5/12 hidden md:block"></div>
+                        <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
+                            <h1 class="mx-auto font-semibold text-sm text-white">2</h1>
+                        </div>
+                        <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
+                            <h3 class="font-bold text-white text-lg">Nov 11, 2025 | 8:00 AM – 3:30 PM</h3>
+                            <p class="text-sm leading-snug tracking-wide text-gray-400">Robo Soccer – an all-day robotic soccer competition.</p>
+                        </div>
+                    </div>
+                    <div class="mb-8 flex justify-between items-center w-full">
+                        <div class="order-1 w-5/12 hidden md:block"></div>
+                        <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
+                            <h1 class="mx-auto font-semibold text-sm text-white">3</h1>
+                        </div>
+                        <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
+                            <h3 class="font-bold text-white text-lg">Nov 11, 2025 | 10:00 AM – 12:00 PM</h3>
+                            <p class="text-sm leading-snug tracking-wide text-gray-400">Start-up Pitch – entrepreneurs present innovative business ideas.</p>
+                        </div>
+                    </div>
+                    <div class="mb-8 flex justify-between md:flex-row-reverse items-center w-full">
+                        <div class="order-1 w-5/12 hidden md:block"></div>
+                        <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
+                            <h1 class="mx-auto font-semibold text-sm text-white">4</h1>
+                        </div>
+                        <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
+                            <h3 class="font-bold text-white text-lg">Nov 11, 2025 | 10:30 AM</h3>
+                            <p class="text-sm leading-snug tracking-wide text-gray-400">
+                                Morning Competitions begin: CTF (till 12:30 PM), UI/UX (till 12:30 PM), Tech Quiz (till 12:30 PM),
+                                Tech Debate (till 12:00 PM), and Auto CAED (till 12:00 PM).
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mb-8 flex justify-between items-center w-full">
+                        <div class="order-1 w-5/12 hidden md:block"></div>
+                        <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
+                            <h1 class="mx-auto font-semibold text-sm text-white">5</h1>
+                        </div>
+                        <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
+                            <h3 class="font-bold text-white text-lg">Nov 11, 2025 | 12:45 PM – 2:00 PM</h3>
+                            <p class="text-sm leading-snug tracking-wide text-gray-400">Lunch Break – time to refuel and network.</p>
+                        </div>
+                    </div>
+                    <div class="mb-8 flex justify-between md:flex-row-reverse items-center w-full">
+                        <div class="order-1 w-5/12 hidden md:block"></div>
+                        <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
+                            <h1 class="mx-auto font-semibold text-sm text-white">6</h1>
+                        </div>
+                        <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
+                            <h3 class="font-bold text-white text-lg">Nov 11, 2025 | 1:30 PM</h3>
+                            <p class="text-sm leading-snug tracking-wide text-gray-400">
+                                Afternoon Events: Project Expo (till 2:30 PM) and Treasure Hunt (till 2:00 PM).
+                            </p>
+                        </div>
+                    </div>
+                    <div class="mb-8 flex justify-between items-center w-full">
+                        <div class="order-1 w-5/12 hidden md:block"></div>
+                        <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
+                            <h1 class="mx-auto font-semibold text-sm text-white">7</h1>
+                        </div>
+                        <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
+                            <h3 class="font-bold text-white text-lg">Nov 11, 2025 | 3:45 PM – 5:00 PM</h3>
+                            <p class="text-sm leading-snug tracking-wide text-gray-400">
+                                Valedictory Program – closing ceremony with remarks and prize distribution.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
             <section id="coordinators" class="container mx-auto px-6">
                 <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16 relative">Central Coordinators</h2>
                 <div class="max-w-20xl mx-auto mb-5 mt-5 grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -504,7 +483,6 @@
                         <p class="text-grey-800">Ph :1234567890</p>
                     </div>
                 </div>
-                
             </section>
 
             <section id="sponsors" class="container mt-10 mx-auto px-6">
@@ -597,13 +575,13 @@
                         const charX = x * fontSize + fontSize / 2;
                         const charY = y * fontSize + fontSize / 2;
                         const dist = Math.hypot(charX - mouse.x, charY - mouse.y);
-                        const radius = 700; // Changed
+                        const radius = 400;
                         
                         const intensity = Math.max(0, 1 - dist / radius);
                         const easedIntensity = Math.pow(intensity, 2.5);
 
                         const baseLightness = 20;
-                        const hoverLightness = 30; // Changed
+                        const hoverLightness = 30;
                         const currentLightness = baseLightness + (hoverLightness - baseLightness) * easedIntensity;
                         
                         const baseOpacity = 0.08;
@@ -633,10 +611,46 @@
                 createCharGrid();
             });
             
+            // --- GSAP Mobile Menu Animation ---
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
-            mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
-            mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
+            const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+
+            // Set initial state
+            gsap.set(mobileMenu, { height: 0, autoAlpha: 0 });
+            gsap.set(mobileMenuLinks, { opacity: 0, y: -20 });
+
+            // Create a reusable timeline
+            const menuTimeline = gsap.timeline({ paused: true, reversed: true });
+
+            menuTimeline.to(mobileMenu, { 
+                height: 'auto', 
+                autoAlpha: 1, 
+                duration: 0.4, 
+                ease: 'power2.inOut' 
+            })
+            .to(mobileMenuLinks, { 
+                opacity: 1, 
+                y: 0, 
+                duration: 0.3, 
+                stagger: 0.08, 
+                ease: 'power2.out' 
+            }, "-=0.2");
+
+            // Toggle animation on button click
+            mobileMenuButton.addEventListener('click', () => {
+                menuTimeline.reversed() ? menuTimeline.play() : menuTimeline.reverse();
+            });
+            
+            // Close menu when a link is clicked
+            mobileMenuLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    if (!menuTimeline.reversed()) {
+                        menuTimeline.reverse();
+                    }
+                });
+            });
+
 
             const subtitle = document.getElementById("hero-subtitle");
             const originalSubtitleText = subtitle.textContent.trim();
@@ -693,19 +707,19 @@
                 gsap.from(logo, { scrollTrigger: { trigger: logo, start: "top bottom-=50px", toggleActions: "play none none none" }, opacity: 0, y: 20, duration: 0.5, delay: i * 0.1 });
             });
 
-              let yensplashText = gsap.timeline({
-    scrollTrigger: {
-        trigger: "#about-yensplash",
-        start: "top 70%", // animation starts earlier
-        end: "center center", // completes when text reaches middle
-        scrub: 1.5
-    }
-});
+             let yensplashText = gsap.timeline({
+                scrollTrigger: {
+                    trigger: "#about-yensplash",
+                    start: "top 70%",
+                    end: "center center",
+                    scrub: 1.5
+                }
+            });
             yensplashText.from("#yensplash-text .word", {
-    opacity: 0.2,
-    filter: "blur(8px)",
-    stagger: { each: 0.1, from: "random" }
-});
+                opacity: 0.2,
+                filter: "blur(8px)",
+                stagger: { each: 0.1, from: "random" }
+            });
 
             const sections = document.querySelectorAll('main section');
             const navLinks = document.querySelectorAll('.nav-link');

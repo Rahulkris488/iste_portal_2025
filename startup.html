@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Launchpad: Start-up Pitch | ISTE '25</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-dark: #0A0F1E;
+            --text-light: #A8B2C7;
+            --text-heading: #F7F9FC;
+            --accent-blue: #00BFFF;
+            --gradient-start: #0A0F1E;
+            --gradient-end: #1A243D;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+
+        .glass-pane {
+            background: rgba(26, 36, 61, 0.5);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(0, 191, 255, 0.2);
+            border-radius: 1.5rem;
+        }
+
+        .neon-accent {
+            text-shadow: 0 0 8px var(--accent-blue), 0 0 10px var(--accent-blue);
+        }
+        
+        .btn-primary {
+            background-color: var(--accent-blue);
+            box-shadow: 0 4px 20px rgba(0, 191, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 191, 255, 0.4);
+        }
+
+        .background-gradient {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
+        }
+        
+        .split-screen-graphic {
+            position: sticky;
+            top: 30%;
+            height: 40vh;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="background-gradient"></div>
+
+    <header class="sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4">
+             <div class="flex justify-between items-center glass-pane px-6 py-3">
+                <h1 class="text-xl font-bold text-center text-text-heading">The Launchpad</h1>
+                <a href="index.html" class="text-text-light hover:text-white transition-colors flex items-center gap-2 text-md">
+                    <span>Main Hub</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="relative z-10">
+        
+        <section id="hero" class="min-h-screen flex items-center justify-center text-center p-4 -mt-20">
+            <div class="relative z-10">
+                <h1 class="text-5xl md:text-8xl font-extrabold text-text-heading leading-tight">
+                    <span class="hero-line block">Innovate. Pitch.</span>
+                    <span class="hero-line block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Succeed.</span>
+                </h1>
+                <p id="hero-subtitle" class="mt-6 text-lg md:text-xl text-text-light max-w-2xl mx-auto">
+                    Your platform to transform groundbreaking ideas into viable businesses. Present your vision and captivate the future.
+                </p>
+            </div>
+        </section>
+
+        <div class="container mx-auto px-4 sm:px-6 py-12 md:py-20 space-y-24 md:space-y-32">
+
+             <section class="max-w-4xl mx-auto text-center">
+                <h2 class="section-title text-4xl font-bold mb-4 text-text-heading">The Mission</h2>
+                <p class="section-content text-lg text-text-light">
+                   The Start-up Pitch competition is a dynamic platform for student innovators to present a compelling business pitch that showcases creativity, feasibility, and market potential, simulating a real-world investor meeting.
+                </p>
+            </section>
+            
+            <section id="pitch-structure" class="max-w-6xl mx-auto">
+                <h2 class="section-title text-4xl font-bold text-center mb-16 text-text-heading">Anatomy of a Winning Pitch</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+                    <div>
+                        <div class="split-screen-graphic flex items-center justify-center">
+                            <!-- SVGs will be swapped here by GSAP -->
+                        </div>
+                    </div>
+                    <div class="space-y-24">
+                        <div class="pitch-step" data-svg-id="problem">
+                            <h3 class="text-2xl font-bold mb-2 text-text-heading">1. The Problem</h3>
+                            <p class="text-text-light">Clearly define the problem your start-up is solving. What is the pain point for your target audience?</p>
+                        </div>
+                        <div class="pitch-step" data-svg-id="solution">
+                            <h3 class="text-2xl font-bold mb-2 text-text-heading">2. The Solution</h3>
+                            <p class="text-text-light">Describe your product or service. How does it uniquely solve the problem you've identified?</p>
+                        </div>
+                        <div class="pitch-step" data-svg-id="market">
+                            <h3 class="text-2xl font-bold mb-2 text-text-heading">3. The Market</h3>
+                            <p class="text-text-light">Detail your target customers, market size, and how your business model is sustainable and scalable.</p>
+                        </div>
+                         <div class="pitch-step" data-svg-id="business">
+                            <h3 class="text-2xl font-bold mb-2 text-text-heading">4. The Business Plan</h3>
+                            <p class="text-text-light">Outline your capital requirements, financial feasibility, and overall strategy for growth and sustainability.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="max-w-5xl mx-auto">
+                <h2 class="section-title text-4xl font-bold text-center mb-12 text-text-heading">Rules of Engagement</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="glass-pane p-8 rule-card">
+                        <h3 class="text-2xl font-bold mb-4 text-cyan-400">Team & Presentation</h3>
+                        <ul class="space-y-3 text-text-light list-disc list-inside">
+                            <li>Individuals or teams of 2-4 members.</li>
+                            <li>Present with a PowerPoint, poster, or prototype/model.</li>
+                            <li>Max 12 slides & 4 oral presenters per team.</li>
+                             <li>Strict 3-8 minute pitch time, plus a Q&A session.</li>
+                        </ul>
+                    </div>
+                     <div class="glass-pane p-8 rule-card">
+                        <h3 class="text-2xl font-bold mb-4 text-cyan-400">Conduct & Originality</h3>
+                        <ul class="space-y-3 text-text-light list-disc list-inside">
+                            <li>All ideas and submissions must be original work.</li>
+                            <li>Plagiarism will result in immediate disqualification.</li>
+                             <li>Do not disclose personal or college names in presentation slides.</li>
+                            <li>Decisions by the judges and organizers are final and binding.</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+             <section class="max-w-5xl mx-auto text-center">
+                <h2 class="section-title text-4xl font-bold mb-12 text-text-heading">Judging Criteria</h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-pane p-6 criterion">
+                        <h3 class="font-bold text-cyan-400 text-2xl mb-2">Innovation & Feasibility</h3>
+                        <p class="text-sm">Originality of the solution and its practical potential.</p>
+                    </div>
+                     <div class="glass-pane p-6 criterion">
+                        <h3 class="font-bold text-cyan-400 text-2xl mb-2">Market & Business Plan</h3>
+                        <p class="text-sm">Understanding of the target market and a viable plan for growth.</p>
+                    </div>
+                    <div class="glass-pane p-6 criterion">
+                        <h3 class="font-bold text-cyan-400 text-2xl mb-2">Presentation & Team</h3>
+                        <p class="text-sm">Clarity, creativity, and collaborative skills shown during the pitch.</p>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="max-w-4xl mx-auto text-center">
+                <h2 class="section-title text-4xl font-bold text-center mb-8 text-text-heading">Faculty Coordinator</h2>
+                 <div class="glass-pane p-8 inline-block">
+                    <h3 class="text-2xl font-bold text-text-heading">Prof. G Sujaykumar</h3>
+                    <p class="text-text-light mt-1">Contact: +91 98805 43651</p>
+                </div>
+            </section>
+
+            <section class="text-center glass-pane p-12">
+                <h2 class="section-title text-4xl font-bold text-text-heading">Ready to Launch Your Idea?</h2>
+                <p class="section-content mt-4 text-lg max-w-2xl mx-auto text-text-light">Assemble your team, refine your vision, and step onto the stage where ideas take flight.</p>
+                <div class="mt-10">
+                    <a href="#" class="btn-primary text-white font-bold py-4 px-10 rounded-lg">
+                        Register Your Start-up
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer class="mt-20">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-500">
+            <p>&copy; 2025 Yenepoya Institute of Technology | All Rights Reserved</p>
+        </div>
+    </footer>
+    
+    <!-- SVG definitions for interactive section -->
+    <div id="svg-assets" class="hidden">
+        <svg id="problem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-full h-full text-cyan-400"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" /></svg>
+        <svg id="solution" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-full h-full text-cyan-400"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 001.5-.189m-1.5.189a6.01 6.01 0 01-1.5-.189m3.75 7.478a12.06 12.06 0 01-4.5 0m3.75 2.311l-3.75 0M9 17.25a3 3 0 013-3h0a3 3 0 013 3v.034M16.5 18.75a.75.75 0 000-1.5h-9a.75.75 0 000 1.5h9z" /></svg>
+        <svg id="market" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-full h-full text-cyan-400"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" /></svg>
+        <svg id="business" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-full h-full text-cyan-400"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" /></svg>
+    </div>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // --- Hero Animations ---
+        gsap.from(".hero-line", { duration: 1, y: 100, opacity: 0, stagger: 0.2, ease: "power4.out", delay: 0.5 });
+        gsap.from("#hero-subtitle", { duration: 1, y: 50, opacity: 0, ease: "power4.out", delay: 1 });
+
+        // --- General Section Animations ---
+        gsap.utils.toArray('section').forEach(section => {
+            const title = section.querySelector('.section-title');
+            const content = section.querySelectorAll('.section-content, .rule-card, .criterion, p, h3:not(.section-title)');
+            
+            if (title) {
+                gsap.from(title, {
+                    scrollTrigger: { trigger: section, start: "top 80%" },
+                    duration: 1, y: 50, opacity: 0, ease: 'power3.out'
+                });
+            }
+            if (content.length > 0) {
+                 gsap.from(content, {
+                    scrollTrigger: { trigger: section, start: "top 80%" },
+                    duration: 1, y: 30, opacity: 0, stagger: 0.1, ease: 'power3.out', delay: 0.2
+                });
+            }
+        });
+
+        // --- Interactive Split Screen Animation ---
+        const graphicContainer = document.querySelector('.split-screen-graphic');
+        const svgAssets = document.getElementById('svg-assets');
+        const pitchSteps = gsap.utils.toArray('.pitch-step');
+        
+        // Set initial SVG
+        graphicContainer.innerHTML = svgAssets.querySelector('#problem').outerHTML;
+        gsap.set(graphicContainer, { opacity: 0, scale: 0.8 });
+
+        ScrollTrigger.create({
+            trigger: "#pitch-structure",
+            start: "top center",
+            end: "bottom bottom",
+            onEnter: () => gsap.to(graphicContainer, { opacity: 1, scale: 1 }),
+            onLeaveBack: () => gsap.to(graphicContainer, { opacity: 0, scale: 0.8 }),
+        });
+        
+        pitchSteps.forEach(step => {
+            ScrollTrigger.create({
+                trigger: step,
+                start: "top center",
+                end: "bottom center",
+                onEnter: () => {
+                    const svgId = step.dataset.svgId;
+                    const newSvg = svgAssets.querySelector(`#${svgId}`).outerHTML;
+                    if(graphicContainer.innerHTML !== newSvg) {
+                         gsap.to(graphicContainer, {
+                            opacity: 0, 
+                            scale: 0.8,
+                            duration: 0.3,
+                            onComplete: () => {
+                                graphicContainer.innerHTML = newSvg;
+                                gsap.to(graphicContainer, {opacity: 1, scale: 1, duration: 0.3});
+                            }
+                        });
+                    }
+                },
+                onEnterBack: () => {
+                    const svgId = step.dataset.svgId;
+                     const newSvg = svgAssets.querySelector(`#${svgId}`).outerHTML;
+                    if(graphicContainer.innerHTML !== newSvg) {
+                         gsap.to(graphicContainer, {
+                            opacity: 0,
+                            scale: 0.8,
+                            duration: 0.3,
+                            onComplete: () => {
+                                graphicContainer.innerHTML = newSvg;
+                                gsap.to(graphicContainer, {opacity: 1, scale: 1, duration: 0.3});
+                            }
+                        });
+                    }
+                }
+            });
+        });
+    });
+    </script>
+</body>
+</html>
+
