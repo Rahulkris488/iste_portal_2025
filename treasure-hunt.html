@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Cartographer's Challenge: A Treasure Hunt | ISTE '25</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Alegreya+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --parchment: #fdf6e3;
+            --dark-brown: #3a2a1a;
+            --gold: #daa520;
+            --gold-dark: #b8860b;
+            --gold-glow: rgba(218, 165, 32, 0.4);
+            --shadow: rgba(0, 0, 0, 0.5);
+        }
+
+        body {
+            font-family: 'Alegreya Sans', sans-serif;
+            background-color: #261f16;
+            background-image: url('https://www.transparenttextures.com/patterns/old-wall.png');
+            color: var(--dark-brown);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Cinzel', serif;
+        }
+        
+        #map-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.2;
+        }
+
+        .scroll-pane {
+            background: var(--parchment);
+            background-image: url('https://www.transparenttextures.com/patterns/worn-dots.png');
+            border: 10px solid;
+            border-image-slice: 20;
+            border-image-width: 20px;
+            border-image-outset: 0px;
+            border-image-repeat: stretch;
+            border-image-source: url('data:image/svg+xml;utf8,<svg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><g fill="%233a2a1a"><path d="M0 0h60v20H0z"/><path d="M0 40h60v20H0z"/></g></svg>');
+            padding: 2rem;
+            box-shadow: 0 10px 30px var(--shadow);
+            position: relative;
+        }
+
+        .stone-tablet {
+            background-color: #4a4238;
+            color: var(--parchment);
+            padding: 1.5rem;
+            border-radius: 4px;
+            border: 2px solid #2e2821;
+            box-shadow: inset 0 0 15px rgba(0,0,0,0.5), 0 5px 10px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .gold-text {
+            color: var(--gold-dark);
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .accordion-item {
+            background: #e9e0cb;
+            border: 2px solid #c9bfa5;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease-out;
+        }
+        .accordion-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .accordion-header {
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+            background: var(--parchment);
+            padding: 0 1.5rem;
+        }
+        .accordion-item.active .accordion-content {
+            max-height: 500px;
+            padding: 1.5rem;
+            border-top: 2px solid #c9bfa5;
+        }
+        .accordion-item.active .accordion-icon {
+            transform: rotate(180deg);
+        }
+        .accordion-icon {
+             transition: transform 0.3s ease-in-out;
+        }
+
+        .btn-register {
+            background: linear-gradient(145deg, #ffd700, #b8860b);
+            color: var(--dark-brown);
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px var(--gold-glow);
+            transition: all 0.3s ease-in-out;
+            border: 2px solid #c89c0b;
+        }
+        .btn-register:hover {
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 0 8px 25px var(--gold-glow);
+        }
+        
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #261f16;
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.5rem;
+            color: var(--parchment);
+            font-family: 'Cinzel', serif;
+        }
+    </style>
+</head>
+<body class="antialiased">
+    <canvas id="map-canvas"></canvas>
+
+    <div id="loader">
+        <p id="loader-text">Unfurling the Ancient Map...</p>
+    </div>
+
+    <header class="sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 bg-black/30 backdrop-blur-md rounded-b-xl border-x border-b border-gold/30">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-yellow-200 hover:text-white transition-colors flex items-center gap-2 text-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                    <span>Return to Hub</span>
+                </a>
+                <h1 class="text-2xl font-bold text-center text-yellow-300">The Cartographer's Challenge</h1>
+                <div></div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 py-12 md:py-20">
+        <div class="space-y-20">
+            
+            <section class="text-center">
+                <div class="scroll-pane max-w-4xl mx-auto">
+                    <h1 class="text-5xl md:text-7xl font-bold gold-text">Treasure Hunt</h1>
+                    <p class="text-xl md:text-2xl text-brown-700 mt-3">Uncover the secrets of the 21st ISTE State Level Student Convention</p>
+                    <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-6">
+                        <div class="stone-tablet w-60">
+                            <p class="text-yellow-400/80 text-sm font-bold">DATE OF EXPEDITION</p>
+                            <p class="font-bold text-lg tracking-wider">12 NOV 2025</p>
+                        </div>
+                        <div class="stone-tablet w-60">
+                            <p class="text-yellow-400/80 text-sm font-bold">ALLOWED TIME</p>
+                            <p class="font-bold text-lg tracking-wider">1:30 PM - 3:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="max-w-5xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <div class="flex flex-col items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-amber-600 mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/><path d="M22 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M12 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/><path d="M6 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+                        <h3 class="text-2xl font-bold text-yellow-200">Form a Guild</h3>
+                        <p class="text-yellow-300/80 mt-1">Assemble a team of four brave adventurers.</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-amber-600 mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14 2 14 8 20 8"/><path d="M10 10v4h4"/><path d="m10 14 5-5"/></svg>
+                        <h3 class="text-2xl font-bold text-yellow-200">Solve the Cipher</h3>
+                        <p class="text-yellow-300/80 mt-1">Pass the initial trial: a 10-minute, 10-question quiz.</p>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-amber-600 mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="m15.8 5-3.4 3.4c-.9.9-2.1.9-3 0l-1.8-1.8c-.9-.9-.9-2.1 0-3l3.4-3.4c.9-.9 2.1-.9 3 0Z"/><path d="M12.5 6.5 11 8l-6 6"/><path d="m18 12-6 6-1.5-1.5"/><path d="m22 11-6 6-3.5-3.5"/><path d="m16 16-1.5-1.5"/></svg>
+                        <h3 class="text-2xl font-bold text-yellow-200">Claim the Prize</h3>
+                        <p class="text-yellow-300/80 mt-1">Follow the clues, unravel the mysteries, and claim your reward.</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="max-w-4xl mx-auto">
+                <div class="scroll-pane">
+                    <h2 class="text-4xl font-bold text-center mb-6 gold-text">The Legend of the Hunt</h2>
+                    <p class="text-lg text-center leading-relaxed">This exciting team-based event is designed to test your knowledge, teamwork, and problem-solving skills. Navigate through multiple rounds of challenges, starting with a quiz-based elimination and moving on to adventurous tasks that require sharp observation, logical thinking, and collaboration. Clues will lead the way, and only the smartest and quickest guild will emerge as winners.</p>
+                </div>
+            </section>
+
+            <section class="max-w-4xl mx-auto">
+                 <h2 class="text-4xl font-bold text-center mb-8 text-yellow-200">The Ancient Laws</h2>
+                <div id="accordion-container" class="space-y-4">
+                    <!-- Accordion Items generated by JS -->
+                </div>
+            </section>
+            
+            <section class="max-w-4xl mx-auto">
+                <h2 class="text-4xl font-bold text-center mb-8 text-yellow-200">The Chroniclers</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="stone-tablet">
+                        <h3 class="text-xl font-bold text-white">Prof. Harikanth S</h3>
+                        <p class="text-yellow-400/80 mt-1">Contact: +91 98454 81224</p>
+                    </div>
+                    <div class="stone-tablet">
+                        <h3 class="text-xl font-bold text-white">Prof. Prasanna Shankara R</h3>
+                        <p class="text-yellow-400/80 mt-1">Contact: +91 96329 74882</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="text-center">
+                <div class="scroll-pane max-w-4xl mx-auto">
+                    <h2 class="text-4xl font-bold gold-text">Does the treasure call to you?</h2>
+                    <p class="mt-4 text-lg max-w-2xl mx-auto">Assemble your guild, prove your worth, and claim the riches that await.</p>
+                    <div class="mt-10">
+                        <a href="#" class="btn-register">
+                            Assemble Your Guild
+                        </a>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    
+    <footer class="border-t border-amber-800/50 mt-20">
+        <div class="container mx-auto px-6 py-8 text-center text-amber-500/50">
+            <p>&copy; 2025 Yenepoya Institute of Technology | All Rights Reserved</p>
+        </div>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // --- Animated Map Background ---
+        const canvas = document.getElementById('map-canvas');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+        let points = [];
+        let currentPoint = 0;
+        let progress = 0;
+        
+        function setupPoints() {
+            points = [];
+            let numPoints = Math.floor(width / 200);
+            for(let i = 0; i < numPoints; i++) {
+                points.push({
+                    x: Math.random() * width,
+                    y: Math.random() * height
+                });
+            }
+        }
+        
+        function drawMap() {
+            ctx.clearRect(0, 0, width, height);
+            ctx.strokeStyle = 'rgba(218, 165, 32, 0.5)';
+            ctx.fillStyle = 'rgba(218, 165, 32, 0.7)';
+            
+            // Draw points
+            points.forEach(p => {
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 3, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            // Draw animated line
+            if (points.length < 2) return;
+            
+            let p1 = points[currentPoint];
+            let p2 = points[(currentPoint + 1) % points.length];
+            
+            let dx = p2.x - p1.x;
+            let dy = p2.y - p1.y;
+            
+            ctx.beginPath();
+            ctx.setLineDash([5, 10]);
+            ctx.moveTo(p1.x, p1.y);
+            ctx.lineTo(p1.x + dx * progress, p1.y + dy * progress);
+            ctx.stroke();
+            
+            progress += 0.005;
+            if (progress >= 1) {
+                progress = 0;
+                currentPoint = (currentPoint + 1) % points.length;
+            }
+            
+            requestAnimationFrame(drawMap);
+        }
+
+        setupPoints();
+        drawMap();
+        
+        window.addEventListener('resize', () => {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+            setupPoints();
+        });
+
+        // --- Preloader ---
+        const loader = document.getElementById('loader');
+        gsap.to(loader, { 
+            duration: 1.5, 
+            opacity: 0, 
+            delay: 1, 
+            onComplete: () => loader.style.display = 'none' 
+        });
+
+        // --- Scroll Animations ---
+        gsap.utils.toArray('section').forEach((section, i) => {
+            gsap.from(section, {
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 80%',
+                    toggleActions: 'play none none none',
+                },
+                opacity: 0,
+                y: 100,
+                duration: 1,
+                ease: 'power3.out',
+            });
+        });
+
+        // --- Accordion ---
+        const accordionData = [
+            { title: "General Mandates", content: `...` }, // content truncated for brevity
+            { title: "The First Trial: Quiz", content: `...` },
+            { title: "Progression & The Unknown", content: `...` }
+        ];
+
+        const accordionContainer = document.getElementById('accordion-container');
+        // Full accordion generation logic remains the same as previous version
+        const fullAccordionData = [
+             { 
+                title: "General Mandates", 
+                content: `
+                    <ul class="list-disc list-inside space-y-3">
+                        <li>Each guild must consist of exactly <strong>four members</strong>.</li>
+                        <li>All guilds must be registered <strong>before the hunt begins</strong>.</li>
+                        <li>Participants must <strong>follow the instructions</strong> of the Chroniclers at all times.</li>
+                        <li>Any violation of the laws will lead to <strong>immediate disqualification</strong>.</li>
+                        <li>The decision of the organizers is <strong>final and binding</strong>.</li>
+                    </ul>`
+            },
+            {
+                title: "The First Trial: Quiz",
+                content: `
+                    <ul class="list-disc list-inside space-y-3">
+                        <li>The first trial is a <strong>multiple-choice quiz</strong>.</li>
+                        <li>It consists of <strong>10 questions</strong> with a time limit of <strong>10 minutes</strong>.</li>
+                        <li>Use of <strong>mobile phones or any electronic gadgets</strong> is strictly prohibited.</li>
+                    </ul>`
+            },
+            {
+                title: "Progression & The Unknown",
+                content: `
+                    <ul class="list-disc list-inside space-y-3">
+                        <li>Only guilds that pass the first trial will proceed.</li>
+                        <li>Details of <strong>further rounds will be disclosed</strong> only to qualifying guilds.</li>
+                        <li>Prepare for adventurous tasks requiring sharp observation and logical thinking.</li>
+                    </ul>`
+            }
+        ];
+        
+        fullAccordionData.forEach(itemData => {
+            const itemEl = document.createElement('div');
+            itemEl.className = 'accordion-item';
+            itemEl.innerHTML = `
+                <div class="accordion-header flex justify-between items-center">
+                    <h3 class="font-bold text-lg">${itemData.title}</h3>
+                    <svg class="h-6 w-6 accordion-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" /></svg>
+                </div>
+                <div class="accordion-content"><div>${itemData.content}</div></div>
+            `;
+            accordionContainer.appendChild(itemEl);
+        });
+
+        const accordionItems = document.querySelectorAll('.accordion-item');
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            header.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                accordionItems.forEach(otherItem => otherItem.classList.remove('active'));
+                if (!isActive) item.classList.add('active');
+            });
+        });
+        if (accordionItems.length > 0) accordionItems[0].classList.add('active');
+    });
+    </script>
+</body>
+</html>
+
