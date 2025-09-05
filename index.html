@@ -45,8 +45,10 @@
             width: 24px;
             height: 24px;
             border-radius: 50%;
-            border: 2px solid var(--primary-green);
+            background-color: transparent;
+            border: 1.5px solid var(--primary-green);
             pointer-events: none;
+            mix-blend-mode: screen;
             z-index: 10000;
             transform: translate(-50%, -50%);
             transition: transform 0.1s ease-out;
@@ -146,9 +148,9 @@
                 <a href="#coordinators" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300 mr-1">Coordinators</a>
             </div>
             <div class="flex-shrink-0">
-                 <a href="https://www.isteonline.in/" target="_blank" class="flex items-center space-x-2">
-                       <img src="https://images.seeklogo.com/logo-png/22/1/iste-logo-png_seeklogo-228148.png" alt="ISTE Logo" class="h-8 md:h-10">
-                 </a>
+                <a href="https://www.isteonline.in/" target="_blank" class="flex items-center space-x-2">
+                    <img src="https://images.seeklogo.com/logo-png/22/1/iste-logo-png_seeklogo-228148.png" alt="ISTE Logo" class="h-8 md:h-10">
+                </a>
             </div>
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-white focus:outline-none">
@@ -158,11 +160,11 @@
         </nav>
 
         <div id="mobile-menu" class="hidden md:hidden bg-black/50 backdrop-blur-sm">
-             <a href="#hero" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Home</a>
-             <a href="#about-iste" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">About ISTE</a>
-             <a href="#events" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Events</a>
-             <a href="#timeline" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Timeline</a>
-             <a href="#coordinators" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Coordinators</a>
+            <a href="#hero" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Home</a>
+            <a href="#about-iste" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">About ISTE</a>
+            <a href="#events" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Events</a>
+            <a href="#timeline" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Timeline</a>
+            <a href="#coordinators" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Coordinators</a>
         </div>
         </header>
 
@@ -221,24 +223,24 @@
         <div id="countdown-sticky" class="fixed bottom-4 right-4 z-50">
             <div id="countdown" class="text-white font-mono flex items-center justify-center gap-2 md:gap-4 p-3 rounded-lg glass-card">
               <div class="text-center w-20">
-                    <div id="days" class="font-bold text-2xl md:text-3xl">00</div>
-                    <div class="text-xs font-normal text-slate-400">Days</div>
-                </div>
-                <div class="text-2xl md:text-3xl">:</div>
-                <div class="text-center w-20">
-                    <div id="hours" class="font-bold text-2xl md:text-3xl">00</div>
-                    <div class="text-xs font-normal text-slate-400">Hours</div>
-                </div>
-                 <div class="text-2xl md:text-3xl">:</div>
-                <div class="text-center w-20">
-                    <div id="minutes" class="font-bold text-2xl md:text-3xl">00</div>
-                    <div class="text-xs font-normal text-slate-400">Minutes</div>
-                </div>
-                 <div class="text-2xl md:text-3xl">:</div>
-                <div class="text-center w-20">
-                    <div id="seconds" class="font-bold text-2xl md:text-3xl">00</div>
-                    <div class="text-xs font-normal text-slate-400">Seconds</div>
-                </div>
+                  <div id="days" class="font-bold text-2xl md:text-3xl">00</div>
+                  <div class="text-xs font-normal text-slate-400">Days</div>
+              </div>
+              <div class="text-2xl md:text-3xl">:</div>
+              <div class="text-center w-20">
+                  <div id="hours" class="font-bold text-2xl md:text-3xl">00</div>
+                  <div class="text-xs font-normal text-slate-400">Hours</div>
+              </div>
+               <div class="text-2xl md:text-3xl">:</div>
+              <div class="text-center w-20">
+                  <div id="minutes" class="font-bold text-2xl md:text-3xl">00</div>
+                  <div class="text-xs font-normal text-slate-400">Minutes</div>
+              </div>
+               <div class="text-2xl md:text-3xl">:</div>
+              <div class="text-center w-20">
+                  <div id="seconds" class="font-bold text-2xl md:text-3xl">00</div>
+                  <div class="text-xs font-normal text-slate-400">Seconds</div>
+              </div>
             </div>
         </div>
 
@@ -284,7 +286,7 @@
             <section id="events" class="container mx-auto px-6">
                 <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16 relative">Competitions & Events</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <a href="h.html" class="block group event-card">
+                    <a href="#" class="block group event-card">
                         <div class="glass-card h-full overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop" alt="Hackathon" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
                             <div class="p-6">
@@ -595,17 +597,17 @@
                         const charX = x * fontSize + fontSize / 2;
                         const charY = y * fontSize + fontSize / 2;
                         const dist = Math.hypot(charX - mouse.x, charY - mouse.y);
-                        const radius = 250; 
+                        const radius = 500; // Changed
                         
                         const intensity = Math.max(0, 1 - dist / radius);
                         const easedIntensity = Math.pow(intensity, 2.5);
 
                         const baseLightness = 10;
-                        const hoverLightness = 45;
+                        const hoverLightness = 20; // Changed
                         const currentLightness = baseLightness + (hoverLightness - baseLightness) * easedIntensity;
                         
                         const baseOpacity = 0.08;
-                        const hoverOpacity = 0.9;
+                        const hoverOpacity = 1.0;
                         const currentOpacity = baseOpacity + (hoverOpacity - baseOpacity) * easedIntensity;
 
                         const color = `hsla(150, 100%, ${currentLightness}%, ${currentOpacity})`;
@@ -641,11 +643,11 @@
             subtitle.textContent = "";
 
             const tl = gsap.timeline();
-            tl.from("#hero-title", { 
-                duration: 0.8, 
-                y: 50, 
-                opacity: 0, 
-                ease: "power3.out" 
+            tl.from("#hero-title", {
+                duration: 0.8,
+                y: 50,
+                opacity: 0,
+                ease: "power3.out"
             })
             .to("#hero-subtitle", {
                 duration: 2.5,
