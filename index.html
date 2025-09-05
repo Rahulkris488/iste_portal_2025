@@ -112,7 +112,6 @@
             background: radial-gradient(circle at 50% 50%, rgba(2, 239, 151, 0.1), transparent 70%);
         }
 
-        /* === NEW CSS FOR TYPING ANIMATION CURSOR === */
         #hero-subtitle.typing::after {
             content: '_';
             display: inline-block;
@@ -124,7 +123,6 @@
         @keyframes blink {
             50% { opacity: 0; }
         }
-        /* === END OF NEW CSS === */
 
     </style>
 </head>
@@ -139,14 +137,13 @@
                     <img src="https://www.yit.edu.in/assets/img/logo-yit.png" alt="Yenepoya Institute of Technology Logo" class="h-8 md:h-10">
                 </a>
             </div>
+            
             <div class="hidden md:flex items-center bg-black/30 border border-white/10 rounded-full px-2 py-1 pill-nav">
                 <a href="#hero" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300">Home</a>
                 <a href="#about-iste" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300">About ISTE</a>
-                <a href="#about-yensplash" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300">About YenSplash</a>
                 <a href="#events" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300">Events</a>
                 <a href="#timeline" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300">Timeline</a>
                 <a href="#coordinators" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300">Coordinators</a>
-                <a href="#sponsors" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300">Sponsors</a>
             </div>
             <div class="flex-shrink-0">
                  <a href="https://www.isteonline.in/" target="_blank" class="flex items-center space-x-2">
@@ -159,27 +156,25 @@
                 </button>
             </div>
         </nav>
+
         <div id="mobile-menu" class="hidden md:hidden bg-black/50 backdrop-blur-sm">
              <a href="#hero" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Home</a>
              <a href="#about-iste" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">About ISTE</a>
-             <a href="#about-yensplash" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">About YenSplash</a>
              <a href="#events" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Events</a>
              <a href="#timeline" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Timeline</a>
              <a href="#coordinators" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Coordinators</a>
-             <a href="#sponsors" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Sponsors</a>
         </div>
-    </header>
+        </header>
 
     <main class="relative z-10">
         <section id="hero" class="text-center min-h-screen flex flex-col items-center justify-center py-20 px-4">
             <h1 id="hero-title" class="text-4xl md:text-5xl font-extrabold text-white leading-tight">
-                Welcome to <span class="text-emerald-400">YenSplash '25</span>
+                Welcome to <span class="text-emerald-400">ISTE '25</span>
             </h1>
             <p id="hero-subtitle" class="mt-4 text-base md:text-lg text-slate-400 max-w-3xl mx-auto h-16 md:h-auto">
                 The 21st ISTE Karnataka State Level Student Convention, where innovation meets opportunity.
             </p>
-            <a href="#" class="mt-10 inline-block bg-emerald-400 text-black font-bold py-4 px-10 rounded-lg transition-all duration-300 ease-in-out hover:bg-emerald-300 hover:shadow-lg hover:shadow-emerald-500/40 transform hover:scale-105">Register Now</a>
-        </section>
+            </section>
 
         <div id="countdown-sticky" class="fixed bottom-4 right-4 z-50">
             <div id="countdown" class="text-white font-mono flex items-center justify-center gap-2 md:gap-4 p-3 rounded-lg glass-card">
@@ -319,7 +314,7 @@
                             </div>
                         </div>
                     </a>
-                                        <a href="project.html" class="block group event-card">
+                                <a href="project.html" class="block group event-card">
                         <div class="glass-card h-full overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=2070&auto=format&fit=crop" alt="Project Expo" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
                             <div class="p-6">
@@ -563,8 +558,6 @@
                         const dist = Math.hypot(charX - mouse.x, charY - mouse.y);
                         const radius = 300; 
                         
-                        let color;
-                        
                         const intensity = Math.max(0, 1 - dist / radius);
                         const easedIntensity = Math.pow(intensity, 2.5);
 
@@ -576,7 +569,7 @@
                         const hoverOpacity = 1.0;
                         const currentOpacity = baseOpacity + (hoverOpacity - baseOpacity) * easedIntensity;
 
-                        color = `hsla(150, 100%, ${currentLightness}%, ${currentOpacity})`;
+                        const color = `hsla(150, 100%, ${currentLightness}%, ${currentOpacity})`;
                         
                         matrixCtx.fillStyle = color;
                         matrixCtx.fillText(charGrid[y][x], charX, charY);
@@ -604,10 +597,9 @@
             mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
             mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
 
-            // === MODIFIED GSAP ANIMATIONS WITH TYPING EFFECT ===
             const subtitle = document.getElementById("hero-subtitle");
             const originalSubtitleText = subtitle.textContent.trim();
-            subtitle.textContent = ""; // Clear the text to start empty
+            subtitle.textContent = "";
 
             const tl = gsap.timeline();
             tl.from("#hero-title", { 
@@ -617,20 +609,14 @@
                 ease: "power3.out" 
             })
             .to("#hero-subtitle", {
-                duration: 2.5, // Adjust duration for typing speed
+                duration: 2.5,
                 text: {
                     value: originalSubtitleText,
                 },
                 ease: "none",
                 onStart: () => subtitle.classList.add('typing'),
                 onComplete: () => subtitle.classList.remove('typing'),
-            }, "-=0.2")
-            .from(".mt-10.inline-block", { 
-                duration: 0.8, 
-                y: 50, 
-                opacity: 0, 
-                ease: "power3.out" 
-            }, "-=0.5");
+            }, "-=0.2");
             
             const animConfig = {
                 start: "top bottom-=100px",
@@ -651,7 +637,7 @@
             });
 
             gsap.utils.toArray('.event-card').forEach((card, i) => {
-                gsap.from(card, { scrollTrigger: { trigger: card, ...animConfig }, opacity: 0, y: 40, duration: 0.5, delay: (i % 7) * 0.1 });
+                gsap.from(card, { scrollTrigger: { trigger: card, ...animConfig }, opacity: 0, y: 40, duration: 0.5, delay: i * 0.07 });
             });
             
             gsap.utils.toArray('#timeline .glass-card').forEach((item) => {
@@ -667,19 +653,21 @@
             });
 
             let yensplashText = gsap.timeline({
-    scrollTrigger: {
-        trigger: "#about-yensplash",
-        start: "top 70%", // animation starts earlier
-        end: "center center", // completes when text reaches middle
-        scrub: 1.5
-    }
-});
+                scrollTrigger: { 
+                    trigger: "#about-yensplash", 
+                    start: "top 75%", 
+                    end: "bottom 80%", 
+                    scrub: 1,
+                }
+            });
+            yensplashText.to("#yensplash-text .word", { 
+                clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
+                transform: "translateY(0px)",
+                stagger: { each: 0.1, from: "start" },
+                duration: 1,
+                ease: "power2.inOut"
+            });
 
-yensplashText.from("#yensplash-text .word", {
-    opacity: 0.2,
-    filter: "blur(8px)",
-    stagger: { each: 0.1, from: "random" }
-});
             const sections = document.querySelectorAll('main section');
             const navLinks = document.querySelectorAll('.nav-link');
             
