@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hackathon: Neural Hub | YenSplash '25</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --dark-space: #050816;
+            --primary-blue: #38bdf8;
+            --primary-purple: #a78bfa;
+            --glow-blue: rgba(56, 189, 248, 0.3);
+            --glow-purple: rgba(167, 139, 250, 0.4);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--dark-space);
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+        
+        .font-mono { font-family: 'Roboto Mono', monospace; }
+
+        #particle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .glass-pane {
+            background: radial-gradient(circle at center, rgba(167, 139, 250, 0.05) 0%, rgba(10, 25, 47, 0.3) 70%);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            border-radius: 1.5rem;
+            transform-style: preserve-3d;
+        }
+        
+        .glow-border {
+            box-shadow: 0 0 20px var(--glow-blue), 0 0 40px var(--glow-purple);
+        }
+
+        .section-wrapper {
+            opacity: 0;
+            transform: scale(0.8) perspective(1000px) rotateX(20deg);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+        .section-wrapper.is-visible {
+            opacity: 1;
+            transform: scale(1) perspective(1000px) rotateX(0deg);
+        }
+
+        /* Loading Animation Styles */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--dark-space);
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--primary-blue);
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div id="loader" class="font-mono text-lg">
+        <p id="loader-text">SYSTEM INITIALIZING...</p>
+    </div>
+
+    <canvas id="particle-canvas"></canvas>
+
+    <header class="sticky top-0 z-50 transition-all duration-300" id="header">
+        <nav class="container mx-auto px-6 py-4 grid grid-cols-3 items-center bg-black/30 backdrop-blur-md rounded-b-xl border-x border-b border-blue-500/20">
+            <div class="justify-self-start">
+                <a href="index.html" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                    <span>Main Hub</span>
+                </a>
+            </div>
+            <div class="justify-self-center">
+                <h1 class="font-mono text-xl font-bold text-blue-400">[ HACKATHON ]</h1>
+            </div>
+            <div class="justify-self-end"></div>
+        </nav>
+    </header>
+
+    <main class="relative z-10">
+        
+        <section id="hero" class="min-h-screen flex flex-col items-center justify-center text-center p-4 -mt-20">
+            <h1 id="hero-title" class="font-mono text-5xl md:text-8xl font-extrabold uppercase text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400" style="text-shadow: 0 0 30px var(--glow-purple);">
+                HACKATHON
+            </h1>
+            <p id="hero-subtitle" class="mt-4 text-lg md:text-xl text-slate-300 max-w-2xl">
+                A 24-hour crucible of creation. Break barriers, build solutions, and define the future. The clock is ticking.
+            </p>
+        </section>
+
+        <div class="space-y-24 md:space-y-32 pb-20">
+
+            <div class="section-wrapper container mx-auto px-4">
+                <div class="glass-pane p-8 md:p-12 text-center">
+                    <h2 class="font-mono text-2xl md:text-4xl text-blue-400">[ MISSION CLOCK ]</h2>
+                    <div id="hackathon-timer" class="mt-4 font-mono text-5xl md:text-8xl font-bold text-white tracking-widest" style="text-shadow: 0 0 20px var(--glow-blue);">
+                        24:00:00
+                    </div>
+                    <p class="font-mono text-blue-400/70 text-sm mt-2">Hours : Minutes : Seconds</p>
+                </div>
+            </div>
+
+            <div class="section-wrapper container mx-auto px-4">
+                <div class="glass-pane p-8 md:p-12">
+                    <h2 class="font-mono text-3xl md:text-4xl text-center mb-10 text-blue-400">[ PROBLEM STREAMS ]</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div class="text-center border border-purple-500/20 rounded-xl p-6 transition duration-300 hover:bg-purple-500/10 hover:border-purple-500/50">
+                            <h3 class="text-xl font-bold text-purple-400">FinTech & Blockchain</h3>
+                            <p class="mt-2 text-slate-400">Decentralized Finance, Secure Transactions, and Financial Inclusion for all.</p>
+                        </div>
+                        <div class="text-center border border-purple-500/20 rounded-xl p-6 transition duration-300 hover:bg-purple-500/10 hover:border-purple-500/50">
+                            <h3 class="text-xl font-bold text-purple-400">HealthTech & Bio-AI</h3>
+                            <p class="mt-2 text-slate-400">Predictive Diagnostics, Personalized Wellness, and AI-driven Healthcare.</p>
+                        </div>
+                        <div class="text-center border border-purple-500/20 rounded-xl p-6 transition duration-300 hover:bg-purple-500/10 hover:border-purple-500/50">
+                            <h3 class="text-xl font-bold text-purple-400">Sustainable Tech</h3>
+                            <p class="mt-2 text-slate-400">Smart Grids, Environmental Monitoring, and Greentech Innovations.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-wrapper container mx-auto px-4">
+                <div class="glass-pane p-8 md:p-12">
+                    <h2 class="font-mono text-3xl md:text-4xl text-center mb-10 text-blue-400">[ PROTOCOLS & DIRECTIVES ]</h2>
+                    <div class="grid md:grid-cols-2 gap-8 text-lg">
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3"><span class="text-blue-400 font-bold mt-1">&#x25B8;</span><div><strong class="text-white">Fresh Code:</strong> All code must be written during the event.</div></li>
+                            <li class="flex items-start gap-3"><span class="text-blue-400 font-bold mt-1">&#x25B8;</span><div><strong class="text-white">Team Synergy:</strong> Teams of 2-4 members. Cross-college teams are welcome.</div></li>
+                            <li class="flex items-start gap-3"><span class="text-blue-400 font-bold mt-1">&#x25B8;</span><div><strong class="text-white">Open Source:</strong> Use of public APIs and open-source libraries is encouraged.</div></li>
+                        </ul>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-3"><span class="text-blue-400 font-bold mt-1">&#x25B8;</span><div><strong class="text-white">Judging Criteria:</strong> Innovation, Impact, Technical Execution, and Presentation.</div></li>
+                            <li class="flex items-start gap-3"><span class="text-blue-400 font-bold mt-1">&#x25B8;</span><div><strong class="text-white">Final Demo:</strong> A working prototype and a final presentation are mandatory.</div></li>
+                            <li class="flex items-start gap-3"><span class="text-blue-400 font-bold mt-1">&#x25B8;</span><div><strong class="text-white">IP Rights:</strong> You own the intellectual property of what you create.</div></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-wrapper container mx-auto px-4">
+                 <div class="glass-pane p-8 md:p-12 text-center">
+                    <h2 class="font-mono text-3xl md:text-4xl text-center mb-10 text-blue-400">[ MISSION CONTROL ]</h2>
+                    <div class="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="border border-blue-500/20 rounded-xl p-6">
+                            <h3 class="text-xl font-bold text-white">Prof. Abdul Majeed K M</h3>
+                            <p class="text-blue-400 mt-1 font-mono">Lead Mission Director</p>
+                        </div>
+                        <div class="border border-blue-500/20 rounded-xl p-6">
+                            <h3 class="text-xl font-bold text-white">Prof. Abinas V</h3>
+                            <p class="text-blue-400 mt-1 font-mono">Operations Chief</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-wrapper container mx-auto px-4">
+                <div class="glass-pane p-8 md:p-12 text-center glow-border">
+                    <h2 class="text-3xl font-bold text-white">The Future is Unwritten. Write it.</h2>
+                    <div class="mt-8">
+                        <a href="#" class="inline-block bg-blue-500 text-white font-bold py-4 px-10 rounded-lg transition-all duration-300 ease-in-out hover:bg-blue-400 hover:shadow-lg hover:shadow-blue-500/40 hover:scale-105">
+                            [ REGISTER YOUR SQUAD ]
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    
+    <footer class="border-t border-blue-500/10 mt-16">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-500">
+            <p>&copy; 2025 Yenepoya Institute of Technology. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // --- Interactive Particle Background ---
+            const canvas = document.getElementById('particle-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            let particles = [];
+            const mouse = { x: null, y: null, radius: 150 };
+
+            window.addEventListener('mousemove', e => {
+                mouse.x = e.x;
+                mouse.y = e.y;
+            });
+            window.addEventListener('mouseout', () => {
+                mouse.x = null;
+                mouse.y = null;
+            });
+
+            class Particle {
+                constructor(x, y, dirX, dirY, size, color) {
+                    this.x = x; this.y = y; this.dirX = dirX; this.dirY = dirY;
+                    this.size = size; this.color = color;
+                }
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2, false);
+                    ctx.fillStyle = this.color;
+                    ctx.fill();
+                }
+                update() {
+                    if (this.x > canvas.width || this.x < 0) this.dirX = -this.dirX;
+                    if (this.y > canvas.height || this.y < 0) this.dirY = -this.dirY;
+                    this.x += this.dirX; this.y += this.dirY;
+                    this.draw();
+                }
+            }
+
+            function initParticles() {
+                particles = [];
+                let numParticles = (canvas.height * canvas.width) / 9000;
+                for (let i = 0; i < numParticles; i++) {
+                    let size = Math.random() * 2 + 1;
+                    let x = Math.random() * (innerWidth - size * 2) + size;
+                    let y = Math.random() * (innerHeight - size * 2) + size;
+                    let dirX = (Math.random() * 0.4) - 0.2;
+                    let dirY = (Math.random() * 0.4) - 0.2;
+                    particles.push(new Particle(x, y, dirX, dirY, size, 'rgba(56, 189, 248, 0.3)'));
+                }
+            }
+
+            function connectParticles() {
+                for (let a = 0; a < particles.length; a++) {
+                    for (let b = a; b < particles.length; b++) {
+                        let dist = ((particles[a].x - particles[b].x) * (particles[a].x - particles[b].x)) + 
+                                   ((particles[a].y - particles[b].y) * (particles[a].y - particles[b].y));
+                        if (dist < (canvas.width / 7) * (canvas.height / 7)) {
+                            let opacity = 1 - (dist / 20000);
+                            ctx.strokeStyle = `rgba(167, 139, 250, ${opacity / 2})`;
+                            ctx.lineWidth = 1;
+                            ctx.beginPath();
+                            ctx.moveTo(particles[a].x, particles[b].y);
+                            ctx.lineTo(particles[b].x, particles[a].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+            
+            function animateParticles() {
+                requestAnimationFrame(animateParticles);
+                ctx.clearRect(0, 0, innerWidth, innerHeight);
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                }
+                connectParticles();
+            }
+            
+            initParticles();
+            animateParticles();
+
+            window.addEventListener('resize', () => {
+                canvas.width = innerWidth;
+                canvas.height = innerHeight;
+                initParticles();
+            });
+
+            // --- Preloader Animation ---
+            const loaderText = document.getElementById('loader-text');
+            const loader = document.getElementById('loader');
+            const tlLoader = gsap.timeline();
+            tlLoader.to(loaderText, { duration: 0.5, text: "CALIBRATING NEURAL NETWORK..." })
+                    .to(loaderText, { duration: 0.5, text: "ACCESSING CORE DIRECTIVES..." })
+                    .to(loaderText, { duration: 0.5, text: "CONNECTION ESTABLISHED." })
+                    .to(loader, { duration: 0.8, opacity: 0, onComplete: () => loader.style.display = 'none' });
+            
+            // --- GSAP Scroll Animations ---
+            const sections = gsap.utils.toArray('.section-wrapper');
+            sections.forEach((section, i) => {
+                gsap.fromTo(section, 
+                    { autoAlpha: 0, scale: 0.9, y: 100 }, 
+                    {
+                        autoAlpha: 1,
+                        scale: 1,
+                        y: 0,
+                        duration: 1,
+                        ease: "power3.out",
+                        scrollTrigger: {
+                            trigger: section,
+                            start: "top 85%",
+                            toggleActions: "play none none reverse",
+                        }
+                    }
+                );
+            });
+            
+            // --- Hero Section Animation on Load ---
+            gsap.from("#hero-title", { duration: 1, y: 50, opacity: 0, delay: 2, ease: "power4.out" });
+            gsap.from("#hero-subtitle", { duration: 1, y: 30, opacity: 0, delay: 2.2, ease: "power4.out" });
+
+            // --- 24-Hour Hackathon Timer ---
+            const timerDisplay = document.getElementById('hackathon-timer');
+            if (timerDisplay) {
+                let timeInSeconds = 24 * 60 * 60; 
+                setInterval(() => {
+                    if (timeInSeconds <= 0) { timeInSeconds = 24 * 60 * 60; }
+                    timeInSeconds--;
+                    const h = Math.floor(timeInSeconds / 3600);
+                    const m = Math.floor((timeInSeconds % 3600) / 60);
+                    const s = timeInSeconds % 60;
+                    timerDisplay.textContent = 
+                        `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+                }, 1000);
+            }
+        });
+    </script>
+
+</body>
+</html>
