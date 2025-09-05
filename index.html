@@ -624,9 +624,9 @@
             });
 
             let yensplashText = gsap.timeline({
-                scrollTrigger: { trigger: "#about-yensplash", start: "top 90%", end: "bottom top", scrub: 1 }
+                scrollTrigger: { trigger: "#about-yensplash", start: "top 90%", end: "bottom top", scrub: 1.5 }
             });
-            yensplashText.from("#yensplash-text .word", { opacity: 0.2, filter: "blur(8px)", stagger: { each: 0.02, from: "left" } });
+            yensplashText.from("#yensplash-text .word", { opacity: 0.2, filter: "blur(8px)", stagger: { each: 0.1, from: "random" } });
 
             const sections = document.querySelectorAll('main section');
             const navLinks = document.querySelectorAll('.nav-link');
