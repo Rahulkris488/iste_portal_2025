@@ -3,232 +3,173 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Project Expo | YenSplash '25</title>
+    <title>Monolith UI: Project Expo 2025</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Roboto+Condensed:wght@700&display=swap" rel="stylesheet">
     
     <style>
+        :root {
+            --bg-dark: #111111;
+            --panel-dark: #1C1C1C;
+            --text-primary: #E5E5E5;
+            --text-secondary: #A3A3A3;
+            --accent-light: #FFFFFF;
+            --border-color: rgba(255, 255, 255, 0.15);
+        }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0a192f;
-            color: #e6f1ff;
+            background-color: var(--bg-dark);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 20px 20px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .font-display { font-family: 'Roboto Condensed', sans-serif; }
+        
+        .card {
+            background: var(--panel-dark);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            position: relative;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-6px);
+            border-color: var(--accent-light);
         }
         
-        .animated-gradient-bg {
-            background-size: 400% 400%;
-            animation: gradientBG 20s ease infinite;
-            background-image: linear-gradient(-45deg, #0a192f, #1e1b4b, #0a192f, #1e1b4b);
-        }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .glass-card {
-            background: rgba(30, 27, 75, 0.6); /* Violet Tint */
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(167, 139, 250, 0.15);
-            border-radius: 1rem;
-            transition: all 0.3s ease-in-out;
-        }
-
-        .accordion-content {
-            max-height: 0;
-            transition: max-height 0.5s ease-in-out;
-        }
-        .accordion-item.active .accordion-content {
-            max-height: 500px;
-        }
-        .accordion-item.active .accordion-icon {
-            transform: rotate(180deg);
+        #hero-svg path {
+            stroke-dasharray: 500;
+            stroke-dashoffset: 500;
         }
     </style>
 </head>
-<body class="antialiased animated-gradient-bg">
+<body class="antialiased">
 
     <header class="sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-4 grid grid-cols-3 items-center bg-black/20 backdrop-blur-md rounded-b-xl border-x border-b border-slate-800">
-            <div class="justify-self-start">
-                <a href="index.html" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
-                    <span>Back to Main Site</span>
+        <nav class="container mx-auto px-6 py-4">
+             <div class="flex justify-between items-center bg-black/30 backdrop-blur-md border border-gray-800 px-6 py-3 rounded-full">
+                <h1 class="font-display text-xl tracking-wider text-center text-text-primary">PROJECT EXPO 2025</h1>
+                <a href="index.html" class="text-text-secondary hover:text-white transition-colors flex items-center gap-2 text-sm">
+                    <span>Main Hub</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
                 </a>
             </div>
-            <div class="justify-self-center">
-                <h1 class="text-xl font-bold text-violet-400">Project Expo</h1>
-            </div>
-            <div class="justify-self-end"></div>
         </nav>
     </header>
 
-    <main class="container mx-auto px-4 sm:px-6 py-12 md:py-16">
-        <div class="space-y-16">
-            <section class="text-center">
-                <div class="glass-card p-8 md:p-12">
-                    <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight" style="text-shadow: 0 0 15px rgba(167, 139, 250, 0.4);">
-                        <span class="text-violet-400">Project Expo</span>
-                    </h1>
-                    <p class="mt-2 text-xl md:text-2xl text-gray-300">Part of the 21st ISTE State Level Student Convention, 2025</p>
-                    <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-6">
-                        <div class="glass-card p-4 w-60 text-center">
-                            <p class="text-gray-400 text-sm">Event Date</p>
-                            <p class="text-white font-bold text-lg">12th November 2025</p>
-                        </div>
-                        <div class="glass-card p-4 w-60 text-center">
-                            <p class="text-gray-400 text-sm">Time</p>
-                            <p class="text-white font-bold text-lg">01:30 PM - 03:30 PM</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+    <main class="relative z-10">
+        
+        <section id="hero" class="min-h-[80vh] flex flex-col items-center justify-center text-center p-4">
+            <div id="hero-svg-container" class="w-24 h-24 mb-8">
+                <svg id="hero-svg" class="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+                    <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
+                    <path d="M2 17l10 5 10-5"></path>
+                    <path d="M2 12l10 5 10-5"></path>
+                </svg>
+            </div>
 
-            <section class="max-w-4xl mx-auto">
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                    <div class="glass-card p-6 hover:-translate-y-1 hover:shadow-lg hover:shadow-violet-500/10">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-violet-400 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                        <h3 class="text-xl font-bold">Teams of 2 to 4</h3>
-                        <p class="text-gray-400 mt-1">Collaborate to bring your ideas to life.</p>
-                    </div>
-                    <div class="glass-card p-6 hover:-translate-y-1 hover:shadow-lg hover:shadow-violet-500/10">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-violet-400 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                        <h3 class="text-xl font-bold">Working Models</h3>
-                        <p class="text-gray-400 mt-1">Present a live, functional demonstration.</p>
-                    </div>
-                    <div class="glass-card p-6 hover:-translate-y-1 hover:shadow-lg hover:shadow-violet-500/10">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-violet-400 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                        <h3 class="text-xl font-bold">Showcase Innovation</h3>
-                        <p class="text-gray-400 mt-1">Judged on creativity, applicability, and quality.</p>
-                    </div>
-                </div>
-            </section>
+            <h1 id="hero-title" class="font-display text-6xl md:text-8xl tracking-wider uppercase text-text-primary">
+                Innovation Showcase
+            </h1>
+            <p id="hero-subtitle" class="mt-6 text-lg md:text-xl text-text-secondary max-w-3xl mx-auto">
+                A platform for students to showcase their innovative ideas, technical knowledge, and problem-solving skills through live demonstrations and working models. The event encourages creativity and interdisciplinary collaboration by welcoming participants from all branches of study.
+            </p>
+        </section>
 
-            <section class="max-w-4xl mx-auto">
-                <div class="glass-card p-8 md:p-12 hover:-translate-y-1 hover:shadow-xl hover:shadow-violet-500/10">
-                    <h2 class="text-3xl font-bold text-center mb-6">What to Expect</h2>
-                    <div class="text-gray-300 text-lg space-y-4 text-center max-w-3xl mx-auto">
-                        <p>The Project Expo is a platform for students to showcase innovative ideas, technical knowledge, and problem-solving skills, aiming to enhance presentation skills and foster innovation among peers, faculty, and industry experts.</p>
-                    </div>
-                </div>
-            </section>
+        <div class="container mx-auto px-4 sm:px-6 py-12 md:py-20 space-y-20">
             
-            <section class="max-w-4xl mx-auto">
-                <div class="glass-card p-8 md:p-12">
-                    <h2 class="text-3xl font-bold text-center mb-10">Event Guidelines</h2>
-                    <div id="accordion-container" class="space-y-4">
-                        <div class="accordion-item bg-black/20 border border-violet-400/20 rounded-lg overflow-hidden transition-all duration-300 hover:bg-black/30 hover:border-violet-400/30">
-                            <div class="accordion-header flex justify-between items-center p-5 cursor-pointer">
-                                <div class="flex items-center gap-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 012-2h2a2 2 0 012 2v1m-6 0h6" /></svg>
-                                    <h3 class="font-semibold text-lg">Eligibility & Participation</h3>
-                                </div>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 accordion-icon transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
-                            </div>
-                            <div class="accordion-content overflow-hidden">
-                                <div class="p-5 border-t border-violet-400/20 text-gray-300">
-                                    <ul class="list-disc list-inside space-y-2">
-                                        <li>Students from any branch or discipline are eligible.</li>
-                                        <li>Participants must carry a valid college ID card.</li>
-                                        <li>Teams must consist of a minimum of 2 and a maximum of 4 members.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item bg-black/20 border border-violet-400/20 rounded-lg overflow-hidden transition-all duration-300 hover:bg-black/30 hover:border-violet-400/30">
-                            <div class="accordion-header flex justify-between items-center p-5 cursor-pointer">
-                                <div class="flex items-center gap-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01" /></svg>
-                                    <h3 class="font-semibold text-lg">Exhibition Setup</h3>
-                                </div>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 accordion-icon transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
-                            </div>
-                            <div class="accordion-content overflow-hidden">
-                                <div class="p-5 border-t border-violet-400/20 text-gray-300">
-                                    <ul class="list-disc list-inside space-y-2">
-                                        <li>Each team will be provided a stall/table for their demonstration.</li>
-                                        <li>One power socket (230V, 50Hz AC) will be available per team.</li>
-                                        <li>Flammable fluids or hazardous materials are strictly prohibited.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item bg-black/20 border border-violet-400/20 rounded-lg overflow-hidden transition-all duration-300 hover:bg-black/30 hover:border-violet-400/30">
-                            <div class="accordion-header flex justify-between items-center p-5 cursor-pointer">
-                                <div class="flex items-center gap-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-violet-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                    <h3 class="font-semibold text-lg">Judging & Evaluation</h3>
-                                </div>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 accordion-icon transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
-                            </div>
-                            <div class="accordion-content overflow-hidden">
-                                <div class="p-5 border-t border-violet-400/20 text-gray-300">
-                                   <ul class="list-disc list-inside space-y-2">
-                                        <li>Projects are evaluated on innovation, working demonstration, and presentation quality.</li>
-                                        <li>Prizes will be awarded to the best projects.</li>
-                                        <li>The decision of the judges will be final.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+            <section class="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
+                <div class="card p-8">
+                    <h2 class="font-display text-2xl text-text-primary mb-4">// EXHIBITION PROTOCOL</h2>
+                    <ul class="space-y-3 text-text-secondary">
+                        <li><strong>Teams:</strong> 2 to 4 members from any discipline.</li>
+                        <li><strong>Setup:</strong> Dedicated stall with one power socket. Internet on request.</li>
+                        <li><strong>Requirements:</strong> A working model and summary poster are mandatory.</li>
+                        <li><strong>Judging:</strong> Based on innovation, demonstration, and applicability.</li>
+                        <li><strong>Conduct:</strong> No hazardous materials. Professionalism is expected.</li>
+                         <li><strong>Eligibility:</strong> Participants must carry a valid college ID card.</li>
+                    </ul>
                 </div>
-            </section>
-            
-            <section class="max-w-4xl mx-auto">
-                <div class="glass-card p-8 md:p-12">
-                    <h2 class="text-3xl font-bold text-center mb-10">Faculty Coordinators</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="glass-card p-6 text-center hover:-translate-y-1 hover:shadow-lg hover:shadow-violet-500/10">
-                            <h3 class="text-xl font-bold text-white">Prof. Shankar Pai</h3>
-                            <p class="text-gray-400 mt-1">+91 98808 83649</p>
-                        </div>
-                        <div class="glass-card p-6 text-center hover:-translate-y-1 hover:shadow-lg hover:shadow-violet-500/10">
-                            <h3 class="text-xl font-bold text-white">Prof. G B Praveen</h3>
-                            <p class="text-gray-400 mt-1">+91 81471 20152</p>
-                        </div>
+                 <div class="card p-8">
+                    <h2 class="font-display text-2xl text-text-primary mb-4">// EVENT CURATORS</h2>
+                    <div class="space-y-4">
+                      <div>
+                        <h3 class="font-semibold text-text-primary">Prof. Shankar Pai</h3>
+                        <p class="text-sm text-text-secondary">+91 98808 83649</p>
+                      </div>
+                      <div>
+                        <h3 class="font-semibold text-text-primary">Prof. G B Praveen</h3>
+                        <p class="text-sm text-text-secondary">+91 81471 20152</p>
+                      </div>
                     </div>
                 </div>
             </section>
 
-            <section class="text-center">
-                <div class="glass-card p-8 md:p-12 hover:-translate-y-1 hover:shadow-xl hover:shadow-violet-500/10">
-                    <h2 class="text-3xl font-bold">Ready to Showcase Your Innovation?</h2>
-                    <p class="mt-3 text-lg text-gray-400">Join the brightest minds and present your ideas. Prizes will be awarded to the most outstanding projects.</p>
-                    <div class="mt-8">
-                        <a href="#" class="inline-block bg-violet-400 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 ease-in-out hover:bg-violet-400/90 hover:shadow-lg hover:shadow-violet-500/30 hover:scale-105">
-                            Register Your Team
-                        </a>
-                    </div>
+            <section class="text-center card p-12">
+                <h2 class="font-display text-4xl text-text-primary">Build The Future.</h2>
+                <p class="mt-4 text-lg max-w-2xl mx-auto text-text-secondary">Your ideas have the power to shape tomorrow. Register your project and make your vision a reality.</p>
+                <div class="mt-10">
+                    <a href="#" class="inline-block bg-white text-black font-bold text-lg py-3 px-10 rounded-md transition-all duration-300 ease-in-out hover:bg-gray-200 hover:scale-105">
+                        Register Your Project
+                    </a>
                 </div>
             </section>
         </div>
     </main>
     
-    <footer class="border-t border-slate-800/50 mt-16">
-        <div class="container mx-auto px-6 py-8 text-center text-gray-500">
-            <p>&copy; 2025 Yenepoya Institute of Technology. All Rights Reserved.</p>
+    <footer class="mt-20 border-t border-gray-800">
+        <div class="container mx-auto px-6 py-8 text-center text-text-secondary text-sm">
+            <p>&copy; 2025 Yenepoya Institute of Technology | All Rights Reserved</p>
         </div>
     </footer>
-
+    
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const accordionItems = document.querySelectorAll('.accordion-item');
-            accordionItems.forEach(item => {
-                const header = item.querySelector('.accordion-header');
-                header.addEventListener('click', () => {
-                    const isActive = item.classList.contains('active');
-                    accordionItems.forEach(otherItem => otherItem.classList.remove('active'));
-                    if (!isActive) item.classList.add('active');
-                });
-            });
-            if (accordionItems.length > 0) accordionItems[0].classList.add('active');
-        });
-    </script>
+    document.addEventListener('DOMContentLoaded', function() {
+        gsap.registerPlugin(ScrollTrigger);
 
+        // --- Hero Animation ---
+        gsap.to("#hero-svg path", {
+            strokeDashoffset: 0,
+            duration: 2,
+            ease: "power2.inOut",
+            stagger: 0.3,
+            delay: 0.5
+        });
+        gsap.from(["#hero-title", "#hero-subtitle"], {
+            opacity: 0,
+            y: 20,
+            duration: 1,
+            stagger: 0.2,
+            delay: 1.5
+        });
+
+        // --- Scroll Animations ---
+        gsap.utils.toArray('section:not(#hero)').forEach((section) => {
+            gsap.from(section, {
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse",
+                },
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                ease: 'power3.out',
+            });
+        });
+    });
+    </script>
 </body>
 </html>
+
