@@ -112,6 +112,7 @@
             background: radial-gradient(circle at 50% 50%, rgba(2, 239, 151, 0.1), transparent 70%);
         }
 
+        /* === NEW CSS FOR TYPING ANIMATION CURSOR === */
         #hero-subtitle.typing::after {
             content: '_';
             display: inline-block;
@@ -122,13 +123,6 @@
 
         @keyframes blink {
             50% { opacity: 0; }
-        }
-
-        /* === NEW CSS FOR WATER-FILL ANIMATION === */
-        #yensplash-text .word {
-            display: inline-block;
-            clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
-            transform: translateY(10px); /* Optional: slight lift */
         }
         /* === END OF NEW CSS === */
 
@@ -567,9 +561,10 @@
             mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
             mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
 
+            // === MODIFIED GSAP ANIMATIONS WITH TYPING EFFECT ===
             const subtitle = document.getElementById("hero-subtitle");
             const originalSubtitleText = subtitle.textContent.trim();
-            subtitle.textContent = "";
+            subtitle.textContent = ""; // Clear the text to start empty
 
             const tl = gsap.timeline();
             tl.from("#hero-title", { 
@@ -579,7 +574,7 @@
                 ease: "power3.out" 
             })
             .to("#hero-subtitle", {
-                duration: 2.5,
+                duration: 2.5, // Adjust duration for typing speed
                 text: {
                     value: originalSubtitleText,
                 },
@@ -628,23 +623,10 @@
                 gsap.from(logo, { scrollTrigger: { trigger: logo, start: "top bottom-=50px", toggleActions: "play none none none" }, opacity: 0, y: 20, duration: 0.5, delay: i * 0.1 });
             });
 
-            // === UPDATED WATER-FILLING ANIMATION ===
             let yensplashText = gsap.timeline({
-                scrollTrigger: { 
-                    trigger: "#about-yensplash", 
-                    start: "top 75%", 
-                    end: "bottom 80%", 
-                    scrub: 1,
-                }
+                scrollTrigger: { trigger: "#about-yensplash", start: "top 90%", end: "bottom top", scrub: 1 }
             });
-            yensplashText.to("#yensplash-text .word", { 
-                clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-                transform: "translateY(0px)",
-                stagger: { each: 0.1, from: "start" },
-                duration: 1,
-                ease: "power2.inOut"
-            });
-            // === END OF UPDATED ANIMATION ===
+            yensplashText.from("#yensplash-text .word", { opacity: 0.2, filter: "blur(8px)", stagger: { each: 0.02, from: "left" } });
 
             const sections = document.querySelectorAll('main section');
             const navLinks = document.querySelectorAll('.nav-link');
