@@ -53,14 +53,11 @@
             box-shadow: 0 0 20px var(--glow-blue), 0 0 40px var(--glow-purple);
         }
 
-        .section-wrapper {
-            opacity: 0;
-            transform: scale(0.8) perspective(1000px) rotateX(20deg);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .section-wrapper.is-visible {
-            opacity: 1;
-            transform: scale(1) perspective(1000px) rotateX(0deg);
+        /* --- New Header Style for Scroll --- */
+        #header.scrolled nav {
+            background-color: rgba(5, 8, 22, 0.7);
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.3);
+            border-color: rgba(56, 189, 248, 0.3);
         }
 
         /* Loading Animation Styles */
@@ -88,17 +85,19 @@
     <canvas id="particle-canvas"></canvas>
 
     <header class="sticky top-0 z-50 transition-all duration-300" id="header">
-        <nav class="container mx-auto px-4 sm:px-6 py-4 grid grid-cols-3 items-center bg-black/30 backdrop-blur-md rounded-b-xl border-x border-b border-blue-500/20">
-            <div class="justify-self-start">
-                <a href="index.html" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
-                    <span class="hidden sm:inline">Main Hub</span>
+        <nav class="container mx-auto px-4 sm:px-6 py-4 flex items-center justify-between bg-black/30 backdrop-blur-md rounded-b-xl border-x border-b border-blue-500/20 transition-all duration-300">
+            <div class="flex-none">
+                <a href="index.html" class="text-gray-300 hover:text-blue-300 transition-colors flex items-center gap-2 group">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 transition-transform group-hover:-translate-x-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                    <span class="hidden sm:inline-block">Main Hub</span>
                 </a>
             </div>
-            <div class="justify-self-center">
-                <h1 class="font-mono text-lg sm:text-xl font-bold text-blue-400 color-red-600">[ HACKATHON ]</h1>
+
+            <div class="flex-grow">
+                <h1 class="font-mono text-lg sm:text-xl font-bold text-blue-400 text-center">[ HACKATHON ]</h1>
             </div>
-            <div class="justify-self-end"></div>
+
+            <div class="flex-none w-6 sm:w-[90px]"></div>
         </nav>
     </header>
 
@@ -203,6 +202,15 @@
         document.addEventListener('DOMContentLoaded', function() {
             gsap.registerPlugin(ScrollTrigger);
 
+            // --- New Header Scroll Effect ---
+            const header = document.getElementById('header');
+            ScrollTrigger.create({
+                start: 'top -60', // Trigger when scrolled 60px down
+                end: 99999,
+                toggleClass: { className: 'scrolled', targets: header }
+            });
+
+
             // --- Interactive Particle Background ---
             const canvas = document.getElementById('particle-canvas');
             const ctx = canvas.getContext('2d');
@@ -298,8 +306,7 @@
                     .to(loader, { duration: 0.8, opacity: 0, onComplete: () => loader.style.display = 'none' });
             
             // --- GSAP Scroll Animations ---
-            const sections = gsap.utils.toArray('.section-wrapper');
-            sections.forEach((section, i) => {
+            gsap.utils.toArray('.section-wrapper').forEach((section) => {
                 gsap.fromTo(section, 
                     { autoAlpha: 0, scale: 0.9, y: 100 }, 
                     {
