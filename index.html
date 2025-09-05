@@ -42,8 +42,8 @@
         
         #custom-cursor {
             position: fixed;
-            width: 24px;
-            height: 24px;
+            width: 10px;
+            height: 10px;
             border-radius: 50%;
             background-color: transparent;
             border: 1.5px solid var(--primary-green);
@@ -597,13 +597,13 @@
                         const charX = x * fontSize + fontSize / 2;
                         const charY = y * fontSize + fontSize / 2;
                         const dist = Math.hypot(charX - mouse.x, charY - mouse.y);
-                        const radius = 500; // Changed
+                        const radius = 700; // Changed
                         
                         const intensity = Math.max(0, 1 - dist / radius);
                         const easedIntensity = Math.pow(intensity, 2.5);
 
-                        const baseLightness = 10;
-                        const hoverLightness = 20; // Changed
+                        const baseLightness = 20;
+                        const hoverLightness = 30; // Changed
                         const currentLightness = baseLightness + (hoverLightness - baseLightness) * easedIntensity;
                         
                         const baseOpacity = 0.08;
