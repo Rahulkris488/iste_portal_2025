@@ -3,43 +3,120 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capture The Flag | ISTE '25</title>
+    <title>ACCESS GRANTED: Capture The Flag | ISTE '25</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
     
     <style>
+        :root {
+            --dark-matrix: #020a02;
+            --hacker-green: #00ff41;
+            --hacker-green-dim: rgba(0, 255, 65, 0.5);
+            --hacker-green-faint: rgba(0, 255, 65, 0.1);
+            --scan-line-color: rgba(0, 0, 0, 0.3);
+        }
+
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #0a192f;
-            color: #e6f1ff;
-        }
-
-        .animated-gradient-bg {
-            background-size: 400% 400%;
-            animation: gradientBG 20s ease infinite;
-            background-image: linear-gradient(-45deg, #0a192f, #4c1d3d, #0a192f, #4c1d3d);
-        }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
-        .glass-card {
-            background: rgba(44, 29, 36, 0.6); /* Red Tint */
-            backdrop-filter: blur(14px);
-            -webkit-backdrop-filter: blur(14px);
-            border: 1px solid rgba(248, 113, 113, 0.15);
-            border-radius: 1rem;
-            transition: all 0.3s ease-in-out;
+            font-family: 'Share Tech Mono', monospace;
+            background-color: var(--dark-matrix);
+            color: var(--hacker-green);
+            overflow-x: hidden;
         }
         
+        /* Background and Overlays */
+        #matrix-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.5;
+        }
+        
+        .scan-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: repeating-linear-gradient(
+                0deg,
+                var(--scan-line-color),
+                var(--scan-line-color) 1px,
+                transparent 1px,
+                transparent 4px
+            );
+            animation: scan 10s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { background-position: 0 0; }
+            100% { background-position: 0 -200px; }
+        }
+
+        /* Terminal Pane Styling */
+        .terminal-pane {
+            background: rgba(0, 18, 0, 0.4);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid var(--hacker-green-dim);
+            box-shadow: 0 0 25px var(--hacker-green-faint), inset 0 0 15px var(--hacker-green-faint);
+            transition: all 0.3s ease-in-out;
+        }
+
+        .terminal-pane:hover {
+             border-color: var(--hacker-green);
+             box-shadow: 0 0 35px var(--hacker-green-faint), inset 0 0 25px var(--hacker-green-faint);
+        }
+
+        /* Glitch Effect for Main Title */
+        .glitch-text {
+            position: relative;
+            text-shadow: 0 0 10px var(--hacker-green-dim);
+        }
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-matrix);
+            overflow: hidden;
+            clip: rect(0, 900px, 0, 0);
+        }
+        .glitch-text::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00c1;
+            animation: glitch-anim-1 2s infinite linear alternate-reverse;
+        }
+        .glitch-text::after {
+            left: -2px;
+            text-shadow: -2px 0 #00fff9, 2px 2px #ff00c1;
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+        @keyframes glitch-anim-1 {
+            0% { clip: rect(42px, 9999px, 44px, 0); }
+            100% { clip: rect(3px, 9999px, 92px, 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(15px, 9999px, 99px, 0); }
+            100% { clip: rect(75px, 9999px, 5px, 0); }
+        }
+
+        /* Accordion Styling */
         .accordion-content {
             max-height: 0;
+            overflow: hidden;
             transition: max-height 0.5s ease-in-out;
         }
         .accordion-item.active .accordion-content {
@@ -48,41 +125,79 @@
         .accordion-item.active .accordion-icon {
             transform: rotate(180deg);
         }
+        .accordion-item {
+            border: 1px solid var(--hacker-green-faint);
+        }
+        .accordion-item:hover {
+            border-color: var(--hacker-green-dim);
+        }
+
+        /* Custom Blinking Cursor for GSAP Text Animation */
+        .cursor {
+            opacity: 1;
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            0% { opacity: 1; }
+            49% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+        
+        /* Preloader */
+        #loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--dark-matrix);
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.25rem;
+        }
     </style>
 </head>
-<body class="antialiased animated-gradient-bg">
+<body class="antialiased">
+    <canvas id="matrix-canvas"></canvas>
+    <div class="scan-lines"></div>
+
+    <div id="loader">
+        <p id="loader-text">> SYSTEM BOOTING...</p>
+    </div>
 
     <header class="sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-4 grid grid-cols-3 items-center bg-black/20 backdrop-blur-md rounded-b-xl border-x border-b border-slate-800/50">
-            <div class="justify-self-start">
-                <a href="index.html" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2">
+        <nav class="container mx-auto px-6 py-3 bg-black/50 backdrop-blur-md border-x border-b border-green-500/30">
+            <div class="flex justify-between items-center">
+                <a href="index.html" class="text-green-300 hover:text-white transition-colors flex items-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
-                    <span>Back to Main Site</span>
+                    <span>//EXIT_TO_HUB</span>
                 </a>
+                <h1 class="text-xl font-bold text-center text-green-400">[ CMD:CTF_INITIATE ]</h1>
+                <div></div>
             </div>
-            <div class="justify-self-center">
-                <h1 class="text-xl font-bold text-red-400">Capture The Flag</h1>
-            </div>
-            <div class="justify-self-end"></div>
         </nav>
     </header>
 
-    <main class="container mx-auto px-4 sm:px-6 py-12 md:py-16">
-        <div class="space-y-16">
+    <main class="container mx-auto px-4 sm:px-6 py-12 md:py-20">
+        <div class="space-y-20">
+            
             <section class="text-center">
-                <div class="glass-card p-8 md:p-12">
-                    <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight" style="text-shadow: 0 0 15px rgba(248, 113, 113, 0.4);">
-                        <span class="text-red-400">Capture The Flag (CTF)</span>
+                <div class="terminal-pane p-8 md:p-12">
+                    <h1 id="main-title" class="text-4xl md:text-6xl font-bold uppercase glitch-text" data-text="Capture The Flag">
+                        Capture The Flag
                     </h1>
-                    <p class="text-xl md:text-2xl text-gray-300 mt-2">Part of the 21st ISTE State Level Student Convention, 2025</p>
+                    <p id="subtitle" class="text-xl md:text-2xl text-green-300 mt-3"></p>
                     <div class="mt-8 flex flex-col sm:flex-row justify-center items-center gap-6">
-                        <div class="glass-card p-4 w-60 text-center">
-                            <p class="text-gray-400 text-sm">Event Date</p>
-                            <p class="text-white font-bold text-lg">12th November 2025</p>
+                        <div class="terminal-pane p-4 w-60 text-center">
+                            <p class="text-green-400/70 text-sm">>_ TRANSMISSION_DATE</p>
+                            <p class="text-white font-bold text-lg">12.NOV.2025</p>
                         </div>
-                        <div class="glass-card p-4 w-60 text-center">
-                            <p class="text-gray-400 text-sm">Time</p>
-                            <p class="text-white font-bold text-lg">10:30 AM - 12:30 PM</p>
+                        <div class="terminal-pane p-4 w-60 text-center">
+                            <p class="text-green-400/70 text-sm">>_ EXPLOIT_WINDOW</p>
+                            <p class="text-white font-bold text-lg">10:30 - 12:30 IST</p>
                         </div>
                     </div>
                 </div>
@@ -90,120 +205,63 @@
 
             <section class="max-w-4xl mx-auto">
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
-                    <div class="glass-card p-6 hover:-translate-y-1 hover:shadow-lg hover:shadow-red-500/10">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-red-400 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
-                        <h3 class="text-xl font-bold">Teams of Two</h3>
-                        <p class="text-gray-400 mt-1">Form a duo to tackle every challenge.</p>
+                    <div class="terminal-pane p-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-400 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>
+                        <h3 class="text-xl font-bold">> SYNDICATE_SIZE</h3>
+                        <p class="text-green-300/80 mt-1">Operatives must form cells of two.</p>
                     </div>
-                    <div class="glass-card p-6 hover:-translate-y-1 hover:shadow-lg hover:shadow-red-500/10">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-red-400 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                        <h3 class="text-xl font-bold">Lab Provided</h3>
-                        <p class="text-gray-400 mt-1">A standardized environment and tools are supplied.</p>
+                    <div class="terminal-pane p-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-400 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                        <h3 class="text-xl font-bold">> BATTLESTATION</h3>
+                        <p class="text-green-300/80 mt-1">Secure terminals and toolkits provided.</p>
                     </div>
-                    <div class="glass-card p-6 hover:-translate-y-1 hover:shadow-lg hover:shadow-red-500/10">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-red-400 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6H8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" /></svg>
-                        <h3 class="text-xl font-bold">Claim Victory</h3>
-                        <p class="text-gray-400 mt-1">Find flags and submit them to earn points.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section class="max-w-4xl mx-auto">
-                <div class="glass-card p-8 md:p-12 hover:-translate-y-1 hover:shadow-xl hover:shadow-red-500/10">
-                    <h2 class="text-3xl font-bold text-center mb-6">What to Expect</h2>
-                    <div class="text-gray-300 text-lg space-y-4 text-center max-w-3xl mx-auto">
-                        <p>The CTF competition fosters analytical thinking and teamwork in a controlled, ethical environment. The team that demonstrates both speed and accuracy in solving challenges will emerge as the winner.</p>
+                    <div class="terminal-pane p-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-400 mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6H8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9" /></svg>
+                        <h3 class="text-xl font-bold">> OBJECTIVE</h3>
+                        <p class="text-green-300/80 mt-1">Extract flags. Submit for points. Dominate.</p>
                     </div>
                 </div>
             </section>
 
             <section class="max-w-4xl mx-auto">
-                <div class="glass-card p-8 md:p-12">
-                    <h2 class="text-3xl font-bold text-center mb-10">Event Guidelines</h2>
+                <div class="terminal-pane p-8 md:p-12">
+                    <h2 class="text-3xl font-bold text-center mb-6">> MISSION_BRIEFING</h2>
+                    <p id="briefing-text" class="text-green-300/90 text-lg text-center max-w-3xl mx-auto"></p>
+                </div>
+            </section>
+
+            <section class="max-w-4xl mx-auto">
+                <div class="terminal-pane p-8 md:p-12">
+                    <h2 class="text-3xl font-bold text-center mb-10">> PROTOCOLS</h2>
                     <div id="accordion-container" class="space-y-4">
-                        <div class="accordion-item bg-black/20 border border-red-400/20 rounded-lg overflow-hidden transition-all duration-300 hover:bg-black/30 hover:border-red-400/30">
-                            <div class="accordion-header flex justify-between items-center p-5 cursor-pointer">
-                                <div class="flex items-center gap-4">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                    <h3 class="font-semibold text-lg">General Rules</h3>
-                                </div>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 accordion-icon transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
-                            </div>
-                            <div class="accordion-content overflow-hidden">
-                                <div class="p-5 border-t border-red-400/20 text-gray-300">
-                                    <ul class="list-disc list-inside space-y-3">
-                                        <li>Each team must consist of exactly <strong>two members</strong>.</li>
-                                        <li>All teams must register <strong>before the start</strong> of the competition.</li>
-                                        <li>Sharing flags or solutions between teams is <strong>strictly prohibited</strong>.</li>
-                                        <li>For any queries, seek help <strong>only from designated volunteers</strong>.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="accordion-item bg-black/20 border border-red-400/20 rounded-lg overflow-hidden transition-all duration-300 hover:bg-black/30 hover:border-red-400/30">
-                            <div class="accordion-header flex justify-between items-center p-5 cursor-pointer">
-                                <div class="flex items-center gap-4">
-                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                                    <h3 class="font-semibold text-lg">Technical Rules</h3>
-                                </div>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 accordion-icon transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
-                            </div>
-                            <div class="accordion-content overflow-hidden">
-                                <div class="p-5 border-t border-red-400/20 text-gray-300">
-                                    <ul class="list-disc list-inside space-y-3">
-                                        <li>Participants will use a <strong>dedicated computer</strong> in a standardized lab environment.</li>
-                                        <li>Attacks on the CTF infrastructure (e.g., DoS, brute-force) are forbidden.</li>
-                                        <li>Participants may only use the <strong>standard tools provided in the lab</strong>.</li>
-                                        <li>Use of AI tools, automated scanners, or external scripts is <strong>strictly prohibited</strong>.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                         <div class="accordion-item bg-black/20 border border-red-400/20 rounded-lg overflow-hidden transition-all duration-300 hover:bg-black/30 hover:border-red-400/30">
-                            <div class="accordion-header flex justify-between items-center p-5 cursor-pointer">
-                                <div class="flex items-center gap-4">
-                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                                    <h3 class="font-semibold text-lg">Scoring & Submissions</h3>
-                                </div>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 accordion-icon transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
-                            </div>
-                            <div class="accordion-content overflow-hidden">
-                                <div class="p-5 border-t border-red-400/20 text-gray-300">
-                                   <ul class="list-disc list-inside space-y-3">
-                                        <li>Points are awarded for each successful flag submission.</li>
-                                        <li>In case of a tie, the team that <strong>reached the final score first</strong> will win.</li>
-                                        <li>Flags must be submitted <strong>only via the official CTF platform</strong>.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                        <!-- Accordion Items will be injected here by JS to animate them in sequence -->
                     </div>
                 </div>
             </section>
             
             <section class="max-w-4xl mx-auto">
-                <div class="glass-card p-8 md:p-12">
-                    <h2 class="text-3xl font-bold text-center mb-10">Faculty Coordinators</h2>
+                <div class="terminal-pane p-8 md:p-12">
+                    <h2 class="text-3xl font-bold text-center mb-10">> HANDLERS</h2>
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="glass-card p-6 text-center hover:-translate-y-1 hover:shadow-lg hover:shadow-red-500/10">
+                        <div class="terminal-pane p-6 text-center">
                             <h3 class="text-xl font-bold text-white">Dr. Athokpam Bikramjit Singh</h3>
-                            <p class="text-gray-400 mt-1">+91 96111 40725</p>
+                            <p class="text-green-400/80 mt-1">>_ CONTACT: +91 96111 40725</p>
                         </div>
-                        <div class="glass-card p-6 text-center hover:-translate-y-1 hover:shadow-lg hover:shadow-red-500/10">
+                        <div class="terminal-pane p-6 text-center">
                             <h3 class="text-xl font-bold text-white">Prof. Basavaraj Neelagund</h3>
-                            <p class="text-gray-400 mt-1">+91 95385 42450</p>
+                            <p class="text-green-400/80 mt-1">>_ CONTACT: +91 95385 42450</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             <section class="text-center">
-                <div class="glass-card p-8 md:p-12 hover:-translate-y-1 hover:shadow-xl hover:shadow-red-500/10">
-                    <h2 class="text-3xl font-bold">Ready to Hack?</h2>
-                    <p class="mt-3 text-lg text-gray-400 max-w-2xl mx-auto">Assemble your team, prove your skills, and claim the title of CTF Champion.</p>
+                <div class="terminal-pane p-8 md:p-12">
+                    <h2 id="final-call-h2" class="text-3xl font-bold"></h2>
+                    <p id="final-call-p" class="mt-3 text-lg text-green-300/80 max-w-2xl mx-auto"></p>
                     <div class="mt-10">
-                        <a href="#" class="inline-block bg-red-400 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 ease-in-out hover:bg-red-400/90 hover:shadow-lg hover:shadow-red-500/30 hover:scale-105">
-                            Register Your Team
+                        <a href="#" class="inline-block bg-green-500/10 text-green-300 font-bold py-3 px-8 border border-green-400 transition-all duration-300 ease-in-out hover:bg-green-500/90 hover:text-black hover:shadow-lg hover:shadow-green-500/30 hover:scale-105">
+                            > REGISTER_CELL
                         </a>
                     </div>
                 </div>
@@ -211,31 +269,174 @@
         </div>
     </main>
     
-    <footer class="border-t border-slate-800/50 mt-16">
-        <div class="container mx-auto px-6 py-8 text-center text-gray-500">
-            <p>&copy; 2025 Yenepoya Institute of Technology. All Rights Reserved.</p>
+    <footer class="border-t border-green-500/20 mt-16">
+        <div class="container mx-auto px-6 py-8 text-center text-green-500/50">
+            <p>// YENEPOYA INSTITUTE OF TECHNOLOGY // SECURE_NODE_2025 // ALL RIGHTS RESERVED</p>
         </div>
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const accordionItems = document.querySelectorAll('.accordion-item');
-            accordionItems.forEach(item => {
-                const header = item.querySelector('.accordion-header');
-                header.addEventListener('click', () => {
-                    const isActive = item.classList.contains('active');
-                    accordionItems.forEach(otherItem => otherItem.classList.remove('active'));
-                    if (!isActive) item.classList.add('active');
-                });
-            });
-            if (accordionItems.length > 0) accordionItems[0].classList.add('active');
+    document.addEventListener('DOMContentLoaded', function() {
+        gsap.registerPlugin(TextPlugin);
+
+        // --- Matrix Rain Background ---
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+        const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        const nums = '0123456789';
+        const alphabet = katakana + latin + nums;
+
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const rainDrops = [];
+
+        for (let x = 0; x < columns; x++) {
+            rainDrops[x] = 1;
+        }
+
+        const drawMatrix = () => {
+            ctx.fillStyle = 'rgba(2, 10, 2, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            ctx.fillStyle = getComputedStyle(document.documentElement).getPropertyValue('--hacker-green').trim();
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < rainDrops.length; i++) {
+                const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                ctx.fillText(text, i * fontSize, rainDrops[i] * fontSize);
+
+                if (rainDrops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    rainDrops[i] = 0;
+                }
+                rainDrops[i]++;
+            }
+        };
+        
+        let matrixInterval = setInterval(drawMatrix, 40);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            // Recalculate columns and reset drops on resize
+            const newColumns = canvas.width / fontSize;
+            rainDrops.length = 0;
+            for (let x = 0; x < newColumns; x++) {
+                rainDrops[x] = 1;
+            }
         });
+        
+        // --- Preloader Animation ---
+        const loaderText = document.getElementById('loader-text');
+        const loader = document.getElementById('loader');
+        const tlLoader = gsap.timeline();
+
+        tlLoader.to(loaderText, { duration: 0.7, text: "> BYPASSING FIREWALL..." })
+                .to(loaderText, { duration: 0.6, text: "> DECRYPTING PAYLOAD..." })
+                .to(loaderText, { duration: 0.8, text: "> ROOT ACCESS GRANTED." })
+                .to(loader, { duration: 1, opacity: 0, onComplete: () => {
+                    loader.style.display = 'none';
+                    startPageAnimations(); 
+                }});
+
+        // --- Page Content Animations ---
+        function startPageAnimations() {
+            const tl = gsap.timeline();
+            tl.to("#subtitle", { 
+                duration: 2, 
+                text: "Part of the 21st ISTE State Level Student Convention, 2025<span class='cursor'>█</span>",
+                ease: "none"
+            }, "+=0.5")
+            .to("#briefing-text", {
+                duration: 4,
+                text: "The CTF competition fosters analytical thinking and teamwork in a controlled, ethical environment. The cell that demonstrates both speed and accuracy in solving challenges will emerge victorious.<span class='cursor'>█</span>",
+                ease: "none"
+            }, "-=1")
+            .to("#final-call-h2", {
+                duration: 1,
+                text: "Ready to breach?<span class='cursor'>█</span>",
+                ease: "none"
+            }, "-=2")
+             .to("#final-call-p", {
+                duration: 2.5,
+                text: "Assemble your cell, prove your skills, and claim the title of CTF Champion.<span class='cursor'>█</span>",
+                ease: "none"
+            }, "-=0.5");
+        }
+
+        // --- Accordion ---
+        const accordionData = [
+            { 
+                title: "General Protocols", 
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`,
+                content: `
+                    <ul class="list-none space-y-3">
+                        <li>> Each cell must consist of exactly <strong>two operatives</strong>.</li>
+                        <li>> All cells must register <strong>before mission start</strong>.</li>
+                        <li>> Sharing intel or flags between cells is <strong>strictly prohibited</strong> and will result in termination.</li>
+                        <li>> For any queries, contact <strong>designated handlers only</strong>.</li>
+                    </ul>`
+            },
+            {
+                title: "Technical Directives",
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>`,
+                content: `
+                    <ul class="list-none space-y-3">
+                        <li>> Operatives will use a <strong>dedicated terminal</strong> in a standardized environment.</li>
+                        <li>> Attacks on the core CTF infrastructure (e.g., DoS, brute-force) are forbidden.</li>
+                        <li>> Operatives may only use the <strong>standard-issue toolkits</strong> provided.</li>
+                        <li>> Use of AI agents, automated scanners, or external scripts is <strong>strictly prohibited</strong>.</li>
+                    </ul>`
+            },
+            {
+                title: "Scoring & Data Extraction",
+                icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`,
+                content: `
+                    <ul class="list-none space-y-3">
+                        <li>> Points are awarded for each successful flag extraction.</li>
+                        <li>> In case of a score tie, the cell that <strong>achieved the final score first</strong> will win.</li>
+                        <li>> Flags must be submitted <strong>only via the official CTF platform</strong>.</li>
+                    </ul>`
+            }
+        ];
+
+        const accordionContainer = document.getElementById('accordion-container');
+        accordionData.forEach(itemData => {
+            const itemEl = document.createElement('div');
+            itemEl.className = 'accordion-item';
+            itemEl.innerHTML = `
+                <div class="accordion-header flex justify-between items-center p-5 cursor-pointer">
+                    <div class="flex items-center gap-4">
+                        ${itemData.icon}
+                        <h3 class="font-semibold text-lg">${itemData.title}</h3>
+                    </div>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 accordion-icon transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" /></svg>
+                </div>
+                <div class="accordion-content">
+                    <div class="p-5 pt-3 border-t border-green-500/20 text-green-300">
+                        ${itemData.content}
+                    </div>
+                </div>
+            `;
+            accordionContainer.appendChild(itemEl);
+        });
+
+        const accordionItems = document.querySelectorAll('.accordion-item');
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            header.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                accordionItems.forEach(otherItem => otherItem.classList.remove('active'));
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+        if (accordionItems.length > 0) accordionItems[0].classList.add('active');
+    });
     </script>
 
 </body>
 </html>
-
-
-
-
-             
