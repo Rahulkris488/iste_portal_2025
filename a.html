@@ -15,7 +15,9 @@
     
     <style>
         :root {
-            --bg-light: #f4f7f5;
+            --bg-dark: #111827;
+            --card-dark: #1f2937;
+            --light-text: #e5e7eb;
             --dark-text: #1a202c;
             --blue: #3b82f6;
             --pink: #ec4899;
@@ -26,12 +28,12 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--dark-text);
+            background-color: var(--bg-dark);
+            color: var(--light-text);
             overflow-x: hidden;
             background-image: 
-                linear-gradient(rgba(200, 200, 200, 0.15) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(200, 200, 200, 0.15) 1px, transparent 1px);
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
             background-size: 20px 20px;
         }
 
@@ -42,22 +44,24 @@
         /* Hero Section Floating Elements */
         .hero-element {
             position: absolute;
-            background: white;
+            background: var(--card-dark);
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
             will-change: transform;
+            border: 1px solid rgba(255,255,255,0.1);
         }
         
         /* Sticky Note Styling */
         .sticky-note {
             padding: 1.5rem;
-            box-shadow: 5px 5px 15px rgba(0,0,0,0.1);
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
             transition: all 0.3s ease-in-out;
-            border-bottom: 2px solid rgba(0,0,0,0.1);
+            border-bottom: 2px solid rgba(0,0,0,0.2);
+            color: var(--dark-text);
         }
         .sticky-note:hover {
             transform: scale(1.05) rotate(0deg) !important;
-            box-shadow: 10px 10px 25px rgba(0,0,0,0.15);
+            box-shadow: 10px 10px 25px rgba(0,0,0,0.25);
             z-index: 10;
         }
         .sticky-note h3 {
@@ -77,7 +81,7 @@
             top: 1.25rem;
             bottom: -1.5rem;
             width: 4px;
-            background-color: #cbd5e1;
+            background-color: #4b5563;
             transform: translateX(-50%);
         }
         .timeline-item:last-child::before {
@@ -90,7 +94,7 @@
             height: 1.25rem;
             width: 1.25rem;
             border-radius: 9999px;
-            border: 4px solid var(--bg-light);
+            border: 4px solid var(--bg-dark);
             transform: translate(-50%, -50%);
         }
 
@@ -100,7 +104,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: var(--bg-light);
+            background-color: var(--bg-dark);
             z-index: 10000;
             display: flex;
             justify-content: center;
@@ -127,13 +131,13 @@
     </div>
 
     <header class="sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-4 bg-white/70 backdrop-blur-md rounded-b-xl border-x border-b border-gray-200">
+        <nav class="container mx-auto px-6 py-4 bg-gray-900/70 backdrop-blur-md rounded-b-xl border-x border-b border-gray-700">
             <div class="flex justify-between items-center">
-                <a href="index.html" class="text-gray-600 hover:text-black transition-colors flex items-center gap-2 text-lg">
+                <a href="index.html" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 text-lg">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
                     <span>Main Hub</span>
                 </a>
-                <h1 class="text-xl font-bold text-center text-gray-800">The Design Canvas</h1>
+                <h1 class="text-xl font-bold text-center text-gray-100">The Design Canvas</h1>
                 <div></div>
             </div>
         </nav>
@@ -147,17 +151,17 @@
                 <div class="hero-element p-4" style="top: 15%; left: 10%;"><svg class="w-16 h-16 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path></svg></div>
                 <div class="hero-element p-3" style="top: 20%; left: 80%;"><div class="w-12 h-12 bg-pink-400 rounded-full"></div></div>
                 <div class="hero-element p-2" style="top: 75%; left: 15%;"><svg class="w-20 h-20 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg></div>
-                <div class="hero-element px-6 py-3" style="top: 60%; left: 70%;"><div class="text-2xl font-bold text-gray-300">Aa</div></div>
+                <div class="hero-element px-6 py-3" style="top: 60%; left: 70%;"><div class="text-2xl font-bold text-gray-600">Aa</div></div>
                 <div class="hero-element p-4" style="top: 80%; left: 85%;"><svg class="w-10 h-10 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 10l-2 1m0 0l-2-1m2 1v2.5M20 7l-2 1m2-1l-2-1m2 1v2.5M14 4l-2 1m0 0l-2-1m2 1v2.5M3 12l2-1m0 0l2 1m-2-1v-2.5M20 12l2 1m-2-1l2-1m-2 1V9.5M4 12l-2-1m2 1l-2 1m2-1V9.5M9 8l-2 1m0 0l2 1m-2-1V6.5"></path></svg></div>
             </div>
             
             <div class="relative z-10">
-                <h1 class="text-5xl md:text-8xl font-extrabold text-dark-text leading-tight">
+                <h1 class="text-5xl md:text-8xl font-extrabold text-light-text leading-tight">
                     <span class="inline-block">UI/UX</span>
                     <span class="inline-block text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-blue-500">Design</span>
                     <span class="inline-block">Challenge</span>
                 </h1>
-                <p class="mt-4 text-lg md:text-xl text-gray-600 max-w-2xl mx-auto">
+                <p class="mt-4 text-lg md:text-xl text-gray-400 max-w-2xl mx-auto">
                     A one-day competition to test your creativity, problem-solving, and design skills under real-time pressure.
                 </p>
             </div>
@@ -167,62 +171,49 @@
 
             <section class="max-w-5xl mx-auto text-center">
                 <h2 class="text-4xl font-bold mb-4">The Challenge Briefing</h2>
-                <p class="text-lg text-gray-600 mb-12 max-w-3xl mx-auto">You'll be given a surprise theme on the spot. From there, you'll have 2.5 hours to research, design, and present a user-friendly and visually appealing digital solution.</p>
+                <p class="text-lg text-gray-400 mb-12 max-w-3xl mx-auto">You'll be given a surprise theme on the spot. From there, you'll have 2.5 hours to research, design, and present a user-friendly and visually appealing digital solution.</p>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div class="bg-white p-6 rounded-xl shadow-lg border">
-                        <h3 class="text-2xl font-bold text-blue-500">Individual or Duo</h3>
-                        <p class="mt-2 text-gray-500">Compete solo or team up with a partner to tackle the challenge.</p>
+                    <div class="bg-card-dark p-6 rounded-xl shadow-lg border border-gray-700">
+                        <h3 class="text-2xl font-bold text-blue-400">Individual or Duo</h3>
+                        <p class="mt-2 text-gray-400">Compete solo or team up with a partner to tackle the challenge.</p>
                     </div>
-                     <div class="bg-white p-6 rounded-xl shadow-lg border">
-                        <h3 class="text-2xl font-bold text-pink-500">On-the-Spot Theme</h3>
-                        <p class="mt-2 text-gray-500">No advance prep. Think fast and design smart based on the given topic.</p>
+                     <div class="bg-card-dark p-6 rounded-xl shadow-lg border border-gray-700">
+                        <h3 class="text-2xl font-bold text-pink-400">On-the-Spot Theme</h3>
+                        <p class="mt-2 text-gray-400">No advance prep. Think fast and design smart based on the given topic.</p>
                     </div>
-                     <div class="bg-white p-6 rounded-xl shadow-lg border">
-                        <h3 class="text-2xl font-bold text-green-500">Figma Powered</h3>
-                        <p class="mt-2 text-gray-500">Systems with Figma pre-installed will be provided for everyone.</p>
+                     <div class="bg-card-dark p-6 rounded-xl shadow-lg border border-gray-700">
+                        <h3 class="text-2xl font-bold text-green-400">Figma Powered</h3>
+                        <p class="mt-2 text-gray-400">Systems with Figma pre-installed will be provided for everyone.</p>
                     </div>
                 </div>
             </section>
             
-            <section class="max-w-6xl mx-auto">
+            <section class="max-w-5xl mx-auto">
                 <h2 class="text-4xl font-bold text-center mb-12">Design Process & Rules</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 items-start">
-                    <div class="sticky-note sticky-yellow" style="transform: rotate(-2deg);">
-                        <h3 class="text-xl font-bold font-handwritten">Participation</h3>
-                        <ul class="space-y-2 list-disc list-inside text-left">
-                           <li>Teams of 1 or 2 members.</li>
-                           <li>Register before the event.</li>
-                           <li>Systems are provided.</li>
-                           <li>Internet only for assets & references.</li>
-                        </ul>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-lg">
+                    <div class="space-y-8">
+                        <div>
+                            <h3 class="text-2xl font-bold text-blue-400 mb-4 border-b border-gray-700 pb-2">Participation & Design</h3>
+                            <ul class="space-y-3 list-disc list-inside text-gray-400">
+                                <li>Open to individuals or teams of max 2 members.</li>
+                                <li>Work must begin only after the theme is revealed.</li>
+                                <li>Systems with Figma pre-installed will be provided.</li>
+                                <li>Internet is for assets & references only; no templates.</li>
+                                <li>Deliverables: Wireframes, 3-5 core UI screens, and a 100-150 word design rationale.</li>
+                                <li>Submissions must be on time; late entries are not evaluated.</li>
+                            </ul>
+                        </div>
                     </div>
-                    <div class="sticky-note sticky-blue" style="transform: rotate(1deg);">
-                        <h3 class="text-xl font-bold font-handwritten">Design Guidelines</h3>
-                         <ul class="space-y-2 list-disc list-inside text-left">
-                           <li>Start only after theme is revealed.</li>
-                           <li>Deliver wireframes & 3-5 UI screens.</li>
-                           <li>Submit a short design rationale.</li>
-                           <li>Strict deadline will be enforced.</li>
-                        </ul>
-                    </div>
-                    <div class="sticky-note sticky-pink" style="transform: rotate(-1.5deg);">
-                        <h3 class="text-xl font-bold font-handwritten">Fair Play</h3>
-                         <ul class="space-y-2 list-disc list-inside text-left">
-                           <li>No plagiarism or templates.</li>
-                           <li>No AI tools allowed.</li>
-                           <li>Inappropriate designs will be rejected.</li>
-                           <li>Judges' decisions are final.</li>
-                        </ul>
-                    </div>
-                     <div class="sticky-note sticky-green" style="transform: rotate(2.5deg);">
-                        <h3 class="text-xl font-bold font-handwritten">Judging (100 pts)</h3>
-                         <ul class="space-y-1 list-disc list-inside text-left text-sm">
-                            <li>Creativity & Originality (25)</li>
-                            <li>User Experience (25)</li>
-                            <li>Visual Appeal (20)</li>
-                            <li>Relevance to Theme (20)</li>
-                            <li>Presentation (10)</li>
-                        </ul>
+                    <div class="space-y-8">
+                         <div>
+                            <h3 class="text-2xl font-bold text-pink-400 mb-4 border-b border-gray-700 pb-2">Fair Play & Judging</h3>
+                            <ul class="space-y-3 list-disc list-inside text-gray-400">
+                                <li>Plagiarism or using pre-built templates leads to disqualification.</li>
+                                <li>AI tools for ideation or generation are strictly prohibited.</li>
+                                <li>Judging is based on Creativity (25), UX (25), Visuals (20), Relevance (20), and Presentation (10).</li>
+                                <li>The decisions of the judging panel will be final and binding.</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -232,21 +223,21 @@
                 <div class="relative">
                     <div class="timeline-item relative pl-10 pb-12">
                         <div class="timeline-dot bg-yellow-500"></div>
-                        <p class="text-sm text-gray-500">Phase 1</p>
+                        <p class="text-sm text-gray-400">Phase 1</p>
                         <h3 class="text-2xl font-bold">0.5 Hour: Research & Ideation</h3>
-                        <p class="text-gray-600 mt-1">Use the provided internet access to browse for assets, icons, and references. Gather inspiration and solidify your concept.</p>
+                        <p class="text-gray-400 mt-1">Use the provided internet access to browse for assets, icons, and references. Gather inspiration and solidify your concept.</p>
                     </div>
                      <div class="timeline-item relative pl-10 pb-12">
                         <div class="timeline-dot bg-pink-500"></div>
-                        <p class="text-sm text-gray-500">Phase 2</p>
+                        <p class="text-sm text-gray-400">Phase 2</p>
                         <h3 class="text-2xl font-bold">2 Hours: Design & Prototype</h3>
-                        <p class="text-gray-600 mt-1">Bring your ideas to life in Figma. Create your wireframes, design the final UI screens, and prepare your submission.</p>
+                        <p class="text-gray-400 mt-1">Bring your ideas to life in Figma. Create your wireframes, design the final UI screens, and prepare your submission.</p>
                     </div>
                     <div class="timeline-item relative pl-10">
                         <div class="timeline-dot bg-green-500"></div>
-                        <p class="text-sm text-gray-500">Deadline</p>
+                        <p class="text-sm text-gray-400">Deadline</p>
                         <h3 class="text-2xl font-bold">Submission</h3>
-                        <p class="text-gray-600 mt-1">Submit your Figma link, PDF, or PNGs before the time is up. Late submissions will not be accepted.</p>
+                        <p class="text-gray-400 mt-1">Submit your Figma link, PDF, or PNGs before the time is up. Late submissions will not be accepted.</p>
                     </div>
                 </div>
             </section>
@@ -254,20 +245,20 @@
             <section class="max-w-4xl mx-auto">
                 <h2 class="text-4xl font-bold text-center mb-8">Design Mentors</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="bg-white p-6 rounded-xl shadow-lg border text-center">
-                        <h3 class="text-xl font-bold text-gray-800">Prof. Jaganesh G C</h3>
-                        <p class="text-gray-500 mt-1">Contact: +91 91645 85263</p>
+                    <div class="bg-card-dark p-6 rounded-xl shadow-lg border border-gray-700 text-center">
+                        <h3 class="text-xl font-bold text-gray-100">Prof. Jaganesh G C</h3>
+                        <p class="text-gray-400 mt-1">Contact: +91 91645 85263</p>
                     </div>
-                    <div class="bg-white p-6 rounded-xl shadow-lg border text-center">
-                        <h3 class="text-xl font-bold text-gray-800">Prof. Lakshmi Shivarama Prasad S</h3>
-                        <p class="text-gray-500 mt-1">Contact: +91 99641 41098</p>
+                    <div class="bg-card-dark p-6 rounded-xl shadow-lg border border-gray-700 text-center">
+                        <h3 class="text-xl font-bold text-gray-100">Prof. Lakshmi Shivarama Prasad S</h3>
+                        <p class="text-gray-400 mt-1">Contact: +91 99641 41098</p>
                     </div>
                 </div>
             </section>
 
-            <section class="text-center bg-white rounded-2xl shadow-xl border p-12">
+            <section class="text-center bg-card-dark rounded-2xl shadow-xl border border-gray-700 p-12">
                 <h2 class="text-4xl font-bold">Ready to Create?</h2>
-                <p class="mt-4 text-lg max-w-2xl mx-auto text-gray-600">Assemble your team, sharpen your skills, and get ready to design the future.</p>
+                <p class="mt-4 text-lg max-w-2xl mx-auto text-gray-400">Assemble your team, sharpen your skills, and get ready to design the future.</p>
                 <div class="mt-10">
                     <a href="#" class="inline-block bg-blue-500 text-white font-bold py-4 px-10 rounded-lg transition-all duration-300 ease-in-out hover:bg-blue-600 hover:shadow-lg hover:shadow-blue-500/40 hover:scale-105">
                         Register Your Team
@@ -277,7 +268,7 @@
         </div>
     </main>
     
-    <footer class="border-t border-gray-200 mt-20 bg-white">
+    <footer class="border-t border-gray-800 mt-20 bg-card-dark">
         <div class="container mx-auto px-6 py-8 text-center text-gray-500">
             <p>&copy; 2025 Yenepoya Institute of Technology | All Rights Reserved</p>
         </div>
@@ -377,3 +368,4 @@
     </script>
 </body>
 </html>
+
