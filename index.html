@@ -168,14 +168,63 @@
         </header>
 
     <main class="relative z-10">
-        <section id="hero" class="text-center min-h-screen flex flex-col items-center justify-center py-20 px-4">
-            <h1 id="hero-title" class="text-4xl md:text-5xl font-extrabold text-white leading-tight">
-                Welcome to <span class="text-emerald-400">ISTE '25</span>
-            </h1>
-            <p id="hero-subtitle" class="mt-4 text-base md:text-lg text-slate-400 max-w-3xl mx-auto h-16 md:h-auto">
-                The 21st ISTE Karnataka State Level Student Convention, where innovation meets opportunity.
-            </p>
-            </section>
+  <section id="hero" class="text-center min-h-screen flex flex-col items-center justify-center py-20 px-4">
+    
+    <!-- Title -->
+    <h1 id="hero-title" class="text-4xl md:text-5xl font-extrabold text-white leading-tight">
+      Welcome to <span class="text-emerald-400">ISTE '25</span>
+    </h1>
+
+    <!-- Subtitle -->
+    <p id="hero-subtitle" class="mt-4 text-base md:text-lg text-slate-400 max-w-3xl mx-auto">
+      The 21st ISTE Karnataka State Level Student Convention, where innovation meets opportunity.
+    </p>
+
+    <!-- Cards Section -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-12 max-w-4xl mx-auto w-full">
+      
+      <!-- Venue & Date Card -->
+      <div class="glass-card p-8 rounded-2xl shadow-lg border border-white/10 hover:scale-105 hover:shadow-emerald-500/30 transition duration-300">
+        <div class="flex flex-col items-center text-center">
+          <div class="bg-gradient-to-r from-emerald-500 to-green-600 p-4 rounded-xl shadow-md mb-4">
+            <!-- Map Pin Icon (Green) -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 11c1.657 0 3-1.343 3-3S13.657 5 12 5 9 6.343 9 8s1.343 3 3 3z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 22s8-4.5 8-11c0-4.418-3.582-8-8-8S4 6.582 4 11c0 6.5 8 11 8 11z" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-2">Event Venue</h3>
+          <p class="text-gray-300">Yenepoya Institute of Technology</p>
+          <p class="text-gray-400">Moodbidri, Karnataka</p>
+          <span class="mt-4 inline-block bg-emerald-500/20 text-emerald-300 text-sm font-medium px-3 py-1 rounded-full">
+            📅 November 11–12, 2025
+          </span>
+        </div>
+      </div>
+
+      <!-- Prize Pool Card -->
+      <div class="glass-card p-8 rounded-2xl shadow-lg border border-white/10 hover:scale-105 hover:shadow-green-400/30 transition duration-300">
+        <div class="flex flex-col items-center text-center">
+          <div class="bg-gradient-to-r from-green-400 to-emerald-600 p-4 rounded-xl shadow-md mb-4">
+            <!-- Trophy Icon (Green) -->
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 21h8M12 17v4M5 3h14l-1 7a7 7 0 11-12 0L5 3z" />
+            </svg>
+          </div>
+          <h3 class="text-2xl font-bold text-white mb-2">Prize Pool</h3>
+          <p class="text-green-300 text-3xl font-extrabold">₹1,50,000</p>
+          <span class="mt-4 inline-block bg-green-500/20 text-green-300 text-sm font-medium px-3 py-1 rounded-full">
+            💰 Exciting rewards await!
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+            
+            
 
         <div id="countdown-sticky" class="fixed bottom-4 right-4 z-50">
             <div id="countdown" class="text-white font-mono flex items-center justify-center gap-2 md:gap-4 p-3 rounded-lg glass-card">
