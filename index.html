@@ -112,26 +112,6 @@
             background: radial-gradient(circle at 50% 50%, rgba(2, 239, 151, 0.1), transparent 70%);
         }
 
-        #hero-subtitle.typing::after {
-            content: '_';
-            display: inline-block;
-            margin-left: 4px;
-            color: var(--primary-green);
-            animation: blink 0.7s infinite;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-
-        /* === NEW CSS FOR WATER-FILL ANIMATION === */
-        #yensplash-text .word {
-            display: inline-block;
-            clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0 100%);
-            transform: translateY(10px); /* Optional: slight lift */
-        }
-        /* === END OF NEW CSS === */
-
     </style>
 </head>
 <body class="antialiased">
@@ -156,7 +136,7 @@
             </div>
             <div class="flex-shrink-0">
                  <a href="https://www.isteonline.in/" target="_blank" class="flex items-center space-x-2">
-                       <img src="https://images.seeklogo.com/logo-png/22/1/iste-logo-png_seeklogo-228148.png" alt="ISTE Logo" class="h-8 md:h-10">
+                      <img src="https://images.seeklogo.com/logo-png/22/1/iste-logo-png_seeklogo-228148.png" alt="ISTE Logo" class="h-8 md:h-10">
                  </a>
             </div>
             <div class="md:hidden">
@@ -181,7 +161,7 @@
             <h1 id="hero-title" class="text-4xl md:text-5xl font-extrabold text-white leading-tight">
                 Welcome to <span class="text-emerald-400">YenSplash '25</span>
             </h1>
-            <p id="hero-subtitle" class="mt-4 text-base md:text-lg text-slate-400 max-w-3xl mx-auto h-16 md:h-auto">
+            <p id="hero-subtitle" class="mt-4 text-base md:text-lg text-slate-400 max-w-3xl mx-auto">
                 The 21st ISTE Karnataka State Level Student Convention, where innovation meets opportunity.
             </p>
             <a href="#" class="mt-10 inline-block bg-emerald-400 text-black font-bold py-4 px-10 rounded-lg transition-all duration-300 ease-in-out hover:bg-emerald-300 hover:shadow-lg hover:shadow-emerald-500/40 transform hover:scale-105">Register Now</a>
@@ -567,32 +547,11 @@
             mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
             mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
 
-            const subtitle = document.getElementById("hero-subtitle");
-            const originalSubtitleText = subtitle.textContent.trim();
-            subtitle.textContent = "";
-
+            // GSAP Animations
             const tl = gsap.timeline();
-            tl.from("#hero-title", { 
-                duration: 0.8, 
-                y: 50, 
-                opacity: 0, 
-                ease: "power3.out" 
-            })
-            .to("#hero-subtitle", {
-                duration: 2.5,
-                text: {
-                    value: originalSubtitleText,
-                },
-                ease: "none",
-                onStart: () => subtitle.classList.add('typing'),
-                onComplete: () => subtitle.classList.remove('typing'),
-            }, "-=0.2")
-            .from(".mt-10.inline-block", { 
-                duration: 0.8, 
-                y: 50, 
-                opacity: 0, 
-                ease: "power3.out" 
-            }, "-=0.5");
+            tl.from("#hero-title", { duration: 0.8, y: 50, opacity: 0, ease: "power3.out" })
+              .from("#hero-subtitle", { duration: 0.8, y: 50, opacity: 0, ease: "power3.out" }, "-=0.6")
+              .from(".mt-10.inline-block", { duration: 0.8, y: 50, opacity: 0, ease: "power3.out" }, "-=0.6");
             
             const animConfig = {
                 start: "top bottom-=100px",
@@ -628,23 +587,10 @@
                 gsap.from(logo, { scrollTrigger: { trigger: logo, start: "top bottom-=50px", toggleActions: "play none none none" }, opacity: 0, y: 20, duration: 0.5, delay: i * 0.1 });
             });
 
-            // === UPDATED WATER-FILLING ANIMATION ===
             let yensplashText = gsap.timeline({
-                scrollTrigger: { 
-                    trigger: "#about-yensplash", 
-                    start: "top 75%", 
-                    end: "bottom 80%", 
-                    scrub: 1,
-                }
+                scrollTrigger: { trigger: "#about-yensplash", start: "top 90%", end: "bottom top", scrub: 1.5 }
             });
-            yensplashText.to("#yensplash-text .word", { 
-                clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-                transform: "translateY(0px)",
-                stagger: { each: 0.1, from: "start" },
-                duration: 1,
-                ease: "power2.inOut"
-            });
-            // === END OF UPDATED ANIMATION ===
+            yensplashText.from("#yensplash-text .word", { opacity: 0.2, filter: "blur(8px)", stagger: { each: 0.1, from: "random" } });
 
             const sections = document.querySelectorAll('main section');
             const navLinks = document.querySelectorAll('.nav-link');
@@ -692,3 +638,4 @@
     </script>
 </body>
 </html>
+
