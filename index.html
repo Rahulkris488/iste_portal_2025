@@ -138,12 +138,13 @@
                 </a>
             </div>
             
-            <div class="hidden md:flex items-center bg-black/30 border border-white/10 rounded-full px-2 py-1 pill-nav">
-                <a href="#hero" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300">Home</a>
-                <a href="#about-iste" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300">About ISTE</a>
-                <a href="#events" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300">Events</a>
-                <a href="#timeline" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300">Timeline</a>
-                <a href="#coordinators" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300">Coordinators</a>
+            <div class="hidden md:flex items-center bg-black/30 border border-white/10 rounded-full px-2 py-1 pill-nav ">
+                <a href="#hero" class="nav-link px-4 py-2 rounded-full text-sm
+                 ml-1 mr-2 font-medium text-gray-300">Home</a>
+                <a href="#about-iste" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300   mr-2">About ISTE</a>
+                <a href="#events" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300       mr-2">Events</a>
+                <a href="#timeline" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300     mr-2">Timeline</a>
+                <a href="#coordinators" class="nav-link px-4 py-2 rounded-full text-sm font-medium text-gray-300 mr-1">Coordinators</a>
             </div>
             <div class="flex-shrink-0">
                  <a href="https://www.isteonline.in/" target="_blank" class="flex items-center space-x-2">
@@ -231,7 +232,7 @@
                 </div>
             </section>
 
-            <section id="about-yensplash" class="relative py-48">
+           <section id="about-yensplash" class="relative py-48">
                 <div class="relative z-10 container mx-auto px-6 text-center">
                     <h2 id="yensplash-text" class="font-bold text-4xl md:text-5xl text-white">
                         <span class="word">READY</span> <span class="word">TO</span> <span class="word">DIVE</span> <span class="word">INTO</span> <span class="word">THE</span> <span class="word">FUTURE</span> <span class="word">OF</span> <span class="word">TECHNOLOGY?</span>
@@ -655,21 +656,19 @@
                 gsap.from(logo, { scrollTrigger: { trigger: logo, start: "top bottom-=50px", toggleActions: "play none none none" }, opacity: 0, y: 20, duration: 0.5, delay: i * 0.1 });
             });
 
-            let yensplashText = gsap.timeline({
-                scrollTrigger: { 
-                    trigger: "#about-yensplash", 
-                    start: "top 75%", 
-                    end: "bottom 80%", 
-                    scrub: 1,
-                }
-            });
-            yensplashText.to("#yensplash-text .word", { 
-                clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
-                transform: "translateY(0px)",
-                stagger: { each: 0.1, from: "start" },
-                duration: 1,
-                ease: "power2.inOut"
-            });
+               let yensplashText = gsap.timeline({
+    scrollTrigger: {
+        trigger: "#about-yensplash",
+        start: "top 70%", // animation starts earlier
+        end: "center center", // completes when text reaches middle
+        scrub: 1.5
+    }
+});
+            yensplashText.from("#yensplash-text .word", {
+    opacity: 0.2,
+    filter: "blur(8px)",
+    stagger: { each: 0.1, from: "random" }
+});
 
             const sections = document.querySelectorAll('main section');
             const navLinks = document.querySelectorAll('.nav-link');
