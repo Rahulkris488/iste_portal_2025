@@ -9,6 +9,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/TextPlugin.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -112,23 +113,6 @@
             background: radial-gradient(circle at 50% 50%, rgba(2, 239, 151, 0.1), transparent 70%);
         }
 
-<<<<<<< HEAD
-=======
-        /* === NEW CSS FOR TYPING ANIMATION CURSOR === */
-        #hero-subtitle.typing::after {
-            content: '_';
-            display: inline-block;
-            margin-left: 4px;
-            color: var(--primary-green);
-            animation: blink 0.7s infinite;
-        }
-
-        @keyframes blink {
-            50% { opacity: 0; }
-        }
-        /* === END OF NEW CSS === */
-
->>>>>>> 8e3301a8c9ae3bc36467884746be48a3296b5c64
     </style>
 </head>
 <body class="antialiased">
@@ -153,7 +137,7 @@
             </div>
             <div class="flex-shrink-0">
                  <a href="https://www.isteonline.in/" target="_blank" class="flex items-center space-x-2">
-                      <img src="https://images.seeklogo.com/logo-png/22/1/iste-logo-png_seeklogo-228148.png" alt="ISTE Logo" class="h-8 md:h-10">
+                       <img src="https://images.seeklogo.com/logo-png/22/1/iste-logo-png_seeklogo-228148.png" alt="ISTE Logo" class="h-8 md:h-10">
                  </a>
             </div>
             <div class="md:hidden">
@@ -305,14 +289,14 @@
                         </div>
                     </a>
                      <a href="robotic.html" class="block group event-card">
-                        <div class="glass-card h-full overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1742767069929-0c663150b164?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Robotic Events" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">Robotic Events</h3>
-                                <p class="text-gray-400">Compete in various robotic challenges and showcases.</p>
-                            </div>
-                        </div>
-                    </a>
+                         <div class="glass-card h-full overflow-hidden">
+                             <img src="https://images.unsplash.com/photo-1742767069929-0c663150b164?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Robotic Events" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                             <div class="p-6">
+                                 <h3 class="text-xl font-bold mb-2">Robotic Events</h3>
+                                 <p class="text-gray-400">Compete in various robotic challenges and showcases.</p>
+                             </div>
+                         </div>
+                     </a>
                 </div>
             </section>
 
@@ -478,19 +462,27 @@
         document.addEventListener('DOMContentLoaded', function() {
             gsap.registerPlugin(ScrollTrigger, TextPlugin);
 
+            // --- SMOOTH SCROLLING SETUP (LENIS) ---
+            const lenis = new Lenis();
+            lenis.on('scroll', ScrollTrigger.update);
+            gsap.ticker.add((time) => {
+                lenis.raf(time * 1000);
+            });
+            gsap.ticker.lagSmoothing(0);
+
+
+            // --- BACKGROUND & CURSOR (UNCHANGED) ---
             const matrixCanvas = document.getElementById('matrix-canvas');
             const matrixCtx = matrixCanvas.getContext('2d');
             const customCursor = document.getElementById('custom-cursor');
 
             let width = matrixCanvas.width = window.innerWidth;
             let height = matrixCanvas.height = window.innerHeight;
-
             let chars = "10";
             let fontSize = 12;
             let columns = Math.floor(width / fontSize);
             let rows = Math.floor(height / fontSize);
             let charGrid = [];
-            
             let mouse = { x: -300, y: -300 };
 
             window.addEventListener('mousemove', (e) => {
@@ -523,8 +515,6 @@
                         const dist = Math.hypot(charX - mouse.x, charY - mouse.y);
                         const radius = 300; 
                         
-                        let color;
-                        
                         const intensity = Math.max(0, 1 - dist / radius);
                         const easedIntensity = Math.pow(intensity, 2.5);
 
@@ -536,7 +526,7 @@
                         const hoverOpacity = 1.0;
                         const currentOpacity = baseOpacity + (hoverOpacity - baseOpacity) * easedIntensity;
 
-                        color = `hsla(150, 100%, ${currentLightness}%, ${currentOpacity})`;
+                        let color = `hsla(150, 100%, ${currentLightness}%, ${currentOpacity})`;
                         
                         matrixCtx.fillStyle = color;
                         matrixCtx.fillText(charGrid[y][x], charX, charY);
@@ -549,7 +539,6 @@
                 requestAnimationFrame(animateMatrix);
             }
             animateMatrix();
-            
 
             window.addEventListener('resize', () => {
                 width = matrixCanvas.width = window.innerWidth;
@@ -559,87 +548,110 @@
                 createCharGrid();
             });
             
+            // --- MOBILE MENU (UNCHANGED) ---
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
             mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
 
-<<<<<<< HEAD
-            // GSAP Animations
-            const tl = gsap.timeline();
-            tl.from("#hero-title", { duration: 0.8, y: 50, opacity: 0, ease: "power3.out" })
+
+            // --- REFINED GSAP ANIMATIONS ---
+            
+            // Hero Section Intro
+            gsap.timeline()
+              .from("#hero-title", { duration: 0.8, y: 50, opacity: 0, ease: "power3.out", delay: 0.2 })
               .from("#hero-subtitle", { duration: 0.8, y: 50, opacity: 0, ease: "power3.out" }, "-=0.6")
               .from(".mt-10.inline-block", { duration: 0.8, y: 50, opacity: 0, ease: "power3.out" }, "-=0.6");
-=======
-            // === MODIFIED GSAP ANIMATIONS WITH TYPING EFFECT ===
-            const subtitle = document.getElementById("hero-subtitle");
-            const originalSubtitleText = subtitle.textContent.trim();
-            subtitle.textContent = ""; // Clear the text to start empty
-
-            const tl = gsap.timeline();
-            tl.from("#hero-title", { 
-                duration: 0.8, 
-                y: 50, 
-                opacity: 0, 
-                ease: "power3.out" 
-            })
-            .to("#hero-subtitle", {
-                duration: 2.5, // Adjust duration for typing speed
-                text: {
-                    value: originalSubtitleText,
-                },
-                ease: "none",
-                onStart: () => subtitle.classList.add('typing'),
-                onComplete: () => subtitle.classList.remove('typing'),
-            }, "-=0.2")
-            .from(".mt-10.inline-block", { 
-                duration: 0.8, 
-                y: 50, 
-                opacity: 0, 
-                ease: "power3.out" 
-            }, "-=0.5");
->>>>>>> 8e3301a8c9ae3bc36467884746be48a3296b5c64
             
+            // Consistent trigger config for scroll animations
             const animConfig = {
-                start: "top bottom-=100px",
-                toggleActions: "play none none none"
+                triggerAction: "play none none none",
+                start: "top 85%",
             };
 
+            // Section Titles
             document.querySelectorAll('.section-title').forEach(title => {
-                gsap.from(title, { scrollTrigger: { trigger: title, ...animConfig }, y: 30, opacity: 0, duration: 0.6, ease: "power3.out" });
-                ScrollTrigger.create({ trigger: title, start: "top 80%", onEnter: () => title.classList.add('section-title-visible') });
+                gsap.from(title, { 
+                    scrollTrigger: { trigger: title, ...animConfig }, 
+                    y: 40, opacity: 0, duration: 0.7, ease: "power3.out" 
+                });
+                ScrollTrigger.create({ 
+                    trigger: title, 
+                    start: "top 80%", 
+                    onEnter: () => title.classList.add('section-title-visible'),
+                    onLeaveBack: () => title.classList.remove('section-title-visible') // Reverses on scroll up
+                });
             });
             
+            // General Purpose Cards ("At a glance")
             gsap.utils.toArray('.anim-card').forEach((card, i) => {
-                gsap.from(card, { scrollTrigger: { trigger: card, ...animConfig }, opacity: 0, y: 50, duration: 0.6, ease: 'power3.out', delay: (i % 3) * 0.1 });
+                gsap.from(card, { 
+                    scrollTrigger: { trigger: card, ...animConfig }, 
+                    opacity: 0, y: 50, duration: 0.6, ease: 'power3.out', 
+                    delay: (i % 3) * 0.1 // Staggers by column
+                });
             });
 
-             gsap.utils.toArray('.anim-fade').forEach(elem => {
-                gsap.from(elem, { scrollTrigger: { trigger: elem, ...animConfig }, opacity: 0, duration: 0.8, ease: 'power1.inOut' });
+            // General Purpose Fade-in elements
+            gsap.utils.toArray('.anim-fade').forEach(elem => {
+                gsap.from(elem, { 
+                    scrollTrigger: { trigger: elem, ...animConfig }, 
+                    opacity: 0, duration: 1, ease: 'power1.inOut' 
+                });
             });
-
+            
+            // Event Cards
             gsap.utils.toArray('.event-card').forEach((card, i) => {
-                gsap.from(card, { scrollTrigger: { trigger: card, ...animConfig }, opacity: 0, y: 40, duration: 0.5, delay: (i % 7) * 0.1 });
+                gsap.from(card, { 
+                    scrollTrigger: { trigger: card, start: "top 90%", toggleActions: "play none none none" }, 
+                    opacity: 0, y: 40, duration: 0.5, 
+                    delay: (i % 3) * 0.1 // Stagger based on a 3-column grid
+                });
             });
             
+            // Timeline Animation
             gsap.utils.toArray('#timeline .glass-card').forEach((item) => {
-                gsap.from(item, { scrollTrigger: { trigger: item, start: 'top bottom-=150px', toggleActions: "play none none none"}, x: () => item.closest('.left-timeline') ? -40 : 40, opacity: 0, duration: 0.6, ease: 'power3.out' });
+                gsap.from(item, { 
+                    scrollTrigger: { trigger: item, start: 'top 85%', toggleActions: "play none none none"}, 
+                    x: () => item.closest('.left-timeline') ? -50 : 50, 
+                    opacity: 0, duration: 0.8, ease: 'power3.out' 
+                });
             });
             
+            // Coordinator Cards
             gsap.utils.toArray('.coordinator-card').forEach((card, i) => {
-                gsap.from(card, { scrollTrigger: { trigger: card, ...animConfig }, opacity: 0, scale: 0.95, duration: 0.5, delay: i * 0.05 });
+                gsap.from(card, { 
+                    scrollTrigger: { trigger: card, ...animConfig }, 
+                    opacity: 0, scale: 0.95, duration: 0.5, 
+                    delay: i * 0.07 // Smooth, cascading delay
+                });
             });
 
+            // Sponsor Logos
             gsap.utils.toArray('.sponsor-logo').forEach((logo, i) => {
-                gsap.from(logo, { scrollTrigger: { trigger: logo, start: "top bottom-=50px", toggleActions: "play none none none" }, opacity: 0, y: 20, duration: 0.5, delay: i * 0.1 });
+                gsap.from(logo, { 
+                    scrollTrigger: { trigger: logo, start: "top 90%", toggleActions: "play none none none" }, 
+                    opacity: 0, y: 20, duration: 0.5, delay: i * 0.1 
+                });
             });
 
-            let yensplashText = gsap.timeline({
-                scrollTrigger: { trigger: "#about-yensplash", start: "top 90%", end: "bottom top", scrub: 1.5 }
+            // **ADJUSTED** "READY TO DIVE IN" animation
+            gsap.timeline({
+                scrollTrigger: { 
+                    trigger: "#about-yensplash", 
+                    start: "top center", // Triggers when the section's top hits the viewport center
+                    end: "bottom center",// Ends when the section's bottom hits the viewport center
+                    scrub: 1             // Smoothly ties animation progress to scroll
+                }
+            }).from("#yensplash-text .word", { 
+                opacity: 0.1, 
+                filter: "blur(6px)", 
+                stagger: { each: 0.1, from: "random" },
+                ease: "power2.out"
             });
-            yensplashText.from("#yensplash-text .word", { opacity: 0.2, filter: "blur(8px)", stagger: { each: 0.1, from: "random" } });
 
-            const sections = document.querySelectorAll('main section');
+            // Active Nav Link on Scroll
+            const sections = document.querySelectorAll('main section[id]');
             const navLinks = document.querySelectorAll('.nav-link');
             
             sections.forEach(section => {
@@ -660,7 +672,8 @@
                     }
                 });
             });
-
+            
+            // --- COUNTDOWN (UNCHANGED) ---
             const countdownDate = new Date("Nov 11, 2025 09:00:00").getTime();
             const countdownFunction = setInterval(() => {
                 const now = new Date().getTime();
@@ -685,4 +698,3 @@
     </script>
 </body>
 </html>
-
