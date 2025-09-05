@@ -112,6 +112,23 @@
             background: radial-gradient(circle at 50% 50%, rgba(2, 239, 151, 0.1), transparent 70%);
         }
 
+<<<<<<< HEAD
+=======
+        /* === NEW CSS FOR TYPING ANIMATION CURSOR === */
+        #hero-subtitle.typing::after {
+            content: '_';
+            display: inline-block;
+            margin-left: 4px;
+            color: var(--primary-green);
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        /* === END OF NEW CSS === */
+
+>>>>>>> 8e3301a8c9ae3bc36467884746be48a3296b5c64
     </style>
 </head>
 <body class="antialiased">
@@ -547,11 +564,41 @@
             mobileMenuButton.addEventListener('click', () => { mobileMenu.classList.toggle('hidden'); });
             mobileMenu.querySelectorAll('a').forEach(link => { link.addEventListener('click', () => { mobileMenu.classList.add('hidden'); }); });
 
+<<<<<<< HEAD
             // GSAP Animations
             const tl = gsap.timeline();
             tl.from("#hero-title", { duration: 0.8, y: 50, opacity: 0, ease: "power3.out" })
               .from("#hero-subtitle", { duration: 0.8, y: 50, opacity: 0, ease: "power3.out" }, "-=0.6")
               .from(".mt-10.inline-block", { duration: 0.8, y: 50, opacity: 0, ease: "power3.out" }, "-=0.6");
+=======
+            // === MODIFIED GSAP ANIMATIONS WITH TYPING EFFECT ===
+            const subtitle = document.getElementById("hero-subtitle");
+            const originalSubtitleText = subtitle.textContent.trim();
+            subtitle.textContent = ""; // Clear the text to start empty
+
+            const tl = gsap.timeline();
+            tl.from("#hero-title", { 
+                duration: 0.8, 
+                y: 50, 
+                opacity: 0, 
+                ease: "power3.out" 
+            })
+            .to("#hero-subtitle", {
+                duration: 2.5, // Adjust duration for typing speed
+                text: {
+                    value: originalSubtitleText,
+                },
+                ease: "none",
+                onStart: () => subtitle.classList.add('typing'),
+                onComplete: () => subtitle.classList.remove('typing'),
+            }, "-=0.2")
+            .from(".mt-10.inline-block", { 
+                duration: 0.8, 
+                y: 50, 
+                opacity: 0, 
+                ease: "power3.out" 
+            }, "-=0.5");
+>>>>>>> 8e3301a8c9ae3bc36467884746be48a3296b5c64
             
             const animConfig = {
                 start: "top bottom-=100px",
