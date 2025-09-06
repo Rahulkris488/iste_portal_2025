@@ -14,6 +14,69 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
+
+/* --- Mobile Responsive Tweaks --- */
+@media (max-width: 640px) {
+  /* Hero title scaling */
+  #hero-title {
+    font-size: 2.2rem;   /* smaller than text-5xl */
+    line-height: 1.2;
+    word-break: break-word;
+  }
+
+  /* Hero subtitle readability */
+  #hero-subtitle {
+    font-size: 1rem;
+    padding: 0 0.5rem;
+  }
+
+  /* Hackathon timer size */
+  #hackathon-timer {
+    font-size: 2rem;
+    letter-spacing: 2px;
+  }
+
+  /* Glass panes padding */
+  .glass-pane {
+    padding: 1.25rem !important; /* smaller padding on mobile */
+    border-radius: 1rem;
+  }
+
+  /* Section headings */
+  .glass-pane h2 {
+    font-size: 1.4rem;
+  }
+
+  /* Problem streams - make spacing tighter */
+  .glass-pane .grid > div {
+    padding: 1rem;
+  }
+
+  /* Mission control cards */
+  #hero,
+  .glass-pane {
+    text-align: center;
+  }
+  .glass-pane .grid {
+    grid-template-columns: 1fr !important;
+    gap: 1rem;
+  }
+
+  /* Button scaling */
+  a.inline-block {
+    padding: 0.75rem 1.5rem !important;
+    font-size: 0.9rem;
+    white-space: normal;
+  }
+
+  /* Loader text wrap */
+  #loader-text {
+    font-size: 0.9rem;
+    padding: 0 1rem;
+  }
+}
+
+
         :root {
             --dark-space: #050816;
             --primary-blue: #38bdf8;

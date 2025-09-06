@@ -53,7 +53,7 @@
             -webkit-backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
-            padding: 2rem;
+            /* Padding is now handled by Tailwind classes in HTML for responsiveness */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
@@ -81,24 +81,24 @@
     <canvas id="background-canvas"></canvas>
 
     <header class="sticky top-0 z-40">
-        <nav class="container mx-auto px-6 py-4">
-             <div class="flex justify-between items-center bg-black/30 backdrop-blur-sm border-y border-gray-700 px-6 py-3">
-                <h1 class="font-display text-2xl text-center text-text-heading">THE ARENA</h1>
-                <a href="index.html" class="text-text-light hover:text-white transition-colors flex items-center gap-2 text-md">
-                    <span>MAIN HUB</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
-                </a>
-            </div>
+        <nav class="container mx-auto px-4 sm:px-6 py-4">
+              <div class="flex justify-between items-center bg-black/30 backdrop-blur-sm border-y border-gray-700 px-4 sm:px-6 py-3">
+                  <h1 class="font-display text-xl sm:text-2xl text-center text-text-heading">THE ARENA</h1>
+                  <a href="index.html" class="text-text-light hover:text-white transition-colors flex items-center gap-2 text-sm sm:text-base">
+                      <span>MAIN HUB</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
+                  </a>
+              </div>
         </nav>
     </header>
 
     <main class="relative z-10">
         
         <section id="hero" class="min-h-[80vh] flex flex-col items-center justify-center text-center p-4">
-            <div class="relative z-10 w-full max-w-4xl flex items-center justify-center">
-                <h1 id="hero-title-for" class="font-display text-7xl md:text-9xl text-blue-400">FOR</h1>
-                <div class="mx-8">
-                    <svg id="clash-icon" class="w-24 h-24 md:w-40 md:h-40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <div class="relative z-10 w-full max-w-4xl flex flex-col sm:flex-row items-center justify-center">
+                <h1 id="hero-title-for" class="font-display text-6xl sm:text-7xl md:text-9xl text-blue-400">FOR</h1>
+                <div class="mx-4 sm:mx-8 my-4 sm:my-0">
+                    <svg id="clash-icon" class="w-20 h-20 sm:w-24 sm:h-24 md:w-40 md:h-40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path id="clash-blue" d="M40 20 L20 40 L20 60 L40 80 L50 70 L35 55 L50 40 L40 20Z" fill="url(#gradBlue)"/>
                         <path id="clash-red" d="M60 20 L80 40 L80 60 L60 80 L50 70 L65 55 L50 40 L60 20Z" fill="url(#gradRed)"/>
                         <defs>
@@ -107,87 +107,87 @@
                         </defs>
                     </svg>
                 </div>
-                <h1 id="hero-title-against" class="font-display text-7xl md:text-9xl text-red-400">AGAINST</h1>
+                <h1 id="hero-title-against" class="font-display text-6xl sm:text-7xl md:text-9xl text-red-400">AGAINST</h1>
             </div>
-            <p id="hero-subtitle" class="mt-8 text-lg md:text-xl text-text-light max-w-2xl mx-auto">
+            <p id="hero-subtitle" class="mt-8 text-base sm:text-lg md:text-xl text-text-light max-w-2xl mx-auto">
                 Where logic is the language and innovation is the argument. Step into the arena and defend your technological standpoint.
             </p>
         </section>
 
-        <div class="container mx-auto px-4 sm:px-6 py-12 md:py-20 space-y-24">
+        <div class="container mx-auto px-4 sm:px-6 py-12 md:py-20 space-y-20 md:space-y-24">
             
             <section class="max-w-5xl mx-auto text-center">
-                <h2 class="font-display text-4xl font-bold mb-4 text-text-heading">The Premise</h2>
-                <p class="text-lg text-text-light">
-                   The Tech Debate is a platform for students to showcase critical thinking and communication skills on emerging tech topics. Participants will be evaluated on logical arguments, fluency, and prompt responses in a structured, competitive setting.
+                <h2 class="font-display text-3xl sm:text-4xl font-bold mb-4 text-text-heading">The Premise</h2>
+                <p class="text-base sm:text-lg text-text-light">
+                    The Tech Debate is a platform for students to showcase critical thinking and communication skills on emerging tech topics. Participants will be evaluated on logical arguments, fluency, and prompt responses in a structured, competitive setting.
                 </p>
             </section>
             
             <section class="max-w-6xl mx-auto">
-                <h2 class="font-display text-4xl font-bold text-center mb-12 text-text-heading">Rules of Engagement</h2>
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-center mb-12 text-text-heading">Rules of Engagement</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-16 relative">
-                     <div class="debate-pane pane-blue-glow mb-8 md:mb-0">
-                        <h3 class="font-display text-3xl text-blue-400 mb-4">Structure & Timing</h3>
-                        <ul class="space-y-3 text-lg">
-                           <li><strong>Selection:</strong> Six teams will be shortlisted for the final round after prelims.</li>
-                           <li><strong>Topic:</strong> The debate topic will be provided on the spot.</li>
-                            <li><strong>Total Time:</strong> Each team has a total of 7 minutes.</li>
-                           <li><strong>Speaker Time:</strong> Individual speakers must not exceed 2 minutes per argument.</li>
-                        </ul>
-                    </div>
-                     <div class="debate-pane pane-red-glow text-right md:text-left">
-                        <h3 class="font-display text-3xl text-red-400 mb-4">Conduct & Integrity</h3>
-                         <ul class="space-y-3 text-lg">
-                           <li><strong>No Aids:</strong> Electronic gadgets or reading from paper are strictly prohibited.</li>
-                           <li><strong>Professionalism:</strong> Use of offensive language or gestures is not allowed.</li>
-                           <li><strong>Fair Play:</strong> Any malpractice will result in immediate disqualification.</li>
-                           <li><strong>Finality:</strong> The decision of the judges and organizers is final.</li>
-                        </ul>
-                    </div>
+                      <div class="debate-pane p-6 md:p-8 pane-blue-glow mb-8 md:mb-0">
+                           <h3 class="font-display text-2xl sm:text-3xl text-blue-400 mb-4">Structure & Timing</h3>
+                           <ul class="space-y-3 text-base sm:text-lg">
+                               <li><strong>Selection:</strong> Six teams will be shortlisted for the final round after prelims.</li>
+                               <li><strong>Topic:</strong> The debate topic will be provided on the spot.</li>
+                                <li><strong>Total Time:</strong> Each team has a total of 7 minutes.</li>
+                               <li><strong>Speaker Time:</strong> Individual speakers must not exceed 2 minutes per argument.</li>
+                           </ul>
+                       </div>
+                       <div class="debate-pane p-6 md:p-8 pane-red-glow text-left">
+                           <h3 class="font-display text-2xl sm:text-3xl text-red-400 mb-4">Conduct & Integrity</h3>
+                            <ul class="space-y-3 text-base sm:text-lg">
+                               <li><strong>No Aids:</strong> Electronic gadgets or reading from paper are strictly prohibited.</li>
+                               <li><strong>Professionalism:</strong> Use of offensive language or gestures is not allowed.</li>
+                               <li><strong>Fair Play:</strong> Any malpractice will result in immediate disqualification.</li>
+                               <li><strong>Finality:</strong> The decision of the judges and organizers is final.</li>
+                           </ul>
+                       </div>
                 </div>
             </section>
             
             <section class="max-w-4xl mx-auto">
-                <h2 class="font-display text-4xl font-bold text-center mb-8 text-text-heading">Judging Matrix</h2>
-                <div class="grid grid-cols-2 gap-8 text-center">
-                    <div class="debate-pane">
-                        <h3 class="font-display text-2xl text-text-heading">Relevance</h3>
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-center mb-8 text-text-heading">Judging Matrix</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 text-center">
+                    <div class="debate-pane p-6 md:p-8">
+                        <h3 class="font-display text-xl sm:text-2xl text-text-heading">Relevance</h3>
                         <p>Clarity and logical consistency of arguments.</p>
                     </div>
-                    <div class="debate-pane">
-                        <h3 class="font-display text-2xl text-text-heading">Fluency</h3>
+                    <div class="debate-pane p-6 md:p-8">
+                        <h3 class="font-display text-xl sm:text-2xl text-text-heading">Fluency</h3>
                         <p>Confidence and clarity of speech.</p>
                     </div>
-                    <div class="debate-pane">
-                        <h3 class="font-display text-2xl text-text-heading">Involvement</h3>
+                    <div class="debate-pane p-6 md:p-8">
+                        <h3 class="font-display text-xl sm:text-2xl text-text-heading">Involvement</h3>
                         <p>Active participation and engagement.</p>
                     </div>
-                     <div class="debate-pane">
-                        <h3 class="font-display text-2xl text-text-heading">Promptness</h3>
+                     <div class="debate-pane p-6 md:p-8">
+                        <h3 class="font-display text-xl sm:text-2xl text-text-heading">Promptness</h3>
                         <p>Quick thinking in rebuttals and responses.</p>
                     </div>
                 </div>
             </section>
 
              <section class="max-w-4xl mx-auto text-center">
-                <h2 class="font-display text-4xl font-bold text-center mb-8 text-text-heading">Event Adjudicators</h2>
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-center mb-8 text-text-heading">Event Adjudicators</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                     <div class="debate-pane">
-                        <h3 class="font-display text-xl text-blue-400">Prof. Raksha J V</h3>
-                        <p class="text-text-light">+91 6366 163 754</p>
-                    </div>
-                     <div class="debate-pane">
-                        <h3 class="font-display text-xl text-red-400">Prof. Harshitha U</h3>
-                        <p class="text-text-light">+91 96453 13249</p>
-                    </div>
+                       <div class="debate-pane p-6 md:p-8">
+                           <h3 class="font-display text-lg sm:text-xl text-blue-400">Prof. Raksha J V</h3>
+                           <p class="text-text-light">+91 6366 163 754</p>
+                       </div>
+                       <div class="debate-pane p-6 md:p-8">
+                           <h3 class="font-display text-lg sm:text-xl text-red-400">Prof. Harshitha U</h3>
+                           <p class="text-text-light">+91 96453 13249</p>
+                       </div>
                 </div>
             </section>
 
-            <section class="text-center debate-pane border-x-4 border-x-fuchsia-500">
-                <h2 class="font-display text-4xl font-bold text-text-heading">Claim Your Stance</h2>
-                <p class="mt-4 text-lg max-w-2xl mx-auto">Assemble your team, build your case, and prepare to argue the future of technology.</p>
+            <section class="text-center debate-pane p-6 md:p-8 border-x-4 border-x-fuchsia-500">
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-text-heading">Claim Your Stance</h2>
+                <p class="mt-4 text-base sm:text-lg max-w-2xl mx-auto">Assemble your team, build your case, and prepare to argue the future of technology.</p>
                 <div class="mt-10">
-                    <a href="#" class="inline-block bg-gradient-to-r from-red-500 to-blue-500 text-white font-display text-xl py-3 px-12 rounded-sm transition-all duration-300 ease-in-out hover:shadow-lg hover:shadow-blue-500/50 hover:scale-105">
+                    <a href="#" class="inline-block bg-gradient-to-r from-red-500 to-blue-500 text-white font-display text-lg sm:text-xl py-3 px-8 sm:px-12 rounded-sm transition-all duration-300 ease-in-out hover:shadow-lg hover:shadow-blue-500/50 hover:scale-105">
                         REGISTER TEAM
                     </a>
                 </div>
@@ -254,7 +254,8 @@
 
         function initParticles() {
             particles = [];
-            const particleCount = (window.innerWidth / 15);
+            // Reduced particle count slightly for better performance on mobile
+            const particleCount = (window.innerWidth / 20); 
             for(let i = 0; i < particleCount; i++) particles.push(new Particle('blue'));
             for(let i = 0; i < particleCount; i++) particles.push(new Particle('red'));
         }
@@ -313,4 +314,3 @@
     </script>
 </body>
 </html>
-
