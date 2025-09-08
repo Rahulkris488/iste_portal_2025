@@ -130,18 +130,34 @@
         </div>
     </div>
 
-    <header class="sticky top-0 z-50">
-        <nav class="container mx-auto px-6 py-4 bg-gray-900/70 backdrop-blur-md rounded-b-xl border-x border-b border-gray-700">
-            <div class="flex justify-between items-center">
-                <a href="index.html" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 text-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+   <header class="sticky top-0 z-50">
+    <nav class="container mx-auto px-6 py-4 bg-gray-900/70 backdrop-blur-md rounded-b-xl border-x border-b border-gray-700">
+        <div class="flex justify-between items-center">
+
+            <!-- Empty div for left spacing -->
+            <div></div>
+
+            <!-- Centered title -->
+            <h1 class="text-xl font-bold text-center text-gray-100 absolute left-1/2 -translate-x-1/2">
+                The Design Canvas
+            </h1>
+
+            <!-- Main Hub button on right -->
+            <div>
+                <a href="index.html" 
+                   onclick="if (history.length > 1) { history.back(); return false; }" 
+                   class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 text-lg">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                    </svg>
                     <span>Main Hub</span>
                 </a>
-                <h1 class="text-xl font-bold text-center text-gray-100">The Design Canvas</h1>
-                <div></div>
             </div>
-        </nav>
-    </header>
+
+        </div>
+    </nav>
+</header>
+
 
     <main class="relative">
         

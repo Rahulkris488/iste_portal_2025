@@ -151,19 +151,31 @@
     <canvas id="particle-canvas"></canvas>
 
     <header class="sticky top-0 z-50 transition-all duration-300" id="header">
-        <nav class="container mx-auto px-4 sm:px-6 py-4 relative flex justify-between items-center bg-black/30 backdrop-blur-md rounded-b-xl border-x border-b border-blue-500/20">
-            <div>
-                <a href="index.html" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
-                    <span class="hidden sm:inline">Main Hub</span>
-                </a>
-            </div>
-            <div class="absolute left-1/2 -translate-x-1/2">
-                <h1 class="font-mono text-lg sm:text-xl font-bold text-blue-400 whitespace-nowrap">[ HACKATHON ]</h1>
-            </div>
-            <div></div>
-        </nav>
-        </header>
+    <nav class="container mx-auto px-4 sm:px-6 py-4 relative flex justify-between items-center bg-black/30 backdrop-blur-md rounded-b-xl border-x border-b border-blue-500/20">
+        
+        <!-- Empty div for left space if needed -->
+        <div></div>
+
+        <!-- Centered title -->
+        <div class="absolute left-1/2 -translate-x-1/2">
+            <h1 class="font-mono text-lg sm:text-xl font-bold text-blue-400 whitespace-nowrap">[ HACKATHON ]</h1>
+        </div>
+
+        <!-- Main Hub button on right -->
+        <div>
+            <a href="index.html" 
+               onclick="if (history.length > 1) { history.back(); return false; }" 
+               class="text-gray-300 hover:text-white transition-colors flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                </svg>
+                <span class="hidden sm:inline">Main Hub</span>
+            </a>
+        </div>
+
+    </nav>
+</header>
+
 
     <main class="relative z-10">
         
