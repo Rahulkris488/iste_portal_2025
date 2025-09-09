@@ -28,6 +28,8 @@
             background-color: var(--bg-metallic);
             color: var(--text-secondary);
             overflow-x: hidden;
+            /* NEW: Added perspective for 3D tilt effect */
+            perspective: 1000px;
         }
 
         .font-display {
@@ -71,30 +73,21 @@
             right: -2px;
             border-width: 0 2px 2px 0;
         }
-
-        .node-button {
-            background-color: transparent;
-            border: 1px solid rgba(0, 162, 255, 0.5);
-            padding: 0.75rem 1.5rem;
-            transition: all 0.3s ease;
-            position: relative;
-            color: var(--text-secondary);
-        }
-        .node-button:hover {
-            border-color: var(--accent-blue);
-            color: var(--text-hud);
-            box-shadow: 0 0 15px var(--accent-blue-glow);
-        }
-        .node-button.active {
-            background-color: var(--accent-blue);
-            border-color: var(--accent-blue);
-            color: var(--bg-metallic);
-            font-weight: 700;
-            box-shadow: 0 0 20px var(--accent-blue-glow);
-        }
         
-        .tab-content {
-            display: none;
+        /* NEW: Styles for the glass cards */
+        .glass-card {
+            background: rgba(31, 41, 55, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 162, 255, 0.2);
+            border-radius: 0.75rem;
+            transform-style: preserve-3d;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .glass-card:hover {
+            border-color: rgba(0, 162, 255, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
     </style>
@@ -136,19 +129,60 @@
 
         <div class="container mx-auto px-4 sm:px-6 py-12 md:py-20 space-y-24">
             
-            <section class="max-w-6xl mx-auto">
-                <div class="circuit-pane">
-                    <div id="tabs-container" class="flex flex-wrap justify-center gap-4 mb-8">
-                        <button class="node-button active" data-tab="kickoff">Robo Kick-Off</button>
-                        <button class="node-button" data-tab="race">Robo Race</button>
-                        <button class="node-button" data-tab="rekha">Lakshman Rekha</button>
-                        <button class="node-button" data-tab="sumo">Robo Sumo</button>
-                        <button class="node-button" data-tab="maze">Robo Maze</button>
-                    </div>
+            <section id="events">
+                <h2 class="font-display text-3xl md:text-4xl font-bold text-center mb-16 text-text-hud">// ROBOTIC ARENAS</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <a href="#" class="block group event-card">
+                        <div class="glass-card h-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1678559333552-320b2711b70e?q=80&w=2070&auto=format&fit=crop" alt="Robo Soccer" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <div class="p-6">
+                                <h3 class="font-display text-xl font-bold mb-2 text-blue-400">Robo Kick-Off</h3>
+                                <p>A dynamic soccer-style game where bots must maneuver a ball and defend a goal, testing technical skill and teamwork.</p>
+                            </div>
+                        </div>
+                    </a>
 
-                    <div class="tab-content-wrapper p-4 min-h-[300px] border-t border-blue-500/20">
-                        <!-- Content will be injected by GSAP -->
-                    </div>
+                    <a href="#" class="block group event-card">
+                        <div class="glass-card h-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1559757199-2a3670e1a14b?q=80&w=2070&auto=format&fit=crop" alt="Robo Race" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <div class="p-6">
+                                <h3 class="font-display text-xl font-bold mb-2 text-blue-400">Robo Race</h3>
+                                <p>A high-speed competition where bots navigate a track filled with obstacles, emphasizing speed, control, and endurance.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="#" class="block group event-card">
+                        <div class="glass-card h-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1612024782355-321b2b80a525?q=80&w=2070&auto=format&fit=crop" alt="Line Follower Robot" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <div class="p-6">
+                                <h3 class="font-display text-xl font-bold mb-2 text-blue-400">Lakshman Rekha</h3>
+                                <p>An autonomous challenge where bots must follow a predefined track using sensors, testing automation and precision.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="#" class="block group event-card">
+                        <div class="glass-card h-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1534723328310-e82dad3ee43f?q=80&w=1974&auto=format&fit=crop" alt="Robo Sumo" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <div class="p-6">
+                                <h3 class="font-display text-xl font-bold mb-2 text-blue-400">Robo Sumo</h3>
+                                <p>Two bots compete to push each other out of a circular ring in a test of design, balance, power, and strategy.</p>
+                            </div>
+                        </div>
+                    </a>
+
+                    <a href="#" class="block group event-card">
+                        <div class="glass-card h-full overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1695423164998-33385150a31a?q=80&w=2070&auto=format&fit=crop" alt="Robo Maze" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <div class="p-6">
+                                <h3 class="font-display text-xl font-bold mb-2 text-blue-400">Robo Maze</h3>
+                                <p>An autonomous navigation challenge where bots must solve a maze filled with obstacles, testing problem-solving skills.</p>
+                            </div>
+                        </div>
+                    </a>
+
                 </div>
             </section>
             
@@ -185,50 +219,6 @@
             <p>&copy; 2025 Yenepoya Institute of Technology | All Rights Reserved | SYSTEM ID: YIT-ISTE-2025</p>
         </div>
     </footer>
-    
-    <!-- Hidden templates for tab content -->
-    <div id="templates" class="hidden">
-        <div id="kickoff-template">
-            <h2 class="font-display text-3xl font-bold text-blue-400 mb-4">Robo Kick-Off (Robo Soccer)</h2>
-            <p class="mb-8">A dynamic soccer-style game where bots must maneuver, push a ball, and defend a goal. This event tests technical expertise, creativity, and teamwork in a real-time sporting context.</p>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div><h3 class="font-display text-xl text-text-hud mb-2">Bot Schematics</h3><ul class="list-disc list-inside space-y-2"><li>Weight: Max 5 kg (±10% tolerance)</li><li>Dimensions: Max 30cm x 30cm (±10% tolerance)</li><li>Wired or wireless bots allowed.</li><li>Power Supply: Max 12V (on-board).</li><li>No hitting or kicking mechanisms.</li></ul></div>
-                <div><h3 class="font-display text-xl text-text-hud mb-2">Engagement Protocol</h3><ul class="list-disc list-inside space-y-2"><li>Game: 2 halves of 2 minutes each.</li><li>Pushing opponents is allowed.</li><li>Tie-breaker: Golden Goal (first to score wins).</li><li>Ball out of arena results in a reset.</li></ul></div>
-            </div>
-        </div>
-        <div id="race-template">
-            <h2 class="font-display text-3xl font-bold text-blue-400 mb-4">Robo Race</h2>
-            <p class="mb-8">A high-speed competition where bots navigate a track filled with obstacles. The goal is to finish in the shortest time, emphasizing speed, control, and design endurance.</p>
-            <div class="grid md:grid-cols-2 gap-8">
-                <div><h3 class="font-display text-xl text-text-hud mb-2">Bot Schematics</h3><ul class="list-disc list-inside space-y-2"><li>Weight: Max 3 kg (±5% tolerance)</li><li>Dimensions: Max 30cm x 25cm x 25cm</li><li>Wired or wireless bots are allowed.</li><li>Power: On-board or off-board supply permitted.</li></ul></div>
-                <div><h3 class="font-display text-xl text-text-hud mb-2">Engagement Protocol</h3><ul class="list-disc list-inside space-y-2"><li>Winner is the bot with the least time.</li><li>If a bot falls, it resets to the last checkpoint with a penalty.</li><li>Pulling a bot by its wires results in disqualification.</li><li>Bot structure cannot be modified during the race.</li></ul></div>
-            </div>
-        </div>
-        <div id="rekha-template">
-             <h2 class="font-display text-3xl font-bold text-blue-400 mb-4">Lakshman Rekha (Line Follower)</h2>
-            <p class="mb-8">An autonomous challenge where bots must follow a predefined track using sensors. This event tests automation, embedded systems, and programming skills in navigating a path with precision.</p>
-             <div class="grid md:grid-cols-2 gap-8">
-                <div><h3 class="font-display text-xl text-text-hud mb-2">Bot Schematics</h3><ul class="list-disc list-inside space-y-2"><li>Weight: Max 3 kg</li><li>Dimensions: Max 20cm x 20cm x 20cm</li><li>Must be fully autonomous with all systems on-board.</li><li>Power Supply: Max 12V (on-board).</li></ul></div>
-                <div><h3 class="font-display text-xl text-text-hud mb-2">Engagement Protocol</h3><ul class="list-disc list-inside space-y-2"><li>Arena map is revealed on the event day.</li><li>Track width is approximately 3cm.</li><li>Manual touches to the bot will incur time penalties.</li><li>Score is based on completion time minus penalties.</li></ul></div>
-            </div>
-        </div>
-        <div id="sumo-template">
-            <h2 class="font-display text-3xl font-bold text-blue-400 mb-4">Robo Sumo</h2>
-            <p class="mb-8">Inspired by Sumo wrestling, two bots compete to push each other out of a circular ring. This event is a test of design, balance, power, and strategic maneuvering.</p>
-             <div class="grid md:grid-cols-2 gap-8">
-                <div><h3 class="font-display text-xl text-text-hud mb-2">Bot Schematics</h3><ul class="list-disc list-inside space-y-2"><li>Weight: Max 5 kg (±10% tolerance)</li><li>Dimensions: Max 30cm x 30cm (±10% tolerance)</li><li>Wired or wireless bots allowed.</li><li>Power Supply: Max 12V (on-board).</li><li>No hitting or destructive mechanisms.</li></ul></div>
-                <div><h3 class="font-display text-xl text-text-hud mb-2">Engagement Protocol</h3><ul class="list-disc list-inside space-y-2"><li>Game: 2 halves of 2 minutes each.</li><li>Pushing the opponent out of the ring scores a point.</li><li>Tie-breaker: Golden Goal.</li><li>If a bot flips, advantage is given to the opponent.</li></ul></div>
-            </div>
-        </div>
-        <div id="maze-template">
-            <h2 class="font-display text-3xl font-bold text-blue-400 mb-4">Robo Maze</h2>
-            <p class="mb-8">An autonomous navigation challenge where bots must solve a maze filled with obstacles. The event tests problem-solving, sensor integration, and algorithmic programming.</p>
-             <div class="grid md:grid-cols-2 gap-8">
-                <div><h3 class="font-display text-xl text-text-hud mb-2">Bot Schematics</h3><ul class="list-disc list-inside space-y-2"><li>Dimensions: Must fit in a 20cm cube.</li><li>Must be self-built (no ready-made kits).</li><li>Controller: Arduino-based microcontrollers only.</li><li>No wireless communication modules.</li></ul></div>
-                <div><h3 class="font-display text-xl text-text-hud mb-2">Engagement Protocol</h3><ul class="list-disc list-inside space-y-2"><li>Bots must navigate without hitting walls.</li><li>Manual touches incur a 10-second penalty.</li><li>Max 10 manual touches are allowed.</li><li>Score based on time plus penalties.</li></ul></div>
-            </div>
-        </div>
-    </div>
     
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -289,7 +279,6 @@
 
         function draw() {
             ctx.clearRect(0, 0, width, height);
-            // Static Grid
             ctx.strokeStyle = 'rgba(0, 162, 255, 0.1)';
             ctx.lineWidth = 1;
             for(let x=0; x<width; x+=gridSpacing) {
@@ -304,13 +293,10 @@
                 ctx.lineTo(width,y);
                 ctx.stroke();
             }
-
-            // Animated Pulses
             pulses.forEach(p => {
                 p.update();
                 p.draw();
             });
-
             requestAnimationFrame(draw);
         }
 
@@ -336,38 +322,41 @@
             });
         });
 
-        // --- Tabs Functionality ---
-        const tabsContainer = document.getElementById('tabs-container');
-        const contentWrapper = document.querySelector('.tab-content-wrapper');
-        const tabButtons = document.querySelectorAll('.node-button');
-        const templates = document.getElementById('templates');
+        // --- NEW: Interactive 3D Tilt Effect for Event Cards ---
+        const tiltCards = document.querySelectorAll('.event-card');
 
-        contentWrapper.innerHTML = templates.querySelector('#kickoff-template').innerHTML;
-        gsap.from(contentWrapper.children, { autoAlpha: 0, y: 20, stagger: 0.1, duration: 0.5 });
-
-        tabsContainer.addEventListener('click', (e) => {
-            const clickedButton = e.target.closest('.node-button');
-            if (clickedButton && !clickedButton.classList.contains('active')) {
-                const targetTabId = clickedButton.dataset.tab;
-
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                clickedButton.classList.add('active');
+        tiltCards.forEach(card => {
+            card.addEventListener('mousemove', (e) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
                 
-                gsap.to(contentWrapper, {
-                    autoAlpha: 0,
-                    duration: 0.3,
-                    ease: 'power2.in',
-                    onComplete: () => {
-                        contentWrapper.innerHTML = templates.querySelector(`#${targetTabId}-template`).innerHTML;
-                        gsap.to(contentWrapper, { autoAlpha: 1, duration: 0.4, ease: 'power2.out' });
-                        gsap.from(contentWrapper.children, { autoAlpha: 0, y: 20, stagger: 0.1, duration: 0.5 });
-                    }
-                });
-            }
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                
+                const deltaX = x - centerX;
+                const deltaY = y - centerY;
+                
+                // Adjust the rotation intensity
+                const rotateX = (deltaY / centerY) * 12; // Max 12 degrees rotation
+                const rotateY = -(deltaX / centerX) * 12; // Max 12 degrees rotation
+                
+                // Use the inner .glass-card for the transform
+                const innerCard = card.querySelector('.glass-card');
+                if (innerCard) {
+                    innerCard.style.transform = `scale(1.05) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                }
+            });
+
+            card.addEventListener('mouseleave', () => {
+                const innerCard = card.querySelector('.glass-card');
+                if (innerCard) {
+                    innerCard.style.transform = 'scale(1) rotateX(0deg) rotateY(0deg)';
+                }
+            });
         });
 
     });
     </script>
 </body>
 </html>
-
