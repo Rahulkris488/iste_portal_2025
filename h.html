@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hackathon: Neural Hub | YenSplash '25</title>
+    <title>21st ISTE State Level Student Convention: 24 Hour Hackathon | YenSplash '25</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -14,68 +14,48 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
-
-/* --- Mobile Responsive Tweaks --- */
-@media (max-width: 640px) {
-  /* Hero title scaling */
-  #hero-title {
-    font-size: 2.2rem;   /* smaller than text-5xl */
-    line-height: 1.2;
-    word-break: break-word;
-  }
-
-  /* Hero subtitle readability */
-  #hero-subtitle {
-    font-size: 1rem;
-    padding: 0 0.5rem;
-  }
-
-  /* Hackathon timer size */
-  #hackathon-timer {
-    font-size: 2rem;
-    letter-spacing: 2px;
-  }
-
-  /* Glass panes padding */
-  .glass-pane {
-    padding: 1.25rem !important; /* smaller padding on mobile */
-    border-radius: 1rem;
-  }
-
-  /* Section headings */
-  .glass-pane h2 {
-    font-size: 1.4rem;
-  }
-
-  /* Problem streams - make spacing tighter */
-  .glass-pane .grid > div {
-    padding: 1rem;
-  }
-
-  /* Mission control cards */
-  #hero,
-  .glass-pane {
-    text-align: center;
-  }
-  .glass-pane .grid {
-    grid-template-columns: 1fr !important;
-    gap: 1rem;
-  }
-
-  /* Button scaling */
-  a.inline-block {
-    padding: 0.75rem 1.5rem !important;
-    font-size: 0.9rem;
-    white-space: normal;
-  }
-
-  /* Loader text wrap */
-  #loader-text {
-    font-size: 0.9rem;
-    padding: 0 1rem;
-  }
-}
-
+        /* --- Mobile Responsive Tweaks --- */
+        @media (max-width: 640px) {
+            #hero-title {
+                font-size: 2.2rem;
+                line-height: 1.2;
+                word-break: break-word;
+            }
+            #hero-subtitle {
+                font-size: 1rem;
+                padding: 0 0.5rem;
+            }
+            #hackathon-timer {
+                font-size: 2rem;
+                letter-spacing: 2px;
+            }
+            .glass-pane {
+                padding: 1.25rem !important;
+                border-radius: 1rem;
+            }
+            .glass-pane h2 {
+                font-size: 1.4rem;
+            }
+            .glass-pane .grid > div {
+                padding: 1rem;
+            }
+            #hero, .glass-pane {
+                text-align: center;
+            }
+            .glass-pane .grid {
+                grid-template-columns: 1fr !important;
+                gap: 1rem;
+            }
+            a.inline-block {
+                padding: 0.75rem 1.5rem !important;
+                font-size: 0.9rem;
+                white-space: normal;
+            }
+            #loader-text {
+                font-size: 0.9rem;
+                padding: 0 1rem;
+            }
+        }
 
         :root {
             --dark-space: #050816;
@@ -83,6 +63,8 @@
             --primary-purple: #a78bfa;
             --glow-blue: rgba(56, 189, 248, 0.3);
             --glow-purple: rgba(167, 139, 250, 0.4);
+            --glow-green: rgba(74, 222, 128, 0.5);
+            --glow-red: rgba(248, 113, 113, 0.5);
         }
 
         body {
@@ -116,16 +98,6 @@
             box-shadow: 0 0 20px var(--glow-blue), 0 0 40px var(--glow-purple);
         }
 
-        .section-wrapper {
-            opacity: 0;
-            transform: scale(0.8) perspective(1000px) rotateX(20deg);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .section-wrapper.is-visible {
-            opacity: 1;
-            transform: scale(1) perspective(1000px) rotateX(0deg);
-        }
-
         /* Loading Animation Styles */
         #loader {
             position: fixed;
@@ -151,31 +123,21 @@
     <canvas id="particle-canvas"></canvas>
 
     <header class="sticky top-0 z-50 transition-all duration-300" id="header">
-    <nav class="container mx-auto px-4 sm:px-6 py-4 relative flex justify-between items-center bg-black/30 backdrop-blur-md rounded-b-xl border-x border-b border-blue-500/20">
-        
-        <!-- Empty div for left space if needed -->
-        <div></div>
-
-        <!-- Centered title -->
-        <div class="absolute left-1/2 -translate-x-1/2">
-            <h1 class="font-mono text-lg sm:text-xl font-bold text-blue-400 whitespace-nowrap">[ HACKATHON ]</h1>
-        </div>
-
-        <!-- Main Hub button on right -->
-        <div>
-            <a href="index.html" 
-               onclick="if (history.length > 1) { history.back(); return false; }" 
-               class="text-gray-300 hover:text-white transition-colors flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-                </svg>
-                <span class="hidden sm:inline">Main Hub</span>
-            </a>
-        </div>
-
-    </nav>
-</header>
-
+        <nav class="container mx-auto px-4 sm:px-6 py-4 relative flex justify-between items-center bg-black/30 backdrop-blur-md rounded-b-xl border-x border-b border-blue-500/20">
+            <div></div>
+            <div class="absolute left-1/2 -translate-x-1/2">
+                <h1 class="font-mono text-lg sm:text-xl font-bold text-blue-400 whitespace-nowrap">[ HACKATHON ]</h1>
+            </div>
+            <div>
+                <a href="index.html" onclick="if (history.length > 1) { history.back(); return false; }" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                    </svg>
+                    <span class="hidden sm:inline">Main Hub</span>
+                </a>
+            </div>
+        </nav>
+    </header>
 
     <main class="relative z-10">
         
@@ -185,140 +147,155 @@
             </h1>
             <p id="hero-subtitle" class="mt-4 text-lg md:text-xl text-slate-300 max-w-5xl mx-auto">
                 The 24-Hour Hackathon is a state-level competition designed to bring together bright minds from across educational institutions to collaborate, innovate, and solve real-world challenges. Participants will work intensively in teams, turning their ideas into practical solutions under time constraints. With mentorship, milestone reviews, and final evaluations by expert judges, the hackathon provides a platform for students to showcase their technical skills, creativity, teamwork, and entrepreneurial thinking. Attractive prizes await the most impactful and scalable solutions, making this event a unique opportunity to learn, network, and compete.
+            </p>
         </section>
-        <div id="hero-highlights" class="mt-12 md:mt-16 max-w-4xl mx-auto w-full px-4">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
 
-        <div class="bg-slate-900/40 border border-purple-500/30 rounded-2xl p-6 backdrop-blur-sm hover:border-purple-500/60 transition-colors duration-300">
-            <h3 class="font-mono text-purple-400 text-lg uppercase tracking-widest">[ Prize Pool ]</h3>
-            <p class="text-4xl md:text-5xl font-bold text-white my-2" style="text-shadow: 0 0 15px var(--glow-purple);">
-                ₹25,000
-            </p>
-            <p class="text-slate-400 text-sm">
-                Plus exclusive internship opportunities for winners.
-            </p>
-        </div>
+        <div class="container mx-auto px-4 space-y-16 md:space-y-24 pb-20">
+        
+             <div class="section-wrapper">
+                 <h2 class="font-mono text-3xl md:text-4xl text-center mb-10 text-blue-400">[ OPEN INNOVATION DOMAINS ]</h2>
+                 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 text-center">
+                    <!-- Card 1: Web/App Development -->
+                    <div class="bg-slate-900/40 border border-blue-500/30 rounded-2xl p-6 backdrop-blur-sm hover:border-blue-500/60 transition-colors duration-300 flex flex-col items-center justify-start h-full">
+                        <div class="h-16 w-16 mb-4 text-blue-400" style="filter: drop-shadow(0 0 8px var(--glow-blue));">
+                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-full h-full">
+                             <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" />
+                           </svg>
+                        </div>
+                        <h3 class="font-mono text-blue-400 text-lg uppercase tracking-widest">Web/App Dev</h3>
+                        <p class="text-slate-400 mt-2 text-sm flex-grow">Crafting modern web and mobile experiences.</p>
+                    </div>
 
-        <div class="bg-slate-900/40 border border-blue-500/30 rounded-2xl p-6 backdrop-blur-sm hover:border-blue-500/60 transition-colors duration-300">
-            <h3 class="font-mono text-blue-400 text-lg uppercase tracking-widest">[ Entry Fee ]</h3>
-            <p class="text-4xl md:text-5xl font-bold text-white my-2" style="text-shadow: 0 0 15px var(--glow-blue);">
-                ₹500
-            </p>
-            <p class="text-slate-400 text-sm">
-                Per team
-            </p>
-        </div>
+                    <!-- Card 2: IoT/Blockchain -->
+                    <div class="bg-slate-900/40 border border-purple-500/30 rounded-2xl p-6 backdrop-blur-sm hover:border-purple-500/60 transition-colors duration-300 flex flex-col items-center justify-start h-full">
+                         <div class="h-16 w-16 mb-4 text-purple-400" style="filter: drop-shadow(0 0 8px var(--glow-purple));">
+                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-full h-full">
+                             <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
+                           </svg>
+                        </div>
+                        <h3 class="font-mono text-purple-400 text-lg uppercase tracking-widest">IoT/Blockchain</h3>
+                        <p class="text-slate-400 mt-2 text-sm flex-grow">Connecting devices and decentralizing data.</p>
+                    </div>
 
-    </div>
-</div>
+                    <!-- Card 3: Cyber Security -->
+                    <div class="bg-slate-900/40 border border-red-500/30 rounded-2xl p-6 backdrop-blur-sm hover:border-red-500/60 transition-colors duration-300 flex flex-col items-center justify-start h-full">
+                         <div class="h-16 w-16 mb-4 text-red-400" style="filter: drop-shadow(0 0 8px var(--glow-red));">
+                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-full h-full">
+                             <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                           </svg>
+                        </div>
+                        <h3 class="font-mono text-red-400 text-lg uppercase tracking-widest">Cyber Security</h3>
+                        <p class="text-slate-400 mt-2 text-sm flex-grow">Protecting digital assets and infrastructure.</p>
+                    </div>
 
-        <div class="space-y-24 md:space-y-32 pb-20">
+                    <!-- Card 4: Artificial Intelligence & Machine Learning -->
+                    <div class="bg-slate-900/40 border border-green-500/30 rounded-2xl p-6 backdrop-blur-sm hover:border-green-500/60 transition-colors duration-300 flex flex-col items-center justify-start h-full">
+                         <div class="h-16 w-16 mb-4 text-green-400" style="filter: drop-shadow(0 0 8px var(--glow-green));">
+                           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-full h-full">
+                               <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 3v1.5M4.5 8.25H3m18 0h-1.5M4.5 12H3m18 0h-1.5m-15 3.75H3m18 0h-1.5M8.25 21v-1.5M12 5.25v-1.5m0 15v1.5m3.75-18v1.5m0 15v-1.5m-7.5 0v1.5m0-15V5.25" />
+                               <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a6 6 0 100-12 6 6 0 000 12z" />
+                           </svg>
+                        </div>
+                        <h3 class="font-mono text-green-400 text-lg uppercase tracking-widest">AI & ML</h3>
+                        <p class="text-slate-400 mt-2 text-sm flex-grow">Building intelligent systems that learn and adapt.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="section-wrapper max-w-4xl mx-auto w-full">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-center">
+                    <div class="bg-slate-900/40 border border-purple-500/30 rounded-2xl p-6 backdrop-blur-sm hover:border-purple-500/60 transition-colors duration-300">
+                        <h3 class="font-mono text-purple-400 text-lg uppercase tracking-widest">[ Prize Pool ]</h3>
+                        <p class="text-4xl md:text-5xl font-bold text-white my-2" style="text-shadow: 0 0 15px var(--glow-purple);">₹25,000</p>
+                        <p class="text-slate-400 text-sm">Plus exclusive internship opportunities for winners.</p>
+                    </div>
 
-            <div class="section-wrapper container mx-auto px-4">
+                    <div class="bg-slate-900/40 border border-blue-500/30 rounded-2xl p-6 backdrop-blur-sm hover:border-blue-500/60 transition-colors duration-300">
+                        <h3 class="font-mono text-blue-400 text-lg uppercase tracking-widest">[ Entry Fee ]</h3>
+                        <p class="text-4xl md:text-5xl font-bold text-white my-2" style="text-shadow: 0 0 15px var(--glow-blue);">₹500</p>
+                        <p class="text-slate-400 text-sm">Per team (only for teams selected to the final round)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-wrapper">
                 <div class="glass-pane p-8 md:p-12 text-center">
                     <h2 class="font-mono text-2xl md:text-4xl text-blue-400">[ MISSION CLOCK ]</h2>
-                    <div id="hackathon-timer" class="mt-4 font-mono text-5xl sm:text-7xl md:text-8xl font-bold text-white tracking-tight md:tracking-widest" style="text-shadow: 0 0 20px var(--glow-blue);">
-                        24:00:00
-                    </div>
-                    <p class="font-mono text-blue-400/70 text-sm mt-2">Hours : Minutes : Seconds</p>
+                    <div id="hackathon-timer" class="mt-4 font-mono text-5xl sm:text-7xl md:text-8xl font-bold text-white tracking-tight md:tracking-widest" style="text-shadow: 0 0 20px var(--glow-blue);">24:00:00</div>
+                    <p class="font-mono text-blue-400/70 text-sm mt-2">Nov 11th, 1:00 PM to Nov 12th, 1:00 PM 2025</p>
+                    <p class="font-mono text-blue-400/70 text-sm mt-1">Hours : Minutes : Seconds</p>
                 </div>
             </div>
 
-            <div class="section-wrapper container mx-auto px-4">
-                <div class="glass-pane p-8 md:p-12">
-                    <h2 class="font-mono text-3xl md:text-4xl text-center mb-10 text-blue-400">[ PROBLEM STREAMS ]</h2>
-                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <div class="text-center border border-purple-500/20 rounded-xl p-6 transition duration-300 hover:bg-purple-500/10 hover:border-purple-500/50">
-                            <h3 class="text-xl font-bold text-purple-400">FinTech & Blockchain</h3>
-                            <p class="mt-2 text-slate-400">Decentralized Finance, Secure Transactions, and Financial Inclusion for all.</p>
-                        </div>
-                        <div class="text-center border border-purple-500/20 rounded-xl p-6 transition duration-300 hover:bg-purple-500/10 hover:border-purple-500/50">
-                            <h3 class="text-xl font-bold text-purple-400">HealthTech & Bio-AI</h3>
-                            <p class="mt-2 text-slate-400">Predictive Diagnostics, Personalized Wellness, and AI-driven Healthcare.</p>
-                        </div>
-                        <div class="text-center border border-purple-500/20 rounded-xl p-6 transition duration-300 hover:bg-purple-500/10 hover:border-purple-500/50">
-                            <h3 class="text-xl font-bold text-purple-400">Sustainable Tech</h3>
-                            <p class="mt-2 text-slate-400">Smart Grids, Environmental Monitoring, and Greentech Innovations.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section-wrapper container mx-auto px-4">
+            <div class="section-wrapper">
                 <div class="glass-pane p-8 md:p-12">
                     <h2 class="font-mono text-3xl md:text-4xl text-center mb-10 text-blue-400">[ PROTOCOLS & DIRECTIVES ]</h2>
-                    <div class="grid md:grid-cols-2 gap-x-8 gap-y-12 text-lg">
-                        <ul class="space-y-4">
-                            <li class="flex items-start gap-3"><span class="text-blue-400 font-bold mt-1">&#x25B8;</span><div><strong class="text-white">Fresh Code:</strong> All code must be written during the event.</div></li>
-                            <li class="flex items-start gap-3"><span class="text-blue-400 font-bold mt-1">&#x25B8;</span><div><strong class="text-white">Team Synergy:</strong> Teams of 2-3 members. •	All team members must be from the same college.</div></li>
-                            <li class="flex items-start gap-3"><span class="text-blue-400 font-bold mt-1">&#x25B8;</span><div><strong class="text-white">Open Source:</strong> Use of public APIs and open-source libraries is encouraged.</div></li>
-                        </ul>
-                        <ul class="space-y-4">
-                            <li class="flex items-start gap-3"><span class="text-blue-400 font-bold  ajshd mt-1">&#x25B8;</span><div><strong class="text-white">Judging Criteria:</strong> Innovation, Impact, Technical Execution, and Presentation.</div></li>
-                            <li class="flex items-start gap-3"><span class="text-blue-400 font-bold mt-1">&#x25B8;</span><div><strong class="text-white">Final Demo:</strong> A working prototype and a final presentation are mandatory.</div></li>
-                            <li class="flex items-start gap-3"><span class="text-blue-400 font-bold mt-1">&#x25B8;</span><div><strong class="text-white">IP Rights:</strong> You own the intellectual property of what you create.</div></li>
-                        </ul>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
+                        <div class="space-y-4">
+                            <h3 class="text-xl font-bold text-purple-400 border-b border-purple-500/30 pb-2">Team & Registration</h3>
+                            <ul class="space-y-3 text-slate-300">
+                                <li class="flex items-start gap-3"><span class="text-purple-400 font-bold mt-1">&#x25B8;</span>Teams of 2-3 members.</li>
+                                <li class="flex items-start gap-3"><span class="text-purple-400 font-bold mt-1">&#x25B8;</span>All members must be from the same college.</li>
+                                <li class="flex items-start gap-3"><span class="text-purple-400 font-bold mt-1">&#x25B8;</span>Register online via the official website.</li>
+                            </ul>
+                        </div>
+                         <div class="space-y-4">
+                            <h3 class="text-xl font-bold text-purple-400 border-b border-purple-500/30 pb-2">Submission & Selection</h3>
+                            <ul class="space-y-3 text-slate-300">
+                                <li class="flex items-start gap-3"><span class="text-purple-400 font-bold mt-1">&#x25B8;</span>Submit project idea via a 4-slide PPTX.</li>
+                                <li class="flex items-start gap-3"><span class="text-purple-400 font-bold mt-1">&#x25B8;</span>Top 20 teams will be selected for the final round.</li>
+                                <li class="flex items-start gap-3"><span class="text-purple-400 font-bold mt-1">&#x25B8;</span>Results will be notified via email.</li>
+                            </ul>
+                        </div>
+                         <div class="space-y-4">
+                            <h3 class="text-xl font-bold text-purple-400 border-b border-purple-500/30 pb-2">Event Day</h3>
+                            <ul class="space-y-3 text-slate-300">
+                               <li class="flex items-start gap-3"><span class="text-purple-400 font-bold mt-1">&#x25B8;</span>A new, on-the-spot problem statement will be provided.</li>
+                                <li class="flex items-start gap-3"><span class="text-purple-400 font-bold mt-1">&#x25B8;</span>Milestone reviews at 6:30 PM and 10:00 PM.</li>
+                                <li class="flex items-start gap-3"><span class="text-purple-400 font-bold mt-1">&#x25B8;</span>Final presentations start at 11:30 AM on Day 2.</li>
+                            </ul>
+                        </div>
+                        <div class="space-y-4 lg:col-span-3">
+                            <h3 class="text-xl font-bold text-purple-400 border-b border-purple-500/30 pb-2">Judging Criteria</h3>
+                            <div class="grid grid-cols-2 md:grid-cols-3 gap-x-6 gap-y-2 text-slate-300">
+                                <p>• Novelty & Innovation</p>
+                                <p>• Feasibility & Practicality</p>
+                                <p>• Scalability & Market Potential</p>
+                                <p>• Complexity & Clarity</p>
+                                <p>• User Experience</p>
+                                <p>• Future Scope</p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="section-wrapper container mx-auto px-4">
-  <div class="glass-pane p-8 md:p-12 text-center">
-    <h2 class="font-mono text-3xl md:text-4xl text-center mb-10 text-blue-400">
-      [ MISSION CONTROL ]
-    </h2>
-
-    <!-- Two Column Layout -->
-    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
-      
-      <!-- Faculty Coordinators -->
-      <div>
-        <h3 class="text-2xl font-bold text-blue-300 mb-6 text-center">Faculty Coordinators</h3>
-        <div class="space-y-6">
-          <div class="border border-blue-500/20 rounded-xl p-6">
-            <h4 class="text-xl font-bold text-white">Prof. Abdul Majeed K M</h4>
-            <p class="text-blue-400 mt-1 font-mono">ph: 91645 85263</p>
-          </div>
-          <div class="border border-blue-500/20 rounded-xl p-6">
-            <h4 class="text-xl font-bold text-white">Prof. Abinas V</h4>
-            <p class="text-blue-400 mt-1 font-mono">ph: 99957 85315</p>
-          </div>
-          <div class="border border-blue-500/20 rounded-xl p-6">
-            <h4 class="text-xl font-bold text-white">Prof. Deeksha K R</h4>
-            <p class="text-blue-400 mt-1 font-mono">ph: 82174 54877</p>
-          </div>
-          <div class="border border-blue-500/20 rounded-xl p-6">
-            <h4 class="text-xl font-bold text-white">Prof. Savita S K</h4>
-            <p class="text-blue-400 mt-1 font-mono">ph: 77954 20955</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Student Coordinators -->
-      <div>
-        <h3 class="text-2xl font-bold text-blue-300 mb-6 text-center">Student Coordinators</h3>
-        <div class="space-y-6">
-          <div class="border border-blue-500/20 rounded-xl p-6">
-            <h4 class="text-xl font-bold text-white">Mohammed Salif Mulla</h4>
-            <p class="text-blue-400 mt-1 font-mono">ph: 7899228839</p>
-          </div>
-          <div class="border border-blue-500/20 rounded-xl p-6">
-            <h4 class="text-xl font-bold text-white">Deekshith Gowda C R</h4>
-            <p class="text-blue-400 mt-1 font-mono">ph: 9380052642</p>
-          </div>
-          <div class="border border-blue-500/20 rounded-xl p-6">
-            <h4 class="text-xl font-bold text-white">Noora</h4>
-            <p class="text-blue-400 mt-1 font-mono">ph: 8714779339</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-
+            <div class="section-wrapper">
+                <div class="glass-pane p-8 md:p-12">
+                    <h2 class="font-mono text-3xl md:text-4xl text-center mb-10 text-blue-400">[ MISSION CONTROL ]</h2>
+                    <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
+                        <div>
+                            <h3 class="text-2xl font-bold text-blue-300 mb-6 text-center">Faculty Coordinators</h3>
+                            <div class="space-y-6">
+                                <div class="border border-blue-500/20 rounded-xl p-6"><h4 class="text-xl font-bold text-white">Prof. Abdul Majeed K M</h4><p class="text-blue-400 mt-1 font-mono">ph: +91 91645 85263</p></div>
+                                <div class="border border-blue-500/20 rounded-xl p-6"><h4 class="text-xl font-bold text-white">Prof. Abinas V</h4><p class="text-blue-400 mt-1 font-mono">ph: +91 99957 85315</p></div>
+                                <div class="border border-blue-500/20 rounded-xl p-6"><h4 class="text-xl font-bold text-white">Prof. Deeksha K R</h4><p class="text-blue-400 mt-1 font-mono">ph: +91 82174 54877</p></div>
+                                <div class="border border-blue-500/20 rounded-xl p-6"><h4 class="text-xl font-bold text-white">Prof. Savita S K</h4><p class="text-blue-400 mt-1 font-mono">ph: +91 77954 20955</p></div>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-blue-300 mb-6 text-center">Student Coordinators</h3>
+                            <div class="space-y-6">
+                                <div class="border border-blue-500/20 rounded-xl p-6"><h4 class="text-xl font-bold text-white">Mohammed Salif Mulla</h4><p class="text-blue-400 mt-1 font-mono">ph: 7899228839</p></div>
+                                <div class="border border-blue-500/20 rounded-xl p-6"><h4 class="text-xl font-bold text-white">Deekshith Gowda C R</h4><p class="text-blue-400 mt-1 font-mono">ph: 9380052642</p></div>
+                                <div class="border border-blue-500/20 rounded-xl p-6"><h4 class="text-xl font-bold text-white">Noora</h4><p class="text-blue-400 mt-1 font-mono">ph: 8714779339</p></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             
-            <div class="section-wrapper container mx-auto px-4">
+            <div class="section-wrapper">
                 <div class="glass-pane p-8 md:p-12 text-center glow-border">
                     <h2 class="text-2xl sm:text-3xl font-bold text-white">The Future is Unwritten. Write it.</h2>
                     <div class="mt-8">
@@ -328,7 +305,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </main>
     
@@ -340,7 +316,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-        
             gsap.registerPlugin(ScrollTrigger);
 
             // --- Interactive Particle Background ---
@@ -480,3 +455,4 @@
 
 </body>
 </html>
+
