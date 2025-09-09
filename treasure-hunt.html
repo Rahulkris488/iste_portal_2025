@@ -105,7 +105,7 @@
             transform: rotate(180deg);
         }
         .accordion-icon {
-             transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s ease-in-out;
         }
 
         .btn-register {
@@ -197,21 +197,21 @@
                         </div>
                     </div>
                 </div>
-              
+            
             </section>
              <section class="max-w-5xl mx-auto">
                  <h2 class="text-4xl font-bold text-center mb-8 text-yellow-200">The Spoils of the Hunt</h2>
                  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-                    <div class="stone-tablet">
+                     <div class="stone-tablet">
                          <h3 class="text-2xl font-bold text-yellow-300">Prize Pool</h3>
                          <p class="text-4xl font-bold text-white my-2">₹5,000</p>
-                         <p class="text-yellow-400/80">First Prize: ₹3,000 | [cite_start]Second Prize: ₹2,000 [cite: 22]</p>
-                    </div>
-                    <div class="stone-tablet">
+                         <p class="text-yellow-400/80">First Prize: ₹3,000 | Second Prize: ₹2,000</p>
+                     </div>
+                     <div class="stone-tablet">
                          <h3 class="text-2xl font-bold text-yellow-300">Entry Fee</h3>
                          <p class="text-4xl font-bold text-white my-2">₹200</p>
-                         [cite_start]<p class="text-yellow-400/80">Per team of 4 members [cite: 13, 22]</p>
-                    </div>
+                         <p class="text-yellow-400/80">Per team of 4 members</p>
+                     </div>
                  </div>
             </section>
 
@@ -238,14 +238,14 @@
             <section class="max-w-4xl mx-auto">
                 <div class="scroll-pane">
                     <h2 class="text-4xl font-bold text-center mb-6 gold-text">The Legend of the Hunt</h2>
-                    <p class="text-lg text-center leading-relaxed">This exciting team-based event is designed to test your knowledge, teamwork, and problem-solving skills. Navigate through multiple rounds of challenges, starting with a quiz-based elimination and moving on to adventurous tasks that require sharp observation, logical thinking, and collaboration. Clues will lead the way, and only the smartest and quickest guild will emerge as winners.</p>
+                    <p class="text-lg text-center leading-relaxed">The Treasure Hunt is an exciting team-based event designed to test participants’ knowledge, teamwork, problem-solving, and presence of mind. Teams will navigate through multiple rounds of challenges, starting with a quiz-based elimination and moving on to adventurous tasks that require sharp observation, logical thinking, and collaboration. Clues will lead the way, and only the smartest and quickest team will emerge as winners.</p>
                 </div>
             </section>
 
             <section class="max-w-4xl mx-auto">
                  <h2 class="text-4xl font-bold text-center mb-8 text-yellow-200">The Ancient Laws</h2>
                 <div id="accordion-container" class="space-y-4">
-                    </div>
+                </div>
             </section>
             
             <section class="max-w-4xl mx-auto">
@@ -373,27 +373,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // --- Real-Time Countdown Timer ---
-    const countdownDisplay = document.getElementById('countdown-timer');
-    const countdownContainer = document.getElementById('countdown-container');
-    const eventStartDate = new Date('November 12, 2025 13:30:00').getTime(); [cite_start]// [cite: 6, 7]
-
-    const countdownInterval = setInterval(() => {
-        const now = new Date().getTime();
-        const distance = eventStartDate - now;
-
-        if (distance > 0) {
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % 1000) / 1000);
-            countdownDisplay.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-        } else {
-            countdownContainer.innerHTML = `<h3 class="font-bold text-4xl gold-text">The Hunt is On!</h3>`;
-            clearInterval(countdownInterval);
-        }
-    }, 1000);
-
     // --- Accordion with data from source file ---
     const accordionContainer = document.getElementById('accordion-container');
     const fullAccordionData = [
@@ -401,27 +380,27 @@ document.addEventListener('DOMContentLoaded', function() {
             title: "Guild Composition", 
             content: `
                 <ul class="list-disc list-inside space-y-3">
-                    [cite_start]<li>Each guild must be formed with exactly <strong>4 members</strong>. [cite: 13, 16]</li>
-                    [cite_start]<li>Guilds must register in advance with all members officially listed. [cite: 14]</li>
+                    <li>Each guild must be formed with exactly <strong>4 members</strong>.</li>
+                    <li>Guilds must register in advance with all members officially listed.</li>
                 </ul>`
         },
         {
             title: "The First Trial: The Quiz",
             content: `
                 <ul class="list-disc list-inside space-y-3">
-                    [cite_start]<li>The first trial is a <strong>multiple-choice quiz</strong> featuring 10 questions. [cite: 17]</li>
-                    [cite_start]<li>Adventurers will have a time limit of <strong>10 minutes</strong> to complete it. [cite: 17]</li>
-                    [cite_start]<li>The use of <strong>mobile phones or any electronic scrying tools</strong> is strictly forbidden during this trial. [cite: 18]</li>
+                    <li>The first trial is a <strong>multiple-choice quiz</strong> featuring 10 questions.</li>
+                    <li>Adventurers will have a time limit of <strong>10 minutes</strong> to complete it.</li>
+                    <li>The use of <strong>mobile phones or any electronic scrying tools</strong> is strictly forbidden during this trial.</li>
                 </ul>`
         },
         {
             title: "Laws of the Land",
             content: `
                 <ul class="list-disc list-inside space-y-3">
-                    [cite_start]<li>All participants must adhere to the instructions given by the event coordinators. [cite: 19]</li>
-                    [cite_start]<li>Any violation of these laws will result in the <strong>immediate disqualification</strong> of the entire guild. [cite: 20]</li>
-                    [cite_start]<li>Details of further trials will only be revealed to the guilds that qualify from the first round. [cite: 22]</li>
-                    [cite_start]<li>The judgment of the organizers is <strong>final and cannot be contested</strong>. [cite: 21]</li>
+                    <li>All participants must adhere to the instructions given by the event coordinators.</li>
+                    <li>Any violation of these laws will result in the <strong>immediate disqualification</strong> of the entire guild.</li>
+                    <li>Details of further trials will only be revealed to the guilds that qualify from the first round.</li>
+                    <li>The judgment of the organizers is <strong>final and cannot be contested</strong>.</li>
                 </ul>`
         }
     ];
@@ -453,3 +432,4 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 </body>
 </html>
+
