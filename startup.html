@@ -51,8 +51,8 @@
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(0, 191, 255, 0.4);
         }
-
-        .background-gradient {
+        
+        #animated-bg {
             position: fixed;
             top: 0;
             left: 0;
@@ -62,23 +62,20 @@
             background: linear-gradient(135deg, var(--gradient-start) 0%, var(--gradient-end) 100%);
         }
         
-        /* -- REMOVED position:sticky. GSAP will handle the pinning. -- */
         .split-screen-graphic {
-            height: 40vh;
-            /* The element is positioned by GSAP Pinning now */
+            height: 50vh; 
         }
         
-        /* -- NEW STYLES for the interactive pitch section -- */
         .pitch-step {
             transition: opacity 0.4s ease;
-            opacity: 0.4; /* Dim inactive steps */
+            opacity: 0.4; 
         }
         .pitch-step.active-step {
             opacity: 1;
         }
         .pitch-step.active-step h3 {
             color: var(--accent-blue);
-            text-shadow: 0 0 8px var(--accent-blue); /* Add a glow to active heading */
+            text-shadow: 0 0 8px var(--accent-blue);
         }
         
         .progress-line {
@@ -87,7 +84,7 @@
             top: 1rem;
             bottom: 1rem;
             width: 2px;
-            background-color: rgba(0, 191, 255, 0.15); /* Faint track for the line */
+            background-color: rgba(0, 191, 255, 0.15); 
         }
         .progress-line-fill {
             position: absolute;
@@ -96,27 +93,39 @@
             width: 100%;
             background-color: var(--accent-blue);
             box-shadow: 0 0 8px var(--accent-blue);
-            height: 0%; /* This will be animated by GSAP */
+            height: 0%; 
+        }
+        
+        /* New sexy SVG animation styles */
+        .svg-draw path, .svg-draw circle, .svg-draw rect, .svg-draw line {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: draw 2s ease-in-out forwards;
+        }
+        
+        @keyframes draw {
+            to {
+                stroke-dashoffset: 0;
+            }
         }
     </style>
 </head>
 <body class="antialiased">
 
-    <div class="background-gradient"></div>
+    <div id="animated-bg"></div>
 
     <header class="sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4">
              <div class="flex justify-between items-center glass-pane px-6 py-3">
                  <h1 class="text-xl font-bold text-center text-text-heading">The Launchpad</h1>
                  <a href="index.html" 
-   onclick="if (history.length > 1) { history.back(); return false; }" 
-   class="text-text-light hover:text-white transition-colors flex items-center gap-2 text-md">
-    <span>Main Hub</span>
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-    </svg>
-</a>
-
+                   onclick="if (history.length > 1) { history.back(); return false; }" 
+                   class="text-text-light hover:text-white transition-colors flex items-center gap-2 text-md">
+                    <span>Main Hub</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                    </svg>
+                </a>
              </div>
         </nav>
     </header>
@@ -129,8 +138,8 @@
                     <span class="hero-line block">Innovate. Pitch.</span>
                     <span class="hero-line block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">Succeed.</span>
                 </h1>
-                <p id="hero-subtitle" class="mt-6 text-lg md:text-xl text-text-light max-w-2xl mx-auto">
-                    Your platform to transform groundbreaking ideas into viable businesses. Present your vision and captivate the future.
+                <p id="hero-subtitle" class="mt-6 text-lg md:text-xl text-text-light max-w-3xl mx-auto">
+                    The Start-up Pitch competition provides a platform for aspiring student innovators to transform their entrepreneurial ideas into reality. It challenges participants to present a compelling business pitch that showcases creativity, innovation, feasibility, and market potential.
                 </p>
             </div>
         </section>
@@ -138,66 +147,54 @@
         <div class="container mx-auto px-4 sm:px-6 py-12 md:py-20 space-y-24 md:space-y-32">
 
              <section class="max-w-4xl mx-auto text-center">
-                 <h2 class="section-title text-4xl font-bold mb-4 text-text-heading">The Mission</h2>
-                 <p class="section-content text-lg text-text-light">
-                    The Start-up Pitch competition is a dynamic platform for student innovators to present a compelling business pitch that showcases creativity, feasibility, and market potential, simulating a real-world investor meeting.
-                 </p>
-             </section>
-             <section class="max-w-4xl mx-auto text-center">
-    <h2 class="section-title text-4xl font-bold mb-12 text-text-heading">Investment & Rewards</h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-        
-        <div class="glass-pane p-8">
-            <h3 class="text-2xl font-bold mb-4 text-cyan-400">Prize Pool</h3>
-            <p class="text-5xl font-extrabold text-white my-2 neon-accent">₹12,000</p>
-            <p class="text-text-light">First: ₹9,000 | Second: ₹3,000</p>
-        </div>
-
-        <div class="glass-pane p-8">
-            <h3 class="text-2xl font-bold mb-4 text-cyan-400">Entry Fee</h3>
-            <p class="text-5xl font-extrabold text-white my-2 neon-accent">₹300</p>
-            <p class="text-text-light">Per team (2-4 members) or individual.</p>
-        </div>
-
-    </div>
-</section>
+                 <h2 class="section-title text-4xl font-bold mb-12 text-text-heading">Investment & Rewards</h2>
+                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                     <div class="glass-pane p-8">
+                         <h3 class="text-2xl font-bold mb-4 text-cyan-400">Prize Pool</h3>
+                         <p class="text-5xl font-extrabold text-white my-2 neon-accent">₹12,000</p>
+                         <p class="text-text-light">First: ₹9,000 | Second: ₹3,000</p>
+                     </div>
+                     <div class="glass-pane p-8">
+                         <h3 class="text-2xl font-bold mb-4 text-cyan-400">Entry Fee</h3>
+                         <p class="text-5xl font-extrabold text-white my-2 neon-accent">₹300</p>
+                         <p class="text-text-light">Per team (2-4 members) or individual.</p>
+                     </div>
+                 </div>
+            </section>
             
              <section id="pitch-structure" class="max-w-6xl mx-auto">
                  <h2 class="section-title text-4xl font-bold text-center mb-16 text-text-heading">Anatomy of a Winning Pitch</h2>
                  <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-                     <div class="md:h-full [@media(max-width:640px)]:hidden"> <div class="split-screen-graphic flex items-center justify-center p-8">
-                             </div>
-                     </div>
-                     <div class="relative">
-                         <div class="progress-line">
-                            <div class="progress-line-fill"></div>
-                         </div>
-                         <div class="space-y-32 pl-8 md:pl-12 pitch-steps-container">
-                             <div class="pitch-step" data-svg-id="problem">
-                                 <h3 class="text-2xl font-bold mb-2 text-text-heading">1. The Problem</h3>
-                                 <p class="text-text-light">Clearly define the problem your start-up is solving. What is the pain point for your target audience?</p>
-                             </div>
-                             <div class="pitch-step" data-svg-id="solution">
-                                 <h3 class="text-2xl font-bold mb-2 text-text-heading">2. The Solution</h3>
-                                 <p class="text-text-light">Describe your product or service. How does it uniquely solve the problem you've identified?</p>
-                             </div>
-                             <div class="pitch-step" data-svg-id="market">
-                                 <h3 class="text-2xl font-bold mb-2 text-text-heading">3. The Market</h3>
-                                 <p class="text-text-light">Detail your target customers, market size, and how your business model is sustainable and scalable.</p>
-                             </div>
-                              <div class="pitch-step" data-svg-id="business">
-                                 <h3 class="text-2xl font-bold mb-2 text-text-heading">4. The Business Plan</h3>
-                                 <p class="text-text-light">Outline your capital requirements, financial feasibility, and overall strategy for growth and sustainability.</p>
-                             </div>
-                         </div>
-                     </div>
+                      <div class="md:h-full [@media(max-width:768px)]:hidden"> 
+                          <div class="split-screen-graphic flex items-center justify-center p-8 sticky top-1/4">
+                           </div>
+                      </div>
+                       <div class="relative">
+                           <div class="progress-line">
+                               <div class="progress-line-fill"></div>
+                           </div>
+                           <div class="space-y-32 pl-8 md:pl-12 pitch-steps-container">
+                               <div class="pitch-step min-h-[30vh]" data-svg-id="problem">
+                                   <h3 class="text-2xl font-bold mb-2 text-text-heading">1. The Problem & Solution</h3>
+                                   <p class="text-text-light">Clearly define the problem your start-up is solving, mention existing solutions, and describe how your product or service uniquely solves the problem.</p>
+                               </div>
+                               <div class="pitch-step min-h-[30vh]" data-svg-id="market">
+                                   <h3 class="text-2xl font-bold mb-2 text-text-heading">2. The Market</h3>
+                                   <p class="text-text-light">Detail your target customers and evaluate the market size and potential.</p>
+                               </div>
+                                <div class="pitch-step min-h-[30vh]" data-svg-id="business">
+                                   <h3 class="text-2xl font-bold mb-2 text-text-heading">3. The Business Plan</h3>
+                                   <p class="text-text-light">Outline your estimated capital requirements, financial feasibility, and overall strategy for growth and sustainability.</p>
+                               </div>
+                           </div>
+                       </div>
                  </div>
              </section>
 
              <section class="max-w-5xl mx-auto">
                  <h2 class="section-title text-4xl font-bold text-center mb-12 text-text-heading">Rules of Engagement</h2>
                  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                     <div class="glass-pane p-8 rule-card">
+                       <div class="glass-pane p-8 rule-card">
                          <h3 class="text-2xl font-bold mb-4 text-cyan-400">Team & Presentation</h3>
                          <ul class="space-y-3 text-text-light list-disc list-inside">
                              <li>Individuals or teams of 2-4 members.</li>
@@ -205,8 +202,8 @@
                              <li>Max 12 slides & 4 oral presenters per team.</li>
                              <li>Strict 3-8 minute pitch time, plus a Q&A session.</li>
                          </ul>
-                     </div>
-                      <div class="glass-pane p-8 rule-card">
+                       </div>
+                        <div class="glass-pane p-8 rule-card">
                          <h3 class="text-2xl font-bold mb-4 text-cyan-400">Conduct & Originality</h3>
                          <ul class="space-y-3 text-text-light list-disc list-inside">
                              <li>All ideas and submissions must be original work.</li>
@@ -214,25 +211,25 @@
                              <li>Do not disclose personal or college names in presentation slides.</li>
                              <li>Decisions by the judges and organizers are final and binding.</li>
                          </ul>
-                     </div>
+                       </div>
                  </div>
              </section>
 
-              <section class="max-w-5xl mx-auto text-center">
+             <section class="max-w-5xl mx-auto text-center">
                  <h2 class="section-title text-4xl font-bold mb-12 text-text-heading">Judging Criteria</h2>
                  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                     <div class="glass-pane p-6 criterion">
-                         <h3 class="font-bold text-cyan-400 text-2xl mb-2">Innovation & Feasibility</h3>
+                       <div class="glass-pane p-6 criterion">
+                         <h3 class="font-bold text-cyan-400 text-xl mb-2">Innovation & Feasibility</h3>
                          <p class="text-sm">Originality of the solution and its practical potential.</p>
-                     </div>
-                      <div class="glass-pane p-6 criterion">
-                         <h3 class="font-bold text-cyan-400 text-2xl mb-2">Market & Business Plan</h3>
+                       </div>
+                        <div class="glass-pane p-6 criterion">
+                         <h3 class="font-bold text-cyan-400 text-xl mb-2">Market & Business Plan</h3>
                          <p class="text-sm">Understanding of the target market and a viable plan for growth.</p>
-                     </div>
-                     <div class="glass-pane p-6 criterion">
-                         <h3 class="font-bold text-cyan-400 text-2xl mb-2">Presentation & Team</h3>
+                       </div>
+                       <div class="glass-pane p-6 criterion">
+                         <h3 class="font-bold text-cyan-400 text-xl mb-2">Presentation & Team</h3>
                          <p class="text-sm">Clarity, creativity, and collaborative skills shown during the pitch.</p>
-                     </div>
+                       </div>
                  </div>
              </section>
             
@@ -263,15 +260,29 @@
     </footer>
     
     <div id="svg-assets" class="hidden">
-        <svg id="problem" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-full h-full text-cyan-400"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z" /></svg>
-        <svg id="solution" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-full h-full text-cyan-400"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75l3 3m0 0l3-3m-3 3v-7.5M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-        <svg id="market" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-full h-full text-cyan-400"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" /></svg>
-        <svg id="business" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="w-full h-full text-cyan-400"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" /></svg>
+        <svg id="problem" viewBox="0 0 100 100" class="w-full h-full text-cyan-400 svg-draw"><path d="M30,30 Q50,10 70,30 T110,30" stroke="currentColor" fill="none" stroke-width="2"></path><path d="M30,70 Q50,90 70,70 T110,70" stroke="currentColor" fill="none" stroke-width="2"></path><line x1="50" y1="30" x2="50" y2="70" stroke="currentColor" stroke-width="2"></line><path d="M45,50 L55,50" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path><path d="M50,45 L50,55" stroke="currentColor" stroke-width="2" stroke-linecap="round"></path><circle cx="50" cy="50" r="25" stroke="currentColor" fill="none" stroke-width="2"></circle></svg>
+        <svg id="market" viewBox="0 0 100 100" class="w-full h-full text-cyan-400 svg-draw"><path d="M20,80 C40,20 60,120 80,20" stroke="currentColor" fill="none" stroke-width="2"></path><circle cx="20" cy="80" r="3" fill="currentColor"></circle><circle cx="80" cy="20" r="3" fill="currentColor"></circle><line x1="10" y1="90" x2="90" y2="90" stroke="currentColor" stroke-width="2"></line><line x1="10" y1="90" x2="10" y2="10" stroke="currentColor" stroke-width="2"></line></svg>
+        <svg id="business" viewBox="0 0 100 100" class="w-full h-full text-cyan-400 svg-draw"><rect x="20" y="30" width="60" height="40" rx="5" stroke="currentColor" fill="none" stroke-width="2"></rect><path d="M30,50 L45,40 L60,60 L75,50" stroke="currentColor" fill="none" stroke-width="2"></path><circle cx="35" cy="60" r="3" fill="currentColor"></circle><circle cx="65" cy="40" r="3" fill="currentColor"></circle></svg>
     </div>
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         gsap.registerPlugin(ScrollTrigger);
+
+        // --- Animated background ---
+        const bg = document.getElementById('animated-bg');
+        window.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            const x = Math.round((clientX / window.innerWidth) * 100);
+            const y = Math.round((clientY / window.innerHeight) * 100);
+            gsap.to(bg, {
+                '--gradient-start': `hsl(${200 + y/5}, 70%, 10%)`,
+                '--gradient-end': `hsl(${240 + x/5}, 70%, 15%)`,
+                duration: 1,
+                ease: 'power3.out'
+            });
+        });
+
 
         // --- Hero Animations ---
         gsap.from(".hero-line", { duration: 1, y: 100, opacity: 0, stagger: 0.2, ease: "power4.out", delay: 0.5 });
@@ -282,21 +293,21 @@
             if (section.id === 'pitch-structure') return; 
             
             const title = section.querySelector('.section-title');
-            const content = section.querySelectorAll('.section-content, .rule-card, .criterion, p, h3:not(.section-title)');
+            const content = section.querySelectorAll('.section-content, .rule-card, .criterion, p:not(#hero-subtitle), h3:not(.section-title), .glass-pane');
             
             const tl = gsap.timeline({
                 scrollTrigger: {
                     trigger: section,
                     start: "top 85%",
-                    toggleActions: "play none none none"
+                    toggleActions: "play none none reverse"
                 }
             });
 
             if (title) {
-                tl.from(title, { y: 50, opacity: 0, duration: 1, ease: 'power3.out' });
+                tl.from(title, { y: 50, opacity: 0, duration: 0.8, ease: 'power3.out' });
             }
             if (content.length > 0) {
-                tl.from(content, { y: 30, opacity: 0, duration: 1, stagger: 0.1, ease: 'power3.out' }, "-=0.8");
+                tl.from(content, { y: 30, opacity: 0, duration: 0.8, stagger: 0.1, ease: 'power3.out' }, "-=0.6");
             }
         });
 
@@ -310,20 +321,12 @@
         // Set initial SVG and state
         graphicContainer.innerHTML = svgAssets.querySelector('#problem').outerHTML;
         gsap.set(graphicContainer, { opacity: 0, scale: 0.9, y: 20 });
-        gsap.set(pitchSteps[0], { className: "+=active-step" });
         
-        // ** NEW PINNING LOGIC **
-        // This pins the graphic and controls its visibility.
         ScrollTrigger.create({
             trigger: '#pitch-structure',
-            pin: '.split-screen-graphic',
-            pinSpacing: false, // The grid layout already handles spacing
-            start: 'top 25%',
-            end: 'bottom 75%', // Pin until the bottom of the section hits 75% of the screen height
-            onEnter: () => gsap.to(graphicContainer, { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: 'power3.out' }),
-            onLeave: () => gsap.to(graphicContainer, { opacity: 0, scale: 0.9, y: 20, duration: 0.4, ease: 'power3.in' }),
-            onEnterBack: () => gsap.to(graphicContainer, { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: 'power3.out' }),
-            onLeaveBack: () => gsap.to(graphicContainer, { opacity: 0, scale: 0.9, y: 20, duration: 0.4, ease: 'power3.in' }),
+            start: 'top 80%',
+            onEnter: () => gsap.to(graphicContainer, { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: 'power3.out' }),
+            onLeaveBack: () => gsap.to(graphicContainer, { opacity: 0, scale: 0.9, y: 20, duration: 0.5, ease: 'power3.in' }),
         });
         
         let lastActiveSVG = 'problem';
@@ -347,17 +350,19 @@
         }
         
         // Create a scroll trigger for each text step to highlight it and change SVG
-        pitchSteps.forEach(step => {
+        pitchSteps.forEach((step, index) => {
             ScrollTrigger.create({
                 trigger: step,
-                start: "top center",
-                end: "bottom center",
-                toggleClass: { targets: step, className: "active-step" },
-                onToggle: (self) => {
-                    if (self.isActive) {
-                        updateGraphic(step.dataset.svgId);
-                    }
+                start: "top center+=10%",
+                end: "bottom center+=10%",
+                onEnter: () => {
+                    gsap.to(pitchSteps, { className: (i) => i === index ? "+=active-step" : "-=active-step" });
+                    updateGraphic(step.dataset.svgId);
                 },
+                onEnterBack: () => {
+                     gsap.to(pitchSteps, { className: (i) => i === index ? "+=active-step" : "-=active-step" });
+                     updateGraphic(step.dataset.svgId);
+                }
             });
         });
         
@@ -369,7 +374,7 @@
                 scrollTrigger: {
                     trigger: stepsContainer,
                     start: "top center",
-                    end: "bottom bottom-=150",
+                    end: "bottom bottom",
                     scrub: true
                 }
             });
@@ -378,3 +383,4 @@
     </script>
 </body>
 </html>
+
