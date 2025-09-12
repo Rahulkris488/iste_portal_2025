@@ -53,7 +53,6 @@
             -webkit-backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.1);
             position: relative;
-            /* Padding is now handled by Tailwind classes in HTML for responsiveness */
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
         
@@ -85,12 +84,11 @@
               <div class="flex justify-between items-center bg-black/30 backdrop-blur-sm border-y border-gray-700 px-4 sm:px-6 py-3">
                   <h1 class="font-display text-xl sm:text-2xl text-center text-text-heading">THE ARENA</h1>
                   <a href="index.html" 
-   onclick="if (history.length > 1) { history.back(); return false; }" 
    class="text-text-light hover:text-white transition-colors flex items-center gap-2 text-sm sm:text-base">
-    <span>MAIN HUB</span>
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-    </svg>
+     <span>MAIN HUB</span>
+     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+         <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+     </svg>
 </a>
 
               </div>
@@ -124,31 +122,47 @@
             <section class="max-w-5xl mx-auto text-center">
                 <h2 class="font-display text-3xl sm:text-4xl font-bold mb-4 text-text-heading">The Premise</h2>
                 <p class="text-base sm:text-lg text-text-light">
-                    The Tech Debate is a platform for students to showcase critical thinking and communication skills on emerging tech topics. Participants will be evaluated on logical arguments, fluency, and prompt responses in a structured, competitive setting.
+                    The Tech Debate is a platform for students to showcase their critical thinking, communication skills, and awareness of trending technologies. Participants will engage in structured debates on emerging topics in the tech world, where they will be evaluated on their ability to argue logically, speak fluently, and respond promptly.
                 </p>
+            </section>
+
+            <section class="max-w-4xl mx-auto">
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-center mb-8 text-text-heading">Prizes & Registration</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 text-center">
+                    <div class="debate-pane p-6 md:p-8">
+                        <h3 class="font-display text-xl sm:text-2xl text-text-heading">Prize Pool</h3>
+                        <p class="text-2xl font-bold text-emerald-400 mt-2">₹10,000</p>
+                        <p>Worth of prizes to be won!</p>
+                    </div>
+                    <div class="debate-pane p-6 md:p-8">
+                        <h3 class="font-display text-xl sm:text-2xl text-text-heading">Entry Fee</h3>
+                        <p class="text-2xl font-bold text-emerald-400 mt-2">₹200</p>
+                        <p>Per team of two.</p>
+                    </div>
+                </div>
             </section>
             
             <section class="max-w-6xl mx-auto">
                 <h2 class="font-display text-3xl sm:text-4xl font-bold text-center mb-12 text-text-heading">Rules of Engagement</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-0 md:gap-16 relative">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 relative">
                       <div class="debate-pane p-6 md:p-8 pane-blue-glow mb-8 md:mb-0">
-                           <h3 class="font-display text-2xl sm:text-3xl text-blue-400 mb-4">Structure & Timing</h3>
-                           <ul class="space-y-3 text-base sm:text-lg">
-                               <li><strong>Selection:</strong> Six teams will be shortlisted for the final round after prelims.</li>
-                               <li><strong>Topic:</strong> The debate topic will be provided on the spot.</li>
-                                <li><strong>Total Time:</strong> Each team has a total of 7 minutes.</li>
-                               <li><strong>Speaker Time:</strong> Individual speakers must not exceed 2 minutes per argument.</li>
-                           </ul>
-                       </div>
-                       <div class="debate-pane p-6 md:p-8 pane-red-glow text-left">
-                           <h3 class="font-display text-2xl sm:text-3xl text-red-400 mb-4">Conduct & Integrity</h3>
-                            <ul class="space-y-3 text-base sm:text-lg">
-                               <li><strong>No Aids:</strong> Electronic gadgets or reading from paper are strictly prohibited.</li>
-                               <li><strong>Professionalism:</strong> Use of offensive language or gestures is not allowed.</li>
-                               <li><strong>Fair Play:</strong> Any malpractice will result in immediate disqualification.</li>
-                               <li><strong>Finality:</strong> The decision of the judges and organizers is final.</li>
-                           </ul>
-                       </div>
+                          <h3 class="font-display text-2xl sm:text-3xl text-blue-400 mb-4">Structure & Timing</h3>
+                          <ul class="space-y-3 text-base sm:text-lg list-disc list-inside">
+                              <li><strong>Selection:</strong> Six teams will be shortlisted for the final round after prelims.</li>
+                              <li><strong>Topic:</strong> The debate topic will be provided on the spot.</li>
+                              <li><strong>Total Time:</strong> Each team has a total of 7 minutes.</li>
+                              <li><strong>Speaker Time:</strong> Individual speakers must not exceed 2 minutes per argument.</li>
+                          </ul>
+                      </div>
+                      <div class="debate-pane p-6 md:p-8 pane-red-glow text-left">
+                          <h3 class="font-display text-2xl sm:text-3xl text-red-400 mb-4">Conduct & Integrity</h3>
+                           <ul class="space-y-3 text-base sm:text-lg list-disc list-inside">
+                              <li><strong>No Aids:</strong> Electronic gadgets or reading from paper are strictly prohibited.</li>
+                              <li><strong>Professionalism:</strong> Use of offensive language or gestures is not allowed.</li>
+                              <li><strong>Fair Play:</strong> Any malpractice will result in immediate disqualification.</li>
+                              <li><strong>Finality:</strong> The decision of the judges and organizers is final.</li>
+                          </ul>
+                      </div>
                 </div>
             </section>
             
@@ -177,14 +191,14 @@
              <section class="max-w-4xl mx-auto text-center">
                 <h2 class="font-display text-3xl sm:text-4xl font-bold text-center mb-8 text-text-heading">Event Adjudicators</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                       <div class="debate-pane p-6 md:p-8">
-                           <h3 class="font-display text-lg sm:text-xl text-blue-400">Prof. Raksha J V</h3>
-                           <p class="text-text-light">+91 6366 163 754</p>
-                       </div>
-                       <div class="debate-pane p-6 md:p-8">
-                           <h3 class="font-display text-lg sm:text-xl text-red-400">Prof. Harshitha U</h3>
-                           <p class="text-text-light">+91 96453 13249</p>
-                       </div>
+                      <div class="debate-pane p-6 md:p-8">
+                          <h3 class="font-display text-lg sm:text-xl text-blue-400">Prof. Raksha J V</h3>
+                          <p class="text-text-light">+91 6366 163 754</p>
+                      </div>
+                      <div class="debate-pane p-6 md:p-8">
+                          <h3 class="font-display text-lg sm:text-xl text-red-400">Prof. Harshitha U</h3>
+                          <p class="text-text-light">+91 96453 13249</p>
+                      </div>
                 </div>
             </section>
 
@@ -259,7 +273,6 @@
 
         function initParticles() {
             particles = [];
-            // Reduced particle count slightly for better performance on mobile
             const particleCount = (window.innerWidth / 20); 
             for(let i = 0; i < particleCount; i++) particles.push(new Particle('blue'));
             for(let i = 0; i < particleCount; i++) particles.push(new Particle('red'));
