@@ -61,12 +61,11 @@
              <div class="flex justify-between items-center bg-black/30 backdrop-blur-md border border-gray-800 px-6 py-3 rounded-full">
                 <h1 class="font-display text-xl tracking-wider text-center text-text-primary">PROJECT EXPO 2025</h1>
                 <a href="index.html" 
-   onclick="if (history.length > 1) { history.back(); return false; }" 
    class="text-text-secondary hover:text-white transition-colors flex items-center gap-2 text-sm">
-    <span>Main Hub</span>
-    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-    </svg>
+     <span>Main Hub</span>
+     <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+         <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+     </svg>
 </a>
 
             </div>
@@ -75,7 +74,7 @@
 
     <main class="relative z-10">
         
-        <section id="hero" class="min-h-[80vh]  ksdh flex flex-col items-center justify-center text-center p-4">
+        <section id="hero" class="min-h-[80vh] flex flex-col items-center justify-center text-center p-4">
             <div id="hero-svg-container" class="w-24 h-24 mb-8">
                 <svg id="hero-svg" class="w-full h-full" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
                     <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
@@ -94,10 +93,26 @@
 
         <div class="container mx-auto px-4 sm:px-6 py-12 md:py-20 space-y-20">
             
+             <section class="max-w-4xl mx-auto">
+                <h2 class="font-display text-3xl sm:text-4xl font-bold text-center mb-8 text-text-heading">// Prizes & Registration</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-8 text-center">
+                    <div class="card p-6 md:p-8">
+                        <h3 class="font-display text-xl sm:text-2xl text-text-heading">Prize Pool</h3>
+                        <p class="text-2xl font-bold text-gray-300 mt-2">₹15,000</p>
+                        <p class="text-text-secondary">Worth of prizes to be won!</p>
+                    </div>
+                    <div class="card p-6 md:p-8">
+                        <h3 class="font-display text-xl sm:text-2xl text-text-heading">Entry Fee</h3>
+                        <p class="text-2xl font-bold text-gray-300 mt-2">₹400</p>
+                        <p class="text-text-secondary">Per team.</p>
+                    </div>
+                </div>
+            </section>
+
             <section class="grid grid-cols-1 gap-8 max-w-4xl mx-auto">
                 <div class="card p-8">
                     <h2 class="font-display text-2xl text-text-primary mb-4">// EXHIBITION PROTOCOL</h2>
-                    <ul class="space-y-3 text-text-secondary">
+                    <ul class="space-y-3 text-text-secondary list-disc list-inside">
                         <li><strong>Teams:</strong> 2 to 4 members from any discipline.</li>
                         <li><strong>Setup:</strong> Dedicated stall with one power socket. Internet on request.</li>
                         <li><strong>Requirements:</strong> A working model and summary poster are mandatory.</li>
@@ -177,4 +192,3 @@
     </script>
 </body>
 </html>
-
