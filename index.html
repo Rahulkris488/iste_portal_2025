@@ -128,17 +128,39 @@
             50% { opacity: 0; }
         }
 
-        /* --- ADD THIS MEDIA QUERY --- */
         @media (max-width: 768px) {
             #custom-cursor {
                 display: none;
             }
             body {
-                cursor: auto; /* Restore the default cursor on mobile */
+                cursor: auto;
+            }
+            /* Adjust timeline for mobile */
+            #timeline .wrap {
+                padding-left: 0;
+                padding-right: 0;
+            }
+            #timeline .timeline-line {
+                left: 2rem;
+            }
+            #timeline .timeline-item {
+                justify-content: flex-start;
+                padding-left: 3.5rem; /* Space for the line and circle */
+                padding-right: 1rem;
+            }
+            #timeline .timeline-spacer {
+                display: none;
+            }
+            #timeline .timeline-circle {
+                position: absolute;
+                left: 2rem;
+                transform: translateX(-50%);
+            }
+            #timeline .timeline-card {
+                width: 100%;
             }
         }
-        /* --- END OF ADDED MEDIA QUERY --- */
-
+        
     </style>
 </head>
 <body class="antialiased">
@@ -146,10 +168,12 @@
     <div id="custom-cursor"></div>
 
     <header id="header" class="glass-nav sticky top-0 z-50">
-        <nav class="container mx-auto px-4 py-4 flex justify-between items-center">
+        <!-- Reduced vertical padding for mobile -->
+        <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex-shrink-0">
                 <a href="#hero" class="flex items-center space-x-2">
-                    <img src="https://www.yit.edu.in/assets/img/logo-yit.png" alt="Yenepoya Institute of Technology Logo" class="h-18 md:h-16">
+                    <!-- Adjusted logo size for mobile -->
+                    <img src="https://www.yit.edu.in/assets/img/logo-yit.png" alt="Yenepoya Institute of Technology Logo" class="h-12 md:h-16">
                 </a>
             </div>
             
@@ -163,11 +187,12 @@
 
             <div class="flex items-center space-x-4">
                 <a href="https://www.isteonline.in/" target="_blank" class="flex items-center space-x-2">
-                    <img src="https://images.seeklogo.com/logo-png/22/1/iste-logo-png_seeklogo-228148.png" alt="ISTE Logo" class="h-18 md:h-16">
+                    <!-- Swapped for transparent logo and adjusted size -->
+                    <img src="iste.jpg" alt="ISTE Logo" class="h-12 md:h-16">
                 </a>
                 <div class="md:hidden">
                     <button id="mobile-menu-button" class="text-white focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
                     </button>
                 </div>
             </div>
@@ -201,7 +226,7 @@
 </p>
 
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mt-12 max-w-6xl mx-auto w-full">
+             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mt-12 max-w-6xl mx-auto w-full">
                 <div class="glass-card p-8 rounded-2xl shadow-lg border border-white/10 hover:scale-105 hover:shadow-emerald-500/30 transition duration-300">
                     <div class="flex flex-col items-center text-center">
                         <div class="bg-gradient-to-r from-emerald-500 to-green-600 p-4 rounded-xl shadow-md mb-4">
@@ -251,41 +276,39 @@
 
 
             </div>
+
+          
         </section>
 
-        <div id="countdown-sticky" class="fixed bottom-4 z-50 left-1/2 -translate-x-1/2 w-full px-4 md:w-auto md:left-auto md:translate-x-0 md:right-4 md:px-0">
-    <div id="countdown" class="text-white font-mono flex flex-col items-center justify-center gap-3 p-4 rounded-lg glass-card max-w-md mx-auto md:max-w-none">
-        
-        <!-- Heading inside the timer box -->
-        <h2 class="text-xl md:text-xl text-white">
-            Registration Closes In
-        </h2>
-
-        <!-- Timer Digits -->
-        <div class="flex items-center justify-center gap-2 md:gap-4">
-            <div class="text-center w-16 sm:w-20">
-                <div id="days" class="font-bold text-2xl md:text-3xl">00</div>
-                <div class="text-xs font-normal text-slate-400">Days</div>
-            </div>
-            <div class="text-2xl md:text-3xl">:</div>
-            <div class="text-center w-16 sm:w-20">
-                <div id="hours" class="font-bold text-2xl md:text-3xl">00</div>
-                <div class="text-xs font-normal text-slate-400">Hours</div>
-            </div>
-            <div class="text-2xl md:text-3xl">:</div>
-            <div class="text-center w-16 sm:w-20">
-                <div id="minutes" class="font-bold text-2xl md:text-3xl">00</div>
-                <div class="text-xs font-normal text-slate-400">Minutes</div>
-            </div>
-            <div class="text-2xl md:text-3xl">:</div>
-            <div class="text-center w-16 sm:w-20">
-                <div id="seconds" class="font-bold text-2xl md:text-3xl">00</div>
-                <div class="text-xs font-normal text-slate-400">Seconds</div>
+        <!-- Corrected countdown timer positioning for mobile -->
+        <div id="countdown-sticky" class="fixed bottom-4 left-4 right-4 z-50 md:left-auto md:w-auto md:right-4">
+            <div id="countdown" class="text-white font-mono flex flex-col items-center justify-center gap-3 p-4 rounded-lg glass-card max-w-md mx-auto md:max-w-none">
+                <h2 class="text-xl md:text-xl text-white">
+                    Registration Closes In
+                </h2>
+                <div class="flex items-center justify-center gap-2 md:gap-4">
+                    <div class="text-center w-16 sm:w-20">
+                        <div id="days" class="font-bold text-2xl md:text-3xl">00</div>
+                        <div class="text-xs font-normal text-slate-400">Days</div>
+                    </div>
+                    <div class="text-2xl md:text-3xl">:</div>
+                    <div class="text-center w-16 sm:w-20">
+                        <div id="hours" class="font-bold text-2xl md:text-3xl">00</div>
+                        <div class="text-xs font-normal text-slate-400">Hours</div>
+                    </div>
+                    <div class="text-2xl md:text-3xl">:</div>
+                    <div class="text-center w-16 sm:w-20">
+                        <div id="minutes" class="font-bold text-2xl md:text-3xl">00</div>
+                        <div class="text-xs font-normal text-slate-400">Minutes</div>
+                    </div>
+                    <div class="text-2xl md:text-3xl">:</div>
+                    <div class="text-center w-16 sm:w-20">
+                        <div id="seconds" class="font-bold text-2xl md:text-3xl">00</div>
+                        <div class="text-xs font-normal text-slate-400">Seconds</div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-
 
         <div class="py-20 space-y-28">
             <section id="glance" class="max-w-6xl mx-auto px-6 scroll-mt-24">
@@ -425,45 +448,45 @@
             <section id="timeline" class="container mx-auto px-4 md:px-6 py-8 scroll-mt-24">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-24 relative">Event Timeline</h2>
                 <div class="relative wrap overflow-hidden p-2 md:p-10 h-full">
-                    <div class="absolute border-l-2 border-opacity-20 border-gray-700 h-full" style="left: 50%; transform: translateX(-50%);"></div>
-                    <div class="mb-8 flex justify-between items-center w-full">
-                        <div class="order-1 w-5/12 hidden md:block"></div>
-                        <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
+                    <div class="timeline-line absolute border-l-2 border-opacity-20 border-gray-700 h-full" style="left: 50%; transform: translateX(-50%);"></div>
+                    <div class="timeline-item mb-8 flex justify-between items-center w-full relative">
+                        <div class="timeline-spacer order-1 w-5/12"></div>
+                        <div class="timeline-circle z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
                             <h1 class="mx-auto font-semibold text-sm text-white">1</h1>
                         </div>
-                        <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
+                        <div class="timeline-card order-1 glass-card w-5/12 px-6 py-4">
                             <h3 class="font-bold text-white text-lg">Nov 11–12, 2025 | Multi-Day Competitions</h3>
                             <p class="text-sm leading-snug tracking-wide text-gray-400">
                                 Hackathon, Line Follower, and Maze Follower competitions take place across both days.
                             </p>
                         </div>
                     </div>
-                    <div class="mb-8 flex justify-between md:flex-row-reverse items-center w-full">
-                        <div class="order-1 w-5/12 hidden md:block"></div>
-                        <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
+                    <div class="timeline-item mb-8 flex justify-between flex-row-reverse items-center w-full relative">
+                        <div class="timeline-spacer order-1 w-5/12"></div>
+                        <div class="timeline-circle z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
                             <h1 class="mx-auto font-semibold text-sm text-white">2</h1>
                         </div>
-                        <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
+                        <div class="timeline-card order-1 glass-card w-5/12 px-6 py-4">
                             <h3 class="font-bold text-white text-lg">Nov 12, 2025 | 8:00 AM – 3:30 PM</h3>
                             <p class="text-sm leading-snug tracking-wide text-gray-400">Robo Soccer – an all-day robotic soccer competition.</p>
                         </div>
                     </div>
-                    <div class="mb-8 flex justify-between items-center w-full">
-                        <div class="order-1 w-5/12 hidden md:block"></div>
-                        <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
+                    <div class="timeline-item mb-8 flex justify-between items-center w-full relative">
+                        <div class="timeline-spacer order-1 w-5/12"></div>
+                        <div class="timeline-circle z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
                             <h1 class="mx-auto font-semibold text-sm text-white">3</h1>
                         </div>
-                        <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
+                        <div class="timeline-card order-1 glass-card w-5/12 px-6 py-4">
                             <h3 class="font-bold text-white text-lg">Nov 12, 2025 | 10:00 AM – 12:00 PM</h3>
                             <p class="text-sm leading-snug tracking-wide text-gray-400">Start-up Pitch – entrepreneurs present innovative business ideas.</p>
                         </div>
                     </div>
-                    <div class="mb-8 flex justify-between md:flex-row-reverse items-center w-full">
-                        <div class="order-1 w-5/12 hidden md:block"></div>
-                        <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
+                    <div class="timeline-item mb-8 flex justify-between flex-row-reverse items-center w-full relative">
+                        <div class="timeline-spacer order-1 w-5/12"></div>
+                        <div class="timeline-circle z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
                             <h1 class="mx-auto font-semibold text-sm text-white">4</h1>
                         </div>
-                        <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
+                        <div class="timeline-card order-1 glass-card w-5/12 px-6 py-4">
                             <h3 class="font-bold text-white text-lg">Nov 12, 2025 | 10:30 AM</h3>
                             <p class="text-sm leading-snug tracking-wide text-gray-400">
                                 Morning Competitions begin: CTF (till 12:30 PM), UI/UX (till 12:30 PM), Tech Quiz (till 12:30 PM),
@@ -471,34 +494,34 @@
                             </p>
                         </div>
                     </div>
-                    <div class="mb-8 flex justify-between items-center w-full">
-                        <div class="order-1 w-5/12 hidden md:block"></div>
-                        <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
+                    <div class="timeline-item mb-8 flex justify-between items-center w-full relative">
+                        <div class="timeline-spacer order-1 w-5/12"></div>
+                        <div class="timeline-circle z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
                             <h1 class="mx-auto font-semibold text-sm text-white">5</h1>
                         </div>
-                        <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
+                        <div class="timeline-card order-1 glass-card w-5/12 px-6 py-4">
                             <h3 class="font-bold text-white text-lg">Nov 12, 2025 | 12:45 PM – 2:00 PM</h3>
                             <p class="text-sm leading-snug tracking-wide text-gray-400">Lunch Break – time to refuel and network.</p>
                         </div>
                     </div>
-                    <div class="mb-8 flex justify-between md:flex-row-reverse items-center w-full">
-                        <div class="order-1 w-5/12 hidden md:block"></div>
-                        <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
+                    <div class="timeline-item mb-8 flex justify-between flex-row-reverse items-center w-full relative">
+                        <div class="timeline-spacer order-1 w-5/12"></div>
+                        <div class="timeline-circle z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
                             <h1 class="mx-auto font-semibold text-sm text-white">6</h1>
                         </div>
-                        <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
+                        <div class="timeline-card order-1 glass-card w-5/12 px-6 py-4">
                             <h3 class="font-bold text-white text-lg">Nov 12, 2025 | 1:30 PM</h3>
                             <p class="text-sm leading-snug tracking-wide text-gray-400">
                                 Afternoon Events: Project Expo (till 2:30 PM) and Treasure Hunt (till 2:00 PM).
                             </p>
                         </div>
                     </div>
-                    <div class="mb-8 flex justify-between items-center w-full">
-                        <div class="order-1 w-5/12 hidden md:block"></div>
-                        <div class="z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
+                    <div class="timeline-item mb-8 flex justify-between items-center w-full relative">
+                        <div class="timeline-spacer order-1 w-5/12"></div>
+                        <div class="timeline-circle z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
                             <h1 class="mx-auto font-semibold text-sm text-white">7</h1>
                         </div>
-                        <div class="order-1 glass-card w-full md:w-5/12 px-6 py-4">
+                        <div class="timeline-card order-1 glass-card w-5/12 px-6 py-4">
                             <h3 class="font-bold text-white text-lg">Nov 12, 2025 | 3:45 PM – 5:00 PM</h3>
                             <p class="text-sm leading-snug tracking-wide text-gray-400">
                                 Valedictory Program – closing ceremony with remarks and prize distribution.
@@ -508,54 +531,47 @@
                 </div>
             </section>
             
-    <section id="coordinators" class="container mx-auto px-6 scroll-mt-24">
-  <!-- Centered main title -->
-  <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16 relative block mx-auto w-fit">
-    Central Coordinators
-  </h2>
-
-  <!-- Two column layout -->
-  <div class="grid grid-cols-2 md:grid-cols-2 gap-48">
-    <!-- Faculty Coordinators -->
-    <div>
-      <h2 class="section-title text-2xl md:text-3xl font-bold text-center mb-8">
-        Faculty Coordinators
-      </h2>
-      <div class="space-y-6">
-        <div class="glass-card p-6 coordinator-card">
-          <h3 class="text-xl font-bold mb-2">Dr Shashank M Gowda</h3>
-          <p class="text-gray-400">Associate Professor, Department of ECE</p>
-          <p class="text-gray-400">Email:shashank@yit.edu.in</p>
-          <p class="text-gray-400">Ph : 1234567890</p>
-        </div>
-        <!-- Add more faculty here -->
-      </div>
-    </div>
-
-    <!-- Student Coordinators -->
-    <div>
-      <h2 class="section-title text-2xl md:text-3xl font-bold text-center mb-8">
-        Student Coordinators
-      </h2>
-      <div class="space-y-6">
-        <div class="glass-card p-6 coordinator-card">
-          <h3 class="text-xl font-bold mb-2">Sanjay M K</h3>
-          <p class="text-gray-400">Student, Department of CSE</p>
-          <p class="text-gray-400">Email:</p>
-          <p class="text-gray-400">Ph : 1234567890</p>
-        </div>
-
-        <div class="glass-card jkhksd p-6 coordinator-card">
-          <h3 class="text-xl font-bold mb-2">Afeef Ismail</h3>
-          <p class="text-gray-400">Student, Department of AIML</p>
-          <p class="text-gray-400">Email:</p>
-          <p class="text-gray-400">Ph : 1234567890</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
+            <!-- Made coordinators section responsive -->
+            <section id="coordinators" class="container mx-auto px-6 scroll-mt-24">
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16 relative block mx-auto w-fit">
+                    Central Coordinators
+                </h2>
+                <!-- Switched to single column on mobile, adjusted gap -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16">
+                    <div>
+                        <h2 class="section-title text-2xl md:text-3xl font-bold text-center mb-8">
+                            Faculty Coordinators
+                        </h2>
+                        <div class="space-y-6">
+                            <div class="glass-card p-6 coordinator-card">
+                                <h3 class="text-xl font-bold mb-2">Dr Shashank M Gowda</h3>
+                                <p class="text-gray-400">Associate Professor, Department of ECE</p>
+                                <p class="text-gray-400">Email:shashank@yit.edu.in</p>
+                                <p class="text-gray-400">Ph : 1234567890</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class="section-title text-2xl md:text-3xl font-bold text-center mb-8">
+                            Student Coordinators
+                        </h2>
+                        <div class="space-y-6">
+                            <div class="glass-card p-6 coordinator-card">
+                                <h3 class="text-xl font-bold mb-2">Sanjay M K</h3>
+                                <p class="text-gray-400">Student, Department of CSE</p>
+                                <p class="text-gray-400">Email:</p>
+                                <p class="text-gray-400">Ph : 1234567890</p>
+                            </div>
+                            <div class="glass-card jkhksd p-6 coordinator-card">
+                                <h3 class="text-xl font-bold mb-2">Afeef Ismail</h3>
+                                <p class="text-gray-400">Student, Department of AIML</p>
+                                <p class="text-gray-400">Email:</p>
+                                <p class="text-gray-400">Ph : 1234567890</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             <section id="sponsors" class="container mt-10 mx-auto px-6 scroll-mt-24">
                 <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16 relative">Our Valued Sponsors</h2>
@@ -804,8 +820,21 @@
                 gsap.from(card, { scrollTrigger: { trigger: card, ...animConfig }, opacity: 0, y: 40, duration: 0.5, delay: i * 0.07 });
             });
             
-            gsap.utils.toArray('#timeline .glass-card').forEach((item) => {
-                gsap.from(item, { scrollTrigger: { trigger: item, start: 'top bottom-=150px', toggleActions: "play none none none"}, x: () => item.closest('.left-timeline') ? -40 : 40, opacity: 0, duration: 0.6, ease: 'power3.out' });
+            gsap.utils.toArray('#timeline .timeline-card').forEach((item) => {
+                gsap.from(item, { 
+                    scrollTrigger: { 
+                        trigger: item, 
+                        start: 'top bottom-=150px', 
+                        toggleActions: "play none none none"
+                    }, 
+                    x: () => {
+                        if (window.innerWidth < 768) return 40;
+                        return item.closest('.flex-row-reverse') ? -40 : 40;
+                    },
+                    opacity: 0, 
+                    duration: 0.6, 
+                    ease: 'power3.out' 
+                });
             });
             
             gsap.utils.toArray('.coordinator-card').forEach((card, i) => {
@@ -876,3 +905,4 @@
     </script>
 </body>
 </html>
+
