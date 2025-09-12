@@ -8,6 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -120,7 +121,7 @@
             transition: max-height 0.5s ease-in-out;
         }
         .accordion-item.active .accordion-content {
-            max-height: 500px;
+            max-height: 500px; /* Adjust if content is taller */
         }
         .accordion-item.active .accordion-icon {
             transform: rotate(180deg);
@@ -168,33 +169,26 @@
         <p id="loader-text">> SYSTEM BOOTING...</p>
     </div>
 
-<header class="sticky top-0 z-50">
-    <nav class="container mx-auto px-6 py-3 bg-black/50 backdrop-blur-md border-x border-b border-green-500/30">
-        <div class="flex justify-between items-center">
-
-            <!-- Empty div for left spacing -->
-            <div></div>
-
-            <!-- Centered title -->
-            <h1 class="text-xl font-bold text-center text-green-400 absolute left-1/2 -translate-x-1/2">
-                [ CMD:CTF_INITIATE ]
-            </h1>
-
-            <!-- Button on right -->
-            <div>
-                <a href="javascript:void(0)" 
-                   onclick="history.back()" 
-                   class="text-green-300 hover:text-white transition-colors flex items-center gap-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-                    </svg>
-                    <span>//EXIT_TO_HUB</span>
-                </a>
+    <header class="sticky top-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 py-3 bg-black/50 backdrop-blur-md border-x border-b border-green-500/30">
+            <div class="relative flex justify-between items-center h-10">
+                <div class="flex-1"></div> <!-- Spacer -->
+                <div class="absolute left-1/2 -translate-x-1/2">
+                     <h1 class="text-base sm:text-xl font-bold text-center text-green-400 whitespace-nowrap">
+                        [ CMD:CTF_INITIATE ]
+                    </h1>
+                </div>
+                <div class="flex-1 flex justify-end">
+                    <a href="index.html" class="text-green-300 hover:text-white transition-colors flex items-center gap-2 group">
+                        <span class="hidden sm:inline group-hover:text-red-500 transition-colors">//CLOSE_CONNECTION</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 group-hover:text-red-500 transition-colors" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
             </div>
-
-        </div>
-    </nav>
-</header>
+        </nav>
+    </header>
 
 
     <main class="container mx-auto px-4 sm:px-6 py-12 md:py-20">
@@ -311,7 +305,7 @@
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        gsap.registerPlugin(TextPlugin);
+        gsap.registerPlugin(TextPlugin, ScrollTrigger);
 
         // --- Matrix Rain Background ---
         const canvas = document.getElementById('matrix-canvas');
@@ -325,7 +319,7 @@
         const alphabet = katakana + latin + nums;
 
         const fontSize = 16;
-        const columns = canvas.width / fontSize;
+        let columns = canvas.width / fontSize;
         const rainDrops = [];
 
         for (let x = 0; x < columns; x++) {
@@ -354,10 +348,9 @@
         window.addEventListener('resize', () => {
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            // Recalculate columns and reset drops on resize
-            const newColumns = canvas.width / fontSize;
+            columns = canvas.width / fontSize;
             rainDrops.length = 0;
-            for (let x = 0; x < newColumns; x++) {
+            for (let x = 0; x < columns; x++) {
                 rainDrops[x] = 1;
             }
         });
@@ -368,12 +361,12 @@
         const tlLoader = gsap.timeline();
 
         tlLoader.to(loaderText, { duration: 0.7, text: "> BYPASSING FIREWALL..." })
-                .to(loaderText, { duration: 0.6, text: "> DECRYPTING PAYLOAD..." })
-                .to(loaderText, { duration: 0.8, text: "> ROOT ACCESS GRANTED." })
-                .to(loader, { duration: 1, opacity: 0, onComplete: () => {
-                    loader.style.display = 'none';
-                    startPageAnimations(); 
-                }});
+              .to(loaderText, { duration: 0.6, text: "> DECRYPTING PAYLOAD..." })
+              .to(loaderText, { duration: 0.8, text: "> ROOT ACCESS GRANTED." })
+              .to(loader, { duration: 1, opacity: 0, onComplete: () => {
+                   loader.style.display = 'none';
+                   startPageAnimations(); 
+               }});
 
         // --- Page Content Animations ---
         function startPageAnimations() {
@@ -382,22 +375,27 @@
                 duration: 2, 
                 text: "A cybersecurity challenge of skill, speed, and strategy.<span class='cursor'>█</span>",
                 ease: "none"
-            }, "+=0.5")
-            .to("#briefing-text", {
+            }, "+=0.5");
+
+            gsap.to("#briefing-text", {
+                scrollTrigger: { trigger: "#briefing-text", start: "top 85%" },
                 duration: 6,
                 text: "The Capture the Flag (CTF) competition is a cybersecurity challenge designed to test participants’ skills in problem-solving, cryptography, and ethical hacking. Teams will work together to solve technical challenges, find hidden “flags,” and submit them through the official CTF platform to earn points. The event fosters analytical thinking, teamwork, and hands-on learning in a controlled and ethical environment. The team that demonstrates both speed and accuracy in solving challenges will emerge as the winner.<span class='cursor'>█</span>",
                 ease: "none"
-            }, "-=1")
-            .to("#final-call-h2", {
+            });
+
+            gsap.to("#final-call-h2", {
+                scrollTrigger: { trigger: "#final-call-h2", start: "top 90%" },
                 duration: 1,
                 text: "Ready to breach?<span class='cursor'>█</span>",
                 ease: "none"
-            }, "-=2")
-             .to("#final-call-p", {
+            });
+             gsap.to("#final-call-p", {
+                scrollTrigger: { trigger: "#final-call-p", start: "top 95%" },
                 duration: 2.5,
                 text: "Assemble your cell, prove your skills, and claim the title of CTF Champion.<span class='cursor'>█</span>",
                 ease: "none"
-            }, "-=0.5");
+            });
         }
 
         // --- Accordion ---
@@ -475,3 +473,5 @@
 
 </body>
 </html>
+
+
