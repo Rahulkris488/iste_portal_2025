@@ -116,17 +116,17 @@
 
     <header class="sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4">
-             <div class="flex justify-between items-center glass-pane px-6 py-3">
-                 <h1 class="text-xl font-bold text-center text-text-heading">The Launchpad</h1>
-                 <a href="index.html" 
-                   onclick="if (history.length > 1) { history.back(); return false; }" 
-                   class="text-text-light hover:text-white transition-colors flex items-center gap-2 text-md">
-                    <span>Main Hub</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                    </svg>
-                </a>
-             </div>
+              <div class="flex justify-between items-center glass-pane px-6 py-3">
+                    <h1 class="text-xl font-bold text-center text-text-heading">The Launchpad</h1>
+                    <a href="index.html" 
+                       onclick="if (history.length > 1) { history.back(); return false; }" 
+                       class="text-text-light hover:text-white transition-colors flex items-center gap-2 text-md">
+                       <span>Main Hub</span>
+                       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                           <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                       </svg>
+                   </a>
+              </div>
         </nav>
     </header>
 
@@ -149,107 +149,151 @@
              <section class="max-w-4xl mx-auto text-center">
                  <h2 class="section-title text-4xl font-bold mb-12 text-text-heading">Investment & Rewards</h2>
                  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                     <div class="glass-pane p-8">
-                         <h3 class="text-2xl font-bold mb-4 text-cyan-400">Prize Pool</h3>
-                         <p class="text-5xl font-extrabold text-white my-2 neon-accent">₹12,000</p>
-                         <p class="text-text-light">First: ₹9,000 | Second: ₹3,000</p>
-                     </div>
-                     <div class="glass-pane p-8">
-                         <h3 class="text-2xl font-bold mb-4 text-cyan-400">Entry Fee</h3>
-                         <p class="text-5xl font-extrabold text-white my-2 neon-accent">₹300</p>
-                         <p class="text-text-light">Per team (2-4 members) or individual.</p>
-                     </div>
+                       <div class="glass-pane p-8">
+                           <h3 class="text-2xl font-bold mb-4 text-cyan-400">Prize Pool</h3>
+                           <p class="text-5xl font-extrabold text-white my-2 neon-accent">₹8,000</p>
+                           <p class="text-text-light">Total Prizepool (₹5000 + ₹3000)</p>
+                       </div>
+                       <div class="glass-pane p-8">
+                           <h3 class="text-2xl font-bold mb-4 text-cyan-400">Entry Fee</h3>
+                           <p class="text-5xl font-extrabold text-white my-2 neon-accent">₹300</p>
+                           <p class="text-text-light">Per team (2-4 members) or individual.</p>
+                       </div>
                  </div>
             </section>
             
-             <section id="pitch-structure" class="max-w-6xl mx-auto">
-                 <h2 class="section-title text-4xl font-bold text-center mb-16 text-text-heading">Anatomy of a Winning Pitch</h2>
-                 <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
-                      <div class="md:h-full [@media(max-width:768px)]:hidden"> 
-                          <div class="split-screen-graphic flex items-center justify-center p-8 sticky top-1/4">
-                           </div>
-                      </div>
-                       <div class="relative">
-                           <div class="progress-line">
-                               <div class="progress-line-fill"></div>
-                           </div>
-                           <div class="space-y-32 pl-8 md:pl-12 pitch-steps-container">
-                               <div class="pitch-step min-h-[30vh]" data-svg-id="problem">
-                                   <h3 class="text-2xl font-bold mb-2 text-text-heading">1. The Problem & Solution</h3>
-                                   <p class="text-text-light">Clearly define the problem your start-up is solving, mention existing solutions, and describe how your product or service uniquely solves the problem.</p>
-                               </div>
-                               <div class="pitch-step min-h-[30vh]" data-svg-id="market">
-                                   <h3 class="text-2xl font-bold mb-2 text-text-heading">2. The Market</h3>
-                                   <p class="text-text-light">Detail your target customers and evaluate the market size and potential.</p>
-                               </div>
-                                <div class="pitch-step min-h-[30vh]" data-svg-id="business">
-                                   <h3 class="text-2xl font-bold mb-2 text-text-heading">3. The Business Plan</h3>
-                                   <p class="text-text-light">Outline your estimated capital requirements, financial feasibility, and overall strategy for growth and sustainability.</p>
-                               </div>
-                           </div>
-                       </div>
-                 </div>
-             </section>
-
-             <section class="max-w-5xl mx-auto">
-                 <h2 class="section-title text-4xl font-bold text-center mb-12 text-text-heading">Rules of Engagement</h2>
-                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                       <div class="glass-pane p-8 rule-card">
-                         <h3 class="text-2xl font-bold mb-4 text-cyan-400">Team & Presentation</h3>
-                         <ul class="space-y-3 text-text-light list-disc list-inside">
-                             <li>Individuals or teams of 2-4 members.</li>
-                             <li>Present with a PowerPoint, poster, or prototype/model.</li>
-                             <li>Max 12 slides & 4 oral presenters per team.</li>
-                             <li>Strict 3-8 minute pitch time, plus a Q&A session.</li>
-                         </ul>
-                       </div>
-                        <div class="glass-pane p-8 rule-card">
-                         <h3 class="text-2xl font-bold mb-4 text-cyan-400">Conduct & Originality</h3>
-                         <ul class="space-y-3 text-text-light list-disc list-inside">
-                             <li>All ideas and submissions must be original work.</li>
-                             <li>Plagiarism will result in immediate disqualification.</li>
-                             <li>Do not disclose personal or college names in presentation slides.</li>
-                             <li>Decisions by the judges and organizers are final and binding.</li>
-                         </ul>
-                       </div>
-                 </div>
-             </section>
-
-             <section class="max-w-5xl mx-auto text-center">
-                 <h2 class="section-title text-4xl font-bold mb-12 text-text-heading">Judging Criteria</h2>
-                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                       <div class="glass-pane p-6 criterion">
-                         <h3 class="font-bold text-cyan-400 text-xl mb-2">Innovation & Feasibility</h3>
-                         <p class="text-sm">Originality of the solution and its practical potential.</p>
-                       </div>
-                        <div class="glass-pane p-6 criterion">
-                         <h3 class="font-bold text-cyan-400 text-xl mb-2">Market & Business Plan</h3>
-                         <p class="text-sm">Understanding of the target market and a viable plan for growth.</p>
-                       </div>
-                       <div class="glass-pane p-6 criterion">
-                         <h3 class="font-bold text-cyan-400 text-xl mb-2">Presentation & Team</h3>
-                         <p class="text-sm">Clarity, creativity, and collaborative skills shown during the pitch.</p>
-                       </div>
-                 </div>
-             </section>
+            <section class="max-w-5xl mx-auto">
+                <h2 class="section-title text-4xl font-bold text-center mb-12 text-text-heading">Event At a Glance</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 text-center">
+                    <div class="glass-pane p-6">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-400">Time & Venue</h3>
+                        <p class="text-lg text-white">10:00 AM - 12:00 PM</p>
+                        <p class="text-text-light">Seminar Hall, YIT</p>
+                    </div>
+                    <div class="glass-pane p-6">
+                        <h3 class="text-xl font-bold mb-2 text-cyan-400">Target Audience</h3>
+                        <p class="text-lg text-white">Mechanical & Computer Science Engineering</p>
+                        <p class="text-text-light">Organized by: Yenepoya Technology Incubator</p>
+                    </div>
+                </div>
+            </section>
             
-             <section class="max-w-4xl mx-auto text-center">
-                 <h2 class="section-title text-4xl font-bold text-center mb-8 text-text-heading">Faculty Coordinator</h2>
-                  <div class="glass-pane p-8 inline-block">
-                     <h3 class="text-2xl font-bold text-text-heading">Prof. G Sujaykumar</h3>
-                     <p class="text-text-light mt-1">Contact: +91 98805 43651</p>
-                 </div>
-             </section>
+              <section id="pitch-structure" class="max-w-6xl mx-auto">
+                  <h2 class="section-title text-4xl font-bold text-center mb-16 text-text-heading">Anatomy of a Winning Pitch</h2>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+                        <div class="md:h-full [@media(max-width:768px)]:hidden"> 
+                            <div class="split-screen-graphic flex items-center justify-center p-8 sticky top-1/4">
+                           </div>
+                        </div>
+                           <div class="relative">
+                               <div class="progress-line">
+                                   <div class="progress-line-fill"></div>
+                               </div>
+                               <div class="space-y-32 pl-8 md:pl-12 pitch-steps-container">
+                                   <div class="pitch-step min-h-[30vh]" data-svg-id="problem">
+                                       <h3 class="text-2xl font-bold mb-2 text-text-heading">1. The Problem & Solution</h3>
+                                       <p class="text-text-light">Clearly define the problem your start-up is solving, mention existing solutions, and describe how your product or service uniquely solves the problem.</p>
+                                   </div>
+                                   <div class="pitch-step min-h-[30vh]" data-svg-id="market">
+                                       <h3 class="text-2xl font-bold mb-2 text-text-heading">2. The Market</h3>
+                                       <p class="text-text-light">Detail your target customers and evaluate the market size and potential.</p>
+                                   </div>
+                                    <div class="pitch-step min-h-[30vh]" data-svg-id="business">
+                                       <h3 class="text-2xl font-bold mb-2 text-text-heading">3. The Business Plan</h3>
+                                       <p class="text-text-light">Outline your estimated capital requirements, financial feasibility, and overall strategy for growth and sustainability.</p>
+                                   </div>
+                               </div>
+                           </div>
+                  </div>
+              </section>
 
-             <section class="text-center glass-pane p-12">
-                 <h2 class=" text-4xl font-bold text-text-heading">Ready to Launch Your Idea?</h2>
-                 <p class=" ">Assemble your team, refine your vision, and step onto the stage where ideas take flight.</p>
-                 <div class="mt-10">
-                     <a href="#" class="btn-primary text-white font-bold py-4 px-10 rounded-lg">
-                         Register Your Start-up
-                     </a>
-                 </div>
-             </section>
+              <section class="max-w-5xl mx-auto">
+                  <h2 class="section-title text-4xl font-bold text-center mb-12 text-text-heading">Rules of Engagement</h2>
+                  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                          <div class="glass-pane p-8 rule-card">
+                          <h3 class="text-2xl font-bold mb-4 text-cyan-400">Team & Presentation</h3>
+                          <ul class="space-y-3 text-text-light list-disc list-inside">
+                                 <li>Individuals or teams of 2-4 members.</li>
+                                 <li>Present with a PowerPoint, poster, or prototype/model.</li>
+                                 <li>Max 12 slides & 4 oral presenters per team.</li>
+                                 <li>Strict 3-8 minute pitch time, plus a Q&A session.</li>
+                          </ul>
+                          </div>
+                           <div class="glass-pane p-8 rule-card">
+                          <h3 class="text-2xl font-bold mb-4 text-cyan-400">Conduct & Originality</h3>
+                          <ul class="space-y-3 text-text-light list-disc list-inside">
+                                 <li>All ideas and submissions must be original work.</li>
+                                 <li>Plagiarism will result in immediate disqualification.</li>
+                                 <li>Do not disclose personal or college names in presentation slides.</li>
+                                 <li>Decisions by the judges and organizers are final and binding.</li>
+                          </ul>
+                           </div>
+                  </div>
+              </section>
+
+              <section class="max-w-5xl mx-auto text-center">
+                  <h2 class="section-title text-4xl font-bold mb-12 text-text-heading">Judging Criteria</h2>
+                  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                          <div class="glass-pane p-6 criterion">
+                          <h3 class="font-bold text-cyan-400 text-xl mb-2">Innovation & Feasibility</h3>
+                          <p class="text-sm">Originality of the solution and its practical potential.</p>
+                          </div>
+                           <div class="glass-pane p-6 criterion">
+                          <h3 class="font-bold text-cyan-400 text-xl mb-2">Market & Business Plan</h3>
+                          <p class="text-sm">Understanding of the target market and a viable plan for growth.</p>
+                          </div>
+                          <div class="glass-pane p-6 criterion">
+                          <h3 class="font-bold text-cyan-400 text-xl mb-2">Presentation & Team</h3>
+                          <p class="text-sm">Clarity, creativity, and collaborative skills shown during the pitch.</p>
+                          </div>
+                  </div>
+              </section>
+            
+              <section class="max-w-5xl mx-auto">
+                <h2 class="section-title text-4xl font-bold text-center mb-12 text-text-heading">Contact Our Coordinators</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-10">
+                    <div class="flex flex-col gap-6">
+                        <h3 class="text-3xl font-bold text-cyan-400 text-center md:text-left">Faculty Coordinators</h3>
+                        <div class="glass-pane p-6">
+                            <h4 class="text-xl font-bold text-text-heading">Prof. G Sujaykumar</h4>
+                            <p class="text-text-light mt-1">+91 98805 43651</p>
+                        </div>
+                        <div class="glass-pane p-6">
+                            <h4 class="text-xl font-bold text-text-heading">Prof. Manjunath Raikar</h4>
+                            <p class="text-text-light mt-1">+91 94489 22929</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-6">
+                        <h3 class="text-3xl font-bold text-cyan-400 text-center md:text-left">Student Coordinators</h3>
+                        <div class="glass-pane p-6">
+                            <h4 class="text-xl font-bold text-text-heading">Mohammed Yazid</h4>
+                            <p class="text-text-light mt-1">+91 83105 78232</p>
+                        </div>
+                        <div class="glass-pane p-6">
+                            <h4 class="text-xl font-bold text-text-heading">Mohammad Jasar</h4>
+                            <p class="text-text-light mt-1">+91 96113 38210</p>
+                        </div>
+                        <div class="glass-pane p-6">
+                            <h4 class="text-xl font-bold text-text-heading">Mohammad Farhan</h4>
+                            <p class="text-text-light mt-1">+91 76762 12680</p>
+                        </div>
+                        <div class="glass-pane p-6">
+                            <h4 class="text-xl font-bold text-text-heading">Sayed Saif</h4>
+                            <p class="text-text-light mt-1">+91 80889 71474</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+              <section class="text-center glass-pane p-12">
+                  <h2 class=" text-4xl font-bold text-text-heading">Ready to Launch Your Idea?</h2>
+                  <p class="mt-4 text-lg">Assemble your team, refine your vision, and step onto the stage where ideas take flight.</p>
+                  <div class="mt-10">
+                        <a href="#" class="btn-primary text-white font-bold py-4 px-10 rounded-lg text-lg">
+                            Register Your Start-up
+                        </a>
+                  </div>
+              </section>
         </div>
     </main>
     
@@ -383,4 +427,3 @@
     </script>
 </body>
 </html>
-
