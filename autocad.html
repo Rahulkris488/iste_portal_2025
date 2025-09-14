@@ -187,37 +187,24 @@
 
     <div class="relative min-h-screen flex flex-col items-center p-4 md:p-8 z-10">
         
-        <header class="w-full max-w-5xl text-center mb-16 md:mb-24 pt-8 md:pt-12">
-            <div class="relative w-full flex justify-center items-center h-48 md:h-64">
-                <svg class="hero-svg absolute w-full h-full draw-in" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
-                    <defs>
-                        <filter id="glow">
-                            <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
-                        </filter>
-                    </defs>
-                    <path d="M 50 50 L 150 50 L 150 150 L 50 150 Z" fill="none" stroke="#ccf0ff" stroke-width="0.5"/>
-                    <path d="M 70 70 L 170 70 L 170 170 L 70 170 Z" fill="none" stroke="#00bfff" stroke-width="0.5"/>
-                    <path d="M 50 50 L 70 70" fill="none" stroke="#ccf0ff" stroke-width="0.5"/>
-                    <path d="M 150 50 L 170 70" fill="none" stroke="#ccf0ff" stroke-width="0.5"/>
-                    <path d="M 150 150 L 170 170" fill="none" stroke="#ccf0ff" stroke-width="0.5"/>
-                    <path d="M 50 150 L 70 170" fill="none" stroke="#ccf0ff" stroke-width="0.5"/>
-                    
-                    <path d="M110,100 A10,10 0 1 1 90,100 A10,10 0 1 1 110,100" fill="none" stroke="#00bfff" stroke-width="0.5"/>
-                    <path d="M100 80 L 100 120" fill="none" stroke="#00bfff" stroke-width="0.5" />
-                    <path d="M80 100 L 120 100" fill="none" stroke="#00bfff" stroke-width="0.5" />
-                    
-                    <path d="M50 40 L 150 40 M 100 40 L 100 50" fill="none" stroke="#ccf0ff" stroke-width="0.5" />
-                     <path d="M40 50 L 40 150 M 40 100 L 50 100" fill="none" stroke="#ccf0ff" stroke-width="0.5" />
-                </svg>
-
-                <div class="relative z-10">
-                    <h1 class="font-stencil text-3xl md:text-5xl lg:text-6xl font-bold tracking-widest text-white">AUTO-CAD</h1>
-                    <h2 class="font-stencil text-xl md:text-3xl lg:text-4xl font-bold tracking-widest text-cyan-400">DESIGN CHALLENGE 2025</h2>
+       <header class="sticky top-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 py-4">
+            <div class="flex justify-between items-center bg-blue-950/50 backdrop-blur-md border border-cyan-300/20 px-4 sm:px-6 py-3 rounded-lg h-16 gap-4">
+                
+                <h1 class="font-stencil text-base sm:text-xl md:text-2xl text-white whitespace-nowrap">AUTOCAD CHALLENGE</h1>
+                
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="text-cyan-400 hover:text-white transition-colors flex items-center gap-2 text-sm">
+                        <span class="hidden sm:inline">Main Hub</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                        </svg>
+                    </a>
                 </div>
+
             </div>
-            
-            <p class="font-mono text-sm md:text-base mt-8 text-slate-300">21st ISTE State Level Student Convention, 2025</p>
-        </header>
+        </nav>
+    </header>
 
         <main class="w-full max-w-5xl space-y-16 md:space-y-24">
             
