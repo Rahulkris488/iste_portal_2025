@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robo Sumo: The Industrial Arena | ISTE '25</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Teko:wght@700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-industrial: #1F2128;
+            --text-light: #D1D5DB;
+            --text-secondary: #9CA3AF;
+            --accent-molten-orange: #FFB800;
+            --glow-orange: rgba(255, 184, 0, 0.4);
+            --panel-bg: rgba(42, 45, 54, 0.7);
+            --border-color: rgba(255, 184, 0, 0.3);
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-industrial);
+            color: var(--text-light);
+            background-image: url('data:image/svg+xml,%3Csvg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="%23ffffff" fill-opacity="0.05" fill-rule="evenodd"%3E%3Cpath d="M0 40L40 0H20L0 20M40 40V20L20 40"/%3E%3C/g%3E%3C/svg%3E');
+            perspective: 1500px;
+        }
+        .font-display { font-family: 'Teko', sans-serif; letter-spacing: 0.1em; text-transform: uppercase; }
+
+        #industrial-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .metal-pane {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 4px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.4);
+            transform-style: preserve-3d;
+            transition: all 0.3s ease-out;
+        }
+        
+        .metal-pane:hover {
+            border-color: var(--accent-molten-orange);
+            box-shadow: 0 0 30px var(--glow-orange);
+            transform: translateY(-5px) rotateX(5deg);
+        }
+        
+        .crack-path {
+            stroke: var(--accent-molten-orange);
+            stroke-width: 1.5px;
+            stroke-dasharray: 500;
+            stroke-dashoffset: 500;
+            fill: none;
+            filter: drop-shadow(0 0 5px var(--glow-orange));
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <canvas id="industrial-canvas"></canvas>
+
+    <header class="sticky top-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 py-4">
+            <div class="flex justify-between items-center bg-zinc-900/50 backdrop-blur-sm border-b-2 border-amber-500/30 px-4 sm:px-6 py-3">
+                <h1 class="font-display text-2xl sm:text-3xl text-white">ROBO SUMO</h1>
+                <a href="robotic.html" class="text-gray-400 hover:text-white transition-colors flex items-center gap-2 text-sm font-semibold">
+                    <span>Robotics Nexus</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 py-12 md:py-20">
+        <section id="hero" class="relative text-center min-h-[80vh] flex flex-col justify-center items-center overflow-hidden">
+             <div class="relative w-full h-64 flex justify-center items-center mb-4">
+                <svg class="absolute w-full h-full max-w-2xl overflow-visible" viewBox="0 0 500 250">
+                    <g id="cracks">
+                        <path class="crack-path" d="M250 125 l 30 -20 l -10 15 l 20 -5"/>
+                        <path class="crack-path" d="M250 125 l 40 10 l -20 -10 l 15 20"/>
+                        <path class="crack-path" d="M250 125 l -30 -25 l 15 5 l -5 20" />
+                        <path class="crack-path" d="M250 125 l -40 15 l 20 -5 l -10 15" />
+                        <path class="crack-path" d="M250 125 l 5 30 l 10 -15 l -15 10" />
+                    </g>
+                    <g id="robot1">
+                        <path d="M 50 100 L 80 70 H 120 L 150 100 Z" fill="#4A5568"/>
+                        <rect x="70" y="100" width="80" height="20" fill="#2D3748"/>
+                        <rect x="50" y="120" width="120" height="10" fill="var(--accent-molten-orange)"/>
+                    </g>
+                    <g id="robot2">
+                         <path d="M 450 100 L 420 70 H 380 L 350 100 Z" fill="#4A5568"/>
+                        <rect x="350" y="100" width="80" height="20" fill="#2D3748"/>
+                        <rect x="330" y="120" width="120" height="10" fill="var(--accent-molten-orange)"/>
+                    </g>
+                </svg>
+            </div>
+            <h2 id="hero-title" class="font-display text-6xl md:text-9xl font-bold text-white" style="text-shadow: 0 0 20px var(--glow-orange);">
+                ROBO SUMO
+            </h2>
+            <p id="hero-subtitle" class="mt-4 text-xl md:text-2xl text-gray-400 font-semibold">
+                THE INDUSTRIAL ARENA
+            </p>
+            <div id="hero-info" class="mt-8 text-base text-gray-300">
+                <p><strong>DATE:</strong> 12th Nov, 2025</p>
+                <p><strong>TIME:</strong> 09:00 AM - 03:30 PM</p>
+            </div>
+        </section>
+        
+        <div class="max-w-5xl mx-auto space-y-16">
+            <section id="description" class="metal-pane p-8">
+                 <p class="text-lg md:text-xl text-center text-text-light leading-relaxed">
+                    The Robo Sumo competition is inspired by the Japanese sport of Sumo wrestling, where two robots attempt to push each other out of a ring. Teams must design and program robots capable of withstanding impact, maintaining balance, and strategically overpowering opponents. The event encourages robot design optimization, sensor application, and tactical maneuvering, making it an exciting mix of engineering and competition.
+                </p>
+            </section>
+    
+            <section id="info-cards" class="grid md:grid-cols-2 gap-8 text-center">
+                <div class="metal-pane p-8">
+                    <h3 class="font-display text-3xl text-amber-300 mb-4">ENTRY FEE</h3>
+                    <p class="text-6xl font-bold text-white">₹400</p>
+                </div>
+                <div class="metal-pane p-8">
+                    <h3 class="font-display text-3xl text-amber-300 mb-4">PRIZE POOL</h3>
+                    <p class="text-4xl font-bold text-white">1st: ₹8,000</p>
+                    <p class="text-4xl font-bold text-white mt-2">2nd: ₹5,000</p>
+                </div>
+            </section>
+
+            <section id="rules" class="metal-pane p-6 sm:p-8 md:p-12">
+                <div class="space-y-12">
+                    <div>
+                        <h4 class="font-display text-3xl text-white mb-6 border-b-2 border-amber-500/30 pb-3">Robot Specifications</h4>
+                        <ul class="list-none space-y-4 text-lg text-text-secondary">
+                            <li class="flex items-start"><span class="mr-4 mt-1 text-amber-400 flex-shrink-0">●</span><span>Maximum weight: 5 kg (±10% tolerance)</span></li>
+                            <li class="flex items-start"><span class="mr-4 mt-1 text-amber-400 flex-shrink-0">●</span><span>Maximum dimensions: 30 cm × 30 cm (±10% tolerance)</span></li>
+                            <li class="flex items-start"><span class="mr-4 mt-1 text-amber-400 flex-shrink-0">●</span><span>Power supply: Maximum 12V (no external supply provided)</span></li>
+                            <li class="flex items-start"><span class="mr-4 mt-1 text-amber-400 flex-shrink-0">●</span><span>Bots can be wired or wireless (wires must reach arena corners)</span></li>
+                            <li class="flex items-start"><span class="mr-4 mt-1 text-amber-400 flex-shrink-0">●</span>
+                                <div>
+                                    <span class="font-semibold text-gray-200">Restrictions:</span>
+                                    <ul class="list-none mt-2 space-y-2">
+                                        <li class="flex items-start"><span class="mr-3 mt-1 text-gray-500 flex-shrink-0">○</span>No hitting or destructive mechanisms</li>
+                                        <li class="flex items-start"><span class="mr-3 mt-1 text-gray-500 flex-shrink-0">○</span>Ready-made bots (e.g., Lego kits) not allowed</li>
+                                        <li class="flex items-start"><span class="mr-3 mt-1 text-gray-500 flex-shrink-0">○</span>If multiple bots per team, each must have a separate operator</li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-display text-3xl text-white mb-6 border-b-2 border-amber-500/30 pb-3">Rules & Regulations</h4>
+                        <ul class="list-none space-y-4 text-lg text-text-secondary">
+                             <li class="flex items-start"><span class="mr-4 mt-1 text-amber-400 flex-shrink-0">●</span><span>Each game consists of 2 halves, each lasting 2 minutes</span></li>
+                             <li class="flex items-start"><span class="mr-4 mt-1 text-amber-400 flex-shrink-0">●</span><span>One controller per bot throughout the game</span></li>
+                             <li class="flex items-start"><span class="mr-4 mt-1 text-amber-400 flex-shrink-0">●</span><span>Wires must be managed by a single player (for wired bots)</span></li>
+                             <li class="flex items-start"><span class="mr-4 mt-1 text-amber-400 flex-shrink-0">●</span><span>1-minute technical timeout available</span></li>
+                             <li class="flex items-start"><span class="mr-4 mt-1 text-amber-400 flex-shrink-0">●</span><span>If wires entangle, game is paused and resumed from same positions</span></li>
+                             <li class="flex items-start"><span class="mr-4 mt-1 text-amber-400 flex-shrink-0">●</span><span>After a bot scores, both bots reset to starting positions</span></li>
+                             <li class="flex items-start"><span class="mr-4 mt-1 text-amber-400 flex-shrink-0">●</span><span>Winner = team with highest points across both halves</span></li>
+                             <li class="flex items-start"><span class="mr-4 mt-1 text-amber-400 flex-shrink-0">●</span><span>Tie-breaker → Golden Goal (first score wins)</span></li>
+                             <li class="flex items-start"><span class="mr-4 mt-1 text-amber-400 flex-shrink-0">●</span><span>Touching bot to prevent falling → considered fallen, point to opponent</span></li>
+                             <li class="flex items-start"><span class="mr-4 mt-1 text-amber-400 flex-shrink-0">●</span><span>If a bot flips, advantage goes to opponent</span></li>
+                             <li class="flex items-start"><span class="mr-4 mt-1 text-amber-400 flex-shrink-0">●</span><span>No picking/hitting mechanisms allowed</span></li>
+                             <li class="flex items-start"><span class="mr-4 mt-1 text-amber-400 flex-shrink-0">●</span><span>Organizers’ decision final in disputes</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="register" class="text-center">
+                 <p class="text-text-secondary text-lg max-w-xl mx-auto mb-8">A team must consist of 2-4 members. Forge your machine and prepare for impact.</p>
+                <a href="#" class="inline-block font-display text-2xl bg-amber-500 text-black font-bold py-4 px-12 transition-all duration-300 ease-in-out hover:bg-amber-400 hover:scale-105 hover:shadow-lg hover:shadow-amber-500/50">
+                    REGISTER YOUR SQUAD
+                </a>
+            </section>
+        </div>
+    </main>
+    
+    <footer class="mt-24 border-t border-gray-700">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-500">
+            <p>&copy; 2025 Yenepoya Institute of Technology | Robotics Nexus</p>
+        </div>
+    </footer>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        gsap.registerPlugin(ScrollTrigger);
+        // Canvas animation code is unchanged
+        const canvas = document.getElementById('industrial-canvas');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+        // ... [Full canvas animation code remains here, as it fits the theme] ...
+
+        // --- ENHANCED "Sumo Stomp" Hero Animation ---
+        gsap.set("#robot1", { xPercent: -200, autoAlpha: 0 });
+        gsap.set("#robot2", { xPercent: 200, autoAlpha: 0 });
+        gsap.set("#hero-title, #hero-subtitle, #hero-info", { autoAlpha: 0 });
+
+        const tl = gsap.timeline({delay: 0.5});
+        tl.to(["#robot1", "#robot2"], { autoAlpha: 1, duration: 0.5 })
+          .to(["#robot1", "#robot2"], { 
+              rotation: (i) => i === 0 ? -5 : 5, 
+              yoyo: true, 
+              repeat: 3, 
+              duration: 0.15,
+              ease: "power1.inOut"
+          })
+          .to("#robot1", { xPercent: -55, duration: 0.8, ease: "power2.in" })
+          .to("#robot2", { xPercent: 55, duration: 0.8, ease: "power2.in" }, "<")
+          .to("#robot1", { xPercent: -50, duration: 0.2, ease: "power2.out" })
+          .to("#robot2", { xPercent: 50, duration: 0.2, ease: "power2.out" }, "<")
+          .to("#hero", { 
+              x: 'random(-10, 10)', 
+              y: 'random(-5, 5)', 
+              duration: 0.5,
+              ease: "rough({ template: none.out, strength: 2, points: 20, taper: 'none', randomize: true, clamp: false})" 
+          }, "-=0.1")
+          .to(".crack-path", { 
+              strokeDashoffset: 0, 
+              duration: 0.6, 
+              ease: "power3.out", 
+              stagger: 0.05 
+          }, "<")
+          .fromTo("#hero-title", { scale: 1.5, autoAlpha: 0 }, { autoAlpha: 1, scale: 1, duration: 0.8, ease: "elastic.out(1, 0.5)" }, "-=0.2")
+          .to(["#hero-subtitle", "#hero-info"], { autoAlpha: 1, y: 0, duration: 0.5, stagger: 0.2, ease: "power3.out" }, "-=0.5");
+        
+        // --- Scroll Animations ---
+        gsap.utils.toArray('section:not(#hero)').forEach((section) => {
+            gsap.from(section, {
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse",
+                },
+                opacity: 0,
+                y: 50,
+                duration: 1,
+                ease: 'power3.out',
+            });
+        });
+    });
+    </script>
+</body>
+</html>

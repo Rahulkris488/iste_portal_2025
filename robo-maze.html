@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robo Maze: The Digital Labyrinth | ISTE '25</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-grid-dark: #050816;
+            --text-light: #E2E8F0;
+            --accent-maze-green: #00FF87;
+            --glow-green: rgba(0, 255, 135, 0.4);
+            --panel-bg: rgba(5, 8, 22, 0.8);
+            --border-color: rgba(0, 255, 135, 0.3);
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-grid-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+        .font-display { font-family: 'Share Tech Mono', monospace; }
+
+        #grid-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .grid-pane {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            box-shadow: 0 0 40px rgba(0, 255, 135, 0.1);
+            transition: all 0.3s ease-out;
+        }
+        .grid-pane:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-maze-green);
+            box-shadow: 0 0 30px var(--glow-green);
+        }
+        
+        .cta-button {
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--accent-maze-green);
+            color: var(--accent-maze-green);
+            transition: color 0.4s ease-out;
+        }
+        .cta-button:hover {
+            color: #050816;
+        }
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background-color: var(--accent-maze-green);
+            transition: left 0.4s ease-out;
+            z-index: -1;
+        }
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <canvas id="grid-canvas"></canvas>
+
+    <header class="sticky top-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 py-4">
+            <div class="flex justify-between items-center bg-black/80 backdrop-blur-sm border-b border-green-500/30 px-4 sm:px-6 py-3">
+                <h1 class="font-display text-2xl text-white">ROBO MAZE</h1>
+                <a href="robotic.html" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 text-sm font-semibold">
+                    <span>Robotics Nexus</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" /></svg>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="relative z-10">
+        <section id="hero" class="relative text-center min-h-[90vh] flex flex-col justify-center items-center">
+             <div class="relative z-10">
+                <h2 id="hero-title" class="font-display text-6xl md:text-9xl font-bold text-accent-maze-green" style="text-shadow: 0 0 20px var(--glow-green);">
+                    ROBO MAZE
+                </h2>
+                <p id="hero-subtitle" class="mt-4 text-xl md:text-2xl text-gray-300">
+                    THE AUTONOMOUS NAVIGATION CHALLENGE
+                </p>
+                
+               <div id="hero-info" class="mt-12 flex flex-col sm:flex-row gap-6 justify-center">
+                    <div class="grid-pane rounded-lg px-8 py-4 text-center">
+                        <h3 class="font-display text-lg text-green-300 tracking-widest">EVENT DATE</h3>
+                        <p class="text-3xl lg:text-4xl font-bold text-white">11-12 NOV</p>
+                        <p class="text-lg text-gray-300">2025</p>
+                    </div>
+                    <div class="grid-pane rounded-lg px-8 py-4 text-center">
+                        <h3 class="font-display text-lg text-green-300 tracking-widest">TIMINGS</h3>
+                        <p class="text-3xl lg:text-4xl font-bold text-white">09:00 AM - 03:00 PM</p>
+                        <p class="text-lg text-gray-300">NOV 11th to NOV 12th</p>
+                    </div>
+                </div>
+             </div>
+        </section>
+        
+        <div class="container mx-auto px-4 sm:px-6 py-16 space-y-16">
+
+            <section id="description" class="grid-pane p-8 rounded-lg">
+                 <p class="text-lg md:text-xl text-center text-text-light leading-relaxed">
+                    The Robo Maze competition challenges participants to design autonomous robots capable of navigating through a structured maze filled with obstacles. Robots must detect, avoid, and maneuver around barriers without human intervention. The event promotes problem-solving, sensor integration, and algorithmic programming, testing both hardware design and coding logic. Teams must consist of 2-4 members.
+                </p>
+            </section>
+            
+            <section id="info-cards" class="grid md:grid-cols-2 gap-8">
+                <div class="grid-pane rounded-lg p-8 text-center">
+                    <h3 class="font-display text-3xl text-green-300 mb-4">ENTRY FEE</h3>
+                    <p class="text-6xl font-bold text-white">₹200</p>
+                </div>
+                <div class="grid-pane rounded-lg p-8 text-center">
+                    <h3 class="font-display text-3xl text-green-300 mb-4">PRIZE POOL</h3>
+                    <p class="text-4xl font-bold text-white">1st: ₹2,000</p>
+                    <p class="text-4xl font-bold text-white mt-2">2nd: ₹1,000</p>
+                </div>
+            </section>
+            
+            <section id="rules" class="grid-pane p-6 sm:p-8 md:p-12 rounded-lg">
+                <div class="space-y-12">
+                    <div>
+                        <h4 class="font-display text-3xl text-white mb-6 border-b-2 border-green-500/30 pb-3">Robot Specifications</h4>
+                        <ul class="list-none space-y-4 text-lg text-text-secondary">
+                            <li class="flex items-start"><span class="mr-4 mt-1 text-green-400 flex-shrink-0">●</span><span>Robots must fit inside a 20 cm × 20 cm × 20 cm cube.</span></li>
+                            <li class="flex items-start"><span class="mr-4 mt-1 text-green-400 flex-shrink-0">●</span><span>Robots must be self-built (no ready-made robots allowed).</span></li>
+                            <li class="flex items-start"><span class="mr-4 mt-1 text-green-400 flex-shrink-0">●</span><span>Locomotion: Wheels or tracks allowed.</span></li>
+                            <li class="flex items-start"><span class="mr-4 mt-1 text-green-400 flex-shrink-0">●</span><span>Sensors: Ultrasonic, infrared, etc. permitted for obstacle detection.</span></li>
+                            <li class="flex items-start"><span class="mr-4 mt-1 text-green-400 flex-shrink-0">●</span><span>Controller: Only Arduino-based microcontrollers allowed.</span></li>
+                            <li class="flex items-start"><span class="mr-4 mt-1 text-green-400 flex-shrink-0">●</span><span>Prohibited: Bluetooth, Wi-Fi, or any wireless communication modules.</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-display text-3xl text-white mb-6 border-b-2 border-green-500/30 pb-3">Maze Specifications</h4>
+                        <ul class="list-none space-y-4 text-lg text-text-secondary">
+                             <li class="flex items-start"><span class="mr-4 mt-1 text-green-400 flex-shrink-0">●</span><span>Entire maze dimensions: 120 cm × 180 cm.</span></li>
+                             <li class="flex items-start"><span class="mr-4 mt-1 text-green-400 flex-shrink-0">●</span><span>Each block: 30 sq. cm.</span></li>
+                             <li class="flex items-start"><span class="mr-4 mt-1 text-green-400 flex-shrink-0">●</span><span>Wall height: 20 cm (±2 cm).</span></li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h4 class="font-display text-3xl text-white mb-6 border-b-2 border-green-500/30 pb-3">Obstacle Avoidance Rules</h4>
+                        <ul class="list-none space-y-4 text-lg text-text-secondary">
+                             <li class="flex items-start"><span class="mr-4 mt-1 text-green-400 flex-shrink-0">●</span><span>Robots must autonomously navigate without hitting walls/obstacles.</span></li>
+                             <li class="flex items-start"><span class="mr-4 mt-1 text-green-400 flex-shrink-0">●</span><span>Robots must not damage or move maze obstacles.</span></li>
+                             <li class="flex items-start"><span class="mr-4 mt-1 text-green-400 flex-shrink-0">●</span><span>Manual touches allowed only for corrections, with penalties.</span></li>
+                        </ul>
+                    </div>
+                     <div>
+                        <h4 class="font-display text-3xl text-white mb-6 border-b-2 border-green-500/30 pb-3">Timing Rules</h4>
+                        <ul class="list-none space-y-4 text-lg text-text-secondary">
+                             <li class="flex items-start"><span class="mr-4 mt-1 text-green-400 flex-shrink-0">●</span><span>Competition has 1 round, same maze layout for all.</span></li>
+                             <li class="flex items-start"><span class="mr-4 mt-1 text-green-400 flex-shrink-0">●</span><span>Timer starts when robot crosses start line, ends at endpoint.</span></li>
+                             <li class="flex items-start"><span class="mr-4 mt-1 text-green-400 flex-shrink-0">●</span><span>If robot is stuck/no progress >3 minutes → run declared unsuccessful.</span></li>
+                             <li class="flex items-start"><span class="mr-4 mt-1 text-green-400 flex-shrink-0">●</span><span>Manual touch/redirect → +10 seconds penalty.</span></li>
+                             <li class="flex items-start"><span class="mr-4 mt-1 text-green-400 flex-shrink-0">●</span><span>Maximum 10 touches allowed → 11th touch = disqualification.</span></li>
+                             <li class="flex items-start"><span class="mr-4 mt-1 text-green-400 flex-shrink-0">●</span><span>Scoring based on completion time (including penalties).</span></li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="font-display text-3xl text-white mb-6 border-b-2 border-green-500/30 pb-3">Safety Rules</h4>
+                        <ul class="list-none space-y-4 text-lg text-text-secondary">
+                             <li class="flex items-start"><span class="mr-4 mt-1 text-green-400 flex-shrink-0">●</span><span>Robots must have an emergency stop mechanism.</span></li>
+                             <li class="flex items-start"><span class="mr-4 mt-1 text-green-400 flex-shrink-0">●</span><span>Teams are responsible for robot safety and ensuring it poses no harm.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            
+            <section id="register" class="text-center pt-8">
+                 <h2 class="font-display text-5xl text-white mb-4">SOLVE THE LABYRINTH</h2>
+                 <p class="text-text-secondary text-lg max-w-xl mx-auto mb-8">The grid is set. The timer is waiting. Will your creation find the path to victory? Assemble your team and prepare to navigate the ultimate test of logic and design.</p>
+                <a href="#" class="cta-button inline-block font-display text-2xl font-bold py-4 px-12 z-10">
+                    ENTER THE MAZE
+                </a>
+            </section>
+        </div>
+    </main>
+    
+    <footer class="mt-24 border-t border-gray-800">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-500">
+            <p>&copy; 2025 Yenepoya Institute of Technology | Robotics Nexus</p>
+        </div>
+    </footer>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const canvas = document.getElementById('grid-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        const gridSpacing = 30;
+        const scanner = { y: 0, speed: 0.5 };
+        const mouse = { x: window.innerWidth / 2, y: window.innerHeight / 2 };
+
+        function setup() {
+            width = canvas.width = window.innerWidth;
+            height = canvas.height = window.innerHeight;
+        }
+        
+        function animate() {
+            ctx.clearRect(0,0,width,height);
+            ctx.strokeStyle = `rgba(0, 255, 135, 0.1)`;
+            ctx.lineWidth = 1;
+            for(let x=0; x < width; x+=gridSpacing) {
+                ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,height); ctx.stroke();
+            }
+            for(let y=0; y < height; y+=gridSpacing) {
+                ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(width,y); ctx.stroke();
+            }
+            scanner.y += scanner.speed;
+            if (scanner.y > height) scanner.y = 0;
+            
+            const scanGradient = ctx.createLinearGradient(0, scanner.y - 40, 0, scanner.y);
+            scanGradient.addColorStop(0, 'transparent');
+            scanGradient.addColorStop(1, 'rgba(0, 255, 135, 0.4)');
+            
+            ctx.strokeStyle = scanGradient;
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(0, scanner.y);
+            ctx.lineTo(width, scanner.y);
+            ctx.stroke();
+
+            const mouseGradient = ctx.createRadialGradient(mouse.x, mouse.y, 50, mouse.x, mouse.y, 250);
+            mouseGradient.addColorStop(0, 'rgba(0, 255, 135, 0.1)');
+            mouseGradient.addColorStop(1, 'transparent');
+            ctx.fillStyle = mouseGradient;
+            ctx.fillRect(0,0,width,height);
+            
+            requestAnimationFrame(animate);
+        }
+
+        window.addEventListener('mousemove', e => {
+            gsap.to(mouse, {x: e.clientX, y: e.clientY, duration: 1, ease: 'power2.out'});
+        });
+        
+        setup();
+        animate();
+        window.addEventListener('resize', setup);
+
+        // --- GSAP Animations ---
+        gsap.from(["#hero-title", "#hero-subtitle", "#hero-info"], {
+            autoAlpha: 0,
+            y: 50,
+            duration: 1.5,
+            stagger: 0.2,
+            ease: "power3.out",
+            delay: 0.5
+        });
+        
+        gsap.utils.toArray('.grid-pane').forEach((pane) => {
+            gsap.from(pane, {
+                scrollTrigger: {
+                    trigger: pane,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse",
+                },
+                opacity: 0,
+                scale: 0.95,
+                y: 50,
+                duration: 1,
+                ease: 'power3.out',
+            });
+        });
+    });
+    </script>
+</body>
+</html>

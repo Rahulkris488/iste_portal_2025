@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lakshman Rekha: Line Follower | ISTE '25</title>
+    <title>Lakshman Rekha: The Divine Circuit | ISTE '25</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -17,13 +17,11 @@
         :root {
             --bg-mystic-dark: #1A1A2E;
             --text-light: #E0E1E9;
-            --accent-saffron: #FF9933;
-            --accent-gold: #FFD700;
+            --accent-saffron: #F4B400; /* Richer Saffron/Gold */
             --accent-cyan-tech: #00FFFF;
-            --glow-saffron: rgba(255, 153, 51, 0.3);
-            --glow-gold: rgba(255, 215, 0, 2);
-            --panel-bg: rgba(26, 26, 46, 0.6);
-            --border-color: rgba(255, 153, 51, 0.2);
+            --glow-saffron: rgba(244, 180, 0, 0.4); /* Made glow slightly stronger */
+            --panel-bg: rgba(26, 26, 46, 0.7);
+            --border-color: rgba(244, 180, 0, 0.25);
         }
         body {
             font-family: 'Exo 2', sans-serif;
@@ -33,7 +31,7 @@
         }
         .font-display { font-family: 'Cinzel', serif; }
 
-        #mystic-canvas {
+        #ember-canvas {
             position: fixed;
             top: 0;
             left: 0;
@@ -48,16 +46,30 @@
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             position: relative;
+            /* UPDATED: Enhanced transition for a smoother effect */
+            transition: transform 0.4s ease-out, box-shadow 0.4s ease-out, border-color 0.4s ease-out;
         }
         
-        .hero-mandala-svg {
-            animation: spin 120s linear infinite;
-        }
-        @keyframes spin {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
+        /* NEW: Added the glowing hover animation effect */
+        .mystic-pane:hover {
+            transform: translateY(-8px) scale(1.02);
+            border-color: rgba(244, 180, 0, 0.6);
+            box-shadow: 0 0 35px var(--glow-saffron);
         }
         
+        .hero-title-shimmer {
+            color: transparent;
+            background: linear-gradient(90deg, #FFD700, #F4B400, #00FFFF, #F4B400, #FFD700);
+            background-size: 300% 100%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            animation: shimmer 8s linear infinite;
+        }
+        @keyframes shimmer {
+            0% { background-position: 150% center; }
+            100% { background-position: -150% center; }
+        }
+
         .hero-line-svg path {
             stroke-dasharray: 1000;
             stroke-dashoffset: 1000;
@@ -67,19 +79,39 @@
             flex-shrink: 0;
             color: var(--accent-saffron);
         }
+        
+        .rules-header {
+            position: relative;
+            padding-bottom: 0.75rem;
+        }
+        .rules-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, var(--accent-saffron), transparent);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease-out;
+        }
+        .rules-header-visible::after {
+            transform: scaleX(1);
+        }
     </style>
 </head>
 <body class="antialiased">
 
-    <canvas id="mystic-canvas"></canvas>
+    <canvas id="ember-canvas"></canvas>
 
     <header class="sticky top-0 z-50">
         <nav class="container mx-auto px-4 sm:px-6 py-4">
             <div class="flex justify-between items-center bg-black/50 backdrop-blur-md border border-amber-500/30 px-4 sm:px-6 py-3 rounded-full">
                 <h1 class="font-display text-lg sm:text-2xl text-white tracking-widest">LAKSHMAN REKHA</h1>
-                <a href="index.html" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 text-sm">
+                <a href="robotic.html" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 text-sm">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
-                    <span>Main Hub</span>
+                    <span>Robotics Nexus</span>
                 </a>
             </div>
         </nav>
@@ -88,38 +120,25 @@
     <main class="container mx-auto px-4 sm:px-6 py-12 md:py-20">
         <section id="hero" class="text-center mb-20 md:mb-32">
              <div class="relative w-full h-64 flex justify-center items-center mb-4">
-                <svg class="hero-mandala-svg w-full h-full absolute opacity-20" viewBox="0 0 200 200">
-                    <defs>
-                        <path id="petal" d="M100,20 C110,40 110,60 100,80 C90,60 90,40 100,20 Z" fill="var(--accent-saffron)"/>
-                    </defs>
-                    <circle cx="100" cy="100" r="80" fill="none" stroke="var(--accent-saffron)" stroke-width="0.5"/>
-                    <circle cx="100" cy="100" r="60" fill="none" stroke="var(--accent-saffron)" stroke-width="0.5"/>
-                    <g>
-                        <use href="#petal" />
-                        <use href="#petal" transform="rotate(45, 100, 100)" />
-                        <use href="#petal" transform="rotate(90, 100, 100)" />
-                        <use href="#petal" transform="rotate(135, 100, 100)" />
-                        <use href="#petal" transform="rotate(180, 100, 100)" />
-                        <use href="#petal" transform="rotate(225, 100, 100)" />
-                        <use href="#petal" transform="rotate(270, 100, 100)" />
-                        <use href="#petal" transform="rotate(315, 100, 100)" />
-                    </g>
+                <svg id="mandala" class="w-full h-full absolute opacity-0" viewBox="0 0 200 200" style="filter: drop-shadow(0 0 15px var(--glow-saffron));">
+                    <circle cx="100" cy="100" r="80" fill="none" stroke="var(--accent-saffron)" stroke-width="0.2"/>
+                    <circle cx="100" cy="100" r="60" fill="none" stroke="var(--accent-saffron)" stroke-width="0.2"/>
                 </svg>
                 <svg class="hero-line-svg w-full h-full absolute" viewBox="0 0 400 100">
                      <defs>
                         <filter id="lineGlow">
-                          <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                          <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
                           <feMerge>
                             <feMergeNode in="coloredBlur"/>
                             <feMergeNode in="SourceGraphic"/>
                           </feMerge>
                         </filter>
                     </defs>
-                    <path d="M 20 50 C 150 20, 250 80, 380 50" fill="none" stroke="var(--accent-cyan-tech)" stroke-width="3" filter="url(#lineGlow)"/>
+                    <path d="M 20 50 C 150 20, 250 80, 380 50" fill="none" stroke="var(--accent-cyan-tech)" stroke-width="2" filter="url(#lineGlow)"/>
                 </svg>
                 
                 <div class="relative z-10">
-                    <h2 class="font-display text-5xl sm:text-6xl md:text-8xl font-bold text-amber-300" style="text-shadow: 0 0 20px var(--glow-saffron);">
+                    <h2 class="font-display text-5xl sm:text-6xl md:text-8xl font-bold hero-title-shimmer">
                         Lakshman Rekha
                     </h2>
                     <p class="mt-2 text-xl md:text-2xl text-cyan-300 tracking-wider">THE LINE FOLLOWER CHALLENGE</p>
@@ -135,11 +154,11 @@
         </section>
 
         <section id="info-cards" class="grid md:grid-cols-2 gap-8 mb-20 md:mb-24">
-            <div class="mystic-pane rounded-lg p-8 text-center border-l-4 border-saffron" style="box-shadow: -10px 0 25px var(--glow-saffron);">
+            <div class="mystic-pane rounded-lg p-8 text-center">
                 <h3 class="font-display text-3xl text-white mb-4">Entry Fee</h3>
                 <p class="text-6xl font-bold text-amber-300 tracking-tight">₹300</p>
             </div>
-            <div class="mystic-pane rounded-lg p-8 text-center border-r-4 border-gold" style="box-shadow: 10px 0 25px var(--glow-gold);">
+            <div class="mystic-pane rounded-lg p-8 text-center">
                 <h3 class="font-display text-3xl text-white mb-4">Prize Pool</h3>
                 <div class="text-4xl font-bold text-yellow-300 tracking-tight">
                     <p>1st: ₹5,000</p>
@@ -149,11 +168,10 @@
         </section>
 
         <section id="rules" class="mystic-pane p-6 sm:p-8 md:p-12 rounded-xl">
-            <h3 class="font-display text-4xl text-center text-amber-300 mb-10 tracking-wider">Sacred Protocols</h3>
-            <div class="grid lg:grid-cols-2 gap-x-12 gap-y-10">
+            <div class="grid lg:grid-cols-2 gap-x-12 gap-y-16">
                 
                 <div>
-                    <h4 class="font-display text-2xl text-white mb-4 border-b-2 border-amber-500/30 pb-2">Robot Specifications</h4>
+                    <h4 class="rules-header font-display text-2xl text-white mb-6">Robot Specifications</h4>
                     <ul class="list-none space-y-4 text-lg rules-list">
                         <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg><span>Maximum dimensions: 20cm x 20cm x 20cm.</span></li>
                         <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-2m-4-1v8m0 0l3-3m-3 3L9 8m-5 5h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 001.414 0l2.414-2.414a1 1 0 01.707-.293H17" /></svg><span>Maximum weight: 3 kg.</span></li>
@@ -164,7 +182,7 @@
                 </div>
 
                 <div>
-                    <h4 class="font-display text-2xl text-white mb-4 border-b-2 border-amber-500/30 pb-2">Rules of the Arena</h4>
+                    <h4 class="rules-header font-display text-2xl text-white mb-6">Rules of the Arena</h4>
                     <ul class="list-none space-y-4 text-lg rules-list">
                         <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L15 9l-2.053 1.027a1 1 0 01-1.447-.894V5.618a1 1 0 011.447-.894L21 9" /></svg><span>The arena map will be disclosed on the day of the event.</span></li>
                         <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg><span>The arena track width will be approximately 3 cm.</span></li>
@@ -177,7 +195,7 @@
         </section>
 
         <section id="register" class="mt-20 md:mt-24 text-center">
-            <a href="#" class="inline-block font-display text-xl bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold py-4 px-12 rounded-md transition-all duration-300 ease-in-out hover:shadow-lg hover:shadow-yellow-400/40 hover:scale-105">
+            <a href="#" class="inline-block font-display text-xl bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold py-4 px-12 rounded-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-[0_0_25px_var(--glow-saffron)]">
                 REGISTER YOUR TEAM
             </a>
         </section>
@@ -193,22 +211,22 @@
     document.addEventListener('DOMContentLoaded', function() {
         gsap.registerPlugin(ScrollTrigger);
 
-        // --- Background Canvas Animation ---
-        const canvas = document.getElementById('mystic-canvas');
+        // --- Drifting Embers Canvas Animation ---
+        const canvas = document.getElementById('ember-canvas');
         const ctx = canvas.getContext('2d');
         let width = canvas.width = window.innerWidth;
         let height = canvas.height = window.innerHeight;
         let particles = [];
-        const particleCount = 50;
+        const particleCount = 70;
 
         class Particle {
             constructor() {
                 this.x = Math.random() * width;
-                this.y = Math.random() * height;
+                this.y = Math.random() * height + height;
                 this.size = Math.random() * 2 + 1;
-                this.speedX = Math.random() * 0.5 - 0.25;
-                this.speedY = Math.random() * 0.5 - 0.25;
-                this.color = `rgba(255, 153, 51, ${Math.random() * 0.5 + 0.2})`;
+                this.speedX = Math.random() * 0.4 - 0.2;
+                this.speedY = -Math.random() * 0.5 - 0.1;
+                this.color = `rgba(244, 180, 0, ${Math.random() * 0.6 + 0.2})`;
             }
             draw() {
                 ctx.fillStyle = this.color;
@@ -219,11 +237,9 @@
             update() {
                 this.x += this.speedX;
                 this.y += this.speedY;
-                if (this.size > 0.2) this.size -= 0.01;
-                if (this.size <= 0.2) {
+                if (this.y < -this.size) {
+                    this.y = height + this.size;
                     this.x = Math.random() * width;
-                    this.y = Math.random() * height;
-                    this.size = Math.random() * 2 + 1;
                 }
                 this.draw();
             }
@@ -234,13 +250,11 @@
                 particles.push(new Particle());
             }
         }
-
         function animateCanvas() {
             ctx.clearRect(0, 0, width, height);
             particles.forEach(p => p.update());
             requestAnimationFrame(animateCanvas);
         }
-
         initParticles();
         animateCanvas();
 
@@ -251,19 +265,27 @@
              initParticles();
         });
 
-        // --- Hero Animations ---
+        // --- POLISHED HERO ANIMATION ---
         const tl = gsap.timeline({delay: 0.5});
+
         tl.to(".hero-line-svg path", {
             strokeDashoffset: 0,
             duration: 2.5,
             ease: "power2.inOut"
-        }).from(["#hero h2", "#hero p"], {
+        })
+        .to("#mandala", {
+            autoAlpha: 0.2,
+            scale: 1,
+            duration: 2,
+            ease: "power3.out"
+        }, "-=2.5")
+        .from(["#hero h2", "#hero p"], {
             autoAlpha: 0,
             y: 30,
-            duration: 1,
+            duration: 1.5,
             stagger: 0.2,
             ease: 'power3.out'
-        }, "-=1.5");
+        }, "-=2");
         
         // --- Scroll Animations ---
         gsap.utils.toArray('section:not(#hero)').forEach((section) => {
@@ -277,6 +299,15 @@
                 y: 60,
                 duration: 1,
                 ease: 'power3.out',
+            });
+        });
+
+        // Animate the rule headers' underlines on scroll
+        gsap.utils.toArray('.rules-header').forEach((header) => {
+             ScrollTrigger.create({
+                trigger: header,
+                start: "top 85%",
+                toggleClass: 'rules-header-visible'
             });
         });
     });
