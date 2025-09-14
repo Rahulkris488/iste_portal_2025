@@ -98,7 +98,7 @@
         <nav class="container mx-auto px-6 py-4">
              <div class="flex justify-between items-center circuit-pane !p-3">
                 <h1 class="font-display text-xl font-bold text-center text-text-hud">ASSEMBLY PROTOCOL</h1>
-                <a href="index.html" class="text-text-secondary hover:text-white transition-colors flex items-center gap-2 text-md">
+                <a href="index.html" onclick="if (history.length > 1) { history.back(); return false; }" class="text-text-secondary hover:text-white transition-colors flex items-center gap-2 text-md">
                     <span>MAIN HUB</span>
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                         <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
@@ -124,46 +124,46 @@
         <section id="general-rules" class="container mx-auto px-4 sm:px-6 py-12 md:py-20">
               <h2 class="font-display text-3xl md:text-4xl font-bold text-center mb-16 text-text-hud">// GENERAL PROTOCOLS</h2>
               <div class="max-w-4xl mx-auto circuit-pane">
-                  <ul class="space-y-4">
-                      <li class="flex items-start">
-                          <svg class="h-6 w-6 mr-3 text-blue-400 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                          </svg>
-                          <span class="text-lg text-text-secondary"><strong>Team Size:</strong> A team must consist of 2 to 4 members.</span>
-                      </li>
-                      <li class="flex items-start">
-                          <svg class="h-6 w-6 mr-3 text-blue-400 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                          </svg>
-                          <span class="text-lg text-text-secondary"><strong>Eligibility:</strong> All participants must be full-time students of accredited universities, colleges, or schools.</span>
-                      </li>
-                      <li class="flex items-start">
-                          <svg class="h-6 w-6 mr-3 text-blue-400 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                          </svg>
-                          <span class="text-lg text-text-secondary"><strong>Entries:</strong> Multiple teams from the same institution are permitted to enter.</span>
-                      </li>
-                      <li class="flex items-start">
-                          <svg class="h-6 w-6 mr-3 text-blue-400 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                          </svg>
-                        <span class="text-lg text-text-secondary"><strong>Identification:</strong> A valid college ID is mandatory for registration.</span>
-                      </li>
-                       <li class="flex items-start">
-                          <svg class="h-6 w-6 mr-3 text-blue-400 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                          </svg>
-                          <span class="text-lg text-text-secondary"><strong>Authority:</strong> The decisions made by the judges and organizers are final and binding.</span>
-                      </li>
-                      <li class="flex items-start">
-                          <svg class="h-6 w-6 mr-3 text-red-500 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                          </svg>
-                          <span class="text-lg text-text-secondary"><strong>Compliance:</strong> Any violation of the rules will lead to immediate disqualification from the event.</span>
-                      </li>
-                  </ul>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <svg class="h-6 w-6 mr-3 text-blue-400 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                            <span class="text-lg text-text-secondary"><strong>Team Size:</strong> A team must consist of 2 to 4 members.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="h-6 w-6 mr-3 text-blue-400 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                            <span class="text-lg text-text-secondary"><strong>Eligibility:</strong> All participants must be full-time students of accredited universities, colleges, or schools.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="h-6 w-6 mr-3 text-blue-400 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                            <span class="text-lg text-text-secondary"><strong>Entries:</strong> Multiple teams from the same institution are permitted to enter.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="h-6 w-6 mr-3 text-blue-400 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                            <span class="text-lg text-text-secondary"><strong>Identification:</strong> A valid college ID is mandatory for registration.</span>
+                        </li>
+                           <li class="flex items-start">
+                            <svg class="h-6 w-6 mr-3 text-blue-400 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                            <span class="text-lg text-text-secondary"><strong>Authority:</strong> The decisions made by the judges and organizers are final and binding.</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="h-6 w-6 mr-3 text-red-500 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                            </svg>
+                            <span class="text-lg text-text-secondary"><strong>Compliance:</strong> Any violation of the rules will lead to immediate disqualification from the event.</span>
+                        </li>
+                    </ul>
               </div>
-          </section>
+        </section>
 
         <div class="container mx-auto px-4 sm:px-6 py-12 md:py-20 space-y-24">
             
@@ -173,7 +173,7 @@
                     
                     <a href="robo-kickoff.html" class="block group event-card">
                         <div class="glass-card h-full overflow-hidden">
-                            <img src="https://d8it4huxumps7.cloudfront.net/uploads/images/opportunity/mobile_banner/627f59e8450c5_robo-scoccer.jpg" alt="Robo Soccer" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?q=80&w=1935&auto=format&fit=crop" alt="Robo Soccer" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
                             <div class="p-6">
                                 <h3 class="font-display text-xl font-bold mb-2 text-blue-400">Robo Kick-Off</h3>
                                 <p>A dynamic soccer-style game where bots must maneuver a ball and defend a goal, testing technical skill and teamwork.</p>
@@ -183,7 +183,7 @@
 
                     <a href="robo-race.html" class="block group event-card">
                         <div class="glass-card h-full overflow-hidden">
-                            <img src="https://th.bing.com/th/id/OIP.-yL47amEA0ayiz5Dxml1UgHaEK?w=288&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Robo Race" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <img src="https://images.unsplash.com/photo-1593349348559-880c10a24f09?q=80&w=2070&auto=format&fit=crop" alt="Robo Race" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
                             <div class="p-6">
                                 <h3 class="font-display text-xl font-bold mb-2 text-blue-400">Robo Race</h3>
                                 <p>A high-speed competition where bots navigate a track filled with obstacles, emphasizing speed, control, and endurance.</p>
@@ -191,9 +191,9 @@
                         </div>
                     </a>
 
-                    <a href="Lakshman-Rekha .html" class="block group event-card">
+                    <a href="Lakshman-Rekha.html" class="block group event-card">
                         <div class="glass-card h-full overflow-hidden">
-                            <img src="https://th.bing.com/th/id/OIP._E6d6EeXC8oN3YxgjeR1PAHaFj?w=217&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Line Follower Robot" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <img src="https://images.unsplash.com/photo-1634912265215-1616c683b5aa?q=80&w=2070&auto=format&fit=crop" alt="Line Follower Robot" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
                             <div class="p-6">
                                 <h3 class="font-display text-xl font-bold mb-2 text-blue-400">Lakshman Rekha</h3>
                                 <p>An autonomous challenge where bots must follow a predefined track using sensors, testing automation and precision.</p>
@@ -203,7 +203,7 @@
 
                     <a href="robo-sumo.html" class="block group event-card">
                         <div class="glass-card h-full overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1534723328310-e82dad3ee43f?q=80&w=1974&auto=format&fit=crop" alt="Robo Sumo" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <img src="https://images.unsplash.com/photo-1612023523842-8c108a4f9b88?q=80&w=1932&auto=format&fit=crop" alt="Robo Sumo" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
                             <div class="p-6">
                                 <h3 class="font-display text-xl font-bold mb-2 text-blue-400">Robo Sumo</h3>
                                 <p>Two bots compete to push each other out of a circular ring in a test of design, balance, power, and strategy.</p>
@@ -213,7 +213,7 @@
 
                     <a href="robo-maze.html" class="block group event-card">
                         <div class="glass-card h-full overflow-hidden">
-                            <img src="https://th.bing.com/th/id/OIP.nz6-873DWcBgk_kJ8zAg9QHaE5?w=286&h=189&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3" alt="Robo Maze" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <img src="https://images.unsplash.com/photo-1599493356233-83a3ed87833a?q=80&w=2070&auto=format&fit=crop" alt="Robo Maze" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
                             <div class="p-6">
                                 <h3 class="font-display text-xl font-bold mb-2 text-blue-400">Robo Maze</h3>
                                 <p>An autonomous navigation challenge where bots must solve a maze filled with obstacles, testing problem-solving skills.</p>
@@ -224,21 +224,42 @@
                 </div>
             </section>
             
-            <section class="max-w-5xl mx-auto text-center">
-                <h2 class="font-display text-3xl font-bold text-center mb-8 text-text-hud">// MISSION COMMAND</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="circuit-pane">
-                        <h3 class="font-display text-xl text-blue-400 mb-4">LEAD ENGINEERS [FACULTY]</h3>
-                        <p class="text-lg">Prof. Praveen Ullagaddi</p>
-                        <p class="text-lg">Dr. Ganesh K</p>
-
+            <section class="max-w-5xl mx-auto">
+                <h2 class="font-display text-3xl font-bold text-center mb-16 text-text-hud">// MISSION COMMAND</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                    <div class="flex flex-col gap-6">
+                        <h3 class="font-display text-2xl text-blue-400 text-center md:text-left">LEAD ENGINEERS [FACULTY]</h3>
+                        <div class="circuit-pane text-center md:text-left">
+                            <p class="text-lg font-semibold text-text-hud">Prof. Praveen Ullagaddi</p>
+                            <p class="text-md text-text-secondary">+91 89515 34138</p>
+                        </div>
+                        <div class="circuit-pane text-center md:text-left">
+                            <p class="text-lg font-semibold text-text-hud">Dr. Ganesh K</p>
+                            <p class="text-md text-text-secondary">+91 96206 59856</p>
+                        </div>
                     </div>
-                    <div class="circuit-pane">
-                        <h3 class="font-display text-xl text-blue-400 mb-4">FIELD OPERATIVES [STUDENTS]</h3>
-                        <p class="text-lg">Rahul krishna TP</p>
+                    <div class="flex flex-col gap-6">
+                        <h3 class="font-display text-2xl text-blue-400 text-center md:text-left">FIELD OPERATIVES [STUDENTS]</h3>
+                        <div class="circuit-pane text-center md:text-left">
+                            <p class="text-lg font-semibold text-text-hud">Akshay Kumar</p>
+                            <p class="text-md text-text-secondary">+91 93804 41648</p>
+                        </div>
+                        <div class="circuit-pane text-center md:text-left">
+                            <p class="text-lg font-semibold text-text-hud">Deekshith</p>
+                            <p class="text-md text-text-secondary">+91 99026 51669</p>
+                        </div>
+                        <div class="circuit-pane text-center md:text-left">
+                            <p class="text-lg font-semibold text-text-hud">Prashanth</p>
+                            <p class="text-md text-text-secondary">+91 81977 58557</p>
+                        </div>
+                         <div class="circuit-pane text-center md:text-left">
+                            <p class="text-lg font-semibold text-text-hud">Adhitya</p>
+                            <p class="text-md text-text-secondary">+91 96114 75880</p>
+                        </div>
                     </div>
                 </div>
             </section>
+
 
             <section class="text-center circuit-pane">
                 <h2 class="font-display text-4xl font-bold text-text-hud">INITIATE REGISTRATION</h2>
