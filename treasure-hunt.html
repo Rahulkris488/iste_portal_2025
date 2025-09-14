@@ -137,7 +137,6 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 1.5rem;
             color: var(--parchment);
             font-family: 'Cinzel', serif;
         }
@@ -145,39 +144,30 @@
 </head>
 <body class="antialiased">
     <canvas id="map-canvas"></canvas>
-
-    <div id="loader">
-        <p id="loader-text">Unfurling the Ancient Map...</p>
+<div id="loader">
+        <p id="loader-text" class="text-center px-4 text-lg sm:text-xl md:text-2xl">Unfurling the Ancient Map...</p>
     </div>
 
     <header class="sticky top-0 z-50">
-    <nav class="container mx-auto px-4 sm:px-6 py-4 bg-black/30 backdrop-blur-md rounded-b-xl border-x border-b border-gold/30">
-        <div class="relative flex justify-between items-center">
-
-            <!-- Empty div to keep space on left -->
-            <div></div>
-
-            <!-- Centered title -->
-            <h1 class="absolute left-1/2 -translate-x-1/2 text-xl sm:text-2xl font-bold text-center text-yellow-300 whitespace-nowrap">
-                The Cartographer's Challenge
-            </h1>
-
-            <!-- Button on right -->
-            <div>
-                <a href="index.html" 
-                   onclick="if (history.length > 1) { history.back(); return false; }" 
-                   class="text-yellow-200 hover:text-white transition-colors flex items-center gap-2 text-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-                    </svg>
-                    <span class="hidden sm:inline">Return to Hub</span>
-                </a>
+        <nav class="container mx-auto px-4 sm:px-6 py-2 bg-black/30 backdrop-blur-md rounded-b-xl border-x border-b border-gold/30">
+            <div class="flex justify-between items-center h-16 gap-4">
+    
+                <h1 class="text-md sm:text-xl md:text-2xl font-bold text-yellow-300 whitespace-nowrap">
+                    The Cartographer's Challenge
+                </h1>
+    
+                <div class="flex-shrink-0">
+                    <a href="index.html" class="text-yellow-200 hover:text-white transition-colors flex items-center gap-2 text-lg">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5  scale-150" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                        </svg>
+                        <span class="hidden sm:inline">Return to Hub</span>
+                    </a>
+                </div>
+    
             </div>
-
-        </div>
-    </nav>
-</header>
-
+        </nav>
+    </header>
 
     <main class="container mx-auto px-4 sm:px-6 py-12 md:py-20">
         <div class="space-y-20">
