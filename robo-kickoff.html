@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robo Kick-Off Arena | Robotics Nexus '25</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800&family=Exo+2:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-stadium-dark: #02100C;
+            --text-light: #D1D5DB;
+            --accent-turf-green: #00FF87;
+            --accent-glow: rgba(0, 255, 135, 0.4);
+            --panel-bg: rgba(0, 20, 10, 0.6);
+        }
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background-color: var(--bg-stadium-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+        .font-display { font-family: 'Orbitron', sans-serif; }
+
+        #stadium-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .highlight-card {
+            background: var(--panel-bg);
+            border: 1px solid var(--accent-turf-green);
+            box-shadow: 0 0 25px var(--accent-glow), inset 0 0 15px rgba(0, 255, 135, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        
+        .highlight-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 40px var(--accent-glow);
+        }
+
+        .highlight-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, rgba(0, 255, 135, 0.15), transparent 30%);
+            animation: rotate 8s linear infinite;
+        }
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .rules-pane {
+             background: var(--panel-bg);
+             border: 1px solid rgba(0, 255, 135, 0.2);
+             backdrop-filter: blur(10px);
+             -webkit-backdrop-filter: blur(10px);
+        }
+        
+        #hero-scene {
+            perspective: 2000px;
+        }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <canvas id="stadium-canvas"></canvas>
+
+    <header class="sticky top-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 py-4">
+            <div class="flex justify-between items-center bg-black/50 backdrop-blur-md border border-green-500/30 px-4 sm:px-6 py-3 rounded-lg">
+                <h1 class="font-display text-lg sm:text-2xl font-bold text-white">ROBO KICK-OFF</h1>
+                <a href="robotic.html" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 text-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                    <span>Robotics Nexus</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 py-12 md:py-20">
+        <section id="hero" class="text-center mb-20 md:mb-32">
+             <div id="hero-scene" class="relative w-full h-80 flex justify-center items-center mb-4 overflow-hidden">
+                <!-- Goal (Back Layer) -->
+                <div data-depth="0.1" class="absolute z-10 w-full h-full flex justify-center items-center">
+                    <svg id="goal" viewBox="0 0 300 150" class="w-96 h-auto opacity-60">
+                         <defs>
+                             <linearGradient id="goal-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                 <stop offset="0%" stop-color="rgba(0, 255, 135, 0.8)" />
+                                 <stop offset="100%" stop-color="rgba(0, 255, 135, 0)" />
+                             </linearGradient>
+                             <filter id="goal-glow">
+                                 <feGaussianBlur stdDeviation="5" result="coloredBlur"/>
+                                 <feMerge>
+                                     <feMergeNode in="coloredBlur"/>
+                                     <feMergeNode in="SourceGraphic"/>
+                                 </feMerge>
+                             </filter>
+                         </defs>
+                         <path d="M 20 10 H 280 V 140 H 20 Z" fill="none" stroke="url(#goal-grad)" stroke-width="4" filter="url(#goal-glow)" />
+                         <path d="M 20 10 L 50 140 M 280 10 L 250 140" fill="none" stroke="rgba(0, 255, 135, 0.2)" stroke-width="2"/>
+                    </svg>
+                </div>
+
+                <!-- Ball (Middle Layer) -->
+                <div data-depth="0.4" class="absolute z-30 flex justify-center items-center">
+                    <svg id="ball" viewBox="0 0 100 100" class="w-20 h-20" style="filter: drop-shadow(0 10px 20px var(--accent-glow));">
+                        <defs>
+                            <radialGradient id="ball-shine" cx="0.3" cy="0.3" r="0.7">
+                                <stop offset="0%" stop-color="rgba(255,255,255,0.7)"/>
+                                <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+                            </radialGradient>
+                        </defs>
+                        <circle cx="50" cy="50" r="45" fill="#111827"/>
+                        <path d="M50,5 A45,45 0 0 1 93.3,32.5 L67.5,50 Z" fill="#E5E7EB"/>
+                        <path d="M50,5 L6.7,32.5 L32.5,50 Z" fill="#E5E7EB"/>
+                        <path d="M19.2,77.5 L50,95 L80.8,77.5 L67.5,50 H32.5 Z" fill="#E5E7EB"/>
+                        <circle cx="50" cy="50" r="45" fill="url(#ball-shine)"/>
+                        <circle cx="50" cy="50" r="45" fill="none" stroke="var(--accent-turf-green)" stroke-width="2"/>
+                    </svg>
+                </div>
+                
+                <!-- Robot (Front Layer) -->
+                <div data-depth="0.8" class="absolute z-40 flex justify-center items-center">
+                    <svg id="robot" viewBox="0 0 200 150" class="w-64 h-auto" style="filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));">
+                        <defs>
+                             <linearGradient id="body-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                <stop offset="0%" stop-color="#6B7280"/>
+                                <stop offset="100%" stop-color="#1F2937"/>
+                             </linearGradient>
+                             <filter id="glow-filter">
+                                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+                        
+                        <!-- Internal Components & Wires -->
+                        <g transform="translate(0, 5)">
+                            <rect x="70" y="70" width="60" height="20" rx="5" fill="#111827"/>
+                            <circle cx="100" cy="80" r="8" fill="var(--accent-turf-green)" filter="url(#glow-filter)"/>
+                            <!-- Wires -->
+                            <path d="M 70 80 C 60 80, 55 90, 45 100" fill="none" stroke="var(--accent-turf-green)" stroke-width="1.5"/>
+                            <path d="M 130 80 C 140 80, 145 90, 155 100" fill="none" stroke="var(--accent-turf-green)" stroke-width="1.5"/>
+                        </g>
+                        
+                        <!-- Wheels -->
+                        <g id="left-wheel">
+                            <circle cx="45" cy="105" r="25" fill="#111827" stroke="#374151" stroke-width="2"/>
+                            <circle cx="45" cy="105" r="15" fill="none" stroke="#4B5563" stroke-width="8"/>
+                            <g transform="translate(45, 105)">
+                                <path d="M0 -12 L0 -8 M0 12 L0 8 M12 0 L8 0 M-12 0 L-8 0" stroke="#374151" stroke-width="3"/>
+                            </g>
+                            <circle cx="45" cy="105" r="5" fill="var(--accent-turf-green)"/>
+                        </g>
+                        <g id="right-wheel">
+                            <circle cx="155" cy="105" r="25" fill="#111827" stroke="#374151" stroke-width="2"/>
+                            <circle cx="155" cy="105" r="15" fill="none" stroke="#4B5563" stroke-width="8"/>
+                            <g transform="translate(155, 105)">
+                                <path d="M0 -12 L0 -8 M0 12 L0 8 M12 0 L8 0 M-12 0 L-8 0" stroke="#374151" stroke-width="3"/>
+                            </g>
+                            <circle cx="155" cy="105" r="5" fill="var(--accent-turf-green)"/>
+                        </g>
+                        
+                        <!-- Main Body & Chassis -->
+                        <path d="M 20 100 L 50 50 H 150 L 180 100 Z" fill="rgba(49, 46, 129, 0.3)" stroke="rgba(167, 139, 250, 0.5)" stroke-width="1" style="backdrop-filter: blur(5px);"/>
+                        <path d="M 20 100 H 180 V 115 H 20 Z" fill="url(#body-grad)" stroke="#4B5563" stroke-width="1"/>
+    
+                        <!-- Front Plate -->
+                        <path d="M -5 105 H 205 V 115 H -5 Z" fill="var(--accent-turf-green)" filter="url(#glow-filter)" />
+                    </svg>
+                </div>
+             </div>
+            <h2 class="font-display text-5xl sm:text-6xl md:text-8xl font-black text-accent-turf-green uppercase tracking-wider" style="text-shadow: 0 0 25px var(--accent-glow);">
+                Robo Soccer
+            </h2>
+            <div class="mt-4 text-center font-display text-accent-turf-green/80">
+                <span>Date: 12th Nov, 2025</span> | <span>Time: 09:00 AM - 03:30 PM</span>
+            </div>
+            <p class="mt-6 text-lg md:text-xl max-w-3xl mx-auto text-gray-300">
+                The Robo Kick-Off (Robo Soccer) competition is a dynamic and engaging event where teams design and operate robots to compete in a soccer-style game. Participants must create bots capable of maneuvering across the arena, strategically pushing the ball, and defending against opponents while adhering to safety and technical guidelines. The event tests technical expertise, creativity, and teamwork under competitive conditions, providing students with a platform to apply engineering knowledge in a real-time sporting context.
+            </p>
+        </section>
+
+        <section id="bounty-info" class="grid md:grid-cols-2 gap-8 mb-20 md:mb-24">
+            <div class="highlight-card rounded-lg p-8 text-center">
+                <h3 class="font-display text-3xl text-white mb-4">Entry Fee</h3>
+                <p class="text-6xl font-bold text-accent-turf-green tracking-tight">₹400</p>
+                <p class="text-gray-400 mt-2">Per Squad</p>
+            </div>
+            <div class="highlight-card rounded-lg p-8 text-center">
+                <h3 class="font-display text-3xl text-white mb-4">Prize Pool</h3>
+                <p class="text-6xl font-bold text-accent-turf-green tracking-tight">₹8,000</p>
+                 <p class="text-gray-400 mt-2">For Top Performers</p>
+            </div>
+        </section>
+
+        <section id="rules" class="rules-pane p-6 sm:p-8 md:p-12 rounded-xl">
+            <h3 class="font-display text-4xl text-center text-accent-turf-green mb-10">// MATCH PROTOCOLS</h3>
+            <div class="grid lg:grid-cols-2 gap-x-12 gap-y-10">
+                
+                <div class="protocol-section">
+                    <h4 class="font-display text-2xl text-white mb-4 border-b-2 border-green-500/30 pb-2 flex items-center gap-3">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent-turf-green" viewBox="0 0 20 20" fill="currentColor"><path d="M5 4a2 2 0 012-2h6a2 2 0 012 2v14l-5-2.5L5 18V4z" /></svg>
+                        Bot Specifications
+                    </h4>
+                    <ul class="list-none space-y-3">
+                        <li class="flex items-start"><span class="text-accent-turf-green mr-3 text-xl">▶</span> Weight: Not more than 5 kg (10% tolerance).</li>
+                        <li class="flex items-start"><span class="text-accent-turf-green mr-3 text-xl">▶</span> Measurements: Max 30cm x 30cm (10% tolerance).</li>
+                        <li class="flex items-start"><span class="text-accent-turf-green mr-3 text-xl">▶</span> Control: Wired or wireless bots are permitted.</li>
+                        <li class="flex items-start"><span class="text-accent-turf-green mr-3 text-xl">▶</span> Wires must reach the corners of the arena.</li>
+                        <li class="flex items-start"><span class="text-accent-turf-green mr-3 text-xl">▶</span> Build: Ready-made bots like Lego bricks are not allowed.</li>
+                        <li class="flex items-start"><span class="text-accent-turf-green mr-3 text-xl">▶</span> Power: Maximum 12-volt on-board supply. No external power.</li>
+                        <li class="flex items-start"><span class="text-accent-turf-green mr-3 text-xl">▶</span> Mechanism: No hitting mechanism allowed.</li>
+                    </ul>
+                </div>
+
+                <div class="protocol-section">
+                    <h4 class="font-display text-2xl text-white mb-4 border-b-2 border-green-500/30 pb-2 flex items-center gap-3">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent-turf-green" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M10 1.944A11.954 11.954 0 012.166 5C2.056 5.649 2 6.319 2 7c0 5.225 3.34 9.67 8 11.317C14.66 16.67 18 12.225 18 7c0-.682-.057-1.35-.166-2.001A11.954 11.954 0 0110 1.944zM11 14a1 1 0 11-2 0 1 1 0 012 0zm0-7a1 1 0 10-2 0v3a1 1 0 102 0V7z" clip-rule="evenodd" /></svg>
+                        Arena & Safety
+                    </h4>
+                    <ul class="list-none space-y-3">
+                        <li class="flex items-start"><span class="text-accent-turf-green mr-3 text-xl">▶</span> Arena Dimensions: 12 ft × 8 ft with walled boundaries for gameplay.</li>
+                        <li class="flex items-start"><span class="text-accent-turf-green mr-3 text-xl">▶</span> Responsibility: Teams are responsible for any damage to their own robots.</li>
+                        <li class="flex items-start"><span class="text-accent-turf-green mr-3 text-xl">▶</span> Equipment: All necessary tools and accessories must be brought by participants.</li>
+                        <li class="flex items-start"><span class="text-accent-turf-green mr-3 text-xl">▶</span> Support: No technical assistance will be provided during the match.</li>
+                    </ul>
+                </div>
+
+                <div class="lg:col-span-2 protocol-section">
+                     <h4 class="font-display text-2xl text-white mb-4 border-b-2 border-green-500/30 pb-2 flex items-center gap-3">
+                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-accent-turf-green" viewBox="0 0 20 20" fill="currentColor"><path d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" /></svg>
+                        Gameplay Rules
+                    </h4>
+                    <ul class="list-none space-y-3 grid md:grid-cols-2 gap-x-8 gap-y-3">
+                        <li class="flex items-start"><span class="text-accent-turf-green mr-3 text-xl">▶</span> Match Format: 2 halves, 2 minutes each.</li>
+                        <li class="flex items-start"><span class="text-accent-turf-green mr-3 text-xl">▶</span> Goal Rules: Pushing the opponent's bot into the goalpost is allowed.</li>
+                        <li class="flex items-start"><span class="text-accent-turf-green mr-3 text-xl">▶</span> Control: One designated controller per bot must be maintained throughout.</li>
+                        <li class="flex items-start"><span class="text-accent-turf-green mr-3 text-xl">▶</span> Wires: Must be managed by a single, separate player (for wired bots).</li>
+                        <li class="flex items-start"><span class="text-accent-turf-green mr-3 text-xl">▶</span> Timeout: A 1-minute technical timeout is available if needed.</li>
+                        <li class="flex items-start"><span class="text-accent-turf-green mr-3 text-xl">▶</span> Entanglement: If wires entangle, the game is paused and resumed from position.</li>
+                        <li class="flex items-start"><span class="text-accent-turf-green mr-3 text-xl">▶</span> Resets: After a goal, both bots reset to starting positions.</li>
+                        <li class="flex items-start"><span class="text-accent-turf-green mr-3 text-xl">▶</span> Winner: Team with higher points across both halves wins.</li>
+                        <li class="flex items-start"><span class="text-accent-turf-green mr-3 text-xl">▶</span> Tie-Breaker: A "Golden Goal" round decides the winner in case of a tie.</li>
+                        <li class="flex items-start"><span class="text-accent-turf-green mr-3 text-xl">▶</span> Out of Bounds: If ball leaves arena, it's placed at the center & bots reset.</li>
+                        <li class="flex items-start"><span class="text-accent-turf-green mr-3 text-xl">▶</span> Prohibited: Any mechanism for picking/hitting the ball is strictly prohibited.</li>
+                        <li class="flex items-start"><span class="text-accent-turf-green mr-3 text-xl">▶</span> Finality: Organizers’ decision is final in case of disputes.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="mt-20 border-t border-green-500/20">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+            <p>&copy; 2025 Yenepoya Institute of Technology | Robotics Nexus</p>
+        </div>
+    </footer>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        gsap.registerPlugin(ScrollTrigger);
+
+        const canvas = document.getElementById('stadium-canvas');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+        let mouse = { x: width / 2, y: height / 2 };
+
+        window.addEventListener('mousemove', (e) => {
+            gsap.to(mouse, { x: e.clientX, y: e.clientY, duration: 1, ease: 'power2.out' });
+        });
+
+        function drawBackground() {
+            ctx.clearRect(0, 0, width, height);
+            ctx.fillStyle = '#011A0A';
+            ctx.fillRect(0,0,width,height);
+            ctx.beginPath();
+            ctx.moveTo(width/2, 0);
+            ctx.lineTo(width/2, height);
+            ctx.strokeStyle = 'rgba(0, 255, 135, 0.1)';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(width/2, height/2, 100, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(0, 255, 135, 0.15)';
+            ctx.stroke();
+            const gradient = ctx.createRadialGradient(mouse.x, mouse.y, 100, mouse.x, mouse.y, 400);
+            gradient.addColorStop(0, 'rgba(0, 255, 135, 0.08)');
+            gradient.addColorStop(1, 'rgba(0, 255, 135, 0)');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0,0,width, height);
+            const vignette = ctx.createRadialGradient(width/2, height/2, width/2.5, width/2, height/2, width/1.5);
+            vignette.addColorStop(0, 'rgba(2, 16, 12, 0)');
+            vignette.addColorStop(1, 'rgba(2, 16, 12, 1)');
+            ctx.fillStyle = vignette;
+            ctx.fillRect(0,0,width, height);
+            requestAnimationFrame(drawBackground);
+        }
+
+        drawBackground();
+        window.addEventListener('resize', () => {
+             width = canvas.width = window.innerWidth;
+             height = canvas.height = window.innerHeight;
+        });
+
+        const heroScene = document.getElementById('hero-scene');
+        const layers = heroScene.querySelectorAll('[data-depth]');
+
+        heroScene.addEventListener('mousemove', (e) => {
+            const { clientX, clientY } = e;
+            const x = (clientX / window.innerWidth) - 0.5;
+            const y = (clientY / window.innerHeight) - 0.5;
+
+            layers.forEach(layer => {
+                const depth = layer.getAttribute('data-depth');
+                const moveX = x * 100 * depth;
+                const moveY = y * 70 * depth;
+                gsap.to(layer, {
+                    x: moveX,
+                    y: moveY,
+                    duration: 0.5,
+                    ease: 'power2.out'
+                });
+            });
+        });
+
+        const tl = gsap.timeline({delay: 0.5});
+        
+        gsap.set('#robot', { x: 200, autoAlpha: 0 });
+        gsap.set('#ball', { y: -100, autoAlpha: 0 });
+        gsap.set('#goal', { scale: 0.5, autoAlpha: 0 });
+
+        tl.from("#hero h2, #hero p, #hero div:not(#hero-scene)", { 
+            autoAlpha: 0,
+            y: 30,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: "power3.out"
+        })
+        .to('#goal', { scale: 1, autoAlpha: 0.6, duration: 1, ease: 'power3.out' }, '-=0.5')
+        .to('#robot', { x: 0, autoAlpha: 1, duration: 1, ease: 'power3.out' }, '<')
+        .to('#ball', { y: 0, autoAlpha: 1, duration: 0.8, ease: 'bounce.out' }, '-=0.7');
+
+
+        gsap.from("#bounty-info > div", {
+            scrollTrigger: { trigger: "#bounty-info", start: "top 85%" },
+            autoAlpha: 0,
+            y: 50,
+            scale: 0.9,
+            duration: 0.8,
+            stagger: 0.2,
+            ease: "back.out(1.7)"
+        });
+
+        gsap.from(".protocol-section", {
+            scrollTrigger: { trigger: "#rules", start: "top 80%", toggleActions: "play none none reverse" },
+            autoAlpha: 0,
+            x: -50,
+            duration: 1,
+            stagger: 0.2,
+            ease: "power3.out"
+        });
+    });
+    </script>
+</body>
+</html>
+

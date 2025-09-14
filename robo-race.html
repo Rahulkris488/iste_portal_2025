@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robo Race | ISTE '25</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@800&family=Exo+2:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-race-dark: #0A0A10;
+            --text-light: #E0E0E0;
+            --accent-blue: #00BFFF;
+            --accent-pink: #FF00FF;
+            --glow-blue: rgba(0, 191, 255, 0.4);
+            --glow-pink: rgba(255, 0, 255, 0.3);
+            --panel-bg: rgba(20, 20, 35, 0.5);
+            --border-color: rgba(0, 191, 255, 0.2);
+        }
+        body {
+            font-family: 'Exo 2', sans-serif;
+            background-color: var(--bg-race-dark);
+            color: var(--text-light);
+            overflow-x: hidden;
+        }
+        .font-display { font-family: 'Orbitron', sans-serif; }
+
+        #race-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.7;
+        }
+
+        .race-pane {
+            background: var(--panel-bg);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .race-pane:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .hero-track-svg path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+        }
+        
+        .rules-list li svg {
+            flex-shrink: 0;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <canvas id="race-canvas"></canvas>
+
+    <header class="sticky top-0 z-50">
+        <nav class="container mx-auto px-4 sm:px-6 py-4">
+            <div class="flex justify-between items-center bg-black/50 backdrop-blur-md border border-cyan-500/30 px-4 sm:px-6 py-3 rounded-full">
+                <h1 class="font-display text-lg sm:text-2xl font-bold text-white">ROBO RACE</h1>
+                <a href="index.html" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 text-sm">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                    <span>Main Hub</span>
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 py-12 md:py-20">
+        <section id="hero" class="text-center mb-20 md:mb-32">
+             <div class="relative w-full h-48 flex justify-center items-center mb-8">
+                <svg class="hero-track-svg w-full h-full absolute" viewBox="0 0 400 100">
+                     <defs>
+                        <linearGradient id="trackGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                          <stop offset="0%" stop-color="var(--accent-pink)" />
+                          <stop offset="100%" stop-color="var(--accent-blue)" />
+                        </linearGradient>
+                        <filter id="trackGlow">
+                          <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                          <feMerge>
+                            <feMergeNode in="coloredBlur"/>
+                            <feMergeNode in="SourceGraphic"/>
+                          </feMerge>
+                        </filter>
+                    </defs>
+                    <path d="M 20 50 Q 100 -20 200 50 T 380 50" fill="none" stroke="url(#trackGradient)" stroke-width="4" filter="url(#trackGlow)"/>
+                    <path d="M 20 60 Q 100 -10 200 60 T 380 60" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="2"/>
+                </svg>
+                <h2 class="font-display text-5xl sm:text-6xl md:text-8xl font-black uppercase tracking-wider bg-gradient-to-r from-pink-500 to-blue-400 text-transparent bg-clip-text" style="text-shadow: 0 0 25px var(--glow-pink);">
+                    ROBO RACE
+                </h2>
+             </div>
+            
+            <p class="mt-4 text-center text-lg text-cyan-300/80 font-semibold">
+                Date: 12th Nov, 2025 | Time: 09:00 AM - 03:30 PM
+            </p>
+            <p class="mt-6 text-lg md:text-xl max-w-3xl mx-auto text-gray-300">
+                The Robo Race is a high-energy robotics competition where participants design and operate robots to navigate a track filled with obstacles such as humps, slopes, and elevations. The goal is to complete the course in the shortest possible time without errors. The event emphasizes speed, control, design efficiency, and endurance of the bots, while challenging students’ technical and problem-solving skills.
+            </p>
+        </section>
+
+        <section id="info-cards" class="grid md:grid-cols-2 gap-8 mb-20 md:mb-24">
+            <div class="race-pane rounded-lg p-8 text-center border-l-4 border-pink-500" style="box-shadow: -10px 0 25px var(--glow-pink);">
+                <h3 class="font-display text-3xl text-white mb-4">Entry Fee</h3>
+                <p class="text-6xl font-bold text-pink-400 tracking-tight">₹400</p>
+            </div>
+            <div class="race-pane rounded-lg p-8 text-center border-r-4 border-blue-400" style="box-shadow: 10px 0 25px var(--glow-blue);">
+                <h3 class="font-display text-3xl text-white mb-4">Prize Pool</h3>
+                <div class="text-4xl font-bold text-blue-300 tracking-tight">
+                    <p>1st: ₹5,000</p>
+                    <p>2nd: ₹3,000</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="rules" class="race-pane p-6 sm:p-8 md:p-12 rounded-xl">
+            <h3 class="font-display text-4xl text-center text-cyan-300 mb-10">// RACE PROTOCOLS //</h3>
+            <div class="grid lg:grid-cols-2 gap-x-12 gap-y-10">
+                
+                <div>
+                    <h4 class="font-display text-2xl text-white mb-4 border-b-2 border-pink-500/30 pb-2">Bot Specifications</h4>
+                    <ul class="list-disc list-inside space-y-3 text-lg text-slate-300">
+                        <li>Maximum Dimensions: 30 cm × 25 cm × 25 cm (l × b × h).</li>
+                        <li>Maximum Weight: 3 kg (±5% tolerance).</li>
+                        <li>Power: On-board or off-board supply permitted.</li>
+                        <li>Both wired and wireless bots are allowed.</li>
+                        <li>Coordinators not responsible for electromagnetic interference.</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-display text-2xl text-white mb-4 border-b-2 border-blue-500/30 pb-2">Rules & Regulations</h4>
+                    <ul class="list-disc list-inside space-y-3 text-lg text-slate-300">
+                        <li>Only students from the same college can form a team.</li>
+                        <li>One individual cannot be part of multiple teams.</li>
+                        <li>No ready-made market kits allowed; bots must be self-constructed.</li>
+                        <li>Robots must follow specifications (violations will lead to disqualification).</li>
+                        <li>No practice runs on the main track.</li>
+                        <li>The winner is the team completing the track in the least time.</li>
+                        <li>The structure of the robot cannot be modified during the competition.</li>
+                        <li>If a robot falls off or is immobile, it will be reset to the last checkpoint with a penalty.</li>
+                        <li>Pulling the bot using wires will lead to disqualification.</li>
+                        <li>The robot must not be disassembled until results are declared.</li>
+                        <li>The time measured by organizers is final.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="register" class="mt-20 md:mt-24 text-center">
+            <a href="#" class="inline-block font-display text-xl bg-gradient-to-r from-pink-500 to-blue-500 text-white font-bold py-4 px-12 rounded-md transition-all duration-300 ease-in-out hover:shadow-lg hover:shadow-cyan-500/40 hover:scale-105">
+                REGISTER YOUR TEAM
+            </a>
+        </section>
+    </main>
+    
+    <footer class="mt-20 border-t border-cyan-500/20">
+        <div class="container mx-auto px-6 py-8 text-center text-gray-400">
+            <p>&copy; 2025 Yenepoya Institute of Technology | Robotics Nexus</p>
+        </div>
+    </footer>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        gsap.registerPlugin(ScrollTrigger);
+
+        // --- Background Canvas Animation ---
+        const canvas = document.getElementById('race-canvas');
+        const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
+        let lines = [];
+        const lineCount = 100;
+
+        class Line {
+            constructor() {
+                this.x = Math.random() * width;
+                this.y = Math.random() * height;
+                this.len = Math.random() * 20 + 10;
+                this.speed = Math.random() * 3 + 1;
+                this.color = Math.random() > 0.5 ? 'var(--accent-blue)' : 'var(--accent-pink)';
+            }
+            draw() {
+                ctx.beginPath();
+                ctx.moveTo(this.x, this.y);
+                ctx.lineTo(this.x + this.len, this.y);
+                ctx.strokeStyle = this.color;
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+            }
+            update() {
+                this.x += this.speed;
+                if (this.x > width) {
+                    this.x = -this.len;
+                    this.y = Math.random() * height;
+                }
+                this.draw();
+            }
+        }
+
+        function initLines() {
+            for(let i = 0; i < lineCount; i++) {
+                lines.push(new Line());
+            }
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, width, height);
+            lines.forEach(line => line.update());
+            requestAnimationFrame(animateCanvas);
+        }
+
+        initLines();
+        animateCanvas();
+
+        window.addEventListener('resize', () => {
+             width = canvas.width = window.innerWidth;
+             height = canvas.height = window.innerHeight;
+             lines = [];
+             initLines();
+        });
+
+        // --- Hero Animations ---
+        const tl = gsap.timeline({delay: 0.5});
+        tl.to(".hero-track-svg path", {
+            strokeDashoffset: 0,
+            duration: 2,
+            ease: "power2.inOut",
+            stagger: 0.3
+        }).from(["#hero h2", "#hero p"], {
+            autoAlpha: 0,
+            y: 30,
+            duration: 1,
+            stagger: 0.2,
+            ease: 'power3.out'
+        }, "-=1.5");
+        
+        // --- Scroll Animations ---
+        gsap.utils.toArray('section:not(#hero)').forEach((section) => {
+            gsap.from(section, {
+                scrollTrigger: {
+                    trigger: section,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse",
+                },
+                opacity: 0,
+                y: 60,
+                duration: 1,
+                ease: 'power3.out',
+            });
+        });
+    });
+    </script>
+</body>
+</html>
