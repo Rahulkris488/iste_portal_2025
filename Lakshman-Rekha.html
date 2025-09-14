@@ -105,16 +105,19 @@
 
     <canvas id="ember-canvas"></canvas>
 
-    <header class="sticky top-0 z-50">
+   <header class="sticky top-0 z-50">
         <nav class="container mx-auto px-4 sm:px-6 py-4">
-            <div class="flex justify-between items-center bg-black/50 backdrop-blur-md border border-amber-500/30 px-4 sm:px-6 py-3 rounded-full">
-                <h1 class="font-display text-lg sm:text-2xl text-white tracking-widest">LAKSHMAN REKHA</h1>
-
-                <a href="robotic.html" onclick="if (history.length > 1) { history.back(); return false; }" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 text-sm">
-
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
-                    <span>Robotics Nexus</span>
-                </a>
+            <div class="flex justify-between items-center bg-black/50 backdrop-blur-md border border-amber-500/30 px-4 sm:px-6 py-3 rounded-full h-16 gap-4">
+                
+                <h1 class="font-display text-base sm:text-lg md:text-2xl text-white tracking-widest whitespace-nowrap">LAKSHMAN REKHA</h1>
+                
+                <div class="flex-shrink-0">
+                    <a href="robotic.html" class="text-gray-300 hover:text-white transition-colors flex items-center gap-2 text-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 scale-150" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                        <span class="hidden sm:inline">Robotics Nexus</span>
+                    </a>
+                </div>
+                
             </div>
         </nav>
     </header>
@@ -150,9 +153,8 @@
             <p class="mt-4 text-center text-lg text-amber-300/80 font-semibold">
                 Date: 11th & 12th Nov, 2025 | Time: 9 AM (11th) to 3 PM (12th)
             </p>
-            <p class="mt-6 text-lg md:text-xl max-w-3xl mx-auto text-gray-300">
-                The Lakshman Rekha competition challenges participants to design and build fully autonomous robots that can follow a predefined track. The event tests automation, embedded systems, and programming skills, encouraging students to innovate in the fundamentals of robotics and AI.
-            </p>
+            <p class="mt-6 text-lg md:text-xl max-w-5xl  mx-auto text-gray-300">
+The Lakshman Rekha – Line Follower Robot Competition challenges participants to design and build fully autonomous robots that can follow a predefined track. Robots must use sensors and onboard processing to navigate the path, handle lighting conditions, and adapt to trajectory changes. The event tests automation, embedded systems, and programming skills, encouraging students to innovate in robotics and AI fundamentals.            </p>
         </section>
 
         <section id="info-cards" class="grid md:grid-cols-2 gap-8 mb-20 md:mb-24">
@@ -168,38 +170,51 @@
                 <p class="text-6xl font-bold text-amber-300 tracking-tight">₹300</p>
             </div>
         </section>
-
-        <section id="rules" class="mystic-pane p-6 sm:p-8 md:p-12 rounded-xl">
+<section id="rules" class="mystic-pane p-6 sm:p-8 md:p-12 rounded-xl">
             <div class="grid lg:grid-cols-2 gap-x-12 gap-y-16">
                 
                 <div>
                     <h4 class="rules-header font-display text-2xl text-white mb-6">Robot Specifications</h4>
                     <ul class="list-none space-y-4 text-lg rules-list">
-                        <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg><span>Maximum dimensions: 20cm x 20cm x 20cm.</span></li>
+                        <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" /></svg><span>Maximum dimensions: 20 × 20 × 20 cm.</span></li>
                         <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 4H6a2 2 0 00-2 2v12a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-2m-4-1v8m0 0l3-3m-3 3L9 8m-5 5h2.586a1 1 0 01.707.293l2.414 2.414a1 1 0 001.414 0l2.414-2.414a1 1 0 01.707-.293H17" /></svg><span>Maximum weight: 3 kg.</span></li>
-                        <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg><span>Must function under varying lighting conditions.</span></li>
-                        <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M12 6V3m0 18v-3" /></svg><span>All systems (battery, sensors, control) must be onboard.</span></li>
-                        <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg><span>Power supply must not exceed 12V; no external power is allowed.</span></li>
+                        <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg><span>Must function under varying lighting conditions (including camera flashes).</span></li>
+                        <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M12 6V3m0 18v-3" /></svg><span>Must include all systems onboard: battery, sensors, processing, and control.</span></li>
+                        <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg><span>Power supply: Maximum 12V (no external supply allowed).</span></li>
                     </ul>
                 </div>
 
                 <div>
-                    <h4 class="rules-header font-display text-2xl text-white mb-6">Rules of the Arena</h4>
+                    <h4 class="rules-header font-display text-2xl text-white mb-6">Rules & Regulations</h4>
                     <ul class="list-none space-y-4 text-lg rules-list">
-                        <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L15 9l-2.053 1.027a1 1 0 01-1.447-.894V5.618a1 1 0 011.447-.894L21 9" /></svg><span>The arena map will be disclosed on the day of the event.</span></li>
-                        <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg><span>The arena track width will be approximately 3 cm.</span></li>
-                        <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" /></svg><span>Once the robot crosses the start line, it must remain fully autonomous.</span></li>
-                        <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span>Manual touches to the bot will incur penalties. Score is calculated as completion time minus penalties.</span></li>
-                        <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg><span>The decisions of the judges and coordinators are final and binding.</span></li>
+                        <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L15 9l-2.053 1.027a1 1 0 01-1.447-.894V5.618a1 1 0 011.447-.894L21 9" /></svg><span>Arena map will be disclosed on the event day.</span></li>
+                        <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm-9 3a2 2 0 11-4 0 2 2 0 014 0z" /></svg><span>Only 2 team members allowed near the arena during calibration.</span></li>
+                        <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100 4m0-4a2 2 0 110 4m0-4v2m0 4v2m6-12v2m0 4v2" /></svg><span>Participants must bring all required accessories.</span></li>
+                        <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg><span>On-board power supply is mandatory; no external power provided.</span></li>
+                        <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span>Practice run is allowed only with coordinator’s permission.</span></li>
+                        <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" /></svg><span>Arena trajectory/path width will be ~3 cm.</span></li>
+                        <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span>Round-specific rules will be explained before each round.</span></li>
+                        <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636" /></svg><span>Once a robot crosses the start line, it must remain fully autonomous.</span></li>
+                        <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg><span>Manual touches will incur penalties.</span></li>
+                        <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg><span>Scores = completion time – penalties.</span></li>
+                        <li class="flex items-start"><svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg><span>Judges’/Coordinator’s decisions are final.</span></li>
                     </ul>
                 </div>
             </div>
         </section>
 
-        <section id="register" class="mt-20 md:mt-24 text-center">
-            <a href="#" class="inline-block font-display text-xl bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold py-4 px-12 rounded-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-[0_0_25px_var(--glow-saffron)]">
-                REGISTER YOUR TEAM
-            </a>
+      <section id="register" class="mt-20 md:mt-24 text-center">
+            <div class="mystic-pane p-8 md:p-12 rounded-xl">
+                <h2 class="font-display text-4xl md:text-5xl font-bold hero-title-shimmer mb-4">
+                    Trace the Path to Victory
+                </h2>
+                <p class="text-lg text-slate-300 max-w-xl mx-auto mb-8">
+                    The sacred line has been drawn. Will your creation have the precision to follow it? Assemble your team and accept the challenge.
+                </p>
+                <a href="#" class="inline-block font-display text-xl bg-gradient-to-r from-amber-500 to-yellow-500 text-black font-bold py-4 px-12 rounded-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-[0_0_25px_var(--glow-saffron)]">
+                    REGISTER YOUR TEAM
+                </a>
+            </div>
         </section>
     </main>
     
