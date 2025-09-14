@@ -114,18 +114,20 @@
 
     <div id="animated-bg"></div>
 
-    <header class="sticky top-0 z-50">
+   <header class="sticky top-0 z-50">
         <nav class="container mx-auto px-6 py-4">
-              <div class="flex justify-between items-center glass-pane px-6 py-3">
-                    <h1 class="text-xl font-bold text-center text-text-heading">The Launchpad</h1>
-                    <a href="index.html" 
-                       onclick="if (history.length > 1) { history.back(); return false; }" 
-                       class="text-text-light hover:text-white transition-colors flex items-center gap-2 text-md">
-                       <span>Main Hub</span>
-                       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                           <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                       </svg>
-                   </a>
+              <div class="flex justify-between items-center glass-pane px-4 sm:px-6 py-3 h-16 gap-4">
+                  
+                  <h1 class="text-lg sm:text-xl font-bold text-text-heading whitespace-nowrap">The Launchpad</h1>
+                  
+                  <div class="flex-shrink-0">
+                      <a href="index.html" class="text-text-light hover:text-white transition-colors flex items-center gap-2 text-md">
+                          <span>Main Hub</span>
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                              <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                          </svg>
+                      </a>
+                  </div>
               </div>
         </nav>
     </header>
@@ -280,15 +282,15 @@
                 </div>
             </section>
 
-              <section class="text-center glass-pane p-12">
-                  <h2 class=" text-4xl font-bold text-text-heading">Ready to Launch Your Idea?</h2>
-                  <p class="mt-4 text-lg">Assemble your team, refine your vision, and step onto the stage where ideas take flight.</p>
-                  <div class="mt-10">
-                        <a href="#" class="btn-primary text-white font-bold py-4 px-10 rounded-lg text-lg">
-                            Register Your Start-up
-                        </a>
-                  </div>
-              </section>
+             <section class="text-center glass-pane p-8 sm:p-12">
+              <h2 class="text-3xl sm:text-4xl font-bold text-text-heading">Ready to Launch Your Idea?</h2>
+              <p class="mt-4 text-base sm:text-lg">Assemble your team, refine your vision, and step onto the stage where ideas take flight.</p>
+              <div class="mt-10">
+                  <a href="#" class="btn-primary text-white font-bold rounded-lg whitespace-nowrap py-3 px-6 text-base sm:py-4 sm:px-10 sm:text-lg">
+                      Register Your Start-up
+                  </a>
+              </div>
+            </section>
         </div>
     </main>
     
