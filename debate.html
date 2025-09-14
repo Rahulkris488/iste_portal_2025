@@ -84,7 +84,7 @@
               <div class="flex justify-between items-center bg-black/30 backdrop-blur-sm border-y border-gray-700 px-4 sm:px-6 py-3">
                   <h1 class="font-display text-xl sm:text-2xl text-center text-text-heading">THE ARENA</h1>
                   <a href="index.html" 
-   class="text-text-light hover:text-white transition-colors flex items-center gap-2 text-sm sm:text-base">
+   onclick="if (history.length > 1) { history.back(); return false; }"  class="text-green-300 hover:text-white transition-colors flex items-center gap-2 group">
      <span>MAIN HUB</span>
      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
