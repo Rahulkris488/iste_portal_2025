@@ -3,16 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Robotic events registration page for iste 2025 ">
+
     <title>Robotics Nexus: Assembly Protocol | ISTE '25</title>
     
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
     
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Roboto:wght@400;500&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Roboto:wght@400;500&display=swap"></noscript>
+
     <style>
         :root {
             --bg-metallic: #111827;
@@ -87,6 +91,10 @@
             border-color: rgba(0, 162, 255, 0.5);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
+        
+        .event-card img {
+            aspect-ratio: 16 / 9;
+        }
 
     </style>
 </head>
@@ -96,15 +104,15 @@
 
     <header class="sticky top-0 z-40">
         <nav class="container mx-auto px-6 py-4">
-             <div class="flex justify-between items-center circuit-pane !p-3">
-                <h1 class="font-display text-xl font-bold text-center text-text-hud">ASSEMBLY PROTOCOL</h1>
-                <a href="index.html#events"  class="text-text-secondary hover:text-white transition-colors flex items-center gap-2 text-md">
-                    <span>MAIN HUB</span>
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                    </svg>
-                </a>
-            </div>
+              <div class="flex justify-between items-center circuit-pane !p-3">
+                  <h1 class="font-display text-xl font-bold text-center text-text-hud">ASSEMBLY PROTOCOL</h1>
+                  <a href="index.html#events"  class="text-text-secondary hover:text-white transition-colors flex items-center gap-2 text-md">
+                      <span>MAIN HUB</span>
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                          <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                      </svg>
+                  </a>
+              </div>
         </nav>
     </header>
 
@@ -121,47 +129,48 @@
                 </p>
             </div>
         </section>
+        
         <section id="general-rules" class="container mx-auto px-4 sm:px-6 py-12 md:py-20">
               <h2 class="font-display text-3xl md:text-4xl font-bold text-center mb-16 text-text-hud">// GENERAL PROTOCOLS</h2>
               <div class="max-w-4xl mx-auto circuit-pane">
-                    <ul class="space-y-4">
+                  <ul class="space-y-4">
+                      <li class="flex items-start">
+                          <svg class="h-6 w-6 mr-3 text-blue-400 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                          </svg>
+                          <span class="text-lg text-text-secondary"><strong>Team Size:</strong> A team must consist of 2 to 4 members.</span>
+                      </li>
+                      <li class="flex items-start">
+                          <svg class="h-6 w-6 mr-3 text-blue-400 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                          </svg>
+                          <span class="text-lg text-text-secondary"><strong>Eligibility:</strong> All participants must be full-time students of accredited universities, colleges, or schools.</span>
+                      </li>
+                      <li class="flex items-start">
+                          <svg class="h-6 w-6 mr-3 text-blue-400 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                          </svg>
+                          <span class="text-lg text-text-secondary"><strong>Entries:</strong> Multiple teams from the same institution are permitted to enter.</span>
+                      </li>
+                      <li class="flex items-start">
+                          <svg class="h-6 w-6 mr-3 text-blue-400 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                          </svg>
+                          <span class="text-lg text-text-secondary"><strong>Identification:</strong> A valid college ID is mandatory for registration.</span>
+                      </li>
                         <li class="flex items-start">
-                            <svg class="h-6 w-6 mr-3 text-blue-400 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                            </svg>
-                            <span class="text-lg text-text-secondary"><strong>Team Size:</strong> A team must consist of 2 to 4 members.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="h-6 w-6 mr-3 text-blue-400 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                            </svg>
-                            <span class="text-lg text-text-secondary"><strong>Eligibility:</strong> All participants must be full-time students of accredited universities, colleges, or schools.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="h-6 w-6 mr-3 text-blue-400 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                            </svg>
-                            <span class="text-lg text-text-secondary"><strong>Entries:</strong> Multiple teams from the same institution are permitted to enter.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="h-6 w-6 mr-3 text-blue-400 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                            </svg>
-                            <span class="text-lg text-text-secondary"><strong>Identification:</strong> A valid college ID is mandatory for registration.</span>
-                        </li>
-                           <li class="flex items-start">
-                            <svg class="h-6 w-6 mr-3 text-blue-400 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
-                            </svg>
-                            <span class="text-lg text-text-secondary"><strong>Authority:</strong> The decisions made by the judges and organizers are final and binding.</span>
-                        </li>
-                        <li class="flex items-start">
-                            <svg class="h-6 w-6 mr-3 text-red-500 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                            </svg>
-                            <span class="text-lg text-text-secondary"><strong>Compliance:</strong> Any violation of the rules will lead to immediate disqualification from the event.</span>
-                        </li>
-                    </ul>
+                          <svg class="h-6 w-6 mr-3 text-blue-400 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+                          </svg>
+                          <span class="text-lg text-text-secondary"><strong>Authority:</strong> The decisions made by the judges and organizers are final and binding.</span>
+                      </li>
+                      <li class="flex items-start">
+                          <svg class="h-6 w-6 mr-3 text-red-500 flex-shrink-0 mt-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                          </svg>
+                          <span class="text-lg text-text-secondary"><strong>Compliance:</strong> Any violation of the rules will lead to immediate disqualification from the event.</span>
+                      </li>
+                  </ul>
               </div>
         </section>
 
@@ -173,7 +182,12 @@
                     
                     <a href="robo-kickoff.html" class="block group event-card">
                         <div class="glass-card h-full overflow-hidden">
-                            <img src="kickoff.png" alt="Robo Soccer" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                             <img alt="Robo Soccer" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105" width="1200" height="675" loading="lazy" 
+                                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                srcset="https://res.cloudinary.com/dstrhh3zd/image/upload/w_480,c_limit,q_auto/v1758076430/kickoff_ispu8e.webp 480w,
+                                        https://res.cloudinary.com/dstrhh3zd/image/upload/w_946,c_limit,q_auto/v1758076430/kickoff_ispu8e.webp 946w,
+                                        https://res.cloudinary.com/dstrhh3zd/image/upload/w_1200,c_limit,q_auto/v1758076430/kickoff_ispu8e.webp 1200w"
+                                src="https://res.cloudinary.com/dstrhh3zd/image/upload/w_946,c_limit,q_auto/v1758076430/kickoff_ispu8e.webp">
                             <div class="p-6">
                                 <h3 class="font-display text-xl font-bold mb-2 text-blue-400">Robo Kick-Off</h3>
                                 <p>A dynamic soccer-style game where bots must maneuver a ball and defend a goal, testing technical skill and teamwork.</p>
@@ -183,7 +197,12 @@
 
                     <a href="robo-race.html" class="block group event-card">
                         <div class="glass-card h-full overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1719300287089-e28ed13bcf68?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Robo Race" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <img alt="Robo Race" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105" width="1200" height="675" loading="lazy"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                srcset="https://images.unsplash.com/photo-1719300287089-e28ed13bcf68?q=auto&w=480&auto=format&fit=crop 480w,
+                                        https://images.unsplash.com/photo-1719300287089-e28ed13bcf68?q=auto&w=946&auto=format&fit=crop 946w,
+                                        https://images.unsplash.com/photo-1719300287089-e28ed13bcf68?q=auto&w=1200&auto=format&fit=crop 1200w"
+                                src="https://images.unsplash.com/photo-1719300287089-e28ed13bcf68?q=auto&w=946&auto=format&fit=crop">
                             <div class="p-6">
                                 <h3 class="font-display text-xl font-bold mb-2 text-blue-400">Robo Race</h3>
                                 <p>A high-speed competition where bots navigate a track filled with obstacles, emphasizing speed, control, and endurance.</p>
@@ -193,7 +212,12 @@
 
                     <a href="Lakshman-Rekha.html" class="block group event-card">
                         <div class="glass-card h-full overflow-hidden">
-                            <img src="line.png" alt="Line Follower Robot" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <img alt="Line Follower Robot" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105" width="1200" height="675" loading="lazy"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                srcset="https://res.cloudinary.com/dstrhh3zd/image/upload/w_480,c_limit,q_auto/v1758076430/line_jjw8pf.jpg 480w,
+                                        https://res.cloudinary.com/dstrhh3zd/image/upload/w_946,c_limit,q_auto/v1758076430/line_jjw8pf.jpg 946w,
+                                        https://res.cloudinary.com/dstrhh3zd/image/upload/w_1200,c_limit,q_auto/v1758076430/line_jjw8pf.jpg 1200w"
+                                src="https://res.cloudinary.com/dstrhh3zd/image/upload/w_946,c_limit,q_auto/v1758076430/line_jjw8pf.jpg">
                             <div class="p-6">
                                 <h3 class="font-display text-xl font-bold mb-2 text-blue-400">Lakshman Rekha</h3>
                                 <p>An autonomous challenge where bots must follow a predefined track using sensors, testing automation and precision.</p>
@@ -203,7 +227,12 @@
 
                     <a href="robo-sumo.html" class="block group event-card">
                         <div class="glass-card h-full overflow-hidden">
-                            <img src="sumo.png" alt="Robo Sumo" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <img alt="Robo Sumo" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105" width="1200" height="675" loading="lazy"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                srcset="https://res.cloudinary.com/dstrhh3zd/image/upload/w_480,c_limit,q_auto/v1758076430/sumo_ibqm1j.jpg 480w,
+                                        https://res.cloudinary.com/dstrhh3zd/image/upload/w_946,c_limit,q_auto/v1758076430/sumo_ibqm1j.jpg 946w,
+                                        https://res.cloudinary.com/dstrhh3zd/image/upload/w_1200,c_limit,q_auto/v1758076430/sumo_ibqm1j.jpg 1200w"
+                                src="https://res.cloudinary.com/dstrhh3zd/image/upload/w_946,c_limit,q_auto/v1758076430/sumo_ibqm1j.jpg">
                             <div class="p-6">
                                 <h3 class="font-display text-xl font-bold mb-2 text-blue-400">Robo Sumo</h3>
                                 <p>Two bots compete to push each other out of a circular ring in a test of design, balance, power, and strategy.</p>
@@ -213,7 +242,12 @@
 
                     <a href="robo-maze.html" class="block group event-card">
                         <div class="glass-card h-full overflow-hidden">
-                            <img src="maze.png" alt="Robo Maze" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                            <img alt="Robo Maze" class="w-full h-auto object-cover transition-transform duration-300 group-hover:scale-105" width="1200" height="675" loading="lazy"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                srcset="https://res.cloudinary.com/dstrhh3zd/image/upload/w_480,c_limit,q_auto/v1758076426/maze_jginvg.jpg 480w,
+                                        https://res.cloudinary.com/dstrhh3zd/image/upload/w_946,c_limit,q_auto/v1758076426/maze_jginvg.jpg 946w,
+                                        https://res.cloudinary.com/dstrhh3zd/image/upload/w_1200,c_limit,q_auto/v1758076426/maze_jginvg.jpg 1200w"
+                                src="https://res.cloudinary.com/dstrhh3zd/image/upload/w_946,c_limit,q_auto/v1758076426/maze_jginvg.jpg">
                             <div class="p-6">
                                 <h3 class="font-display text-xl font-bold mb-2 text-blue-400">Robo Maze</h3>
                                 <p>An autonomous navigation challenge where bots must solve a maze filled with obstacles, testing problem-solving skills.</p>
@@ -260,8 +294,6 @@
                 </div>
             </section>
 
-
-            
         </div>
     </main>
     
@@ -373,35 +405,42 @@
             });
         });
 
-        // --- NEW: Interactive 3D Tilt Effect for Event Cards ---
+        // --- OPTIMIZED Interactive 3D Tilt Effect for Event Cards ---
         const tiltCards = document.querySelectorAll('.event-card');
 
         tiltCards.forEach(card => {
+            const innerCard = card.querySelector('.glass-card');
+            if (!innerCard) return;
+
+            let isTicking = false;
+
             card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const centerX = rect.width / 2;
-                const centerY = rect.height / 2;
-                
-                const deltaX = x - centerX;
-                const deltaY = y - centerY;
-                
-                const rotateX = (deltaY / centerY) * 12; 
-                const rotateY = -(deltaX / centerX) * 12; 
-                
-                const innerCard = card.querySelector('.glass-card');
-                if (innerCard) {
-                    innerCard.style.transform = `scale(1.05) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                if (!isTicking) {
+                    window.requestAnimationFrame(() => {
+                        const rect = card.getBoundingClientRect();
+                        const x = e.clientX - rect.left;
+                        const y = e.clientY - rect.top;
+                        
+                        const centerX = rect.width / 2;
+                        const centerY = rect.height / 2;
+                        
+                        const deltaX = x - centerX;
+                        const deltaY = y - centerY;
+                        
+                        const rotateX = (deltaY / centerY) * 12; 
+                        const rotateY = -(deltaX / centerX) * 12; 
+                        
+                        innerCard.style.transform = `scale(1.05) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                        isTicking = false;
+                    });
+                    isTicking = true;
                 }
             });
 
             card.addEventListener('mouseleave', () => {
-                const innerCard = card.querySelector('.glass-card');
-                if (innerCard) {
+                window.requestAnimationFrame(() => {
                     innerCard.style.transform = 'scale(1) rotateX(0deg) rotateY(0deg)';
-                }
+                });
             });
         });
 
