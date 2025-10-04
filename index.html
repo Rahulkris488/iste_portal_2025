@@ -170,7 +170,60 @@
             #timeline .timeline-card {
                 width: 100%;
             }
+            
         }
+ 
+
+        /* --- Corrected & Enhanced Marquee Styles --- */
+.marquee-wrapper {
+    overflow: hidden;
+    position: relative;
+    padding: 0.6rem 0;
+    background-color: rgba(2, 239, 151, 0.15);
+    border-top: 1px solid rgba(2, 239, 151, 0.4);
+    box-shadow: 0 0 15px rgba(2, 239, 151, 0.2);
+}
+
+.marquee-content {
+    /* THIS IS THE FIX: Ensures the container is wide enough to scroll */
+    width: fit-content; 
+    display: flex;
+    /* Faster 8-second animation */
+    animation: marquee-scroll 8s linear infinite;
+}
+
+.marquee-content span {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    padding: 0 2.5rem;
+    color: #E2E8F0;
+    font-size: 0.9rem;
+    font-weight: 700;
+    text-shadow: 0 0 10px var(--primary-glow);
+}
+
+.marquee-content span::before {
+    content: '•';
+    color: var(--primary-green);
+    font-size: 1.5rem;
+    line-height: 1;
+    margin-right: 0.75rem;
+    animation: blink 1.5s infinite;
+}
+
+@keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    /* The animation now correctly moves half the total width */
+    to { transform: translateX(-50%); }
+}
+
+/* Re-using your existing blink animation for the dot */
+@keyframes blink {
+    50% { opacity: 0.2; }
+}
+/* --- End Marquee Styles --- */
+
         
     </style>
 </head>
@@ -355,15 +408,24 @@
             <section id="events" class="container mx-auto px-6 scroll-mt-24">
                 <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16 relative">Competitions & Events</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <a href="h.html" class="block group event-card">
-                        <div class="glass-card h-full overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop" alt="Hackathon" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">Hackathon</h3>
-                                <p class="text-gray-400">A 24-hour coding marathon to build innovative solutions.</p>
-                            </div>
-                        </div>
-                    </a>
+    <a href="h.html" class="block group event-card">
+    <div class="glass-card h-full overflow-hidden flex flex-col">
+        <div>
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop" alt="Hackathon" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+            <div class="p-6">
+                <h3 class="text-xl font-bold mb-2">Hackathon</h3>
+                <p class="text-gray-400">A 24-hour coding marathon to build innovative solutions.</p>
+            </div>
+        </div>
+
+        <div class="mt-auto marquee-wrapper">
+            <div class="marquee-content">
+                <span>Registrations will close on October 24th.</span>
+                <span>Registrations will close on October 24th.</span>
+            </div>
+        </div>
+    </div>
+</a>
                     <a href="treasure-hunt.html" class="block group event-card">
                         <div class="glass-card h-full overflow-hidden">
                             <img src="https://images.unsplash.com/photo-1612257998531-70e0d0a15f6d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dHJlYXN1cmUlMjBodW50fGVufDB8fDB8fHww" alt="Treasure Hunt" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
