@@ -212,6 +212,7 @@
     animation: blink 1.5s infinite;
 }
 
+
 @keyframes marquee-scroll {
     from { transform: translateX(0); }
     /* The animation now correctly moves half the total width */
@@ -406,109 +407,142 @@
             </section>
 
             <section id="events" class="container mx-auto px-6 scroll-mt-24">
-                <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16 relative">Competitions & Events</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    <a href="h.html" class="block group event-card">
-    <div class="glass-card h-full overflow-hidden flex flex-col">
-        <div>
-            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop" alt="Hackathon" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
-            <div class="p-6">
-                <h3 class="text-xl font-bold mb-2">Hackathon</h3>
-                <p class="text-gray-400">A 24-hour coding marathon to build innovative solutions.</p>
-            </div>
-        </div>
-
-        <div class="mt-auto marquee-wrapper">
-            <div class="marquee-content">
-                <span>Registrations are closed !!</span>
-                <span>Registrations are closed !!</span>
-            </div>
-        </div>
-    </div>
-</a>
-                    <a href="treasure-hunt.html" class="block group event-card">
-                        <div class="glass-card h-full overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1612257998531-70e0d0a15f6d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dHJlYXN1cmUlMjBodW50fGVufDB8fDB8fHww" alt="Treasure Hunt" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">Treasure Hunt</h3>
-                                <p class="text-gray-400">Solve cryptic clues and race against time.</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="ctf.html" class="block group event-card">
-                        <div class="glass-card h-full overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop" alt="Capture The Flag" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">Capture The Flag</h3>
-                                <p class="text-gray-400">A cybersecurity challenge of skill and strategy.</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="uiux.html" class="block group event-card">
-                        <div class="glass-card h-full overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1587440871875-191322ee64b0?q=80&w=2071&auto=format&fit=crop" alt="UI/UX Design" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">UI/UX Design</h3>
-                                <p class="text-gray-400">Design beautiful and intuitive user experiences.</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="startup.html" class="block group event-card">
-                        <div class="glass-card h-full overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop" alt="Start-up Pitch" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">Start-up Pitch</h3>
-                                <p class="text-gray-400">Present your groundbreaking business idea.</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="robotic.html" class="block group event-card">
-                        <div class="glass-card h-full overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1742767069929-0c663150b164?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Robotic Events" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">Robotic Events</h3>
-                                <p class="text-gray-400">Compete in various robotic challenges and showcases.</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="quiz.html" class="block group event-card">
-                        <div class="glass-card h-full overflow-hidden">
-                            <img src="https://media.istockphoto.com/id/2179684475/photo/engaged-audience-raising-hands-during-business-conference-lecture.webp?a=1&b=1&s=612x612&w=0&k=20&c=TzyXipFZLdXY0-VnF8ZSM4FsS1oqvqpvSfYeXL32MWI=" alt="Technical Quiz" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">Technical Quiz</h3>
-                                <p class="text-gray-400">Test your technical knowledge with challenging questions.</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="debate.html" class="block group event-card">
-                        <div class="glass-card h-full overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Tech Debate" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">Tech Debate</h3>
-                                <p class="text-gray-400">Engage in thought-provoking debates on emerging technologies.</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="project.html" class="block group event-card">
-                        <div class="glass-card h-full overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=2070&auto=format&fit=crop" alt="Project Expo" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">Project Expo</h3>
-                                <p class="text-gray-400">Showcase your innovative projects and models.</p>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="autocad.html" class="block group event-card">
-                        <div class="glass-card h-full overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZW5naW5lZXJpbmclMjBkcmF3aW5nfGVufDB8fDB8fHww" alt="Auto CAED" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
-                            <div class="p-6">
-                                <h3 class="text-xl font-bold mb-2">Auto CAED</h3>
-                                <p class="text-gray-400">Showcase your CAD and engineering drawing skills.</p>
-                            </div>
-                        </div>
-                    </a>
+    <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16 relative">Competitions & Events</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <a href="h.html" class="block group event-card">
+            <div class="glass-card h-full overflow-hidden flex flex-col">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop" alt="Hackathon" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Hackathon</h3>
+                        <p class="text-gray-400">A 24-hour coding marathon to build innovative solutions.</p>
+                    </div>
                 </div>
-            </section>
+                <div class="mt-auto marquee-wrapper">
+                    <div class="marquee-content">
+                        <span>Registrations are closed !!</span>
+                        <span>Registrations are closed !!</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a href="treasure-hunt.html" class="block group event-card">
+            <div class="glass-card h-full overflow-hidden flex flex-col">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1612257998531-70e0d0a15f6d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dHJlYXN1cmUlMjBodW50fGVufDB8fDB8fHww" alt="Treasure Hunt" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Treasure Hunt</h3>
+                        <p class="text-gray-400">Solve cryptic clues and race against time.</p>
+                    </div>
+                </div>
+                <div class="mt-auto marquee-wrapper">
+                    <div class="marquee-content">
+                        <span>Registrations are closed !!</span>
+                        <span>Registrations are closed !!</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a href="ctf.html" class="block group event-card">
+            <div class="glass-card h-full overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop" alt="Capture The Flag" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Capture The Flag</h3>
+                    <p class="text-gray-400">A cybersecurity challenge of skill and strategy.</p>
+                </div>
+            </div>
+        </a>
+
+        <a href="uiux.html" class="block group event-card">
+            <div class="glass-card h-full overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1587440871875-191322ee64b0?q=80&w=2071&auto=format&fit=crop" alt="UI/UX Design" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">UI/UX Design</h3>
+                    <p class="text-gray-400">Design beautiful and intuitive user experiences.</p>
+                </div>
+            </div>
+        </a>
+        
+        <a href="startup.html" class="block group event-card">
+            <div class="glass-card h-full overflow-hidden flex flex-col">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop" alt="Start-up Pitch" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Start-up Pitch</h3>
+                        <p class="text-gray-400">Present your groundbreaking business idea.</p>
+                    </div>
+                </div>
+                <div class="mt-auto marquee-wrapper">
+                    <div class="marquee-content">
+                        <span>Registrations are closed !!</span>
+                        <span>Registrations are closed !!</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a href="robotic.html" class="block group event-card">
+            <div class="glass-card h-full overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1742767069929-0c663150b164?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Robotic Events" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Robotic Events</h3>
+                    <p class="text-gray-400">Compete in various robotic challenges and showcases.</p>
+                </div>
+            </div>
+        </a>
+
+        <a href="quiz.html" class="block group event-card">
+            <div class="glass-card h-full overflow-hidden flex flex-col">
+                <div>
+                    <img src="https://media.istockphoto.com/id/2179684475/photo/engaged-audience-raising-hands-during-business-conference-lecture.webp?a=1&b=1&s=612x612&w=0&k=20&c=TzyXipFZLdXY0-VnF8ZSM4FsS1oqvqpvSfYeXL32MWI=" alt="Technical Quiz" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Technical Quiz</h3>
+                        <p class="text-gray-400">Test your technical knowledge with challenging questions.</p>
+                    </div>
+                </div>
+                <div class="mt-auto marquee-wrapper">
+                    <div class="marquee-content">
+                        <span>Registrations are closed !!</span>
+                        <span>Registrations are closed !!</span>
+                    </div>
+                </div>
+            </div>
+        </a>
+
+        <a href="debate.html" class="block group event-card">
+            <div class="glass-card h-full overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Tech Debate" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Tech Debate</h3>
+                    <p class="text-gray-400">Engage in thought-provoking debates on emerging technologies.</p>
+                </div>
+            </div>
+        </a>
+
+        <a href="project.html" class="block group event-card">
+            <div class="glass-card h-full overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=2070&auto=format&fit=crop" alt="Project Expo" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Project Expo</h3>
+                    <p class="text-gray-400">Showcase your innovative projects and models.</p>
+                </div>
+            </div>
+        </a>
+
+        <a href="autocad.html" class="block group event-card">
+            <div class="glass-card h-full overflow-hidden">
+                <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZW5naW5lZXJpbmclMjBkcmF3aW5nfGVufDB8fDB8fHww" alt="Auto CAED" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                <div class="p-6">
+                    <h3 class="text-xl font-bold mb-2">Auto CAED</h3>
+                    <p class="text-gray-400">Showcase your CAD and engineering drawing skills.</p>
+                </div>
+            </div>
+        </a>
+    </div>
+</section>
 
             <section id="timeline" class="container mx-auto px-4 md:px-6 py-8 scroll-mt-24">
                 <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 md:mb-24 relative">Event Timeline</h2>
