@@ -115,6 +115,16 @@
               </div>
         </nav>
     </header>
+    <section id="date-announcement" class="container mx-auto px-6 pt-8">
+    <div class="circuit-pane !p-4 flex flex-col sm:flex-row items-center justify-center gap-4 text-center">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-blue-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        <p class="text-lg text-text-secondary">
+            <span class="font-semibold text-text-hud">SCHEDULE UPDATE:</span> Robo Maze & Robo Sumo on <span class="font-display text-blue-400">NOVEMBER 11</span>. All other events on <span class="font-display text-blue-400">NOVEMBER 12</span>.
+        </p>
+    </div>
+</section>
 
     <main class="relative z-10">
         
@@ -390,7 +400,7 @@
         // --- Mechanical Animations ---
         gsap.from(".hero-line", { duration: 1, y: 50, autoAlpha: 0, stagger: 0.2, ease: "power3.out", delay: 0.5 });
         gsap.from("#hero-subtitle", { duration: 1, y: 30, autoAlpha: 0, ease: "power3.out", delay: 1 });
-
+gsap.from("#date-announcement", { duration: 1, y: -50, autoAlpha: 0, ease: "power3.out", delay: 0.2 });
         gsap.utils.toArray('section').forEach((section) => {
             gsap.from(section, {
                 scrollTrigger: {
