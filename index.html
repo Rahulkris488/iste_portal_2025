@@ -936,14 +936,14 @@
                 });
             });
 
-            const countdownDate = new Date("Oct 31, 2025 23:59:59").getTime();
+            const countdownDate = new Date("Oct 31, 2025 19:59:59").getTime();
             const countdownFunction = setInterval(() => {
                 const now = new Date().getTime();
                 const distance = countdownDate - now;
 
                 if (distance < 0) {
                     clearInterval(countdownFunction);
-                    document.getElementById("countdown").innerHTML = "<div class='text-lg md:text-xl text-emerald-400 p-2'>The Event Is Live!</div>";
+                    // document.getElementById("countdown").innerHTML = "<div class='text-lg md:text-xl text-emerald-400 p-2'>The Event Is Live!</div>";
                     return;
                 }
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
