@@ -269,6 +269,16 @@
             <a href="#coordinators" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Coordinators</a>
         </div>
     </header>
+    <div id="schedule-alert" class="container mx-auto px-4 pt-6">
+    <div class="border border-emerald-400/30 bg-emerald-900/20 rounded-lg p-4 flex items-center justify-center space-x-3 text-center shadow-[0_0_15px_rgba(2,239,151,0.2)]">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-emerald-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        <p class="text-sm md:text-base text-slate-300">
+            <span class="font-bold text-white">SCHEDULE UPDATE:</span> Hackathon, Robo Maze & Robo Sumo are on <span class="font-bold text-emerald-400">Nov 11</span>. All other events are on <span class="font-bold text-emerald-400">Nov 12</span>.
+        </p>
+    </div>
+</div>
 
     <main class="relative z-10">
         <section id="hero" class="text-center min-h-screen flex flex-col items-center justify-center py-20 px-4">
@@ -990,6 +1000,13 @@
                 document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
                 document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
             }, 1000);
+            gsap.from("#schedule-alert", {
+    y: -30,
+    opacity: 0,
+    duration: 0.8,
+    ease: "power3.out",
+    delay: 0.5
+});
         });
     </script>
 </body>
