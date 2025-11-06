@@ -172,7 +172,7 @@
             }
             
         }
- 
+    
 
         /* --- Corrected & Enhanced Marquee Styles --- */
 .marquee-wrapper {
@@ -236,7 +236,8 @@
         <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex-shrink-0">
                 <a href="#hero" class="flex items-center space-x-2">
-                    <img src="https://www.yit.edu.in/assets/img/logo-yit.png" alt="Yenepoya Institute of Technology Logo" class="h-12 md:h-16">
+                    <!-- Using a placeholder as the original image path might not be accessible -->
+                    <img src="https://www.yit.edu.in/assets/img/logo-yit.png" alt="Yenepoya Institute of Technology Logo" class="h-12 md:h-16" onerror="this.onerror=null;this.src='https://placehold.co/200x60/000000/02ef97?text=YIT+Logo';">
                 </a>
             </div>
             
@@ -250,7 +251,8 @@
 
             <div class="flex items-center space-x-4">
                 <a href="https://www.isteonline.in/" target="_blank" class="flex items-center space-x-2">
-                    <img src="https://res.cloudinary.com/dstrhh3zd/image/upload/v1758075309/iste_woxvjp.jpg" alt="ISTE Logo" class="h-12 md:h-16">
+                    <!-- Using a placeholder as the original image path might not be accessible -->
+                    <img src="https://res.cloudinary.com/dstrhh3zd/image/upload/v1758075309/iste_woxvjp.jpg" alt="ISTE Logo" class="h-12 md:h-16" onerror="this.onerror=null;this.src='https://placehold.co/60x60/000000/02ef97?text=ISTE';">
                 </a>
                 <div class="md:hidden">
                     <button id="mobile-menu-button" class="text-white focus:outline-none">
@@ -384,6 +386,51 @@
         </div>
 
         <div class="py-20 space-y-28">
+
+            <!-- === MODIFIED SPONSORS SECTION (No Glass Card) === -->
+            <section id="sponsors" class="container mx-auto px-6 scroll-mt-24">
+                <!-- Sponsors Title -->
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16 relative anim-fade">
+                    Our Sponsors
+                </h2>
+                <!-- Sponsors Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 items-center justify-items-center">
+                    <!-- Sponsor 1: Genesis -->
+                    <div class="sponsor-logo w-full h-32 md:h-40 flex items-center justify-center bg-white/90 rounded-lg p-4 transition-all duration-300 hover:shadow-emerald-500/30 hover:scale-105 border-2 border-transparent hover:border-emerald-400/50">
+                        <img src="image_ddf75a.png" alt="Genesis Logo" class="max-w-full max-h-full object-contain" onerror="this.onerror=null;this.src='https://placehold.co/200x100/ffffff/000000?text=Genesis';">
+                    </div>
+                    <!-- Sponsor 2: Kakunje Software -->
+                    <div class="sponsor-logo w-full h-32 md:h-40 flex items-center justify-center bg-white/90 rounded-lg p-4 transition-all duration-300 hover:shadow-emerald-500/30 hover:scale-105 border-2 border-transparent hover:border-emerald-400/50">
+                        <img src="image_ddf763.png" alt="Kakunje Software Logo" class="max-w-full max-h-full object-contain" onerror="this.onerror=null;this.src='https://placehold.co/200x100/ffffff/000000?text=Kakunje+Software';">
+                    </div>
+                    <!-- Sponsor 3: Vithsura -->
+                    <div class="sponsor-logo w-full h-32 md:h-40 flex items-center justify-center bg-white/90 rounded-lg p-4 transition-all duration-300 hover:shadow-emerald-500/30 hover:scale-105 border-2 border-transparent hover:border-emerald-400/50">
+                        <img src="image_ddf79c.png" alt="Vithsura Logo" class="max-w-full max-h-full object-contain" onerror="this.onerror=null;this.src='https://placehold.co/200x100/ffffff/000000?text=Vithsura';">
+                    </div>
+                    <!-- Sponsor 4: Karmic Design -->
+                    <div class="sponsor-logo w-full h-32 md:h-40 flex items-center justify-center bg-white/90 rounded-lg p-4 transition-all duration-300 hover:shadow-emerald-500/30 hover:scale-105 border-2 border-transparent hover:border-emerald-400/50">
+                        <img src="image_ddf7a1.jpg" alt="Karmic Design Logo" class="max-w-full max-h-full object-contain" onerror="this.onerror=null;this.src='https://placehold.co/200x100/ffffff/000000?text=Karmic+Design';">
+                    </div>
+                </div>
+
+                <!-- Internship Partners Title -->
+                <h2 class="section-title text-3xl md:text-4xl font-bold text-center mt-20 mb-16 relative anim-fade">
+                    Internship Partners
+                </h2>
+                <!-- Partners Grid -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 items-center justify-items-center max-w-3xl mx-auto">
+                    <!-- Partner 1: pacewisdom -->
+                    <div class="sponsor-logo w-full h-32 md:h-40 flex items-center justify-center bg-white/90 rounded-lg p-4 transition-all duration-300 hover:shadow-emerald-500/30 hover:scale-105 border-2 border-transparent hover:border-emerald-400/50">
+                        <img src="image_ddf7be.png" alt="pacewisdom Logo" class="max-w-full max-h-full object-contain" onerror="this.onerror=null;this.src='https://placehold.co/200x100/ffffff/000000?text=pacewisdom';">
+                    </div>
+                    <!-- Partner 2: JumpWhere -->
+                    <div class="sponsor-logo w-full h-32 md:h-40 flex items-center justify-center bg-white/90 rounded-lg p-4 transition-all duration-300 hover:shadow-emerald-500/30 hover:scale-105 border-2 border-transparent hover:border-emerald-400/50">
+                        <img src="image_ddf7d7.png" alt="JumpWhere Logo" class="max-w-full max-h-full object-contain" onerror="this.onerror=null;this.src='https://placehold.co/200x100/ffffff/000000?text=JumpWhere';">
+                    </div>
+                </div>
+            </section>
+            <!-- === END SPONSORS SECTION === -->
+
             <section id="glance" class="max-w-6xl mx-auto px-6 scroll-mt-24">
                 <h2 class="section-title text-3xl md:text-4xl font-bold text-center mb-16 relative">The Convention at a Glance</h2>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
@@ -429,7 +476,7 @@
         <a href="h.html" class="block group event-card">
     <div class="glass-card h-full overflow-hidden flex flex-col">
         <div>
-            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop" alt="Hackathon" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+            <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=2070&auto=format&fit=crop" alt="Hackathon" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a202c/02ef97?text=Hackathon';">
             <div class="p-6">
                 <h3 class="text-xl font-bold mb-2">Hackathon</h3>
                 <p class="text-gray-400">A 24-hour coding marathon to build innovative solutions.</p>
@@ -450,7 +497,7 @@
         <a href="treasure-hunt.html" class="block group event-card">
             <div class="glass-card h-full overflow-hidden flex flex-col">
                 <div>
-                    <img src="https://images.unsplash.com/photo-1612257998531-70e0d0a15f6d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dHJlYXN1cmUlMjBodW50fGVufDB8fDB8fHww" alt="Treasure Hunt" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                    <img src="https://images.unsplash.com/photo-1612257998531-70e0d0a15f6d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8dHJlYXN1cmUlMjBodW50fGVufDB8fDB8fHww" alt="Treasure Hunt" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a202c/02ef97?text=Treasure+Hunt';">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Treasure Hunt</h3>
                         <p class="text-gray-400">Solve cryptic clues and race against time.</p>
@@ -467,7 +514,7 @@
 
         <a href="ctf.html" class="block group event-card">
             <div class="glass-card h-full overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop" alt="Capture The Flag" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop" alt="Capture The Flag" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a202c/02ef97?text=CTF';">
                 <div class="p-6">
                     <h3 class="text-xl font-bold mb-2">Capture The Flag</h3>
                     <p class="text-gray-400">A cybersecurity challenge of skill and strategy.</p>
@@ -478,7 +525,7 @@
       <a href="uiux.html" class="block group event-card">
     <div class="glass-card h-full overflow-hidden flex flex-col">
         <div>
-            <img src="https://images.unsplash.com/photo-1587440871875-191322ee64b0?q=80&w=2071&auto=format&fit=crop" alt="UI/UX Design" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+            <img src="https://images.unsplash.com/photo-1587440871875-191322ee64b0?q=80&w=2071&auto=format&fit=crop" alt="UI/UX Design" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a202c/02ef97?text=UI/UX+Design';">
             <div class="p-6">
                 <h3 class="text-xl font-bold mb-2">UI/UX Design</h3>
                 <p class="text-gray-400">Design beautiful and intuitive user experiences.</p>
@@ -492,7 +539,7 @@
         <a href="startup.html" class="block group event-card">
             <div class="glass-card h-full overflow-hidden flex flex-col">
                 <div>
-                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop" alt="Start-up Pitch" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                    <img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop" alt="Start-up Pitch" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a202c/02ef97?text=Start-up+Pitch';">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Start-up Pitch</h3>
                         <p class="text-gray-400">Present your groundbreaking business idea.</p>
@@ -509,7 +556,7 @@
 
         <a href="robotic.html" class="block group event-card">
             <div class="glass-card h-full overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1742767069929-0c663150b164?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Robotic Events" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                <img src="https://images.unsplash.com/photo-1742767069929-0c663150b164?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Robotic Events" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a202c/02ef97?text=Robotic+Events';">
                 <div class="p-6">
                     <h3 class="text-xl font-bold mb-2">Robotic Events</h3>
                     <p class="text-gray-400">Compete in various robotic challenges and showcases.</p>
@@ -520,7 +567,7 @@
         <a href="quiz.html" class="block group event-card">
             <div class="glass-card h-full overflow-hidden flex flex-col">
                 <div>
-                    <img src="https://media.istockphoto.com/id/2179684475/photo/engaged-audience-raising-hands-during-business-conference-lecture.webp?a=1&b=1&s=612x612&w=0&k=20&c=TzyXipFZLdXY0-VnF8ZSM4FsS1oqvqpvSfYeXL32MWI=" alt="Technical Quiz" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                    <img src="https://media.istockphoto.com/id/2179684475/photo/engaged-audience-raising-hands-during-business-conference-lecture.webp?a=1&b=1&s=612x612&w=0&k=20&c=TzyXipFZLdXY0-VnF8ZSM4FsS1oqvqpvSfYeXL32MWI=" alt="Technical Quiz" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a202c/02ef97?text=Technical+Quiz';">
                     <div class="p-6">
                         <h3 class="text-xl font-bold mb-2">Technical Quiz</h3>
                         <p class="text-gray-400">Test your technical knowledge with challenging questions.</p>
@@ -537,7 +584,7 @@
 
         <a href="debate.html" class="block group event-card">
             <div class="glass-card h-full overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Tech Debate" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                <img src="https://images.unsplash.com/photo-1515187029135-18ee286d815b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Tech Debate" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a202c/02ef97?text=Tech+Debate';">
                 <div class="p-6">
                     <h3 class="text-xl font-bold mb-2">Tech Debate</h3>
                     <p class="text-gray-400">Engage in thought-provoking debates on emerging technologies.</p>
@@ -548,25 +595,10 @@
         <a href="project.html" class="block group event-card">
     <div class="glass-card h-full overflow-hidden flex flex-col">
         <div>
-            <img src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=2070&auto=format&fit=crop" alt="Project Expo" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
-            <div class="p-6">
-                <h3 class="text-xl font-bold mb-2">Project Expo</h3>
-                <p class="text-gray-400">Showcase your innovative projects and models.</p>
-            </div>
-        </div>
-        <div class="mt-auto marquee-wrapper">
-            <div class="marquee-content">
-                <span>Registrations are closed !!</span>
-                <span>Registrations are closed !!</span>
-            </div>
-        </div>
-    </div>
-</a>
-
-
+            <img src="httpsD`
         <a href="autocad.html" class="block group event-card">
             <div class="glass-card h-full overflow-hidden">
-                <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZW5naW5lZXJpbmclMjBkcmF3aW5nfGVufDB8fDB8fHww" alt="Auto CAED" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105">
+                <img src="https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8ZW5naW5lZXJpbmclMjBkcmF3aW5nfGVufDB8fDB8fHww" alt="Auto CAED" class="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/1a202c/02ef97?text=Auto+CAED';">
                 <div class="p-6">
                     <h3 class="text-xl font-bold mb-2">Auto CAED</h3>
                     <p class="text-gray-400">Showcase your CAD and engineering drawing skills.</p>
@@ -620,7 +652,7 @@
             <div class="timeline-circle z-20 flex items-center order-1 bg-gray-800 shadow-xl w-8 h-8 rounded-full">
                 <h1 class="mx-auto font-semibold text-sm text-white">3</h1>
             </div>
-            <div class="timeline-card order-1 glass-card w-5/1m-auto0 w-5/12 px-6 py-4">
+            <div class="timeline-card order-1 glass-card w-5/m-auto0 w-5/12 px-6 py-4">
                 <h3 class="font-bold text-emerald-400 text-lg">DAY 2: NOVEMBER 12</h3>
                 <p class="font-semibold text-white mt-1">Afternoon Session</p>
                  <ul class="list-none text-sm text-gray-400 mt-2 space-y-1">
@@ -740,7 +772,7 @@
  window.addEventListener("load", () => {
     const scrollPos = localStorage.getItem("scrollPos");
     if (scrollPos) {
-      window.scrollTo(0, scrollPos);
+       window.scrollTo(0, scrollPos);
     }
  });
 
@@ -948,11 +980,12 @@
                 gsap.from(card, { scrollTrigger: { trigger: card, ...animConfig }, opacity: 0, scale: 0.95, duration: 0.5, delay: i * 0.05 });
             });
 
+            // This animation is now active for the new sponsor logos
             gsap.utils.toArray('.sponsor-logo').forEach((logo, i) => {
                 gsap.from(logo, { scrollTrigger: { trigger: logo, start: "top bottom-=50px", toggleActions: "play none none none" }, opacity: 0, y: 20, duration: 0.5, delay: i * 0.1 });
             });
 
-              let yensplashText = gsap.timeline({
+             let yensplashText = gsap.timeline({
                 scrollTrigger: {
                     trigger: "#about-yensplash",
                     start: "top 70%",
@@ -988,33 +1021,55 @@
                 });
             });
 
-            const countdownDate = new Date("Oct 31, 2025 19:59:59").getTime();
+            // Set countdown date to Nov 5, 2025 23:59:59 (Today is Nov 6, so this will be in the past)
+            // Let's set it to a future date for testing, e.g., Nov 10, 2025
+            const countdownDate = new Date("Nov 10, 2025 23:59:59").getTime();
+            
+            const countdownEl = document.getElementById("countdown");
+            const daysEl = document.getElementById("days");
+            const hoursEl = document.getElementById("hours");
+            const minutesEl = document.getElementById("minutes");
+            const secondsEl = document.getElementById("seconds");
+
             const countdownFunction = setInterval(() => {
                 const now = new Date().getTime();
                 const distance = countdownDate - now;
 
                 if (distance < 0) {
                     clearInterval(countdownFunction);
-                    // document.getElementById("countdown").innerHTML = "<div class='text-lg md:text-xl text-emerald-400 p-2'>The Event Is Live!</div>";
+                    if (countdownEl) {
+                        // Show a different message when registration closes
+                        countdownEl.innerHTML = `
+                            <h2 class="text-xl md:text-xl text-emerald-400 font-bold">
+                                // Registrations Closed
+                            </h2>
+                            <p class="text-slate-300 text-sm">See you at the event!</p>
+                        `;
+                    }
                     return;
                 }
+                
                 const days = Math.floor(distance / (1000 * 60 * 60 * 24));
                 const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                document.getElementById("days").innerText = days.toString().padStart(2, '0');
-                document.getElementById("hours").innerText = hours.toString().padStart(2, '0');
-                document.getElementById("minutes").innerText = minutes.toString().padStart(2, '0');
-                document.getElementById("seconds").innerText = seconds.toString().padStart(2, '0');
+                if (daysEl && hoursEl && minutesEl && secondsEl) {
+                    daysEl.innerText = days.toString().padStart(2, '0');
+                    hoursEl.innerText = hours.toString().padStart(2, '0');
+                    minutesEl.innerText = minutes.toString().padStart(2, '0');
+                    secondsEl.innerText = seconds.toString().padStart(2, '0');
+                }
+
             }, 1000);
+            
             gsap.from("#schedule-alert", {
-    y: -30,
-    opacity: 0,
-    duration: 0.8,
-    ease: "power3.out",
-    delay: 0.5
-});
+                y: -30,
+                opacity: 0,
+                duration: 0.8,
+                ease: "power3.out",
+                delay: 0.5
+            });
         });
     </script>
 </body>
