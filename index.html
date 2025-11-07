@@ -130,6 +130,34 @@
             50% { opacity: 0; }
         }
 
+        /* --- NEW STYLES FOR DOWNLOAD BUTTON --- */
+        .btn-download-brochure {
+            /* Initial state for the animation */
+            transform: scale(1);
+            box-shadow: 0 0 25px var(--primary-glow);
+            animation: throb 2.5s ease-in-out infinite;
+        }
+        
+        .btn-download-brochure:hover {
+            /* Override animation on hover for a more responsive feel */
+            animation: none;
+            transform: scale(1.05);
+            box-shadow: 0 0 40px var(--primary-glow);
+        }
+
+        @keyframes throb {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 25px var(--primary-glow);
+            }
+            50% {
+                transform: scale(1.03);
+                box-shadow: 0 0 40px var(--primary-glow);
+            }
+        }
+        /* --- END NEW STYLES --- */
+
+
         /* Added CRT-style flicker animation */
         @keyframes flicker {
             0%, 18%, 22%, 25%, 53%, 57%, 100% {
@@ -175,55 +203,55 @@
     
 
         /* --- Corrected & Enhanced Marquee Styles --- */
-.marquee-wrapper {
-    overflow: hidden;
-    position: relative;
-    padding: 0.6rem 0;
-    background-color: rgba(167, 27, 27, 0.375);
-    border-top: 1px solid rgba(252, 9, 9, 0.4);
-    box-shadow: 0 0 15px rgba(206, 13, 13, 0.2);
-}
+        .marquee-wrapper {
+            overflow: hidden;
+            position: relative;
+            padding: 0.6rem 0;
+            background-color: rgba(167, 27, 27, 0.375);
+            border-top: 1px solid rgba(252, 9, 9, 0.4);
+            box-shadow: 0 0 15px rgba(206, 13, 13, 0.2);
+        }
 
-.marquee-content {
-    /* THIS IS THE FIX: Ensures the container is wide enough to scroll */
-    width: fit-content; 
-    display: flex;
-    /* Faster 8-second animation */
-    animation: marquee-scroll 8s linear infinite;
-}
+        .marquee-content {
+            /* THIS IS THE FIX: Ensures the container is wide enough to scroll */
+            width: fit-content; 
+            display: flex;
+            /* Faster 8-second animation */
+            animation: marquee-scroll 8s linear infinite;
+        }
 
-.marquee-content span {
-    display: flex;
-    align-items: center;
-    white-space: nowrap;
-    padding: 0 2.5rem;
-    color: #E2E8F0;
-    font-size: 0.9rem;
-    font-weight: 700;
-    text-shadow: 0 0 10px var(--primary-glow);
-}
+        .marquee-content span {
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            padding: 0 2.5rem;
+            color: #E2E8F0;
+            font-size: 0.9rem;
+            font-weight: 700;
+            text-shadow: 0 0 10px var(--primary-glow);
+        }
 
-.marquee-content span::before {
-    content: '•';
-    color: var(--primary-green);
-    font-size: 1.5rem;
-    line-height: 1;
-    margin-right: 0.75rem;
-    animation: blink 1.5s infinite;
-}
+        .marquee-content span::before {
+            content: '•';
+            color: var(--primary-green);
+            font-size: 1.5rem;
+            line-height: 1;
+            margin-right: 0.75rem;
+            animation: blink 1.5s infinite;
+        }
 
 
-@keyframes marquee-scroll {
-    from { transform: translateX(0); }
-    /* The animation now correctly moves half the total width */
-    to { transform: translateX(-50%); }
-}
+        @keyframes marquee-scroll {
+            from { transform: translateX(0); }
+            /* The animation now correctly moves half the total width */
+            to { transform: translateX(-50%); }
+        }
 
-/* Re-using your existing blink animation for the dot */
-@keyframes blink {
-    50% { opacity: 0.2; }
-}
-/* --- End Marquee Styles --- */
+        /* Re-using your existing blink animation for the dot */
+        @keyframes blink {
+            50% { opacity: 0.2; }
+        }
+        /* --- End Marquee Styles --- */
 
         
     </style>
@@ -236,7 +264,6 @@
         <nav class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex-shrink-0">
                 <a href="#hero" class="flex items-center space-x-2">
-                    <!-- Using a placeholder as the original image path might not be accessible -->
                     <img src="https://www.yit.edu.in/assets/img/logo-yit.png" alt="Yenepoya Institute of Technology Logo" class="h-12 md:h-16" onerror="this.onerror=null;this.src='https://placehold.co/200x60/000000/02ef97?text=YIT+Logo';">
                 </a>
             </div>
@@ -251,7 +278,6 @@
 
             <div class="flex items-center space-x-4">
                 <a href="https://www.isteonline.in/" target="_blank" class="flex items-center space-x-2">
-                    <!-- Using a placeholder as the original image path might not be accessible -->
                     <img src="https://res.cloudinary.com/dstrhh3zd/image/upload/v1758075309/iste_woxvjp.jpg" alt="ISTE Logo" class="h-12 md:h-16" onerror="this.onerror=null;this.src='https://placehold.co/60x60/000000/02ef97?text=ISTE';">
                 </a>
                 <div class="md:hidden">
@@ -262,7 +288,6 @@
             </div>
         </nav>
 
-        <!-- Corrected mobile menu positioning to be an overlay -->
         <div id="mobile-menu" class="absolute left-0 right-0 md:hidden bg-black/50 backdrop-blur-sm overflow-hidden" style="visibility: hidden;">
             <a href="#hero" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">Home</a>
             <a href="#about-iste" class="block py-2 px-4 text-sm text-gray-300 hover:bg-gray-800">About ISTE</a>
@@ -291,7 +316,6 @@
     <main class="relative z-10">
         <section id="hero" class="text-center min-h-screen flex flex-col items-center justify-center py-20 px-4">
             
-            <!-- Restructured hero title for better responsiveness -->
             <h1 id="hero-title" class="flex flex-col text-4xl sm:text-5xl font-extrabold text-white leading-tight">
                 <span class="block">Welcome to</span>
                 <span class="block text-emerald-400">ISTECON '25</span>
@@ -308,7 +332,20 @@
                 The 21st ISTE Karnataka State Level Student Convention, where innovation meets opportunity.
             </p>
 
-             <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mt-12 max-w-6xl mx-auto w-full">
+            <div class="mt-10 w-full flex justify-center" id="brochure-download-container">
+                <a href="https://drive.google.com/file/d/1mWoVhfA509MbAmcmBsbJKoR_EiFtkgmW/view?usp=drivesdk" 
+                   target="_blank" 
+                   rel="noopener noreferrer"
+                   class="btn-download-brochure inline-flex items-center justify-center gap-3 px-8 py-4 bg-emerald-500 text-black font-bold text-lg rounded-lg transition-all duration-300 hover:bg-emerald-400">
+                    
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                    </svg>
+                    
+                    <span>// Download Invitation & Schedule</span>
+                </a>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mt-12 max-w-6xl mx-auto w-full">
                 <div class="glass-card p-8 rounded-2xl shadow-lg border border-white/10 hover:scale-105 hover:shadow-emerald-500/30 transition duration-300">
                     <div class="flex flex-col items-center text-center">
                         <div class="bg-gradient-to-r from-emerald-500 to-green-600 p-4 rounded-xl shadow-md mb-4">
@@ -403,7 +440,7 @@
         </div>
         
         <div class="sponsor-logo w-full h-32 md:h-40 flex items-center justify-center bg-white rounded-lg  transition-all duration-300 hover:shadow-emerald-500/30 hover:scale-105 border-2 border-transparent hover:border-emerald-400/50">
-            <img src="https://res.cloudinary.com/dstrhh3zd/image/upload/v1762445946/ks_ahqydy.jpg" alt="Kakuje Software Logo" class="max-w-full max-h-full object-contain">
+            <img src="https://res.cloudinary.com/dstrhh3zd/image/upload/v1762502928/Gemini_Generated_Image_gi4ti6gi4ti6gi4t_mkcyl5.png" alt="Invi Hub" class="max-w-full max-h-full object-contain">
         </div>
         
         <div class="sponsor-logo w-full h-32 md:h-40 flex items-center justify-center bg-white rounded-lg  transition-all duration-300 hover:shadow-emerald-500/30 hover:scale-105 border-2 border-transparent hover:border-emerald-400/50">
@@ -482,7 +519,7 @@
         <div class="mt-auto border-t border-emerald-400/30 bg-emerald-900/20 p-4 text-center transition-colors group-hover:bg-emerald-800/30">
             <p class="text-emerald-300 font-bold flex items-center justify-center gap-2 text-lg">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                 </svg>
                 Selected Team List Revealed
             </p>
@@ -527,7 +564,7 @@
                 <p class="text-gray-400">Design beautiful and intuitive user experiences.</p>
             </div>
         </div>
-       
+        
     </div>
 </a>
 
@@ -785,15 +822,15 @@
 
  // Save scroll before leaving
  window.addEventListener("beforeunload", () => {
-    localStorage.setItem("scrollPos", window.scrollY);
+     localStorage.setItem("scrollPos", window.scrollY);
  });
 
  // Restore scroll when loading
  window.addEventListener("load", () => {
-    const scrollPos = localStorage.getItem("scrollPos");
-    if (scrollPos) {
-       window.scrollTo(0, scrollPos);
-    }
+     const scrollPos = localStorage.getItem("scrollPos");
+     if (scrollPos) {
+        window.scrollTo(0, scrollPos);
+     }
  });
 
 
@@ -955,7 +992,14 @@
                 ease: "none",
                 onStart: () => subtitle.classList.add('typing'),
                 onComplete: () => subtitle.classList.remove('typing'),
-            }, "-=0.2");
+            }, "-=0.2")
+            // --- NEW ANIMATION FOR THE BUTTON ---
+            .from("#brochure-download-container", {
+                duration: 0.6,
+                y: 30,
+                opacity: 0,
+                ease: "power3.out"
+            }, "-=2.0"); // Fades in with the subtitle
             
             const animConfig = {
                 start: "top bottom-=100px",
@@ -1006,18 +1050,18 @@
             });
 
              let yensplashText = gsap.timeline({
-                scrollTrigger: {
-                    trigger: "#about-yensplash",
-                    start: "top 70%",
-                    end: "center center",
-                    scrub: 1.5
-                }
-            });
-            yensplashText.from("#yensplash-text .word", {
-                opacity: 0.2,
-                filter: "blur(8px)",
-                stagger: { each: 0.1, from: "random" }
-            });
+                 scrollTrigger: {
+                     trigger: "#about-yensplash",
+                     start: "top 70%",
+                     end: "center center",
+                     scrub: 1.5
+                 }
+             });
+             yensplashText.from("#yensplash-text .word", {
+                 opacity: 0.2,
+                 filter: "blur(8px)",
+                 stagger: { each: 0.1, from: "random" }
+             });
 
             const sections = document.querySelectorAll('main section');
             const navLinks = document.querySelectorAll('.nav-link');
