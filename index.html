@@ -332,7 +332,15 @@
                 The 21st ISTE Karnataka State Level Student Convention, where innovation meets opportunity.
             </p>
 
-            <div class="mt-10 w-full flex justify-center" id="brochure-download-container">
+            <div id="invitation-image-container" class="mt-10 w-full flex justify-center px-4">
+                <div class="glass-card p-1 overflow-hidden transition-all duration-300 ease-in-out hover:transform hover:-translate-y-1 hover:scale-[1.02] shadow-[0_0_35px_var(--primary-glow)] hover:shadow-[0_0_45px_var(--primary-glow)] w-full max-w-2xl">
+                    <img src="https://res.cloudinary.com/dstrhh3zd/image/upload/v1762764775/ISTE_Invitation_ajj6hd.png" 
+                         alt="ISTECON 25 Invitation" 
+                         class="w-full h-auto rounded-[0.70rem] object-cover"
+                         onerror="this.onerror=null;this.src='https://placehold.co/800x450/000000/02ef97?text=ISTECON+%2725+Invitation';">
+                </div>
+            </div>
+            <div class="mt-8 w-full flex justify-center" id="brochure-download-container">
                 <a href="https://drive.google.com/file/d/1mWoVhfA509MbAmcmBsbJKoR_EiFtkgmW/view?usp=drivesdk" 
                    target="_blank" 
                    rel="noopener noreferrer"
@@ -829,7 +837,7 @@
  window.addEventListener("load", () => {
      const scrollPos = localStorage.getItem("scrollPos");
      if (scrollPos) {
-        window.scrollTo(0, scrollPos);
+       window.scrollTo(0, scrollPos);
      }
  });
 
@@ -993,13 +1001,24 @@
                 onStart: () => subtitle.classList.add('typing'),
                 onComplete: () => subtitle.classList.remove('typing'),
             }, "-=0.2")
-            // --- NEW ANIMATION FOR THE BUTTON ---
+
+            // ================= START: MODIFIED GSAP ANIMATION =================
+            // --- NEW ANIMATION FOR INVITATION ---
+            .from("#invitation-image-container", {
+                duration: 0.7,
+                y: 40,
+                opacity: 0,
+                ease: "power3.out"
+            }, "-=2.2") // Starts just before the subtitle finishes typing
+            // --- MODIFIED ANIMATION FOR BUTTON ---
             .from("#brochure-download-container", {
                 duration: 0.6,
                 y: 30,
                 opacity: 0,
                 ease: "power3.out"
-            }, "-=2.0"); // Fades in with the subtitle
+            }, "-=1.8"); // Starts after the image begins fading in
+            // ================= END: MODIFIED GSAP ANIMATION =================
+
             
             const animConfig = {
                 start: "top bottom-=100px",
